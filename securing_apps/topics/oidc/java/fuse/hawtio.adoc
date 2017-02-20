@@ -15,7 +15,8 @@ hawtio.rolePrincipalClasses=org.keycloak.adapters.jaas.RolePrincipal,org.apache.
 ----
 
 * Create client in {{book.project.name}} admin console in your realm. Assuming you have {{book.project.name}} realm `demo` and you created client `hawtio-client`, which is marked
-with `public` Access Type and has redirect URI pointing to Hawtio -  http://localhost:8181/hawtio/* .
+with `public` Access Type and has redirect URI pointing to Hawtio, which should be  `http://localhost:8181/hawtio/*` . It is also needed to have corresponding Web Origin
+configured (in this case `http://localhost:8181` )
 
 * Create file `keycloak-hawtio-client.json` in the directory `$FUSE_HOME/etc` and use the content like this (Change properties `realm`, `resource` and `auth-server-url` according to
 your {{book.project.name}} environment. The property `resource` should point to the client created in previous step. This file is used by the client (Hawtio Javascript application) side.
@@ -58,7 +59,9 @@ features:install keycloak
 ----
 
 * Go to http://localhost:8181/hawtio and login as some user from your {{book.project.name}} realm. See file `$FUSE_HOME/etc/system.properties` and property `hawtio.roles` .
-Just those with some of the role are able to successfully authenticate to Hawtio and do something here.
+Just those with some of the role are able to successfully authenticate to Hawtio and do something here. Make sure that with configuration above, it corresponds to the
+{{book.project.name}} realm roles. So for example you need to have {{book.project.name}} realm role `viewer` and your user must be member of this realm role, so that
+Hawtio will see it.
 
 
 ====== Secure Hawtio on EAP
