@@ -19,8 +19,8 @@
     "title": "Keycloak Documentation",
     "project": {
       "name": "Keycloak",
-      "version": "2.5.4.Final",
-      "versionMvn": "2.5.4.Final"
+      "version": "2.5.5.Final",
+      "versionMvn": "2.5.5.Final"
     },
     "community": true,
     "product": false,
