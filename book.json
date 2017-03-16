@@ -19,8 +19,8 @@
     "title": "Keycloak Documentation",
     "project": {
       "name": "Keycloak",
-      "version": "3.0.0.CR1-SNAPSHOT",
-      "versionMvn": "3.0.0.CR1-SNAPSHOT"
+      "version": "3.0.0.CR1-3.0.0.CR1",
+      "versionMvn": "3.0.0.CR1-3.0.0.CR1"
     },
     "community": true,
     "product": false,
