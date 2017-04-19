@@ -55,6 +55,10 @@ client-key-password::
   Password for the client's key.
   This is _REQUIRED_ if `client-keystore` is set.
 
+proxy-url::
+  Configuration of proxy URL denoting the proxy host, port and scheme, e.g. `http://www-proxy.example.com:3128`.
+  Not set by default.
+
 [[_truststore]]
 ==== Outgoing HTTPS Request Truststore
 
