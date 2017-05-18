@@ -7,7 +7,8 @@
     "toggle-chapters",
     "ungrey",
     "splitter",
-    "ga"
+    "ga",
+    "asciidoc-admonition-icons"
   ],
   "pluginsConfig": {
     "ga": {
