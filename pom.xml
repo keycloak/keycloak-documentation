@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <name>Keycloak Documentation Parent</name>
+    <groupId>org.keycloak.documentation</groupId>
+    <artifactId>documentation-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <version.plugin.asciidoctor>1.5.5</version.plugin.asciidoctor>
+        <version.plugin.assembly>3.0.0</version.plugin.assembly>
+        <version.plugin.resources>3.0.2</version.plugin.resources>
+    </properties>
+
+    <modules>
+        <module>server_admin</module>
+    </modules>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.asciidoctor</groupId>
+                    <artifactId>asciidoctor-maven-plugin</artifactId>
+                    <version>${version.plugin.asciidoctor}</version>
+                    <executions>
+                        <execution>
+                            <id>asciidoc-to-html</id>
+                            <phase>generate-resources</phase>
+                            <goals>
+                                <goal>process-asciidoc</goal>
+                            </goals>
+                            <configuration>
+                                <backend>html5</backend>
+                                <sourceHighlighter>coderay</sourceHighlighter>
+
+                                <!--
+                                Scenarios for linking vs embedding assets:
+
+                                Link to both stylesheets and images::
+
+                                  - don't set embedAssets option
+                                  - set linkcss attribute to true
+                                  - set imagesdir attribute to path relative to AsciiDoc source file
+
+                                  <attributes>
+                                      <linkcss>true</linkcss>
+                                      <imagesdir>./images</imagesdir>
+                                  </attributes>
+
+                                Embed stylesheets and images::
+
+                                  - set embedAssets option to true
+                                  - don't set linkcss attribute
+                                  - set imagesdir attribute to path relative to project root
+
+                                  <embedAssets>true</embedAssets>
+                                  <attributes>
+                                      <imagesdir>src/docs/asciidoc/images</imagesdir>
+                                  </attributes>
+
+                                Link to stylesheets but embed images::
+
+                                  - set embedAssets option to true
+                                  - set linkcss attribute to true
+                                  - set imagesdir attribute to path relative to project root
+
+                                  <embedAssets>true</embedAssets>
+                                  <attributes>
+                                      <linkcss>true</linkcss>
+                                      <imagesdir>src/docs/asciidoc/images</imagesdir>
+                                  </attributes>
+
+                                Embed stylesheets but link images (default)::
+
+                                  - don't set embedAssets option
+                                  - don't set linkcss attribute
+                                  - set imagesdir attribute to path relative to AsciiDoc source file
+
+                                  <attributes>
+                                      <imagesdir>./images</imagesdir>
+                                  </attributes>
+
+                                IMPORTANT: When you enable image embedding, you must qualify the path the the imagesdir, as shown above.
+                                -->
+                                <attributes>
+                                    <sourcedir>${project.build.sourceDirectory}</sourcedir>
+
+                                    <imagesdir>./</imagesdir>
+                                    <toc>left</toc>
+                                    <toc>left</toc>
+                                    <icons>font</icons>
+                                    <sectanchors>true</sectanchors>
+                                    <!-- set the idprefix to blank -->
+                                    <idprefix/>
+                                    <idseparator>-</idseparator>
+                                    <docinfo1>true</docinfo1>
+                                </attributes>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <!--
+                NOTE: Use the maven-resources-plugin if there are assets outside the AsciiDoc source folder
+                      that need to be copied to the generated-docs. The Maven plugin automatically copies
+                      non-AsciiDoc files in the AsciiDoc source folder to generated-docs.
+                -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${version.plugin.resources}</version>
+                    <executions>
+                        <execution>
+                            <id>asciidoc-copy-resources</id>
+                            <phase>process-resources</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                                <resources>
+                                </resources>
+                                <outputDirectory>target/generated-docs</outputDirectory>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${version.plugin.assembly}</version>
+                    <executions>
+                        <execution>
+                            <id>asciidoc-html-zip</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                            <configuration>
+                                <appendAssemblyId>false</appendAssemblyId>
+                                <attach>true</attach>
+                                <descriptors>
+                                    <descriptor>../assembly.xml</descriptor>
+                                </descriptors>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>
