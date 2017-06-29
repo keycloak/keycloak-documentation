@@ -1,9 +1,12 @@
 language: java
 
 install:
-    - mvn package -B
+    # We don't have any use for the zip'd files, so stop before the package phase
+    - mvn prepare-package -B
 
 script:
     - mkdir -p aggregation/$TRAVIS_BRANCH/$TRAVIS_PULL_REQUEST
     - cp -at aggregation/$TRAVIS_BRANCH/$TRAVIS_PULL_REQUEST server_admin/target/generated-docs/.
     - ./deploy_gh-pages.sh $TRAVIS_REPO_SLUG aggregation/
+    - |-
+        ./comment_github.sh $TRAVIS_REPO_SLUG $TRAVIS_PULL_REQUEST "[Documentation](https://$(dirname $TRAVIS_REPO_SLUG).github.io/$(basename $TRAVIS_REPO_SLUG)/$TRAVIS_BRANCH/$TRAVIS_PULL_REQUEST/master.html)"
