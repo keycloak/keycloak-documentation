@@ -6,12 +6,4 @@ install:
 script:
     - mkdir -p aggregation/$TRAVIS_BRANCH/$TRAVIS_PULL_REQUEST
     - cp -at aggregation/$TRAVIS_BRANCH/$TRAVIS_PULL_REQUEST server_admin/target/generated-docs/.
-
-deploy:
-    provider: pages
-    skip_cleanup: true
-    github_token: $GITHUB_TOKEN # Define via travis-ci.org settings page (Environment Variables). Needs public_repo scope.
-    local_dir: aggregation/
-    target_branch: gh-pages
-    on:
-        all_branches: true
+    - ./deploy_gh-pages.sh $TRAVIS_REPO_SLUG aggregation/
