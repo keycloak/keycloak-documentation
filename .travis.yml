@@ -6,7 +6,10 @@ cache:
     - $HOME/.m2/repository/classworlds/classworlds
     - $HOME/.m2/repository/com/beust
     - $HOME/.m2/repository/com/google
+    - $HOME/.m2/repository/commons-codec/commons-codec
     - $HOME/.m2/repository/commons-io/commons-io
+    - $HOME/.m2/repository/commons-lang/commons-lang
+    - $HOME/.m2/repository/commons-logging/commons-logging
     - $HOME/.m2/repository/io/netty
     - $HOME/.m2/repository/junit/junit
     - $HOME/.m2/repository/org/apache
@@ -14,6 +17,9 @@ cache:
     - $HOME/.m2/repository/org/codehaus
     - $HOME/.m2/repository/org/jruby
     - $HOME/.m2/repository/org/sonatype
+    - $HOME/.m2/repository/xerces/xercesImpl
+    - $HOME/.m2/repository/xml-apis/xml-apis
+    - $HOME/.m2/repository/xmlunit/xmlunit
 
 install:
     # We don't have any use for the zip'd files, so stop before the package phase
