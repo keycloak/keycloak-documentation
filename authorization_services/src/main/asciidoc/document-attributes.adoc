@@ -1,0 +1,44 @@
+:book_subsystem_undertow: urn:jboss:domain:undertow:3.1
+:book_gettingstarted_link: https://access.redhat.com/documentation/en/red-hat-single-sign-on/SNAPSHOT/html/getting-started-guide/
+:book_gettingstarted_name: Getting Started Tutorial
+:book_product: true
+:book_appserver_socket_link: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/html-single/configuration-guide/#network_and_port_configuration
+:book_appserver_socket_name: JBoss EAP Configuration Guide
+:book_appserver_jgroups_link: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/html-single/configuration-guide/#cluster_communication_jgroups
+:book_appserver_jgroups_name: JBoss EAP Configuration Guide
+:book_appserver_jpa_link: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/html-single/development-guide/#hibernate
+:book_appserver_jpa_name: JBoss EAP Development Guide
+:book_appserver_network_link: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/html-single/configuration-guide/#network_and_port_configuration
+:book_appserver_network_name: JBoss EAP Configuration Guide
+:book_appserver_version: 7.0
+:book_appserver_datasource_link: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/html-single/configuration-guide/#datasource_management
+:book_appserver_datasource_name: JBoss EAP Configuration Guide
+:book_appserver_caching_link: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/html-single/configuration-guide/#infinispan
+:book_appserver_caching_name: JBoss EAP Configuration Guide
+:book_appserver_admindoc_link: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/html-single/configuration-guide/configuration-guide
+:book_appserver_admindoc_name: JBoss EAP Configuration Guide
+:book_appserver_loadbalancer_link: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/html-single/configuration-guide/#configuring_high_availability
+:book_appserver_loadbalancer_name: JBoss EAP Configuration Guide
+:book_appserver_name: JBoss EAP
+:book_quickstartRepo_link: https://github.com/keycloak/keycloak-quickstarts
+:book_quickstartRepo_name: Keycloak Quickstarts Repository
+:book_quickstartRepo_dir: keycloak-quickstarts
+:book_community: false
+:book_project_doc_base_url: https://access.redhat.com/documentation/en/red-hat-single-sign-on/
+:book_project_doc_info_version_url: 7.1
+:book_project_name: Red Hat Single Sign-On
+:book_project_versionMvn: SNAPSHOT
+:book_project_version: SNAPSHOT
+:book_project_versionNpm: SNAPSHOT
+:book_developerguide_link: https://access.redhat.com/documentation/en/red-hat-single-sign-on/SNAPSHOT/html-single/server-developer-guide/
+:book_developerguide_name: Server Development
+:book_fuseVersion: JBoss Fuse 6.3.0 Rollup 1
+:book_images: rhsso-images
+:book_apidocs_link: https://access.redhat.com/documentation/en/red-hat-single-sign-on/SNAPSHOT/html-single/api-documentation/
+:book_apidocs_name: API Documentation
+:book_adapterguide_link: https://access.redhat.com/documentation/en/red-hat-single-sign-on/SNAPSHOT/html-single/securing-applications-and-services-guide/
+:book_adapterguide_name: Securing Applications and Services Guide
+:book_adminguide_link: https://keycloak.gitbooks.io/documentation/content/server_admin/index.html
+:book_adminguide_name: Server Administration
+:book_installguide_link: https://access.redhat.com/documentation/en/red-hat-single-sign-on/SNAPSHOT/html-single/server-installation-and-configuration-guide/
+:book_installguide_name: Server Installation and Configuration

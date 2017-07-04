@@ -9,8 +9,8 @@
         <relativePath>../</relativePath>
     </parent>
 
-    <name>Server Administration</name>
-    <artifactId>server-admin</artifactId>
+    <name>Server Installation and Configuration</name>
+    <artifactId>server-installation</artifactId>
     <packaging>pom</packaging>
 
     <build>

@@ -1,0 +1,15 @@
+=== Before You Start
+
+This guide is based on the *{book_project_name} Demo Distribution*. Download the demo distribution before proceeding.
+
+[NOTE]
+This guide assumes that you are already familiar with {book_project_name} and that you are able to install and boot a {book_project_name} Server. For more information, see https://keycloak.gitbooks.io/getting-started-tutorials/content/[the Getting Started tutorials].
+
+Ensure you have a {book_project_name} instance running; the default configuration is http://localhost:8080/auth[http://localhost:8080/auth]. After logging in to the
+Administration Console, a page similar to this one is displayed:
+
+.{book_project_name} Administration Console
+image:{book_images}/getting-started/kc-start-page.png[alt="{book_project_name} Administration Console"]
+
+The source code for the getting started tutorials can be obtained from the demo distributions. The authorization-related examples
+are located at *${KEYCLOAK_DEMO_SERVER_DIR}/examples/authz*.

@@ -1,0 +1,10 @@
+
+== Installation
+ifeval::[{book_community}==true]
+Installing {book_project_name} is as simple as downloading it and unzipping it. This chapter reviews system requirements
+as well as the directory structure of the distribution.
+endif::[]
+
+ifeval::[{book_product}==true]
+You can install {book_project_name} by downloading a ZIP file and unzipping it, or by using an RPM. This chapter reviews system requirements as well as the directory structure.
+endif::[]

@@ -1,0 +1,8 @@
+
+=== Recommended Additional External Documentation
+
+{book_project_name} is built on top of the {book_appserver_name} application server and it's sub-projects like Infinispan (for caching) and Hibernate (for persistence).
+This guide only covers basics for infrastructure-level configuration.  It is highly recommended that you peruse the documentation
+for {book_appserver_name} and its sub projects. Here is the link to the documentation:
+
+* link:{book_appserver_admindoc_link}[_{book_appserver_admindoc_name}_]

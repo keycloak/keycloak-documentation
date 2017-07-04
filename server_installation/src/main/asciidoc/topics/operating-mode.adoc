@@ -1,0 +1,12 @@
+
+[[_operating-mode]]
+
+== Choosing an Operating Mode
+
+Before deploying {book_project_name} in a production environment you need to decide which type of operating mode
+you are going to use.  Will you run {book_project_name} within a cluster?  Do you want a centralized way to manage
+your server configurations?  Your choice of operating mode effects how you configure databases, configure caching and even how you boot the server.
+
+TIP: The {book_project_name} is built on top of the {book_appserver_name} Application Server.  This guide will only
+     go over the basics for deployment within a specific mode.  If you want specific information on this, a better place
+     to go would be the link:{book_appserver_admindoc_link}[_{book_appserver_admindoc_name}_].
