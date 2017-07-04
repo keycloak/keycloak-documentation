@@ -21,7 +21,8 @@ install:
 
 script:
     - mkdir -p aggregation/$TRAVIS_BRANCH/$TRAVIS_PULL_REQUEST
-    - cp -at aggregation/$TRAVIS_BRANCH/$TRAVIS_PULL_REQUEST {authorization_services,getting_started,securing_apps,server_admin,server_development,server_installation}/target/generated-docs/.
+    - cp -t aggregation/$TRAVIS_BRANCH/$TRAVIS_PULL_REQUEST travis/index.html
+    - for m in authorization_services getting_started securing_apps server_admin server_development server_installation; do cp -a $m/target/generated-docs aggregation/$TRAVIS_BRANCH/$TRAVIS_PULL_REQUEST/$m; done
     - travis/deploy_gh-pages.sh $TRAVIS_REPO_SLUG aggregation/
     - |-
         travis/comment_github.sh $TRAVIS_REPO_SLUG $TRAVIS_PULL_REQUEST "[Documentation](https://$(dirname $TRAVIS_REPO_SLUG).github.io/$(basename $TRAVIS_REPO_SLUG)/$TRAVIS_BRANCH/$TRAVIS_PULL_REQUEST/master.html)"
