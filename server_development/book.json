@@ -6,7 +6,8 @@
   "plugins": [
     "toggle-chapters",
     "ungrey",
-    "splitter"
+    "splitter",
+    "asciidoc-admonition-icons"
   ],
   "variables": {
     "title": "Server Developer Guide",
