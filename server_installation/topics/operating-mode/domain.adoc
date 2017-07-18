@@ -83,7 +83,7 @@ If you scroll down further, you'll see various `socket-binding-groups` defined.
         <socket-binding-group name="ha-sockets" default-interface="public">
            ...
         </socket-binding-group>
-        <!-- load-balancer-sockets should be removed in production systems and replaced with a better softare or hardare based one -->
+        <!-- load-balancer-sockets should be removed in production systems and replaced with a better softare or hardware based one -->
         <socket-binding-group name="load-balancer-sockets" default-interface="public">
            ...
         </socket-binding-group>
