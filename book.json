@@ -18,9 +18,9 @@
   "variables": {
     "project": {
       "name": "Keycloak",
-      "version": "3.2.0.Final",
-      "versionMvn": "3.2.0.Final",
-      "versionNpm": "3.2.0"
+      "version": "3.2.1.Final",
+      "versionMvn": "3.2.1.Final",
+      "versionNpm": "3.2.1"
     },
     "community": true,
     "product": false,
@@ -63,11 +63,11 @@
 
     "fuseVersion": "JBoss Fuse 6.3.0 Rollup 1",
     "hawtioEAPVersion": "Wildfly 10",
-    "hawtioWARVersion": "hawtio-wildfly-1.4.0.redhat-63.2.0.Final",
+    "hawtioWARVersion": "hawtio-wildfly-1.4.0.redhat-63.2.1.Final",
 
     "appserver": {
       "name": "Wildfly",
-      "version": "3.2.0.Final",
+      "version": "3.2.1.Final",
       "admindoc": {
         "name": "WildFly 10 Documentation",
         "link": "https://docs.jboss.org/author/display/WFLY10/Documentation"
