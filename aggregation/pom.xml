@@ -80,6 +80,29 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>rename-dirs</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <move file="../target/authorization-services-${project.version}" tofile="../target/authorization-services" />
+                                <move file="../target/getting-started-${project.version}" tofile="../target/getting-started" />
+                                <move file="../target/securing-apps-${project.version}" tofile="../target/securing-apps" />
+                                <move file="../target/server-admin-${project.version}" tofile="../target/server-admin" />
+                                <move file="../target/server-development-${project.version}" tofile="../target/server-development" />
+                                <move file="../target/server-installation-${project.version}" tofile="../target/server-installation" />
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <executions>
                     <execution>
@@ -90,7 +113,10 @@
                         </goals>
                         <configuration>
                             <resources>
-                                <directory>src/main/resources</directory>
+                                <resource>
+                                    <directory>src/main/resources</directory>
+                                    <include>*.html</include>
+                                </resource>
                             </resources>
                             <outputDirectory>../target</outputDirectory>
                         </configuration>
