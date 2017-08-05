@@ -13,6 +13,7 @@
         <version.plugin.asciidoctor>1.5.5</version.plugin.asciidoctor>
         <version.plugin.assembly>3.0.0</version.plugin.assembly>
         <version.plugin.resources>3.0.2</version.plugin.resources>
+        <version.plugin.dependency>3.0.1</version.plugin.dependency>
     </properties>
 
     <modules>
@@ -22,11 +23,17 @@
         <module>server_admin</module>
         <module>server_development</module>
         <module>server_installation</module>
+        <module>aggregation</module>
     </modules>
 
     <build>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>${version.plugin.dependency}</version>
+                </plugin>
                 <plugin>
                     <groupId>org.asciidoctor</groupId>
                     <artifactId>asciidoctor-maven-plugin</artifactId>
