@@ -11,7 +11,7 @@
 
     <name>Server Administration</name>
     <artifactId>server-admin</artifactId>
-    <packaging>pom</packaging>
+    <packaging>pom</packaging>>
 
     <build>
         <plugins>
