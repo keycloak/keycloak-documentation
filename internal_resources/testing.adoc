@@ -1,0 +1,83 @@
+= Testing
+
+The `tests` directory contains a testsuite for the documentation. It has a separate test for each guide.
+
+Currently we are testing the following:
+
+* Variables - check if there are variables that are not resolved
+* Includes - check if there are includes where the included file is not found
+* Images - check if there are images included that are not missing
+* Internal links - check that all internal links (HTML anchors) point to an valid id
+* External links - check that all external links work, including HTML anchors
+
+More details about each test below and what to do if the tests are not working.
+
+
+== Running the tests
+
+The tests are ran with a regular build:
+
+[source,bash]
+----
+# mvn clean install
+----
+
+The tests are also ran when building the product documentation:
+
+[source,bash]
+----
+# mvn clean install -Dproduct
+----
+
+You can also run the tests from within your IDE, but you have to manually build the guides first.
+
+
+== Travis
+
+Travis will run the tests both for community and product versions of the documentation for every PR and against
+branches when they are updated.
+
+
+== Tests
+
+=== Variables
+
+Missing variables are detected by looking for '{name}' in the built documentation. There are some cases where we
+want to have these though, so the following are excluded:
+
+* If prefixed with `$` (for example `${name}`)
+* If prefixed with `/` (for example `http://localhost:8080/{realm-name}`)
+* If listed in `tests/src/resources/ignored-variables`
+
+=== Includes
+
+Checking for missing includes is pretty simple as AsciiDoctor will output _Unresolved directive..._ in the generated
+HTML so we're just searching for that.
+
+=== Images
+
+Missing images are checked by searching for `<img ..>` tags and checking that they src attribute refers to an existing
+image.
+
+=== Internal links
+
+Internal links are checked by searching for `<a href="#link">` and checking that the built documentation contains a
+corresponding `<a id="link">` element.
+
+=== External links
+
+External links are checked by searching for `<a href="http://link">` then a connection is opened to verify if the link
+is valid. If the returned status is 200 we're all good and we also check the returned document to see if it contains
+a corresponding `<a id="link">` element or `<a name="link">` element.
+
+Specific URLs can be excluded by adding them to `tests/src/resources/ignored-links`. This is used for example for
+`http://localhost:8080` which won't be available unless Keycloak is running on the machine where the tests are ran.
+
+For 302 redirects there is some special handling. The returned `Location` header needs to be added to
+`tests/src/resources/valid-link-redirects` otherwise the link will be marked as failed. It's important to verify the
+redirected link before you add it to this file though as in some cases it redirects to some generic moved or unavailable
+page.
+
+To prevent the checking of links being to slow to execute there is a cache file with valid links. This is stored in
+`.verified-links`. The first time you run the tests you will notice that the checking links is fairly slow, but this
+will be faster the second time you run it. Entries are purged from the cache after 1 day.
