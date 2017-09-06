@@ -35,23 +35,24 @@
 :appserver_name: JBoss EAP
 :appserver_dirref: EAP_HOME
 :appserver_version: 7.0
-:appserver_doc_base_url: https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/{appserver_version}
+
+:appserver_doc_base_url: https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/{appserver_version}
 :appserver_socket_name: JBoss EAP Configuration Guide
-:appserver_socket_link: {appserver_doc_base_url}/html-single/configuration-guide/#network_and_port_configuration
+:appserver_socket_link: {appserver_doc_base_url}/html-single/configuration_guide/#network_and_port_configuration
 :appserver_jgroups_name: JBoss EAP Configuration Guide
-:appserver_jgroups_link: {appserver_doc_base_url}/html-single/configuration-guide/#cluster_communication_jgroups
+:appserver_jgroups_link: {appserver_doc_base_url}/html-single/configuration_guide/#cluster_communication_jgroups
 :appserver_jpa_name: JBoss EAP Development Guide
-:appserver_jpa_link: {appserver_doc_base_url}/html-single/development-guide/#hibernate
+:appserver_jpa_link: {appserver_doc_base_url}/html-single/development_guide/#java_persistence_api_jpa
 :appserver_network_name: JBoss EAP Configuration Guide
-:appserver_network_link: {appserver_doc_base_url}/html-single/configuration-guide/#network_and_port_configuration
+:appserver_network_link: {appserver_doc_base_url}/html-single/configuration_guide/#network_and_port_configuration
 :appserver_datasource_name: JBoss EAP Configuration Guide
-:appserver_datasource_link: {appserver_doc_base_url}/html-single/configuration-guide/#datasource_management
+:appserver_datasource_link: {appserver_doc_base_url}/html-single/configuration_guide/#datasource_management
 :appserver_caching_name: JBoss EAP Configuration Guide
-:appserver_caching_link: {appserver_doc_base_url}/html-single/configuration-guide/#infinispan
+:appserver_caching_link: {appserver_doc_base_url}/html-single/configuration_guide/#infinispan
 :appserver_admindoc_name: JBoss EAP Configuration Guide
-:appserver_admindoc_link: {appserver_doc_base_url}/html-single/configuration-guide/configuration-guide
+:appserver_admindoc_link: {appserver_doc_base_url}/html-single/configuration_guide/
 :appserver_loadbalancer_name: JBoss EAP Configuration Guide
-:appserver_loadbalancer_link: {appserver_doc_base_url}/html-single/configuration-guide/#configuring_high_availability
+:appserver_loadbalancer_link: {appserver_doc_base_url}/html-single/configuration_guide/#configuring_high_availability
 :appserver_managementcli_link: https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.0/html-single/configuration_guide/#management_cli_overview
 :appserver_managementconsole_link: https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.0/html-single/configuration_guide/#management_console_overview
 
