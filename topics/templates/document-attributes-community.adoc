@@ -20,7 +20,7 @@
 :adminguide_name: Server Administration Guide
 :adminguide_link: {project_doc_base_url}/server_admin/
 :apidocs_name: API Documentation
-:apidocs_link: {project_doc_base_url}/api-documentation/
+:apidocs_link: http://www.keycloak.org/docs-api/{project_versionDoc}/javadocs/index.html
 :developerguide_name: Server Developer Guide
 :developerguide_link: {project_doc_base_url}/server_development/
 :gettingstarted_name: Getting Started Guide
@@ -30,7 +30,7 @@
 :installguide_name: Server Installation and Configuration Guide
 :installguide_link: {project_doc_base_url}/server_installation/
 :installguide_profile_name: Profiles
-:installguide_profile_link: {installguide_link}/#profiles
+:installguide_profile_link: {installguide_link}#_profiles
 
 :appserver_name: WildFly
 :appserver_dirref: WILDFLY_HOME
@@ -54,6 +54,8 @@
 :appserver_loadbalancer_name: {appserver_name} {appserver_version} Documentation
 
 :fuseVersion: JBoss Fuse 6.3.0 Rollup 5
+:fuseHawtioEAPVersion: JBoss EAP 6.4
+:fuseHawtioWARVersion: hawtio-wildfly-1.4.0.redhat-630254.war
 
 :subsystem_undertow_xml_urn: urn:jboss:domain:undertow:3.1
 :saml_adapter_xsd_urn: http://www.keycloak.org/schema/keycloak_saml_adapter_1_9.xsd
