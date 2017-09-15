@@ -1,5 +1,5 @@
 
-=== Logging in to the Admin Console
+= Logging in to the Admin Console
 
 After you create the initial admin account, you can log in to the Admin Console by completing the following steps:
 
@@ -17,7 +17,3 @@ image:{project_images}/admin-console.png[]
 NOTE:  If you are curious about a certain feature, button, or field within the Admin Console, hover your mouse
       over the question mark `?` icon.  This will pop up tooltip text to describe the area of the console you are interested in.
       The image above shows the tooltip in action.
-
-
-
-

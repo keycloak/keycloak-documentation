@@ -1,5 +1,5 @@
 
-=== Before You Start
+= Before You Start
 
 Before you can participate in this tutorial, you need to complete the installation of {project_name} and create the
 initial admin user as shown in the <<_install-boot, Installing and Booting>> tutorial.  There is one
@@ -24,5 +24,3 @@ $ .../bin/standalone.sh -Djboss.socket.binding.port-offset=100
 ----
 
 After booting up {project_name}, you can then access the admin console at http://localhost:8180/auth/admin/
-
-

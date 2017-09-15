@@ -1,6 +1,6 @@
 [[_create-new-user]]
 
-=== Creating a New User
+= Creating a New User
 
 To create a new user in the `demo` realm as well as a temporary password for that account, complete the following steps:
 
@@ -23,10 +23,7 @@ image:{project_images}/add-user.png[]
 image:{project_images}/credentials.png[]
 
 . Type a new password and confirm it. A red *Reset Password* button is displayed.
-. Click *Reset Password* to reset the user password to the new one you specified.  
+. Click *Reset Password* to reset the user password to the new one you specified.
 
 NOTE: This password is temporary and the user will be required to change it after first login. You can make it permanent
 by flipping the *Temporary* switch from *On* to *Off* before clicking *Reset Password*.
-
-
-

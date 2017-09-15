@@ -1,5 +1,5 @@
 
-=== Configuring the Subsystem
+= Configuring the Subsystem
 
 Now that you have copied the XML template from the Installation page, you need to paste this into the _standalone.xml_ file
 that resides in the _standalone/configuration_ directory of the application server instance on which your application is deployed.
@@ -44,8 +44,6 @@ that resides in the _standalone/configuration_ directory of the application serv
 </subsystem>
 ----
 
-. Reboot your application server.  
+. Reboot your application server.
 
 . Go to http://localhost:8080/vanilla and click *login*. The {project_name} login page opens. You can log in using the user you created in the <<_create-new-user, Creating a New User>> chapter.
-
-
