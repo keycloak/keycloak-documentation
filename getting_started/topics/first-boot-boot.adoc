@@ -1,5 +1,5 @@
 
-=== Booting the Server
+= Booting the Server
 
 To boot the {project_name} server, go to the _bin/_ directory of the server distribution.
 
@@ -19,4 +19,3 @@ $ .../bin/standalone.sh
 ----
 > ...\bin\standalone.bat
 ----
-

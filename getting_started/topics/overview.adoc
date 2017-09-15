@@ -1,5 +1,5 @@
 
-== Overview
+= Overview
 
 The purpose of this guide is to get you up and running as quickly as possible so that you can
 play with and test-drive various features that {project_name} has. It relies heavily on the default database

@@ -1,5 +1,5 @@
 
-=== Downloading, Building, and Deploying Application Code
+= Downloading, Building, and Deploying Application Code
 
 The project and code for the application you are going to secure is available in link:{quickstartRepo_link}[{quickstartRepo_name}].  You will need the following
 installed on your machine and available in your PATH before you can continue:

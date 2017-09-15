@@ -1,5 +1,5 @@
 
-=== Installing the Client Adapter
+= Installing the Client Adapter
 
 Download the {appserver_name} distribution and unzip
 it into a directory on your machine.
