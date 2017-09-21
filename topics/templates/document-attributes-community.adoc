@@ -29,8 +29,8 @@
 :upgradingguide_link: {project_doc_base_url}/upgrading/
 :installguide_name: Server Installation and Configuration Guide
 :installguide_link: {project_doc_base_url}/server_installation/
-:installguide_profile_name: Profiles
-:installguide_profile_link: {installguide_link}#_profiles
+:installguide_features_name: Features
+:installguide_features_link: {installguide_link}#_features
 
 :apidocs_javadocs_name: JavaDocs Documentation
 :apidocs_javadocs_link: http://www.keycloak.org/docs-api/{project_versionDoc}/javadocs/

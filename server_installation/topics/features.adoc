@@ -1,0 +1,156 @@
+[[_features]]
+
+== Features
+
+`Features` is a mechanism to disable certain {project_name} functionalities, and to enable certain
+beta / tech-preview functionalities that are off by default. This used to be controlled by a mechanism called
+`Profiles` which has been deprecated.
+
+ifeval::[{project_community}==true]
+{project_name} enables most of the features by default, including features that
+are considered less mature.
+
+The features that can be enabled or disabled are:
+
+[cols="3*", options="header"]
+|===
+|Name
+|Description
+|Enabled by default
+
+|authorization-preview
+|Authorization Services
+|Yes
+
+|docker
+|Docker Registry protocol
+|No
+
+|impersonation
+|Ability for admins to impersonate users
+|Yes
+
+|scripts-preview
+|Write custom authenticators using JavaScript
+|Yes
+
+|account2-preview
+|New HTML5 implementation of Account UI
+|No
+
+|refresh-token
+|Ability for clients to impersonate users
+|No
+
+|===
+endif::[]
+
+ifeval::[{project_product}==true]
+{project_name} disables most of the features by default, especially features that are considered less mature - tech-preview features,
+or features with possible security implications.
+
+The features that can be enabled or disabled are:
+
+[cols="3*", options="header"]
+|===
+|Name
+|Description
+|Enabled by default
+
+|authorization-preview
+|Authorization Services
+|No
+
+|docker
+|Docker Registry protocol
+|No
+
+|impersonation
+|Ability for admins to impersonate users
+|Yes
+
+|scripts-preview
+|Write custom authenticators using JavaScript
+|No
+
+|account2-preview
+|New HTML5 implementation of Account UI
+|No
+
+|refresh-token
+|Ability for clients to impersonate users
+|No
+
+|===
+endif::[]
+
+NOTE: There used to be support for `profile.properties` file placed in `standalone/configuration/`
+      (or `domain/servers/server-one/configuration` for `server-one` in domain mode). Usage of that file has been deprecated.
+
+
+To enable specific features start the server with system properties of the format `feature.<feature name>=true` i.e.:
+
+[source]
+----
+bin/standalone.sh|bat -Dfeature.<feature name>=true
+----
+
+For example to enable Docker, Authorization, and Scripts features use:
+
+[source]
+----
+bin/standalone.sh|bat -Dfeature.docker=true -Dfeature.authorization-preview=true -Dfeature.scripts-preview=true
+----
+
+To disable specific features, simply use `false` instead of `true`.
+
+For example to disable Impersonation use:
+
+[source]
+----
+bin/standalone.sh|bat -Dfeature.impersonation=false
+----
+
+You can make configuration persistent (rather than having to override defaults every time you start the server)
+by using `standalone/configuration/standalone.xml`, or alternative server configuration file, by editing `<features>` section
+of `keycloak-server` subsystem configuration:
+
+[source]
+----
+<subsystem xmlns="urn:jboss:domain:keycloak-server:1.1">
+    ...
+
+    <features>
+
+        <feature name="impersonation" enabled="false" />
+
+    </features>
+
+    ...
+</subsystem>
+----
+
+By default the value of each feature is set to expression that takes system property for feature activation into account:
+
+[source]
+----
+    <feature name="impersonation" enabled="${feature.impersonation:true}" />
+----
+
+You can also simply change the default value from `true` to `false` (or vice-versa) to still allow the usage of system property:
+
+[source]
+----
+    <feature name="impersonation" enabled="${feature.impersonation:false}" />
+----
+
+Another way to change configuration is by using `jboss-cli` tool. With Keycloak server stopped, perform the following commands:
+
+[source]
+----
+bin/jboss-cli.sh|bat
+embed-server --server-config=standalone.xml
+/subsystem=keycloak-server/feature=impersonation/:set(enabled="${feature.impersonation:false}")
+----
+
+Change server configuration file (standalone.xml), feature name (impersonation), and `enabled` attribute value as necessary.

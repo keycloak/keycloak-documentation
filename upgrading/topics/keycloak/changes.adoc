@@ -1,5 +1,54 @@
 == Migration Changes
 
+=== Migrating to 3.4.0
+
+==== Change in feature activation, and removal of profiles
+
+Features are no longer activated through 'profile.properties' file. Usage of that file has been deprecated. The notion of
+named profiles has been removed, and features are now controlled through keycloak-server subsystem configuration
+by either manually editing standalone.xml file or by using JBoss CLI tool.
+
+Features can still be enabled or disabled through system properties, but the names and values
+have changed slightly. Most notably, whereas before values 'enabled' and 'disabled' were used to control feature activation,
+now values 'true' and 'false' are used correspondingly.
+
+Here is the table of old, and new system property names:
+
+[cols="3*", options="header"]
+|===
+|Old system property
+|New system property
+|Description
+
+|keycloak.profile.feature.authorization
+|feature.authorization-preview
+|Authorization Services
+
+|keycloak.profile.feature.impersonation
+|feature.impersonation
+|Ability for admins to impersonate users
+
+|keycloak.profile.feature.scripts
+|feature.scripts-preview
+|Write custom authenticators using JavaScript
+
+|keycloak.profile.feature.docker
+|feature.docker
+|Docker Registry protocol
+
+|===
+endif::[]
+
+In order to facilitate migration old system properties and `profile.properties` may still work, but backwards compatibility will be removed at some point.
+
+NOTE: Since profiles no longer exist the default enabled status of features may have changed.
+As a result effective configuration may be different as well if you use your old configuration.
+Take special care to make sure features are configured the way you intended.
+You can check the list of disabled features in server.log file during Keycloak's startup.
+
+See link:{installguide_features_link}[{installguide_features_name}] for more information.
+
+
 === Migrating to 3.2.0
 
 ==== New Password Hashing algorithms

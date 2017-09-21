@@ -1,7 +1,7 @@
 
 == Docker Registry Configuration
 
-NOTE: Docker authentication is disabled by default. To enable see link:{installguide_profile_link}[{installguide_profile_name}].
+NOTE: Docker authentication is disabled by default. To enable see link:{installguide_features_link}[{installguide_features_name}].
 
 This section describes how you can configure a Docker registry to use {project_name} as its authentication server.
 
