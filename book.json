@@ -18,9 +18,9 @@
   "variables": {
     "project": {
       "name": "Keycloak",
-      "version": "3.3.0.CR2",
-      "versionMvn": "3.3.0.CR2",
-      "versionNpm": "3.3.0-cr.2"
+      "version": "3.3.0.Final",
+      "versionMvn": "3.3.0.Final",
+      "versionNpm": "3.3.0"
     },
     "community": true,
     "product": false,
@@ -71,7 +71,7 @@
 
     "appserver": {
       "name": "Wildfly",
-      "version": "3.3.0.CR2",
+      "version": "3.3.0.Final",
       "admindoc": {
         "name": "WildFly 10 Documentation",
         "link": "https://docs.jboss.org/author/display/WFLY10/Documentation"
