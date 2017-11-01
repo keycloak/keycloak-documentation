@@ -1,0 +1,122 @@
+<style>
+/* Global Navbar */
+
+ul#globalnav {
+    background-color: #ededed;
+
+    list-style: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    font-size: 0.6em;
+    height: 30px;
+}
+
+ul#globalnav::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+ul#globalnav li {
+    float: left;
+}
+
+ul#globalnav li a {
+    display: inline-block;
+    color: #004670;
+    text-align: center;
+    padding: 0.75em;
+    text-decoration: none;
+}
+
+ul#globalnav li a:hover {
+    color: #428bca;
+}
+
+#toc.toc2 {
+    top: 30px;
+    bottom: 0px;
+    height: unset;
+}
+
+body.toc2 {
+    padding-top: 30px;
+}
+
+@media only screen and (min-width:768px) {
+    ul#globalnav {
+        font-size: 0.75em;
+        height: 40px;
+    }
+
+    #toc.toc2 {
+        top: 40px;
+    }
+
+    body.toc2 {
+        padding-top: 40px;
+    }
+}
+
+@media only screen and (min-width:1280px) {
+    ul#globalnav {
+        font-size: 1em;
+        height: 48px;
+    }
+
+    #toc.toc2 {
+        top: 48px;
+    }
+
+    body.toc2 {
+        padding-top: 48px;
+    }
+}
+
+</style>
+
+<style>
+/* General Changes */
+
+h1, h2, h3, #toctitle, .sidebarblock>.content>.title, h4, h5, h6 {
+    color: #444444;
+    font-weight: 500;
+}
+
+a {
+    color: #004670;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #7da1dc;
+}
+
+body {
+    font-family: "Open Sans","DejaVu Sans",sans-serif;
+    color: #444444;
+}
+
+.subheader, .admonitionblock td.content>.title, .audioblock>.title, .exampleblock>.title, .imageblock>.title, .listingblock>.title, .literalblock>.title, .stemblock>.title, .openblock>.title, .paragraph>.title, .quoteblock>.title, table.tableblock>.title, .verseblock>.title, .videoblock>.title, .dlist>.title, .olist>.title, .ulist>.title, .qlist>.title, .hdlist>.title {
+    color: #444444;
+}
+
+.admonitionblock td.content>.title, .audioblock>.title, .exampleblock>.title, .imageblock>.title, .listingblock>.title, .literalblock>.title, .stemblock>.title, .openblock>.title, .paragraph>.title, .quoteblock>.title, table.tableblock>.title, .verseblock>.title, .videoblock>.title, .dlist>.title, .olist>.title, .ulist>.title, .qlist>.title, .hdlist>.title {
+    font-family: "Open Sans","DejaVu Sans",sans-serif;
+    font-style: normal;
+}
+
+span.image img {
+    border:1px solid #ccc;
+    -webkit-box-shadow: 3px 3px 15px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 3px 3px 15px 0px rgba(0,0,0,0.5);
+    box-shadow: 3px 3px 15px 0px rgba(0,0,0,0.5);
+}
+
+</style>
