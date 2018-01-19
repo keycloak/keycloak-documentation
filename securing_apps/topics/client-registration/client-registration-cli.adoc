@@ -166,7 +166,7 @@ You might want to avoid storing secrets inside a configuration file by using the
 [[_initial_access_and_registration_access_tokens]]
 ==== Initial Access and Registration Access Tokens
 
-Developers who do not have an account configured at the {project_name} server they want to use can instead use the Client Registration CLI. This is possible only when the realm administrator issues a developer an Initial Access Token. It is up to the realm administrator to decide how and when to issue and distribute these tokens. The realm administrator can limit the maximum age of the Initial Access Token and the total number of clients that can be created with it.
+Developers who do not have an account configured at the {project_name} server they want to use can use the Client Registration CLI. This is possible only when the realm administrator issues a developer an Initial Access Token. It is up to the realm administrator to decide how and when to issue and distribute these tokens. The realm administrator can limit the maximum age of the Initial Access Token and the total number of clients that can be created with it.
 
 Once a developer has an Initial Access Token, the developer can use it to create new clients without authenticating with [command]`kcreg config credentials`. The Initial Access Token can be stored in the configuration file or specified as part of the [command]`kcreg create` command.
 
