@@ -2,8 +2,8 @@
 :project_community: false
 :project_product: true
 :project_version: 7.2.0.GA
-:project_versionMvn: 3.4.2.Final-redhat-2
-:project_versionNpm: 3.4.2.Final-redhat-2
+:project_versionMvn: 3.4.3.Final-redhat-2
+:project_versionNpm: 3.4.3.Final-redhat-2
 :project_versionDoc: 7.2
 :project_images: rhsso-images
 :project_doc_base_url: https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/{project_versionDoc}/html-single
