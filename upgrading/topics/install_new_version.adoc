@@ -4,9 +4,23 @@
 
 It is important that you upgrade {project_name} server before upgrading the adapters.
 
-To upgrade {project_name} server, complete the following steps:
+Prior to applying the upgrade, handle any open transactions and delete the data/tx-object-store/ transaction directory.
 
-. Prior to applying the upgrade, handle any open transactions and delete the data/tx-object-store/ transaction directory.
+If you originally installed {project_name} server using RPMs, to upgrade {project_name} server, complete the following steps:
+
+. Use Yum to uninstall any adapters you currently have installed.
+. Use Yum to upgrade the {project_name} server.
++
+[source,bash,options="nowrap"]
+----
+yum update
+----
+
+. Use Yum to install the new version of any adapters you require.
+
+
+If you originally installed {project_name} server using a downloaded archive, to upgrade {project_name} server, complete the following steps:
+
 . Download the new server archive
 . Move the downloaded archive to the desired location.
 . Extract the archive. This step installs a clean instance of the latest {project_name} release.
