@@ -203,9 +203,10 @@ ifeval::[{project_community}==true]
 ----
 $ ./bin/jboss-cli.sh --file=adapter-elytron-install-offline.cli
 ----
-endif::[]
 
 .Any other server but Wildfly 11
+endif::[]
+
 [source]
 ----
 $ ./bin/jboss-cli.sh --file=adapter-install-offline.cli
@@ -221,9 +222,10 @@ ifeval::[{project_community}==true]
 ----
 $ ./bin/jboss-cli.sh --file=adapter-elytron-install.cli
 ----
-endif::[]
 
 .Any other server but Wildfly 11
+endif::[]
+
 [source]
 ----
 $ ./bin/jboss-cli.sh --file=adapter-install.cli

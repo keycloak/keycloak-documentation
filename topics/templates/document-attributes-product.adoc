@@ -2,8 +2,8 @@
 :project_community: false
 :project_product: true
 :project_version: 7.2.0.GA
-:project_versionMvn: 3.4.2.Final-redhat1
-:project_versionNpm: 3.4.2.Final-redhat1
+:project_versionMvn: 3.4.3.Final-redhat-2
+:project_versionNpm: 3.4.3.Final-redhat-2
 :project_versionDoc: 7.2
 :project_images: rhsso-images
 :project_doc_base_url: https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/{project_versionDoc}/html-single
@@ -44,7 +44,7 @@
 :installguide_loadbalancer_name: Setting Up a Load Balancer or Proxy
 :installguide_loadbalancer_link: {installguide_link}#_setting-up-a-load-balancer-or-proxy
 :installguide_profile_name: Profiles
-:installguide_profile_link: {installguide_link}#_profiles
+:installguide_profile_link: {installguide_link}#profiles
 :installguide_stickysessions_name: Sticky sessions
 :installguide_stickysessions_link: {installguide_link}#sticky-sessions
 :installguide_troubleshooting_name: Troubleshooting
