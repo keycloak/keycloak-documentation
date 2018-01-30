@@ -193,36 +193,31 @@ endif::[]
 
 This ZIP archive contains JBoss Modules specific to the {project_name} adapter. It also contains JBoss CLI scripts to configure the adapter subsystem.
 
-To configure the adapter subsystem if the server is not running execute:
+If the server is not running, to configure the adapter subsystem execute:
 
-ifeval::[{project_community}==true]
-.Wildfly 11
+.Elytron adapter, available on Wildfly 11 or EAP 7.1 only
 [source]
 ----
 $ ./bin/jboss-cli.sh --file=adapter-elytron-install-offline.cli
 ----
 
-.Any other server but Wildfly 11
-endif::[]
-
+.Legacy adapter, available on WildFly 11 or EAP 7.1 or older
 [source]
 ----
 $ ./bin/jboss-cli.sh --file=adapter-install-offline.cli
 ----
 
-NOTE: The offline script is not available for JBoss EAP 6
+NOTE: The offline script is not available for JBoss EAP 6. On this platform you will use `adapter-install.cli`.
 
 Alternatively, if the server is running execute:
 
-ifeval::[{project_community}==true]
-.Wildfly 11
+.Elytron adapter, available on Wildfly 11 or EAP 7.1 only
 [source]
 ----
 $ ./bin/jboss-cli.sh --file=adapter-elytron-install.cli
 ----
 
-.Any other server but Wildfly 11
-endif::[]
+.Legacy adapter, available on WildFly 11 or EAP 7.1 or older
 
 [source]
 ----
