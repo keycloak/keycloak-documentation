@@ -196,36 +196,63 @@ This ZIP archive contains JBoss Modules specific to the {project_name} adapter. 
 To configure the adapter subsystem if the server is not running execute:
 
 ifeval::[{project_community}==true]
-.Wildfly 11
+.WildFly 11
 [source]
 ----
 $ ./bin/jboss-cli.sh --file=adapter-elytron-install-offline.cli
 ----
-endif::[]
 
-.Any other server but Wildfly 11
+.WildFly 10 and older
 [source]
 ----
 $ ./bin/jboss-cli.sh --file=adapter-install-offline.cli
 ----
 
-NOTE: The offline script is not available for JBoss EAP 6
-
 Alternatively, if the server is running execute:
 
-ifeval::[{project_community}==true]
 .Wildfly 11
 [source]
 ----
 $ ./bin/jboss-cli.sh --file=adapter-elytron-install.cli
 ----
-endif::[]
 
-.Any other server but Wildfly 11
+.WildFly 10 and older
 [source]
 ----
 $ ./bin/jboss-cli.sh --file=adapter-install.cli
 ----
+endif::[]
+
+
+ifeval::[{project_product}==true]
+.JBoss EAP 7.1
+[source]
+----
+$ ./bin/jboss-cli.sh --file=adapter-elytron-install-offline.cli
+----
+
+.JBoss EAP 7.0
+[source]
+----
+$ ./bin/jboss-cli.sh --file=adapter-install-offline.cli
+----
+
+NOTE: The offline script is not available for JBoss EAP 6.4
+
+Alternatively, is the server is running execute:
+
+.JBoss EAP 7.1
+[source]
+----
+$ ./bin/jboss-cli.sh --file=adapter-elytron-install.cli
+----
+
+.JBoss EAP 7.0 and 6.4
+[source]
+----
+$ ./bin/jboss-cli.sh --file=adapter-install.cli
+----
+endif::[]
 
 ===== JBoss SSO
 
