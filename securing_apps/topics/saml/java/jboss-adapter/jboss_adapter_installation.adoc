@@ -56,22 +56,42 @@ ifeval::[{project_community}==true]
 .Wildfly 11
 [source]
 ----
+$ cd $WILDFLY_HOME
 $ ./bin/jboss-cli.sh --file=adapter-elytron-install-saml.cli
 ----
-endif::[]
 
-.Any other server but Wildfly 11
+.WildFly 10 and older
 [source]
 ----
+$ cd $EAP_HOME
+$ ./bin/jboss-cli.sh -c --file=adapter-install-saml.cli
+----
+endif::[]
+        
 
-$ cd $JBOSS_HOME/bin
-$ jboss-cli.sh -c --file=adapter-install-saml.cli
-----        
+ifeval::[{project_product}}==true]
+.JBoss EAP 7.1
+[source]
+----
+$ cd $WILDFLY_HOME
+$ ./bin/jboss-cli.sh --file=adapter-elytron-install-saml.cli
+----
+
+.JBoss EAP 7.0 and 6.4
+[source]
+----
+$ cd $EAP_HOME
+$ ./bin/jboss-cli.sh -c --file=adapter-install-saml.cli
+----
+endif::[]
+        
+
+
 The script will add the extension, subsystem, and optional security-domain as described below. 
 
 [source,xml]
 ----
-<server xmlns="urn:jboss:domain:1.4">
+<server xmlns="urn:jboss:domain:5.0">
 
     <extensions>
         <extension module="org.keycloak.keycloak-saml-adapter-subsystem"/>
@@ -91,8 +111,8 @@ Otherwise this configuration is optional.
 [source,xml]
 ----
 
-<server xmlns="urn:jboss:domain:1.4">
- <subsystem xmlns="urn:jboss:domain:security:1.2">
+<server xmlns="urn:jboss:domain:5.0">
+ <subsystem xmlns="urn:jboss:domain:security:2.0">
     <security-domains>
 ...
       <security-domain name="keycloak">
