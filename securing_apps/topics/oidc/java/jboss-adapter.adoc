@@ -1,18 +1,8 @@
 [[_jboss_adapter]]
 
-ifeval::[{project_community}==true]
-==== JBoss EAP/Wildfly Adapter
-endif::[]
-ifeval::[{project_product}==true]
-==== JBoss EAP Adapter
-endif::[]
+==== {appserver_name} Adapter
 
-ifeval::[{project_community}==true]
-To be able to secure WAR apps deployed on JBoss EAP, WildFly or JBoss AS, you must install and configure the
-{project_name} adapter subsystem. You then have two options to secure your WARs.
-endif::[]
-ifeval::[{project_product}==true]
-To be able to secure WAR apps deployed on JBoss EAP, you must install and configure the
+To be able to secure WAR apps deployed on {appserver_name}, you must install and configure the
 {project_name} adapter subsystem. You then have two options to secure your WARs.
 endif::[]
 
@@ -21,213 +11,17 @@ You can provide an adapter config file in your WAR and change the auth-method to
 Alternatively, you don't have to modify your WAR at all and you can secure it via the {project_name} adapter subsystem configuration in `standalone.xml`.
 Both methods are described in this section.
 
-[[_jboss_adapter_installation]]
+
 ===== Installing the adapter
 
-Adapters are available as a separate archive depending on what server version you are using.
-
-NOTE: {appserver_name} should be running when you install the adapter. If you have either one running, you must stop it before installing and then restart it after installation is complete.
-
 ifeval::[{project_community}==true]
-Install on Wildfly 9, 10 or 11:
-
-[source, subs="attributes"]
-----
-$ cd $WILDFLY_HOME
-$ unzip keycloak-wildfly-adapter-dist-{project_version}.zip
-----
-
-Install on Wildfly 8:
-
-[source, subs="attributes"]
-----
-$ cd $WILDFLY_HOME
-$ unzip keycloak-wf8-adapter-dist-{project_version}.zip
-----
-
-Install on JBoss EAP 7:
-
-[source, subs="attributes"]
-----
-$ cd $EAP_HOME
-$ unzip keycloak-eap7-adapter-dist-{project_version}.zip
-----
-
-Install on JBoss EAP 6:
-
-[source, subs="attributes"]
-----
-$ cd $EAP_HOME
-$ unzip keycloak-eap6-adapter-dist-{project_version}.zip
-----
-
-Install on JBoss AS 7.1:
-
-[source, subs="attributes"]
-----
-$ cd $JBOSS_HOME
-$ unzip keycloak-as7-adapter-dist-{project_version}.zip
-----
+include::jboss-adapter-installation-community.adoc[]
 endif::[]
 
 ifeval::[{project_product}==true]
-
-Install on JBoss EAP 7:
-
-You can install the EAP 7 adapters either by unzipping a ZIP file, or by using an RPM.
-
-Install the EAP 7 Adapters from a ZIP File:
-
-[source, subs="attributes"]
-----
-$ cd $EAP_HOME
-$ unzip rh-sso-{project_version}-eap7-adapter.zip
-----
-
-Install the EAP 7 Adapters from an RPM:
-
-NOTE: With Red Hat Enterprise Linux 7, the term channel was replaced with the term repository. In these instructions only the term repository is used.
-
-You must subscribe to the JBoss EAP 7.0 repository before you can install the EAP 7 adapters from an RPM.
-
-.Prerequisites
-
-. Ensure that your Red Hat Enterprise Linux system is registered to your account using Red Hat Subscription Manager. For more information see the link:https://access.redhat.com/documentation/en-us/red_hat_subscription_management/1/html-single/quick_registration_for_rhel/index[Red Hat Subscription Management documentation].
-
-. If you are already subscribed to another JBoss EAP repository, you must unsubscribe from that repository first.
-
-Using Red Hat Subscription Manager, subscribe to the JBoss EAP 7.0 repository using the following command. Replace <RHEL_VERSION> with either 6 or 7 depending on your Red Hat Enterprise Linux version.
-
-----
-$ sudo subscription-manager repos --enable=jb-eap-7-for-rhel-<RHEL_VERSION>-server-rpms
-----
-
-Install the EAP 7 adapters for OIDC using the following command:
-
-----
-$ sudo yum install eap7-keycloak-adapter-sso7_2
-----
-
-Install the EAP 7 adapters for SAML using the following command:
-
-----
-$ sudo yum install eap7-keycloak-saml-adapter-sso7_2
-----
-
-NOTE: The default EAP_HOME path for the RPM installation is /opt/rh/eap7/root/usr/share/wildfly.
-
-Run the appropriate module installation script.
-
-For the OIDC module, enter the following command:
-
-----
-$ {EAP_HOME}/bin/jboss-cli.sh -c --file=${EAP_HOME}/bin/adapter-install.cli
-----
-
-For the SAML module, enter the following command:
-
-----
-$ {EAP_HOME}/bin/jboss-cli.sh -c --file=${EAP_HOME}/bin/adapter-install-saml.cli
-----
-
-Your installation is complete.
-
-Install on JBoss EAP 6:
-
-You can install the EAP 6 adapters either by unzipping a ZIP file, or by using an RPM.
-
-Install the EAP 6 Adapters from a ZIP File:
-
-[source, subs="attributes"]
-----
-$ cd $EAP_HOME
-$ unzip rh-sso-{project_version}-eap6-adapter.zip
-----
-
-Install the EAP 6 Adapters from an RPM:
-
-NOTE: With Red Hat Enterprise Linux 7, the term channel was replaced with the term repository. In these instructions only the term repository is used.
-
-You must subscribe to the JBoss EAP 6.0 repository before you can install the EAP 6 adapters from an RPM.
-
-.Prerequisites
-
-. Ensure that your Red Hat Enterprise Linux system is registered to your account using Red Hat Subscription Manager. For more information see the link:https://access.redhat.com/documentation/en-us/red_hat_subscription_management/1/html-single/quick_registration_for_rhel/index[Red Hat Subscription Management documentation].
-
-. If you are already subscribed to another JBoss EAP repository, you must unsubscribe from that repository first.
-
-Using Red Hat Subscription Manager, subscribe to the JBoss EAP 6.0 repository using the following command. Replace <RHEL_VERSION> with either 6 or 7 depending on your Red Hat Enterprise Linux version.
-
-----
-$ sudo subscription-manager repos --enable=jb-eap-6-for-rhel-<RHEL_VERSION>-server-rpms
-----
-
-Install the EAP 6 adapters for OIDC using the following command:
-
-----
-$ sudo yum install keycloak-adapter-sso7_2-eap6
-----
-
-Install the EAP 6 adapters for SAML using the following command:
-
-----
-$ sudo yum install keycloak-saml-adapter-sso7_2-eap6
-----
-
-NOTE: The default EAP_HOME path for the RPM installation is /opt/rh/eap6/root/usr/share/wildfly.
-
-Run the appropriate module installation script.
-
-For the OIDC module, enter the following command:
-
-----
-$ {EAP_HOME}/bin/jboss-cli.sh -c --file=${EAP_HOME}/bin/adapter-install.cli
-----
-
-For the SAML module, enter the following command:
-
-----
-$ {EAP_HOME}/bin/jboss-cli.sh -c --file=${EAP_HOME}/bin/adapter-install-saml.cli
-----
-
-Your installation is complete.
+include::jboss-adapter-installation-product.adoc[]
 endif::[]
 
-This ZIP archive contains JBoss Modules specific to the {project_name} adapter. It also contains JBoss CLI scripts to configure the adapter subsystem.
-
-To configure the adapter subsystem if the server is not running execute:
-
-ifeval::[{project_community}==true]
-.Wildfly 11
-[source]
-----
-$ ./bin/jboss-cli.sh --file=adapter-elytron-install-offline.cli
-----
-endif::[]
-
-.Any other server but Wildfly 11
-[source]
-----
-$ ./bin/jboss-cli.sh --file=adapter-install-offline.cli
-----
-
-NOTE: The offline script is not available for JBoss EAP 6
-
-Alternatively, if the server is running execute:
-
-ifeval::[{project_community}==true]
-.Wildfly 11
-[source]
-----
-$ ./bin/jboss-cli.sh --file=adapter-elytron-install.cli
-----
-endif::[]
-
-.Any other server but Wildfly 11
-[source]
-----
-$ ./bin/jboss-cli.sh --file=adapter-install.cli
-----
 
 ===== JBoss SSO
 

@@ -1,0 +1,82 @@
+Adapters are available as a separate archive depending on what server version you are using.
+
+NOTE: {appserver_name} should not be running when you install the adapter.
+
+
+*Install on WildFly 11*
+
+Install modules and CLI scripts:
+
+[source, subs="attributes"]
+----
+$ cd $WILDFLY_HOME
+$ unzip keycloak-wildfly-adapter-dist-{project_version}.zip
+----
+
+Then to configure the adapter subsystem for Elytron execute:
+
+[source]
+----
+$ ./bin/jboss-cli.sh --file=adapter-elytron-install-offline.cli
+----
+
+Or, alternatively to configure the adapter subsystem for the legacy security subsystem:
+
+[source]
+----
+$ ./bin/jboss-cli.sh --file=adapter-install-offline.cli
+----
+
+
+*Install on Wildfly 9 or 10*
+
+Install modules and CLI scripts:
+
+[source, subs="attributes"]
+----
+$ cd $WILDFLY_HOME
+$ unzip keycloak-wildfly-adapter-dist-{project_version}.zip
+----
+
+Then to configure the adapter subsystem execute:
+
+[source]
+----
+$ ./bin/jboss-cli.sh --file=adapter-install-offline.cli
+----
+
+
+*Install on Wildfly 8*
+
+Install modules and CLI scripts:
+
+[source, subs="attributes"]
+----
+$ cd $WILDFLY_HOME
+$ unzip keycloak-wf8-adapter-dist-{project_version}.zip
+----
+
+Then to configure the adapter subsystem execute:
+
+[source]
+----
+$ ./bin/jboss-cli.sh --file=adapter-install-offline.cli
+----
+
+
+*Install on JBoss AS 7.1*
+
+Install modules and CLI scripts:
+
+[source, subs="attributes"]
+----
+$ cd $JBOSS_HOME
+$ unzip keycloak-as7-adapter-dist-{project_version}.zip
+----
+
+Then to configure the adapter subsystem execute:
+
+[source]
+----
+$ ./bin/jboss-cli.sh --file=adapter-install.cli
+----
