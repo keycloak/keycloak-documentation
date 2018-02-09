@@ -45,8 +45,8 @@ As a result, the server response is:
 {
   "permissions": [
     {
-      "resource_set_id": "90ccc6fc-b296-4cd1-881e-089e1ee15957",
-      "resource_set_name": "Hello World Resource"
+      "resource_id": "90ccc6fc-b296-4cd1-881e-089e1ee15957",
+      "resource_name": "Hello World Resource"
     }
   ],
   "exp": 1465314139,
