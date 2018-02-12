@@ -18,11 +18,14 @@ This parameter is *optional*. The most recent permission ticket received by the 
 * **claim_token**
 +
 This parameter is *optional*. A string representing additional claims that should be considered by the server when evaluating
-permissions for the resource(s) and scope(s) being requested. This parameter allow clients to push claims to {project_name}. For more details about all supported token formats see.
+permissions for the resource(s) and scope(s) being requested. This parameter allow clients to push claims to {project_name}. For more details about all supported token formats see `claim_token_format` parameter.
 +
 * **claim_token_format**
 +
-This parameter is *optional. A string indicating the format of the token specified in the `claim_token` parameter. For more details about all supported token formats see.
+This parameter is *optional. A string indicating the format of the token specified in the `claim_token` parameter. {project_name} supports two token
+formats: `urn:ietf:params:oauth:token-type:jwt` and `http://openid.net/specs/openid-connect-core-1_0.html#IDToken`. The `urn:ietf:params:oauth:token-type:jwt` format
+indicates that the `claim_token` parameter references an access token. The `http://openid.net/specs/openid-connect-core-1_0.html#IDToken` indicates that the
+`claim_token` parameter references an OpenID Connect ID Token.
 +
 * **rpt**
 +
@@ -42,7 +45,7 @@ in case the `permission` parameter is defined. It serves as a hint to {project_n
 +
 * **response_include_resource_name**
 +
-This parameter is *optional*. A boolean value indicating to the server if resource names should be included in the RPT's permissions. if false, only the resource
+This parameter is *optional*. A boolean value indicating to the server whether resource names should be included in the RPT's permissions. if false, only the resource
 identifier is included.
 +
 * **response_permissions_limit**
@@ -101,7 +104,7 @@ Content-Type: application/json
 ```
 
 The response from the server is just like any other response from the token endpoint when using some other grant type. The RPT can be obtained from
-the `access_token` response parameter. In case the client is not authorized to have permissions {project_name} responds with a `403` HTTP status code:
+the `access_token` response parameter. If the client is not authorized, {project_name} responds with a `403` HTTP status code:
 
 .{project_name} denies the authorization request
 ```bash

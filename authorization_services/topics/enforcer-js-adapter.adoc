@@ -126,7 +126,7 @@ An object where its properties define how the authorization request should be pr
 +
 ** *response_include_resource_name*
 +
-A boolean value indicating to the server if resource names should be included in the RPT's permissions. if false, only the resource
+A boolean value indicating to the server if resource names should be included in the RPT's permissions. If false, only the resource
 identifier is included.
 ** *response_permissions_limit*
 +
@@ -136,7 +136,7 @@ An integer N that defines a limit for the amount of permissions an RPT can have.
 * *submit_request*
 +
 A boolean value indicating whether the server should create permission requests to the resources and scopes referenced by a permission ticket.
-This parameter only have effect if used together with the `ticket` parameter as part of a UMA authorization process.
+This parameter will only take effect when used together with the `ticket` parameter as part of a UMA authorization process.
 
 == Obtaining the RPT
 

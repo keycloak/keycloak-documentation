@@ -1,10 +1,10 @@
 [[_service_authorization_api]]
 = Discoverying Authorization Services Endpoints and Metadata
 
-{project_name} provides a discovery document from where clients can obtain all necessary information to interact with
+{project_name} provides a discovery document from which clients can obtain all necessary information to interact with
 {project_name} Authorization Services, including endpoint locations and capabilities.
 
-The discovery document can be obtained from the following location:
+The discovery document can be obtained from:
 
 ```bash
 curl -X GET \
@@ -33,20 +33,20 @@ Each of these endpoints expose a specific set of capabilities:
 
 * **token_endpoint**
 +
-A OAuth2 compliant Token Endpoint that supports the `urn:ietf:params:oauth:grant-type:uma-ticket` grant type. Through this
+A OAuth2-compliant Token Endpoint that supports the `urn:ietf:params:oauth:grant-type:uma-ticket` grant type. Through this
 endpoint clients can send authorization requests and obtain an RPT with all permissions granted by {project_name}.
 +
 * **token_introspection_endpoint**
 +
-A OAuth2 compliant Token Introspection Endpoint which clients can use to query the server to determine the active state of an RPT
+A OAuth2-compliant Token Introspection Endpoint which clients can use to query the server to determine the active state of an RPT
 and to determine any other information associated with the token, such as the permissions granted by {project_name}.
 +
 * **resource_registration_endpoint**
 +
-A UMA compliant Resource Registration Endpoint which resource servers can use to manage their protected resources and scopes. This endpoint provides
+A UMA-compliant Resource Registration Endpoint which resource servers can use to manage their protected resources and scopes. This endpoint provides
 operations create, read, update and delete resources and scopes in {project_name}.
 +
 * **resource_registration_endpoint**
 +
-A UMA compliant Permission Endpoint which resource servers can use to manage permission tickets. This endpoint provides
-operations create, read, update and delete permission tickets in {project_name}.
+A UMA-compliant Permission Endpoint which resource servers can use to manage permission tickets. This endpoint provides
+operations create, read, update, and delete permission tickets in {project_name}.
