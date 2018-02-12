@@ -1,7 +1,7 @@
 [[_service_authorization_api]]
 = Client Authentication Methods
 
-Clients need to authenticate to the token endpoint in order to obtain a RPT. When using the `urn:ietf:params:oauth:grant-type:uma-ticket`
+Clients need to authenticate to the token endpoint in order to obtain an RPT. When using the `urn:ietf:params:oauth:grant-type:uma-ticket`
 grant type, clients can use any of these authentication methods:
 
 * *Bearer Token*

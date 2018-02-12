@@ -2,7 +2,7 @@
 = Obtaining Permissions
 
 To obtain permissions from {project_name} you send an authorization request to the token endpoint. As a result, {project_name} will
-evaluate all policies associated with the resource(s) and scope(s) being requested and issue a RPT with all permissions
+evaluate all policies associated with the resource(s) and scope(s) being requested and issue an RPT with all permissions
 granted by the server.
 
 Clients are allowed to send authorization requests to the token endpoint using the following parameters:
@@ -27,7 +27,7 @@ This parameter is *optional. A string indicating the format of the token specifi
 * **rpt**
 +
 This parameter is *optional. A previously issued RPT which permissions should also be evaluated and added in a new one. This parameter
-allows clients in possession of a RPT to perform incremental authorization where permissions are added on demand.
+allows clients in possession of an RPT to perform incremental authorization where permissions are added on demand.
 +
 * **permission**
 +
@@ -47,7 +47,7 @@ identifier is included.
 +
 * **response_permissions_limit**
 +
-This parameter is *optional*. An integer N that defines a limit for the amount of permissions a RPT can have. When used together with
+This parameter is *optional*. An integer N that defines a limit for the amount of permissions an RPT can have. When used together with
 `rpt` parameter, only the last N requested permissions will be kept in the RPT.
 +
 * **submit_request**

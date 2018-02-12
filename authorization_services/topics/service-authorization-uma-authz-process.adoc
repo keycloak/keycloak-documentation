@@ -3,17 +3,17 @@
 
 In UMA, the authorization process starts when a client tries to access a UMA protected resource server.
 
-A UMA protected resource server expects a bearer token in the request where the token is a RPT. When a client requests
+A UMA protected resource server expects a bearer token in the request where the token is an RPT. When a client requests
 a resource at the resource server without a permission ticket:
 
-.Client requests a protected resource without sending a RPT
+.Client requests a protected resource without sending an RPT
 ```bash
 curl -X GET \
   http://${host}:8080/my-resource-server/resource/1bfdfe78-a4e1-4c2d-b142-fc92b75b986f
 ```
 
 The resource server sends a response back to the client with a permission `ticket` and a `as_uri` parameter with the location
-of a {project_name} server to where the ticket should be sent in order to obtain a RPT.
+of a {project_name} server to where the ticket should be sent in order to obtain an RPT.
 
 .Resource server responds with a permission ticket
 ```bash
@@ -29,7 +29,7 @@ as well any other information associated with the request. Only resource servers
 Now that the client has a permission ticket and also the location of a {project_name} server, the client can use the discovery document
 to obtain the location of the token endpoint and send an authorization request.
 
-.Client sends an authorization request to the token endpoint to obtain a RPT
+.Client sends an authorization request to the token endpoint to obtain an RPT
 ```bash
 curl -X POST \
   http://${host}:${port}/auth/realms/${realm}/protocol/openid-connect/token \

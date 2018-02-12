@@ -4,7 +4,7 @@
 Depending on your requirements, a resource server should be able to manage resources remotely or even check for permissions programmatically.
 If you are using Java, you can access the {project_name} Authorization Services using the Authorization Client API.
 
-It is targeted for resource servers that want to access the different endpoints provided by the server such as the Token Endpoint, Resource and Permission management endpoints.
+It is targeted for resource servers that want to access the different endpoints provided by the server such as the Token Endpoint, Resource, and Permission management endpoints.
 
 == Maven Dependency
 
@@ -76,7 +76,7 @@ AuthorizationRequest request = new AuthorizationRequest();
 AuthorizationResponse response = authzClient.authorization("alice", "alice").authorize(request);
 String rpt = response.getToken();
 
-System.out.println("You got a RPT: " + rpt);
+System.out.println("You got an RPT: " + rpt);
 
 // now you can use the RPT to access protected resources on the resource server
 ```
@@ -84,7 +84,7 @@ System.out.println("You got a RPT: " + rpt);
 Here is an example illustrating how to obtain user entitlements for a set of one or more resources:
 
 ```java
-// create a new instance based on the configuration define at keycloak-authz.json
+// create a new instance based on the configuration defined in keycloak-authz.json
 AuthzClient authzClient = AuthzClient.create();
 
 // create an authorization request
@@ -98,7 +98,7 @@ request.addPermission("Default Resource");
 AuthorizationResponse response = authzClient.authorization("alice", "alice").authorize(request);
 String rpt = response.getToken();
 
-System.out.println("You got a RPT: " + rpt);
+System.out.println("You got an RPT: " + rpt);
 
 // now you can use the RPT to access protected resources on the resource server
 ```
@@ -134,7 +134,7 @@ ResourceRepresentation resource = resourceClient.findById(resourceId);
 System.out.println(resource);
 ```
 
-== Introspecting a RPT
+== Introspecting an RPT
 
 ```java
 // create a new instance based on the configuration defined in keycloak-authz.json

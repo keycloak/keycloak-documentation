@@ -93,18 +93,19 @@ Each of these services provides a specific API covering the different steps invo
 
 === Token Endpoint
 
-Just like OAuth2 where clients (e.g.: frontend application) cab obtain access tokens from the server using the token endpoint and use these same tokens
-to access resources protected by a resource server (e.g.: backend services), {project_name} Authorization Services provide extensions to OAuth2 to allow issuance of
-access tokens based on the processing of all policies associated with the resource(s) or scope(s) being requested, so that resource servers can
-enforce access to their protected resources based on the permissions granted by the server and held by an access token. In {project_name} Authorization Services the
-access token with permissions is called a **R**equesting **P**arty **T**oken or **RPT** for short.
+OAuth2 clients (such as front end applications) can obtain access tokens from the server using the token endpoint and use
+these same tokens to access resources protected by a resource server (such as back end services). In the same way,
+{project_name} Authorization Services provide extensions to OAuth2 to allow access tokens to be issued based on the processing
+of all policies associated with the resource(s) or scope(s) being requested. This means that resource servers can enforce access
+to their protected resources based on the permissions granted by the server and held by an access token. In {project_name} Authorization Services
+the access token with permissions is called a Requesting Party Token or RPT for short.
 
 For more information, see <<_service_obtaining_permissions, Obtaining Permissions>>.
 
 === Protection API
 
-The *Protection API* is a set of https://docs.kantarainitiative.org/uma/wg/oauth-uma-federated-authz-2.0-09.html[UMA-compliant] endpoint providing operations
-for resource servers to help them manage their resources, scopes, permissions and policies associated with them. Only resource servers are allowed to access this API, which also requires a
+The *Protection API* is a set of https://docs.kantarainitiative.org/uma/wg/oauth-uma-federated-authz-2.0-09.html[UMA-compliant] endpoint-providing operations
+for resource servers to help them manage their resources, scopes, permissions, and policies associated with them. Only resource servers are allowed to access this API, which also requires a
 *uma_protection* scope.
 
 The operations provided by the Protection API can be organized in two main groups:

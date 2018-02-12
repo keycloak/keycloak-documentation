@@ -17,7 +17,7 @@ var authorization = new KeycloakAuthorization(keycloak);
 ```
 The *keycloak-authz.js* library provides two main features:
 
-* Obtain permissions from the server using a permission ticket, in case you are accessing a UMA protected resource server.
+* Obtain permissions from the server using a permission ticket, if you are accessing a UMA protected resource server.
 
 * Obtain permissions from the server by sending the resources and scopes the application wants to access.
 
@@ -70,7 +70,7 @@ Most applications should use the `onGrant` callback to retry a request after a 4
 The ```keycloak-authz.js``` library provides an `entitlement` function that you can use to obtain an RPT from the server by providing
 the resources and scopes your client wants to access.
 
-.Example about how to obtain a RPT with permissions for all resources and scopes the user can access
+.Example about how to obtain an RPT with permissions for all resources and scopes the user can access
 ```json
 authorization.entitlement('my-resource-server-id').then(function (rpt) {
     // onGrant callback function.
@@ -79,7 +79,7 @@ authorization.entitlement('my-resource-server-id').then(function (rpt) {
 });
 ```
 
-.Example about how to obtain a RPT with permissions for specific resources and scopes
+.Example about how to obtain an RPT with permissions for specific resources and scopes
 ```json
 authorization.entitlement('my-resource-server', {
     "permissions": [
@@ -130,7 +130,7 @@ A boolean value indicating to the server if resource names should be included in
 identifier is included.
 ** *response_permissions_limit*
 +
-An integer N that defines a limit for the amount of permissions a RPT can have. When used together with
+An integer N that defines a limit for the amount of permissions an RPT can have. When used together with
 `rpt` parameter, only the last N requested permissions will be kept in the RPT
 +
 * *submit_request*
