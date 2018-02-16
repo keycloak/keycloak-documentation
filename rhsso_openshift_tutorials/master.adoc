@@ -1,0 +1,12 @@
+:toc:
+:toclevels: 3
+:numbered:
+:linkattrs:
+
+include::topics/templates/document-attributes-product.adoc[]
+
+:rhsso_openshift_tutorials_documentation:
+
+= {rhsso_openshift_tutorials_name}
+
+include::topics/tutorials.adoc[]

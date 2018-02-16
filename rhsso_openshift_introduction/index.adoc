@@ -1,0 +1,8 @@
+include::topics/templates/document-attributes-product.adoc[]
+
+:rhsso_openshift_introduction:
+:linkattrs:
+
+= {rhsso_openshift_introduction_name}
+
+include::topics.adoc[]
