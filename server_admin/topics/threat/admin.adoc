@@ -94,3 +94,28 @@ Equivalent configuration using CLI commands:
 /subsystem=undertow/configuration=filter/expression-filter=portAccess:add(,expression="path-prefix('/auth/admin') and not equals(%p, 8444) -> response-code(403)")
 /subsystem=undertow/server=default-server/host=default-host/filter-ref=portAccess:add()
 ----
+
+==== Server version
+
+There are scenarios where it is desirable to hide the {project_name} version. To do so, create Undertow filters redirecting all the requests to `/auth/version` to any page you want, which will then prevent access to the details about the server. The following example prevents access to `/auth/version`:
+
+[source,xml,subs="attributes+"]
+----
+<subsystem xmlns="{subsystem_undertow_xml_urn}">
+    ...
+    <server name="default-server">
+        ...
+        <http-listener name="default" socket-binding="http" redirect-socket="https" enable-http2="true"/>
+        <https-listener name="https" socket-binding="https" security-realm="ApplicationRealm" enable-http2="true"/>
+        <host name="default-host" alias="localhost">
+            ...
+            <filter-ref name="hideVersion"/>
+        </host>
+    </server>
+    <filters>
+        <expression-filter name="hideVersion" expression="path-prefix('/auth/version') -> response-code(403)"/>
+    </filters>
+    ...
+</subsystem>
+----
+
