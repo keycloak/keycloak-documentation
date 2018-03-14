@@ -1,1 +1,0 @@
-include::topics/get_started.adoc[]

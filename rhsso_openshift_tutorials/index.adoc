@@ -1,8 +1,0 @@
-include::topics/templates/document-attributes-product.adoc[]
-
-:rhsso_openshift_tutorials:
-:linkattrs:
-
-= {rhsso_openshift_tutorials_name}
-
-include::topics.adoc[]

@@ -1,1 +1,0 @@
-include::topics/before_you_begin.adoc[]
