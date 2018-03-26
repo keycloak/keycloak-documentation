@@ -1,14 +1,13 @@
-include::common/attributes.adoc[]
-:xpaasproduct: Red Hat Single Sign-On for OpenShift
-:xpaasproduct-shortname: RH-SSO for OpenShift
+:toc:
+:toclevels: 3
+:numbered:
+:linkattrs:
 
-= {xpaasproduct}
+include::topics/templates/document-attributes-product.adoc[]
 
-== Introduction
-include::content/introduction/introduction.adoc[]
+:openshift:
 
-== Before You Begin
-include::content/before_you_begin/before_you_begin.adoc[]
+= Red Hat Single Sign-On for OpenShift
 
 == Getting Started
 include::content/getting_started/getting_started.adoc[]
