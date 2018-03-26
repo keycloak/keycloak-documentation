@@ -25,21 +25,18 @@ build configuration of the application as follows:
 . Identify the name of the build configuration to apply `MAVEN_MIRROR_URL`
   variable against:
 +
-[subs="attributes"]
 ----
 oc get bc -o name
 buildconfig/{bcname}
 ----
 . Update build configuration of `{bcname}` with a `MAVEN_MIRROR_URL` environment variable
 +
-[subs="attributes"]
 ----
 oc env bc/{bcname} MAVEN_MIRROR_URL="http://10.0.0.1:8080/repository/internal/"
 buildconfig "{bcname}" updated
 ----
 . Verify the setting
 +
-[subs="attributes"]
 ----
 oc env bc/{bcname} --list
 # buildconfigs {bcname}
