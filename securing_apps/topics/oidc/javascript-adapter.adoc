@@ -263,6 +263,7 @@ Options is an Object, where:
 * loginHint - Used to pre-fill the username/email field on the login form.
 * action - If value is 'register' then user is redirected to registration page, otherwise to login page.
 * locale - Specifies the desired locale for the UI.
+* scope - A string containing OAuth scopes to request, separated by space. Each http://www.keycloak.org/docs/latest/server_admin/index.html#realm-roles[realm role] maps to a scope using its role name. Each http://www.keycloak.org/docs/latest/server_admin/index.html#client-roles[client role] maps to a scope by `client-name/role-name`.
 
 ====== createLoginUrl(options)
 
