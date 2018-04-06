@@ -3,12 +3,9 @@
 [[sso-artifact-repository-mirrors-section]]
 === Artifact Repository Mirrors
 
-// Define required 'bcname' attribute for maven_mirror_url.adoc page
-// :bcname: sso
-
 // Include the Artifact Repository Mirros section
 // (MAVEN_MIRROR_URL variable usage information)
-// include::../../common/maven_mirror_url.adoc[bcname]
+include::common/maven_mirror_url.adoc[]
 
 A repository in Maven holds build artifacts and dependencies of various types
 (all the project jars, library jar, plugins or any other project specific
