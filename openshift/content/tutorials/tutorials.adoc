@@ -218,7 +218,7 @@ deploymentconfig "sso" scaled
 . Update the image change trigger in the existing deployment config to reference the RH-SSO 7.2 image.
 +
 ----
-$ oc patch dc/sso --type=json -p '[{"op": "replace", "path": "/spec/triggers/0/imageChangeParams/from/name", "value": "redhat-sso72-openshift:1.0"}]'
+$ oc patch dc/sso --type=json -p '[{"op": "replace", "path": "/spec/triggers/0/imageChangeParams/from/name", "value": "redhat-sso72-openshift:1.1"}]'
 "sso" patched
 ----
 . Start rollout of the new RH-SSO 7.2 images based on the latest image defined in the image change triggers.
@@ -448,8 +448,8 @@ redhat-sso72-openshift
 ----
 +
 ----
-$ oc new-build redhat-sso72-openshift:1.0~https://github.com/jboss-openshift/openshift-examples --context-dir=sso-manual-db-migration --name=sso72-db-migration-image
---> Found image bf45ac2 (7 days old) in image stream "openshift/redhat-sso72-openshift" under tag "1.0" for "redhat-sso72-openshift:1.0"
+$ oc new-build redhat-sso72-openshift:1.1~https://github.com/jboss-openshift/openshift-examples --context-dir=sso-manual-db-migration --name=sso72-db-migration-image
+--> Found image bf45ac2 (7 days old) in image stream "openshift/redhat-sso72-openshift" under tag "1.1" for "redhat-sso72-openshift:1.1"
 
     Red Hat SSO 7.2
     ---------------
@@ -633,7 +633,7 @@ Replace `<PREFIX>_USERNAME` and `<PREFIX>_DATABASE` with the actual database cre
 . Update image change trigger in the existing deployment config of RH-SSO 7.1 to reference the RH-SSO 7.2 image.
 +
 ----
-$ oc patch dc/sso --type=json -p '[{"op": "replace", "path": "/spec/triggers/0/imageChangeParams/from/name", "value": "redhat-sso72-openshift:1.0"}]'
+$ oc patch dc/sso --type=json -p '[{"op": "replace", "path": "/spec/triggers/0/imageChangeParams/from/name", "value": "redhat-sso72-openshift:1.1"}]'
 "sso" patched
 ----
 . Start rollout of the new RH-SSO 7.2 images based on the latest image defined in the image change triggers.

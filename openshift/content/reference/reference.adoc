@@ -41,7 +41,7 @@ information about the image and should not be modified by the user:
 
 |*_JBOSS_IMAGE_VERSION_*
 |Image version, same as Version label.
-|*_1.0_*
+|*_1.1_*
 
 |*_JBOSS_MODULES_SYSTEM_PKGS_*
 |-

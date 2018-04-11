@@ -11,19 +11,22 @@ $ oc login -u system:admin
 ----
 $ for resource in sso72-image-stream.json \
   sso72-https.json \
-  sso72-mysql-persistent.json \
   sso72-mysql.json \
+  sso72-mysql-persistent.json \
+  sso72-postgresql.json \
   sso72-postgresql-persistent.json \
-  sso72-postgresql.json
+  sso72-x509-https.json \
+  sso72-x509-mysql-persistent.json \
+  sso72-x509-postgresql-persistent.json
 do
   oc replace -n openshift --force -f \
-  https://raw.githubusercontent.com/jboss-openshift/application-templates/ose-v1.4.9/sso/${resource}
+  https://raw.githubusercontent.com/jboss-openshift/application-templates/ose-v1.4.11/sso/${resource}
 done
 ----
 . Run the following command to install the RH-SSO 7.2 OpenShift image streams in the `openshift` project:
 +
 ----
-$ oc -n openshift import-image redhat-sso72-openshift:1.0
+$ oc -n openshift import-image redhat-sso72-openshift:1.1
 ----
 
 === Preparing and Deploying the {xpaasproduct-shortname} Application Templates
