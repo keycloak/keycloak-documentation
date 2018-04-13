@@ -227,6 +227,13 @@ responseMode::
 
 flow::
     Flow passed in init.
+    
+adapter::
+    Allows to override way how redirects and other browser related functionalities will be handled by library.
+    Possible options:
+    * "default" - using browser api for redirects (used by default)
+    * "cordova" - will be used automatically when library is working in cordova ecosystem. When specifying this option library will try to use InAppBrowser cordova plugin to load keycloak login/registration pages.
+    * custom - function that allows to implement custom adapter (only for advanced use cases)
 
 responseType::
     Response type sent to {project_name} with login requests. This is determined based on the flow value used during initialization, but can be overridden by setting this value.
