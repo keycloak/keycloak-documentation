@@ -266,7 +266,7 @@ After the RH-SSO web server pod has started, it can be accessed at its custom co
 * *\http://sso-_<project-name>_._<hostname>_/auth/admin*: for the RH-SSO web server, and
 * *\https://secure-sso-_<project-name>_._<hostname>_/auth/admin*: for the encrypted RH-SSO web server.
 
-Use the xref:../get_started/get_started.adoc#sso-administrator-setup[administrator user credentials] to log in into the `master` realm’s administration console.
+Use the xref:../advanced_concepts/advanced_concepts.adoc#sso-administrator-setup[administrator user credentials] to log in into the `master` realm’s administration console.
 
 [[SSO-Clients]]
 ==== RH-SSO Clients
