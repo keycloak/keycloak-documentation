@@ -17,7 +17,13 @@ image:{project_images}/standalone-boot-files.png[]
 
 To boot the server:
 
-.Linux/Unix
+.Linux/Unix (rpm)
+[source]
+----
+$ /opt/rh/eap<EAP_VERSION>/root/usr/share/<VERSION_NAME>/bin/standalone.sh
+----
+
+.Linux/Unix (zip|tar)
 [source]
 ----
 $ .../bin/standalone.sh
