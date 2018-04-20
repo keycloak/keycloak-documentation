@@ -4,6 +4,7 @@ Red Hat Single Sign-On (RH-SSO) is an integrated sign-on solution available as a
 [[sso-templates]]
 Red Hat offers multiple OpenShift application templates utilizing the {xpaasproduct-shortname} image version number 7.2. These define the resources needed to develop Red Hat Single Sign-On 7.2 server based deployment and can be split into the following two categories:
 
+[[passthrough-templates]]
 * Templates using beforehand prepared HTTPS and JGroups keystores, and truststore for the RH-SSO server. These are securing the TLS communication using link:https://docs.openshift.com/container-platform/latest/architecture/networking/routes.html#passthrough-termination[passthrough TLS termination]:
 
 ** *_sso72-https_*: RH-SSO 7.2 backed by internal H2 database on the same pod.
@@ -12,6 +13,7 @@ Red Hat offers multiple OpenShift application templates utilizing the {xpaasprod
 ** *_sso72-postgresql_*: RH-SSO 7.2 backed by ephemeral PostgreSQL database on a separate pod.
 ** *_sso72-postgresql-persistent_*: RH-SSO 7.2 backed by persistent PostgreSQL database on a separate pod.
 
+[[reencrypt-templates]]
 * Templates using OpenShift's internal link:https://docs.openshift.com/container-platform/latest/dev_guide/secrets.html#service-serving-certificate-secrets[service serving x509 certificate secrets] to automatically create the HTTPS keystore used for serving secure content, the JGroups keystore used for securing JGroups communications, and RH-SSO server truststore. These are securing the TLS communication using link:https://docs.openshift.com/container-platform/latest/architecture/networking/routes.html#re-encryption-termination[re-encryption TLS termination]:
 
 ** *_sso72-x509-https_*: RH-SSO 7.2 with auto-generated HTTPS and JGroups keystores, and RH-SSO truststore, backed by internal H2 database.

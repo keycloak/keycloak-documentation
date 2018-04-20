@@ -1,92 +1,188 @@
-=== Using the {xpaasproduct-shortname} Image Streams and Application Templates
-Red Hat JBoss Middleware for OpenShift images are pulled on demand from the Red Hat Registry: link:http://registry.access.redhat.com[registry.access.redhat.com]. To update to the latest {xpaasproduct-shortname} images, run the following commands:
+These cover further additional configuration topics, like setup of keystores and truststore for the RH-SSO server, creating an administrator account, overview of available RH-SSO client registration methods, or guidance on how to configure clustering.
 
-. On your master host(s), ensure that you are logged in as a cluster administrator or a user with project administrator access to the global `openshift` project.
-+
-----
-$ oc login -u system:admin
-----
-. Run the following commands to update the core set of RH-SSO 7.2 resources for OpenShift in the `openshift` project:
-+
-----
-$ for resource in sso72-image-stream.json \
-  sso72-https.json \
-  sso72-mysql.json \
-  sso72-mysql-persistent.json \
-  sso72-postgresql.json \
-  sso72-postgresql-persistent.json \
-  sso72-x509-https.json \
-  sso72-x509-mysql-persistent.json \
-  sso72-x509-postgresql-persistent.json
-do
-  oc replace -n openshift --force -f \
-  https://raw.githubusercontent.com/jboss-openshift/application-templates/ose-v1.4.11/sso/${resource}
-done
-----
-. Run the following command to install the RH-SSO 7.2 OpenShift image streams in the `openshift` project:
-+
-----
-$ oc -n openshift import-image redhat-sso72-openshift:1.1
-----
+=== Requirements and Deploying xref:../introduction/introduction.adoc#passthrough-templates[Passthrough TLS Termination] RH-SSO Templates
 
-=== Preparing and Deploying the {xpaasproduct-shortname} Application Templates
+==== Preparing the Deployment
+Log in to the OpenShift CLI with a user that holds the _cluster:admin_ role.
+
+. Create a new project:
++
+----
+$ oc new-project sso-app-demo
+----
+. Add the `view` role to the link:https://docs.openshift.com/container-platform/latest/dev_guide/service_accounts.html#default-service-accounts-and-roles[`default`] service account. This enables the service account to view all the resources in the sso-app-demo namespace, which is necessary for managing the cluster.
++
+----
+$ oc policy add-role-to-user view system:serviceaccount:$(oc project -q):default
+----
 
 [[Configuring-Keystores]]
-==== Configuring Keystores
+==== Creating HTTPS and JGroups Keystores, and Truststore for the RH-SSO Server
 
-The {xpaasproduct-shortname} image requires two keystores: +
-- An SSL keystore to provide private and public keys for https traffic encryption. +
-- A JGroups keystore to provide private and public keys for network traffic encryption between nodes in the cluster.
+The RH-SSO application templates using xref:../introduction/introduction.adoc#passthrough-templates[passthrough TLS termination] require:
 
-These keystores are expected by the {xpaasproduct-shortname} image, even if the application uses only http on a single-node OpenShift instance. Self-signed certificates do not provide secure communication and are intended for internal testing purposes.
+* An xref:#create-https-keystore[HTTPS keystore] used for encryption of https traffic,
+* The xref:#create-jgroups-keystore[JGroups keystore] used for encryption of JGroups communications between nodes in the cluster, and
+* xref:#create-server-truststore[RH-SSO server truststore] used for securing the RH-SSO requests
+
+the {xpaasproduct-shortname} image to be deployed properly.
+
+[IMPORTANT]
+====
+The RH-SSO application templates using xref:../introduction/introduction.adoc#reencrypt-templates[re-encryption TLS termination] does not *require* / *expect* the aforementioned HTTPS and JGroups keystores and RH-SSO server truststore to be prepared beforehand. They are using OpenShift's internal link:https://docs.openshift.com/container-platform/latest/dev_guide/secrets.html#service-serving-certificate-secrets[service serving x509 certificate secrets] to automatically create the HTTPS and JGroups keystores. The RH-SSO server truststore is also created automatically containing the */var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt* CA certificate file, which is used to create these cluster certificates. Moreover, the truststore for the RH-SSO server is pre-populated with the all known, trusted CA certificate files, found in the Java system path.
+====
+
+The *_openssl_* toolkit is used in the following example to generate a CA certificate to sign the HTTPS keystore, and create a truststore for the RH-SSO server. *_keytool_*, a package *included with the Java Development Kit*, is then utilized to the generate self-signed certificates for these keystores.
 
 [WARNING]
+====
 For production environments Red Hat recommends that you use your own SSL certificate purchased from a verified Certificate Authority (CA) for SSL-encrypted connections (HTTPS).
 
 See the https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.1/html-single/Security_Guide/index.html#Generate_a_SSL_Encryption_Key_and_Certificate[JBoss Enterprise Application Platform Security Guide] for more information on how to create a keystore with self-signed or purchased SSL certificates.
+====
 
-==== Generating Secrets
+[[create-https-keystore]]
+*_Create the HTTPS keystore:_*
 
-OpenShift uses objects called `Secrets` to hold sensitive information, such as passwords or keystores. See the https://access.redhat.com/documentation/en/openshift-enterprise/version-3.2/developer-guide/#dev-guide-secrets[Secrets chapter] in the OpenShift documentation for more information.
-
-The {xpaasproduct-shortname} image requires one or more secrets that hold the two keystores described earlier. This provides the necessary authorization to applications in the project.
-
-Use the SSL and JGroups keystore files to create secrets for the project:
-[subs="verbatim,macros"]
-----
-$ oc secret new <pass:quotes[_sso-ssl-secret_]> <pass:quotes[_ssl.jks_]>
-$ oc secret new <pass:quotes[_sso-jgroups-secret_]> <pass:quotes[_jgroups.jceks_]>
-----
-
-////
-==== Creating the Service Account
-
-Service accounts are API objects that exist within each project and allow users to associate certain secrets and roles with applications in a project namespace. This provides the application with the necessary authorization to run with all required privileges.
-
-The service account that you create must be configured with the correct permissions to view pods in Kubernetes. This is required in order for clustering with the {xpaasproduct-shortname} image to work. You can view the top of the log files to see whether the correct service account permissions have been configured.
-
-. Create a service account to be used for the SSO deployment:
+.. Generate a CA certificate:
 +
 [subs="verbatim,macros"]
 ----
-$ oc create serviceaccount <pass:quotes[_service-account-name_]>
+$ openssl req -new -newkey rsa:4096 -x509 -keyout xpaas.key -out xpaas.crt -days 365 -subj "/CN=xpaas-sso-demo.ca"
 ----
-. Add the *view* role to the service account. This enables the service account to view all the resources in the application namespace in OpenShift, which is necessary for managing the cluster.
+.. Generate a CA certificate for the HTTPS keystore:
 +
-[subs="verbatim,macros"]
 ----
-$ oc policy add-role-to-user view system:serviceaccount:<pass:quotes[_project-name_]>:<pass:quotes[_service-account-name_]> -n <pass:quotes[_project-name_]>
+$ keytool -genkeypair -keyalg RSA -keysize 2048 -dname "CN=secure-sso-sso-app-demo.openshift32.example.com" -alias sso-https-key -keystore sso-https.jks
 ----
-. Link the secrets created for the project to the service account:
+.. Generate a certificate sign request for the HTTPS keystore:
 +
-[subs="verbatim,macros"]
 ----
-$ oc secrets link <pass:quotes[_service-account-name_]> <pass:quotes[_sso-ssl-secret_]> <pass:quotes[_sso-jgroups-secret_]>
+$ keytool -certreq -keyalg rsa -alias sso-https-key -keystore sso-https.jks -file sso.csr
 ----
-////
+.. Sign the certificate sign request with the CA certificate:
++
+----
+$ openssl x509 -req -CA xpaas.crt -CAkey xpaas.key -in sso.csr -out sso.crt -days 365 -CAcreateserial
+----
+.. Import the CA certificate into the HTTPS keystore:
++
+----
+$ keytool -import -file xpaas.crt -alias xpaas.ca -keystore sso-https.jks
+----
+.. Import the signed certificate sign request into the HTTPS keystore:
++
+----
+$ keytool -import -file sso.crt -alias sso-https-key -keystore sso-https.jks
+----
+
+[[create-jgroups-keystore]]
+*_Generate a secure key for the JGroups keystore:_*
+
+----
+$ keytool -genseckey -alias jgroups -storetype JCEKS -keystore jgroups.jceks
+----
+
+[[create-server-truststore]]
+*_Import the CA certificate into a new RH-SSO server truststore:_*
+
+----
+$ keytool -import -file xpaas.crt -alias xpaas.ca -keystore truststore.jks
+----
+
+[[Configuring-Secrets]]
+==== Secrets
+
+OpenShift uses objects called link:https://docs.openshift.com/container-platform/latest/dev_guide/secrets.html[secrets] to hold sensitive information, such as passwords or keystores.
+
+. Create the secrets for the HTTPS and JGroups keystores, and RH-SSO server truststore, generated in the xref:#Configuring-Keystores[previous section].
++
+----
+$ oc secret new sso-jgroup-secret jgroups.jceks
+$ oc secret new sso-ssl-secret sso-https.jks truststore.jks
+----
+. Link these secrets to the link:https://docs.openshift.com/container-platform/latest/dev_guide/service_accounts.html#default-service-accounts-and-roles[default] service account, which is used to run RH-SSO pods.
++
+----
+$ oc secrets link default sso-jgroup-secret sso-ssl-secret
+----
+
+===== Deploying the Chosen RH-SSO Passthrough TLS Template via OpenShift CLI
+
+After the aforementioned xref:#Configuring-Keystores[keystores] and xref:#Configuring-Secrets[secrets] are created, deploy some of the available xref:../introduction/introduction.adoc#passthrough-templates[passthrough TLS termination] as follows:
+
+[NOTE]
+====
+For simplicity, in the following command all the provided passwords (the one for the HTTPS keystore, the one for the JGroups keystore, the one for the RH-SSO server truststore, and finally the one for RH-SSO administrator user account) have been chosen to be identical. Although for production environments Red Hat recommends that you use your local password policy to ensure the passwords are different and strong enough. Yet, *the passwords provided when provisioning the template needs to match the passwords provided when creating the keystores*.
+
+Also, the *_SSO_ADMIN_USERNAME_*, *_SSO_ADMIN_PASSWORD_*, and the *_SSO_REALM_* template parameters in the following command are optional.
+====
+
+----
+$ oc new-app --template=sso72-https \
+ -p HTTPS_SECRET="sso-ssl-secret" \
+ -p HTTPS_KEYSTORE="sso-https.jks" \
+ -p HTTPS_NAME="sso-https-key" \
+ -p HTTPS_PASSWORD="redhat" \
+ -p JGROUPS_ENCRYPT_SECRET="sso-jgroup-secret" \
+ -p JGROUPS_ENCRYPT_KEYSTORE="jgroups.jceks" \
+ -p JGROUPS_ENCRYPT_NAME="jgroups" \
+ -p JGROUPS_ENCRYPT_PASSWORD="redhat" \
+ -p SSO_ADMIN_USERNAME="admin" \
+ -p SSO_ADMIN_PASSWORD="redhat" \
+ -p SSO_REALM="demorealm" \
+ -p SSO_TRUSTSTORE="truststore.jks" \
+ -p SSO_TRUSTSTORE_PASSWORD="redhat" \
+ -p SSO_TRUSTSTORE_SECRET="sso-ssl-secret"
+--> Deploying template "openshift/sso72-https" to project sso-app-demo
+
+     Red Hat Single Sign-On 7.2 (Ephemeral with passthrough TLS)
+     ---------
+     An example RH-SSO 7 application. For more information about using this template, see https://github.com/jboss-openshift/application-templates.
+
+     A new RH-SSO service has been created in your project. The admin username/password for accessing the master realm via the RH-SSO console is admin/redhat. Please be sure to create the following secrets: "sso-ssl-secret" containing the sso-https.jks file used for serving secure content; "sso-jgroup-secret" containing the jgroups.jceks file used for securing JGroups communications; "sso-ssl-secret" containing the truststore.jks file used for securing RH-SSO requests.
+
+     * With parameters:
+        * Application Name=sso
+        * Custom http Route Hostname=
+        * Custom https Route Hostname=
+        * Server Keystore Secret Name=sso-ssl-secret
+        * Server Keystore Filename=sso-https.jks
+        * Server Keystore Type=
+        * Server Certificate Name=sso-https-key
+        * Server Keystore Password=redhat
+        * Datasource Minimum Pool Size=
+        * Datasource Maximum Pool Size=
+        * Datasource Transaction Isolation=
+        * JGroups Secret Name=sso-jgroup-secret
+        * JGroups Keystore Filename=jgroups.jceks
+        * JGroups Certificate Name=jgroups
+        * JGroups Keystore Password=redhat
+        * JGroups Cluster Password=HJbJ7r2P # generated
+        * ImageStream Namespace=openshift
+        * RH-SSO Administrator Username=admin
+        * RH-SSO Administrator Password=redhat
+        * RH-SSO Realm=demorealm
+        * RH-SSO Service Username=
+        * RH-SSO Service Password=
+        * RH-SSO Trust Store=truststore.jks
+        * RH-SSO Trust Store Password=redhat
+        * RH-SSO Trust Store Secret=sso-ssl-secret
+        * Container Memory Limit=1Gi
+
+--> Creating resources ...
+    service "sso" created
+    service "secure-sso" created
+    service "sso-ping" created
+    route "sso" created
+    route "secure-sso" created
+    deploymentconfig "sso" created
+--> Success
+    Run 'oc status' to view your app.
+----
 
 [[sso-administrator-setup]]
-==== Creating Administrator Account for Red Hat Single Sign-On Server
+=== Creating Administrator Account for Red Hat Single Sign-On Server
 
 Red Hat Single Sign-On does not provide any pre-configured management account out of the box. This administrator account is necessary for logging into the `master` realm's management console and perform server maintenance operations such as, creating realms or users, or registering applications intended to be secured by Red Hat Single Sign-On.
 
@@ -101,7 +197,7 @@ Red Hat Single Sign-On allows an initial administrator account creation via the 
 ====
 
 [[sso-admin-template-parameters]]
-===== Creating RH-SSO Administrator Account via Template Parameters
+==== Creating RH-SSO Administrator Account via Template Parameters
 
 When deploying RH-SSO application template, *_SSO_ADMIN_USERNAME_* and *_SSO_ADMIN_PASSWORD_* parameters denote the username and password of the RH-SSO server's administrator account to be created for the `master` realm.
 
@@ -145,7 +241,7 @@ $ oc env dc/sso -e SSO_ADMIN_USERNAME="" SSO_ADMIN_PASSWORD=""
 ====
 
 [[sso-admin-remote-shell]]
-===== Creating RH-SSO Administrator Account via Remote Shell Session to RH-SSO Pod
+==== Creating RH-SSO Administrator Account via Remote Shell Session to RH-SSO Pod
 
 Run following commands to create administrator account for the `master` realm of the RH-SSO server, when deploying the {xpaasproduct-shortname} image directly from the image stream (without the xref:../introduction/introduction.adoc#sso-templates[template]), after the RH-SSO application pod has been started:
 
@@ -191,73 +287,7 @@ When restarting the server it is important to restart just the JBoss EAP process
 ====
 . Log into the `master` realm's administration console of the RH-SSO server using the the credentials created in the steps above. In the browser, navigate to *\http://sso-<project-name>.<hostname>/auth/admin*  for the RH-SSO web server, or to *\https://secure-sso-<project-name>.<hostname>/auth/admin* for the encrypted RH-SSO web server, and specify user name and password used to create the administrator user.
 
-==== Using the OpenShift Web Console
-Log in to the OpenShift web console:
-
-. Click *Add to project* to list the default image streams and templates.
-. Use the *Filter by keyword* search bar to limit the list to those that match _sso_. You may need to click *See all* to show the desired application template.
-. Select an application template and configure the deployment parameters as required.
-. Click *Create* to deploy the application template.
-
-These are some of the more common variables to configure an RH-SSO deployment:
-
-[cols="2*", options="header"]
-|===
-|Variable
-|Description
-|*_APPLICATION_NAME_*
-|The name for the RH-SSO application.
-
-|*_HOSTNAME_HTTPS_*
-|Custom hostname for https service route. Leave blank for default hostname of _<application-name>.<project>.<default-domain-suffix>_
-
-|*_HOSTNAME_HTTP_*
-|Custom hostname for http service route. Leave blank for default hostname of _<application-name>.<project>.<default-domain-suffix>_
-
-|*_HTTPS_KEYSTORE_*
-|The name of the keystore file within the secret.
-
-|*_HTTPS_PASSWORD_*
-|The password for the keystore and certificate.
-
-|*_HTTPS_SECRET_*
-|The name of the secret containing the keystore file.
-
-|*_JGROUPS_ENCRYPT_KEYSTORE_*
-|The name of the JGroups keystore file within the secret.
-
-|*_JGROUPS_ENCRYPT_PASSWORD_*
-|The password for the JGroups keystore and certificate.
-
-|*_JGROUPS_ENCRYPT_SECRET_*
-|The name of the secret containing the JGroups keystore file.
-
-|*_SSO_ADMIN_USERNAME_*
-|Username of the administrator account for the `master` realm of the RH-SSO server. *Required.* If no value is specified, it is auto generated and displayed as an OpenShift instructional message when the template is instantiated.
-
-|*_SSO_ADMIN_PASSWORD_*
-|Password of the administrator account for the `master` realm of the RH-SSO server. *Required.* If no value is specified, it is auto generated and displayed as an OpenShift instructional message when the template is instantiated.
-
-|*_SSO_REALM_*
-|The name of an additional RH-SSO realm to create during deployment.
-
-|*_SSO_SERVICE_USERNAME_*
-|RH-SSO service user name to manage the realm.
-
-|*_SSO_SERVICE_PASSWORD_*
-|RH-SSO service user password.
-|===
-
-See the xref:env_vars[Reference chapter] for a more comprehensive list of the RH-SSO environment variables.
-See the xref:Example-Deploying-SSO[Example Workflow: Preparing and Deploying the {xpaasproduct-shortname} Image] for an end-to-end example of RH-SSO deployment.
-
-==== Routes
-
-The {xpaasproduct-shortname} templates use TLS passthrough termination for routes by default. This means that the destination route receives encrypted traffic without the OpenShift router providing TLS termination. Users do not need the relevant SSL certificate to connect to the RH-SSO login page.
-
-For more information on OpenShift route types, see the link:https://docs.openshift.com/container-platform/3.7/architecture/networking/routes.html#route-types[Networking chapter] of the OpenShift Architecture Guide.
-
-==== Deployment Process
+=== Deployment Process
 
 Once deployed, the *_sso72-https_* and *_sso72-x509-https_* templates create a single pod that contains both the database and the RH-SSO servers. The *_sso72-mysql_*, *_sso72-mysql-persistent_*, *_sso72-x509-mysql-persistent_*, *_sso72-postgresql_*, *_sso72-postgresql-persistent_*, and *_sso72-x509-postgresql-persistent_* templates create two pods, one for the database server and one for the RH-SSO web server.
 
@@ -269,7 +299,7 @@ After the RH-SSO web server pod has started, it can be accessed at its custom co
 Use the xref:../advanced_concepts/advanced_concepts.adoc#sso-administrator-setup[administrator user credentials] to log in into the `master` realm’s administration console.
 
 [[SSO-Clients]]
-==== RH-SSO Clients
+=== RH-SSO Clients
 
 Clients are RH-SSO entities that request user authentication. A client can be an application requesting RH-SSO to provide user authentication, or it can be making requests for access tokens to start services on behalf of an authenticated user. See the link:https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/7.2/html/server_administration_guide/clients[Managing Clients chapter of the Red Hat Single Sign-On documentation] for more information.
 
@@ -301,7 +331,7 @@ A client application can be automatically registered to an RH-SSO realm by using
 
 Alternatively, you can manually register the client application by configuring and exporting the RH-SSO client adapter and including it in the client application configuration.
 
-==== Automatic RH-SSO Client Registration
+===== Automatic RH-SSO Client Registration
 
 Automatic RH-SSO client registration is determined by RH-SSO environment variables specific to the *_eap64-sso-s2i_*,  *_eap70-sso-s2i_*, *_eap71-sso-s2i_*, and *_datavirt63-secure-s2i_* templates. The RH-SSO credentials supplied in the template are then used to register the client to the RH-SSO realm during deployment of the client application.
 
@@ -360,7 +390,7 @@ If the RH-SSO client uses the SAML protocol, the following additional variables 
 
 See xref:Example-EAP-Auto[Example Workflow: Automatically Registering EAP Application in RH-SSO with OpenID-Connect Client] for an end-to-end example of the automatic client registration method using an OpenID-Connect client.
 
-==== Manual RH-SSO Client Registration
+===== Manual RH-SSO Client Registration
 
 Manual RH-SSO client registration is determined by the presence of a deployment file in the client application's _../configuration/_ directory. These files are exported from the client adapter in the RH-SSO web console. The name of this file is different for OpenID-Connect and SAML clients:
 
@@ -377,7 +407,7 @@ There are two methods for passing the RH-SSO adapter configuration to the client
 
 See xref:Example-EAP-Manual[Example Workflow: Manually Configure an Application to Use RH-SSO Authentication, Using SAML Client] for an end-to-end example of the manual RH-SSO client registration method using a SAML client.
 
-==== Limitations
+=== Limitations
 OpenShift does not currently accept OpenShift role mapping from external providers. If RH-SSO is used as an authentication gateway for OpenShift, users created in RH-SSO must have the roles added using the OpenShift Administrator `oadm policy` command.
 
 For example, to allow an RH-SSO-created user to view a project namespace in OpenShift:
