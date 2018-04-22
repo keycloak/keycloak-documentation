@@ -1,4 +1,4 @@
-These cover further additional configuration topics, like setup of keystores and truststore for the RH-SSO server, creating an administrator account, overview of available RH-SSO client registration methods, or guidance on how to configure clustering.
+These cover additional configuration topics, such as seting up keystores and a truststore for the RH-SSO server, creating an administrator account, an overview of available RH-SSO client registration methods, and guidance on configuring clustering.
 
 === Requirements and Deploying xref:../introduction/introduction.adoc#passthrough-templates[Passthrough TLS Termination] RH-SSO Templates
 
@@ -29,7 +29,7 @@ the {xpaasproduct-shortname} image to be deployed properly.
 
 [IMPORTANT]
 ====
-The RH-SSO application templates using xref:../introduction/introduction.adoc#reencrypt-templates[re-encryption TLS termination] does not *require* / *expect* the aforementioned HTTPS and JGroups keystores and RH-SSO server truststore to be prepared beforehand. They are using OpenShift's internal link:https://docs.openshift.com/container-platform/latest/dev_guide/secrets.html#service-serving-certificate-secrets[service serving x509 certificate secrets] to automatically create the HTTPS and JGroups keystores. The RH-SSO server truststore is also created automatically containing the */var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt* CA certificate file, which is used to create these cluster certificates. Moreover, the truststore for the RH-SSO server is pre-populated with the all known, trusted CA certificate files, found in the Java system path.
+The RH-SSO application templates using xref:../introduction/introduction.adoc#reencrypt-templates[re-encryption TLS termination] do not *require* or *expect* the aforementioned HTTPS and JGroups keystores and RH-SSO server truststore to be prepared beforehand. The templates use OpenShift's internal link:https://docs.openshift.com/container-platform/latest/dev_guide/secrets.html#service-serving-certificate-secrets[service serving x509 certificate secrets] to automatically create the HTTPS and JGroups keystores. The RH-SSO server truststore is also created automatically, containing the */var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt* CA certificate file, which is used to create these cluster certificates. Moreover, the truststore for the RH-SSO server is pre-populated with the all known, trusted CA certificate files found in the Java system path.
 ====
 
 The *_openssl_* toolkit is used in the following example to generate a CA certificate to sign the HTTPS keystore, and create a truststore for the RH-SSO server. *_keytool_*, a package *included with the Java Development Kit*, is then utilized to the generate self-signed certificates for these keystores.
@@ -113,7 +113,7 @@ After the aforementioned xref:#Configuring-Keystores[keystores] and xref:#Config
 
 [NOTE]
 ====
-For simplicity, in the following command all the provided passwords (the one for the HTTPS keystore, the one for the JGroups keystore, the one for the RH-SSO server truststore, and finally the one for RH-SSO administrator user account) have been chosen to be identical. Although for production environments Red Hat recommends that you use your local password policy to ensure the passwords are different and strong enough. Yet, *the passwords provided when provisioning the template needs to match the passwords provided when creating the keystores*.
+For simplicity, all the provided passwords in the following command (the one for the HTTPS keystore, the one for the JGroups keystore, the one for the RH-SSO server truststore, and finally the one for RH-SSO administrator user account) are identical. For production environments, Red Hat recommends that you use your local password policy to ensure the passwords are different and sufficiently strong. Be aware that *the passwords provided when provisioning the template need to match the passwords provided when creating the keystores*.
 
 Also, the *_SSO_ADMIN_USERNAME_*, *_SSO_ADMIN_PASSWORD_*, and the *_SSO_REALM_* template parameters in the following command are optional.
 ====
@@ -193,7 +193,7 @@ The administrator account can be created:
 
 [NOTE]
 ====
-Red Hat Single Sign-On allows an initial administrator account creation via the link:https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/7.2/html-single/getting_started_guide/#creating_the_admin_account[Welcome Page] web form. But only if the `Welcome Page` is accessed from a localhost, this method of administrator account creation is not applicable for {xpaasproduct-shortname} image.
+Red Hat Single Sign-On allows an initial administrator account to be created via the link:https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/7.2/html-single/getting_started_guide/#creating_the_admin_account[Welcome Page] web form, but only if the Welcome Page is accessed from localhost; this method of administrator account creation is not applicable for the {xpaasproduct-shortname} image.
 ====
 
 [[sso-admin-template-parameters]]
@@ -210,9 +210,9 @@ When deploying RH-SSO application template, *_SSO_ADMIN_USERNAME_* and *_SSO_ADM
 ====
 The lifespan of the RH-SSO server's administrator account depends upon the the storage type used to store the RH-SSO server's database:
 
-* For an in-memory database mode (*_sso72-https_* and *_sso72-x509-https_* templates) the account exist throughout the lifecycle of the particular RH-SSO pod (stored account data is lost upon pod destruction),
-* For an ephemeral database mode (*_sso72-mysql_* and *_sso72-postgresql_* templates) the account exist throughout the lifecycle of the database pod (even if RH-SSO pod is destructed, the stored account data is preserved under the assumption that the database pod is still running),
-* For persistent database mode (*_sso72-mysql-persistent_*, *_sso72-x509-mysql-persistent_*, *_sso72-postgresql-persistent_*, and *_sso72-x509-postgresql-persistent_* templates) the account exists throughout the lifecycle of the persistent medium used to hold the database data. This means that the stored account data is preserved even when both, the RH-SSO and the database pods are destructed.
+* For an in-memory database mode (*_sso72-https_* and *_sso72-x509-https_* templates) the account exists throughout the lifecycle of the particular RH-SSO pod (stored account data is lost upon pod destruction),
+* For an ephemeral database mode (*_sso72-mysql_* and *_sso72-postgresql_* templates) the account exists throughout the lifecycle of the database pod (even if the RH-SSO pod is destructed, the stored account data is preserved under the assumption that the database pod is still running),
+* For persistent database mode (*_sso72-mysql-persistent_*, *_sso72-x509-mysql-persistent_*, *_sso72-postgresql-persistent_*, and *_sso72-x509-postgresql-persistent_* templates) the account exists throughout the lifecycle of the persistent medium used to hold the database data. This means that the stored account data is preserved even when both the RH-SSO and the database pods are destructed.
 
 It is a common practice to deploy an RH-SSO application template to get the corresponding OpenShift deployment config for the application, and then reuse that deployment config multiple times (every time a new RH-SSO application needs to be instantiated).
 ====
@@ -243,7 +243,7 @@ $ oc env dc/sso -e SSO_ADMIN_USERNAME="" SSO_ADMIN_PASSWORD=""
 [[sso-admin-remote-shell]]
 ==== Creating RH-SSO Administrator Account via Remote Shell Session to RH-SSO Pod
 
-Run following commands to create administrator account for the `master` realm of the RH-SSO server, when deploying the {xpaasproduct-shortname} image directly from the image stream (without the xref:../introduction/introduction.adoc#sso-templates[template]), after the RH-SSO application pod has been started:
+Run following commands to create an administrator account for the `master` realm of the RH-SSO server, when deploying the {xpaasproduct-shortname} image directly from the image stream (without the xref:../introduction/introduction.adoc#sso-templates[template]), after the RH-SSO application pod has been started:
 
 . Identify the RH-SSO application pod.
 +
@@ -253,7 +253,7 @@ NAME                READY     STATUS    RESTARTS   AGE
 sso-12-pt93n        1/1       Running   0          1m
 sso-mysql-6-d97pf   1/1       Running   0          2m
 ----
-. Open a remote shell session to {xpaasproduct-shortname} container.
+. Open a remote shell session to the {xpaasproduct-shortname} container.
 +
 ----
 $ oc rsh sso-12-pt93n
@@ -283,15 +283,15 @@ sh-4.2$ ./jboss-cli.sh --connect ':reload'
 +
 [WARNING]
 ====
-When restarting the server it is important to restart just the JBoss EAP process within the running RH-SSO container, and not the whole container. Because restarting the whole container recreates it from scratch, without the RH-SSO server administration account for the `master` realm to be created.
+When restarting the server it is important to restart just the JBoss EAP process within the running RH-SSO container, and not the whole container. This is because restarting the whole container will recreate it from scratch, without the RH-SSO server administration account for the `master` realm.
 ====
-. Log into the `master` realm's administration console of the RH-SSO server using the the credentials created in the steps above. In the browser, navigate to *\http://sso-<project-name>.<hostname>/auth/admin*  for the RH-SSO web server, or to *\https://secure-sso-<project-name>.<hostname>/auth/admin* for the encrypted RH-SSO web server, and specify user name and password used to create the administrator user.
+. Log in to the `master` realm's administration console of the RH-SSO server using the the credentials created in the steps above. In the browser, navigate to *\http://sso-<project-name>.<hostname>/auth/admin*  for the RH-SSO web server, or to *\https://secure-sso-<project-name>.<hostname>/auth/admin* for the encrypted RH-SSO web server, and specify the user name and password used to create the administrator user.
 
 === Deployment Process
 
 Once deployed, the *_sso72-https_* and *_sso72-x509-https_* templates create a single pod that contains both the database and the RH-SSO servers. The *_sso72-mysql_*, *_sso72-mysql-persistent_*, *_sso72-x509-mysql-persistent_*, *_sso72-postgresql_*, *_sso72-postgresql-persistent_*, and *_sso72-x509-postgresql-persistent_* templates create two pods, one for the database server and one for the RH-SSO web server.
 
-After the RH-SSO web server pod has started, it can be accessed at its custom configured hostnames, or at the default hostnames:
+After the RH-SSO web server pod has started, it can be accessed from its custom configured hostnames, or from the default hostnames:
 
 * *\http://sso-_<project-name>_._<hostname>_/auth/admin*: for the RH-SSO web server, and
 * *\https://secure-sso-_<project-name>_._<hostname>_/auth/admin*: for the encrypted RH-SSO web server.
@@ -301,7 +301,7 @@ Use the xref:../advanced_concepts/advanced_concepts.adoc#sso-administrator-setup
 [[SSO-Clients]]
 === RH-SSO Clients
 
-Clients are RH-SSO entities that request user authentication. A client can be an application requesting RH-SSO to provide user authentication, or it can be making requests for access tokens to start services on behalf of an authenticated user. See the link:https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/7.2/html/server_administration_guide/clients[Managing Clients chapter of the Red Hat Single Sign-On documentation] for more information.
+Clients are RH-SSO entities that request user authentication. A client can be an application requesting RH-SSO to provide user authentication, or it can make requests for access tokens to start services on behalf of an authenticated user. See the link:https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/7.2/html/server_administration_guide/clients[Managing Clients chapter of the Red Hat Single Sign-On documentation] for more information.
 
 RH-SSO provides link:https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/7.2/html/server_administration_guide/clients#oidc_clients[OpenID-Connect] and link:https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/7.2/html/server_administration_guide/clients#saml_clients[SAML] client protocols. +
 OpenID-Connect is the preferred protocol and utilizes three different access types:

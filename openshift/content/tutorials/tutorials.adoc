@@ -273,7 +273,7 @@ sso-eap7-bin-demo/
 [[standard-deployments-directory]]
 [NOTE]
 ====
-Location of the standard deployments directory depends on the underlying base image, that was used to deploy the application. See the following table:
+Location of the standard deployments directory depends on the underlying base image that was used to deploy the application. See the following table:
 
 .Standard Location of the Deployments Directory
 [cols="2", options="header"]
@@ -304,7 +304,7 @@ jboss-eap71-openshift
 +
 [NOTE]
 ====
-Replace `--image-stream=jboss-eap70-openshift` parameter with the `--image-stream=jboss-eap64-openshift` one in the following oc command to deploy the JSP application on top of JBoss EAP 6.4 for OpenShift image.
+Replace `--image-stream=jboss-eap70-openshift` parameter with the `--image-stream=jboss-eap64-openshift` one in the following `oc` command to deploy the JSP application on top of JBoss EAP 6.4 for OpenShift image.
 ====
 +
 [subs="verbatim,macros"]
@@ -492,7 +492,7 @@ eap-app   eap-app-eap-app-demo.openshift.example.com             eap-app    8080
 
 ===== Access the Application
 
-Access the application in your browser using the URL *\http://eap-app-eap-app-demo.openshift.example.com/app-jsp*. You should see output like on the following image:
+Access the application in your browser using the URL *\http://eap-app-eap-app-demo.openshift.example.com/app-jsp*. You should see output similar to what you see in the following image:
 
 [.text-center]
 image:../images/sso_app_jee_jsp.svg[RH-SSO Example JSP Application]
@@ -504,7 +504,7 @@ Perform the following to test the application:
 You should see the *Message: public* output.
 * Click the *LOGIN* button to be redirected for user authentication to the RH-SSO server instance against the `demo` realm.
 +
-Specify username and password of the RH-SSO user configured earlier (`appuser` / `apppassword`). Click *Log in*. The look of the application changes as detailed in the following image:
+Specify username and password of the RH-SSO user configured earlier (`appuser` / `apppassword`). Click *Log in*. The look of the application changes as shown in the following image:
 +
 [.text-center]
 image:../images/sso_app_jee_jsp_logged_in.svg[RH-SSO Example JSP Application - After User Log-in]
@@ -518,7 +518,7 @@ You should see *403 Forbidden* output.
 +
 [NOTE]
 ====
-The `admin` endpoint requires users with `admin` RH-SSO role to invoke properly. Access for the `appuser` is forbidden because they only have `user` role privilege, which allows them to access the `secured` endpoint.
+To invoke properly, the `admin` endpoint requires users with the `admin` RH-SSO role. Access for the `appuser` is forbidden because they only have the `user` role privilege, which allows them to access the `secured` endpoint.
 ====
 +
 Perform the following steps to add the `appuser` to the `admin` RH-SSO role:
