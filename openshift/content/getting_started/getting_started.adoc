@@ -127,16 +127,16 @@ $ oc get routes
 
 |secure-sso
 |secure-sso-sso-app-demo.openshift.example.com
-|secure-sso
 |
+|secure-sso
 |<all>
 |reencrypt
 |None
 
 |sso
 |sso-sso-app-demo.openshift.example.com
-|sso
 |
+|sso
 |<all>
 |
 |None
