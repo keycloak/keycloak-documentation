@@ -1,8 +1,7 @@
 
 === Configuring the Subsystem
 
-Now that you have copied the XML template from the Installation page, you need to paste this into the _standalone.xml_ file
-that resides in the _standalone/configuration_ directory of the application server instance on which your application is deployed.
+Now that you have copied the XML template from the Installation page, you need to paste the template contents into the _standalone.xml_ file that resides in the _standalone/configuration_ directory of the application server instance on which your application is deployed.
 
 . Open the standalone/configuration/standalone.xml file and search for the following text:
 +
@@ -11,7 +10,7 @@ that resides in the _standalone/configuration_ directory of the application serv
 <subsystem xmlns="urn:jboss:domain:keycloak:1.1"/>
 ----
 
-. Modify this to prepare it for pasting in your template from the Installation page:
+. Modify this text to prepare it for pasting in your template from the Installation page:
 +
 [source,xml]
 ----
@@ -34,7 +33,7 @@ that resides in the _standalone/configuration_ directory of the application serv
 </subsystem>
 ----
 
-. Change the *WAR MODULE NAME* text to *vanilla* as follows:
+. Change the *WAR MODULE NAME* text to *vanilla*, like this:
 +
 [source,xml]
 ----
@@ -46,6 +45,6 @@ that resides in the _standalone/configuration_ directory of the application serv
 
 . Reboot your application server.  
 
-. Go to http://localhost:8080/vanilla and click *login*. The {project_name} login page opens. You can log in using the user you created in the <<_create-new-user, Creating a New User>> chapter.
+. Open http://localhost:8080/vanilla in your web browser and click *login*. When the {project_name} login page opens, log in using the user you created in <<_create-new-user, Creating a New User>>.
 
 
