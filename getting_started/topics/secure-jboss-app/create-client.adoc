@@ -1,11 +1,11 @@
 
 === Creating and Registering the Client
 
-Now you will define and register the client in the {project_name} Admin Console.
+To define and register the client in the {project_name} admin console, complete the following steps:
 
-. Log in to the Admin Console with your admin account.  
+. Log in to the admin console with your admin account.  
 
-. In the top left dropdown menu select and manage the `demo` realm. Click `Clients` in the left side menu to open the Clients page.
+. In the top left drop-down menu select and manage the `Demo` realm. Click `Clients` in the left side menu to open the Clients page.
 +
 .Clients
 image:{project_images}/clients.png[]
@@ -17,15 +17,16 @@ image:{project_images}/clients.png[]
 .Add Client
 image:{project_images}/add-client.png[]
 
-. Your client application entry will be created after you click the `Save` button. You now have to go back to the {appserver_name} instance that the application is deployed on and configure it so that this app is secured by {project_name}. You can obtain a template for the configuration you need by going to the `Installation` tab in the client entry in the {project_name} Admin Console.
-+
-.Installation Tab
-image:{project_images}/client-installation.png[]
+. Click *Save* to create the client application entry.
 
-. Select *Keycloak OIDC JBoss Subsystem XML*. An XML template is generated that you'll need to cut and paste.
+. Click the *Installation* tab in the {project_name} admin console to obtain a configuration template.
+
+. Select *Keycloak OIDC JBoss Subsystem XML* to generate an XML template. Copy the contents for use in the next section.
 +
 .Template XML
 image:{project_images}/client-install-selected.png[]
+
+
 
 
 
