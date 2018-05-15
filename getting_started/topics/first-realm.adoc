@@ -1,4 +1,4 @@
 
 == Creating a Realm and User
 
-Here you will create a new realm within the {project_name} Admin Console and add a new user to that realm. You will use that new user to log in to your new realm and visit the built-in User Account service that all users have access to.
+In this section you will create a new realm within the {project_name} admin console and add a new user to that realm. You will use that new user to log in to your new realm and visit the built-in user account service that all users have access to.
