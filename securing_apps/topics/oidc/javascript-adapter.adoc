@@ -121,12 +121,12 @@ your application.
 [[_javascript_implicit_flow]]
 ==== Implicit and Hybrid Flow
 
-By default, the JavaScript adapter uses the http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth[Authorization Code] flow.
+By default, the JavaScript adapter uses the https://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth[Authorization Code] flow.
 
 With this flow the {project_name} server returns an authorization code, not an authentication token, to the application. The JavaScript adapter exchanges
 the `code` for an access token and a refresh token after the browser is redirected back to the application.
 
-{project_name} also supports the http://openid.net/specs/openid-connect-core-1_0.html#ImplicitFlowAuth[Implicit] flow where an access token
+{project_name} also supports the https://openid.net/specs/openid-connect-core-1_0.html#ImplicitFlowAuth[Implicit] flow where an access token
 is sent immediately after successful authentication with {project_name}. This may have better performance than standard flow, as there is no additional
 request to exchange the code for tokens, but it has implications when the access token expires.
 
@@ -144,7 +144,7 @@ keycloak.init({ flow: 'implicit' })
 One thing to note is that only an access token is provided and there is no refresh token. This means that once the access token has expired the application
 has to do the redirect to the {project_name} again to obtain a new access token.
 
-{project_name} also supports the http://openid.net/specs/openid-connect-core-1_0.html#HybridFlowAuth[Hybrid] flow.
+{project_name} also supports the https://openid.net/specs/openid-connect-core-1_0.html#HybridFlowAuth[Hybrid] flow.
 
 This requires the client to have both the `Standard Flow Enabled` and `Implicit Flow Enabled` flags enabled in the admin console.
 The {project_name} server will then send both the code and tokens to your application.
@@ -161,19 +161,67 @@ For the Hybrid flow, you need to pass the parameter `flow` with value `hybrid` t
 keycloak.init({ flow: 'hybrid' })
 ----
 
+[#hybrid-apps-with-cordova]
+==== Hybrid Apps with Cordova
+
+Keycloak support hybird mobile apps developed with https://cordova.apache.org/[Apache Cordova]. The Javascript adapter has two modes for this: `cordova` and `cordova-native`:
+
+The default is cordova, which the adapter will automatically select if no adapter type has been configured and window.cordova is present.
+When logging in, it will open an https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-inappbrowser/[InApp Browser] that lets the user interact with {project_name} and afterwards returns to the app by redirecting to `http://localhost`. Because of this, you must whitelist this URL as a valid redirect-uri in the client configuration section of the Administration Console.
+
+While this mode is easy to setup, it also has some disadvantages:
+* The InApp-Browser is a browser embedded in the app and is not the phone's default browser. Therefore it will have different settings and stored credentials will not be available.
+* The InApp-Browser might also be slower, especially when rendering more complex themes.
+* There are security concerns to consider, before using this mode, such as that it is possible for the app to gain access to the credentials of the user, as it has full control of the browser rendering the login page, so do not allow its use in apps you do not trust.
+
+Use this example app to help you get started: https://github.com/keycloak/keycloak/tree/master/examples/cordova
+
+The alternative mode `cordova-nativei` takes a different approach. 
+It opens the login page using the system's browser. 
+After the user has authenticated, the browser redirects back into the app using a special URL.
+From there, the {project_name} adapter can finish the login by reading the code or token from the URL.
+
+You can activate the native mode by passing the adater type `cordova-native` to the `init` method:
+
+[source,javascript]
+----
+keycloak.init({ adapter: 'cordova-native' })
+----
+
+This adapter required two additional plugins:
+
+* https://github.com/google/cordova-plugin-browsertab[cordova-plugin-browsertab]: allows the app to open webpages in the system's browser
+* https://github.com/e-imaxina/cordova-plugin-deeplinks[cordova-plugin-deeplinks]: allow the browser to redirect back to your app by special URLs
+
+The technical details for linking to an app differ on each plattform and special setup is needed.
+Please refer to the Android and iOS sections of the https://github.com/e-imaxina/cordova-plugin-deeplinks/blob/master/README.md[deeplinks plugin documentation] for further instructions.
+
+There are different kinds of links for opening apps: custom schemes (i.e. `myapp://login` or `android-app://com.example.myapp/https/example.com/login`) and https://developer.apple.com/ios/universal-links/[Universal Links (iOS)]) / https://developer.android.com/training/app-links/deep-linking[Deep Links (Android)].
+While the former are easier to setup and tend to work more reliably, the later offer extra security as they are unique and only the owner of a domain can register them.
+Custom-URLs are deprecated on iOS. 
+We recommend that you use universal links, combined with a fallback site with a custom-url link on it for best reliability.
+
+Furthermore, we recommend the following steps to improve compatibility with the Keycloak Adapter:
+
+* Universal Links on iOS seem to work more reliably with `response-mode` set to `query`
+* To prevent Android from opening a new instance of your app on redirect add the following snippet to `config.xml`:
+[source,xml]
+----
+<preference name="AndroidLaunchMode" value="singleTask" /> 
+----
+
+There is an example app that shows how to use the native-mode: https://github.com/keycloak/keycloak/tree/master/examples/cordova-native
+
 ==== Earlier Browsers
 
-The JavaScript adapter depends on Base64 (window.btoa and window.atob) and HTML5 History API.
+The JavaScript adapter depends on Base64 (window.btoa and window.atob), HTML5 History API and optionally the Promise API.
 If you need to support browsers that do not have these available (for example, IE9) you need to add polyfillers.
 
 Example polyfill libraries:
 
-* https://github.com/davidchambers/Base64.js
-* https://github.com/devote/HTML5-History-API
-
-If available, the JavaScript adapter will use native Promise instances as return values from functions documented as returning promises.  To retain backwards compatibility, the `success()` and `error()` functions from previous versions of the adapter are retained.  These remain available whether or not native Promises are provided by the browser.  Promise API polyfills are available for browsers without support:
-
-* https://github.com/stefanpenner/es6-promise
+* Base64 - https://github.com/davidchambers/Base64.js
+* HTML5 History - https://github.com/devote/HTML5-History-API
+* Promise - https://github.com/stefanpenner/es6-promise
 
 ==== JavaScript Adapter Reference
 
@@ -233,6 +281,7 @@ adapter::
     Available options:
     * "default" - the library uses the browser api for redirects (this is the default)
     * "cordova" - the library will try to use the InAppBrowser cordova plugin to load keycloak login/registration pages (this is used automatically when the library is working in a cordova ecosystem)
+    * "cordova-native" - the library tries to open the login and registration page using the phone's system browser using the BrowserTabs cordova plugin. This requires extra setup for redirecting back to the app (see <<hybrid-apps-with-cordova>>).
     * custom - allows you to implement a custom adapter (only for advanced use cases)
 
 responseType::
@@ -255,6 +304,7 @@ Options is an Object, where:
 * checkLoginIframeInterval - Set the interval to check login state (default is 5 seconds).
 * responseMode - Set the OpenID Connect response mode send to {project_name} server at login request. Valid values are query or fragment . Default value is fragment, which means that after successful authentication will {project_name} redirect to javascript application with OpenID Connect parameters added in URL fragment. This is generally safer and recommended over query.
 * flow - Set the OpenID Connect flow. Valid values are standard, implicit or hybrid.
+* promiseType - If set to `native` all methods returning a promise will return a native JavaScript promise. If not set will return Keycloak specific promise objects.
 
 Returns promise to set functions to be invoked on success or error.
 
@@ -265,7 +315,9 @@ Redirects to login form on (options is an optional object with redirectUri and/o
 Options is an Object, where:
 
 * redirectUri - Specifies the uri to redirect to after login.
-* prompt - By default the login screen is displayed if the user is not logged-in to {project_name}. To only authenticate to the application if the user is already logged-in and not display the login page if the user is not logged-in, set this option to `none`. To always require re-authentication and ignore SSO, set this option to `login` .
+* prompt - This parameter allows to slightly customize the login flow on the {project_name} server side.
+For example enforce displaying the login screen in case of value `login`. See link:#_params_forwarding[Parameters Forwarding Section]
+for the details and all the possible values of the `prompt` parameter.
 * maxAge - Used just if user is already authenticated. Specifies maximum time since the authentication of user happened. If user is already authenticated for longer time than `maxAge`, the SSO is ignored and he will need to re-authenticate again.
 * loginHint - Used to pre-fill the username/email field on the login form.
 * scope - Used to forward the scope parameter to the {project_name} login endpoint. Use a space-delimited list of scopes. Those typically
@@ -341,7 +393,7 @@ For example:
 [source,javascript]
 ----
 keycloak.loadUserProfile().then(function(profile) {
-        alert(JSON.stringify(test, null, "  "));
+        alert(JSON.stringify(profile, null, "  "));
     }).catch(function() {
         alert('Failed to load user profile');
     });

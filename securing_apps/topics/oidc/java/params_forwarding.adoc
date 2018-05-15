@@ -2,7 +2,7 @@
 ==== Parameters Forwarding
 
 The {project_name}  initial authorization endpoint request has support for various parameters. Most of the parameters are described in
-http://openid.net/specs/openid-connect-core-1_0.html#AuthorizationEndpoint[OIDC specification]. Some parameters are added automatically by the adapter based
+https://openid.net/specs/openid-connect-core-1_0.html#AuthorizationEndpoint[OIDC specification]. Some parameters are added automatically by the adapter based
 on the adapter configuration. However, there are also a few parameters that can be added on a per-invocation basis. When you open the secured application URI,
 the particular parameter will be forwarded to the {project_name} authorization endpoint.
 
@@ -23,6 +23,8 @@ enter the scope options `address phone`, then the request to {project_name} will
 
 * prompt - {project_name} supports these settings:
 ** `login` - SSO will be ignored and the {project_name} login page will be always shown, even if the user is already authenticated
+** `consent` - Applicable only for the clients with `Consent Required`. If it is used, the Consent page will always be displayed,
+even if the user previously granted consent to this client.
 ** `none` - The login page will never be shown; instead the user will be redirected to the application, with an error if the user
 is not yet authenticated. This setting allows you to create a filter/interceptor on the application side and show a custom error page
 to the user. See more details in the specification.
@@ -35,7 +37,7 @@ from when the user authenticated. If user is authenticated longer than `maxAge`,
 * kc_idp_hint - Used to tell {project_name} to skip showing login page and automatically redirect to specified identity provider instead.
 More info in the link:{adminguide_link}#_client_suggested_idp[Identity Provider documentation].
 
-Most of the parameters are described in the http://openid.net/specs/openid-connect-core-1_0.html#AuthorizationEndpoint[OIDC specification].
+Most of the parameters are described in the https://openid.net/specs/openid-connect-core-1_0.html#AuthorizationEndpoint[OIDC specification].
 The only exception is parameter `kc_idp_hint`, which is specific to {project_name} and contains the name of the identity provider to automatically use.
 For more information see the `Identity Brokering` section in link:{adminguide_link}[{adminguide_name}].
 

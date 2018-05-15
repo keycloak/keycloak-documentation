@@ -23,8 +23,8 @@ permissions for the resource(s) and scope(s) being requested. This parameter all
 * **claim_token_format**
 +
 This parameter is *optional. A string indicating the format of the token specified in the `claim_token` parameter. {project_name} supports two token
-formats: `urn:ietf:params:oauth:token-type:jwt` and `http://openid.net/specs/openid-connect-core-1_0.html#IDToken`. The `urn:ietf:params:oauth:token-type:jwt` format
-indicates that the `claim_token` parameter references an access token. The `http://openid.net/specs/openid-connect-core-1_0.html#IDToken` indicates that the
+formats: `urn:ietf:params:oauth:token-type:jwt` and `https://openid.net/specs/openid-connect-core-1_0.html#IDToken`. The `urn:ietf:params:oauth:token-type:jwt` format
+indicates that the `claim_token` parameter references an access token. The `https://openid.net/specs/openid-connect-core-1_0.html#IDToken` indicates that the
 `claim_token` parameter references an OpenID Connect ID Token.
 +
 * **rpt**
@@ -57,6 +57,40 @@ This parameter is *optional*. An integer N that defines a limit for the amount o
 +
 This parameter is *optional*. A boolean value indicating whether the server should create permission requests to the resources and scopes referenced by a permission ticket.
 This parameter only have effect if used together with the `ticket` parameter as part of a UMA authorization process.
++
+* **response_mode**
++
+This parameter is *optional*. A string value indicating how the server should respond to authorization requests. This parameter is specially useful when
+you are mainly interested in either the overall decision or the permissions granted by the server, instead of an standard OAuth2 response. Possible values are:
++
+*** `decision`
++
+Indicates that responses from the server should only represent the overall decision by returning a JSON with the following format:
++
+```json
+{
+    'result': true
+}
+```
++
+If the authorization request does not map to any permission, a `403` HTTP status code is returned instead.
++
+*** `permissions`
++
+Indicates that responses from the server should contain any permission granted by the server by returning a JSON with the following format:
++
+```json
+[
+    {
+        'rsid': 'My Resource'
+        'scopes': ['view', 'update']
+    },
+
+    ...
+]
+```
++
+If the authorization request does not map to any permission, a `403` HTTP status code is returned instead.
 
 Example of a authorization request when a client is seeking access to two resources protected by a resource server.
 

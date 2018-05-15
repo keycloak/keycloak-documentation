@@ -23,8 +23,9 @@ As this is an advanced topic, we recommend you first read the following, which p
 * link:{installguide_clustering_link}[Clustering with {project_name}]
 When setting up for Cross-Datacenter Replication, you will use more independent {project_name} clusters, so you must understand how a cluster works and the basic concepts and requirements such as load balancing, shared databases, and multicasting.
 
-* link:https://access.redhat.com/documentation/en-us/red_hat_jboss_data_grid/7.1/html/administration_and_configuration_guide/set_up_cross_datacenter_replication[JBoss Data Grid Cross-Datacenter Replication]
-{project_name} uses JBoss Data Grid (JDG) for the replication of Infinispan data between the data centers. We use the `Remote Client-Server Mode` described in the JDG documentation in  link:https://access.redhat.com/documentation/en-us/red_hat_jboss_data_grid/7.1/html/administration_and_configuration_guide/set_up_cross_datacenter_replication#configure_cross_datacenter_replication_remote_client_server_mode[Configure Cross-Datacenter Replication].
+* link:{jdgserver_crossdcdocs_link}[JBoss Data Grid Cross-Datacenter Replication]
+{project_name} uses JBoss Data Grid (JDG) for the replication of Infinispan data between the data centers. We use the `Remote Client-Server Mode`
+described in the JDG documentation in  link:{jdgserver_crossdcdocs_link}#configure_cross_datacenter_replication_remote_client_server_mode[Configure Cross-Datacenter Replication].
 
 
 [[technicaldetails]]
@@ -149,7 +150,8 @@ For this example, we describe using two data centers, `site1` and `site2`. Each 
 
 * `Site2` consists of {jdgserver_name} server, `jdg2`, and 2 {project_name} servers, `node21` and `node22` .
  
-* {jdgserver_name} servers `jdg1` and `jdg2` are connected to each other through the RELAY2 protocol and `backup` based {jdgserver_name} caches in a similar way as described in the link:https://access.redhat.com/documentation/en-us/red_hat_jboss_data_grid/7.1/html-single/administration_and_configuration_guide/#configure_cross_datacenter_replication_remote_client_server_mode[JDG documentation].
+* {jdgserver_name} servers `jdg1` and `jdg2` are connected to each other through the RELAY2 protocol and `backup` based {jdgserver_name}
+caches in a similar way as described in the link:{jdgserver_crossdcdocs_link}#configure_cross_datacenter_replication_remote_client_server_mode[JDG documentation].
 
 * {project_name} servers `node11` and `node12` form a cluster with each other, but they do not communicate directly with any server in `site2`.
 They communicate with the Infinispan server `jdg1` using the HotRod protocol (Remote cache). See <<communication>> for the details.
@@ -211,7 +213,9 @@ Details of this more-detailed setup are out-of-scope of the {project_name} docum
 <cache-container name="clustered" default-cache="default" statistics="true">
         ...
         <replicated-cache-configuration name="sessions-cfg" mode="SYNC" start="EAGER" batching="false">
+ifeval::[{project_product}==true]
             <transaction mode="NON_DURABLE_XA" locking="PESSIMISTIC"/>
+endif::[]
             <locking acquire-timeout="0" />
             <backups>
                 <backup site="site2" failure-policy="FAIL" strategy="SYNC" enabled="true">
@@ -230,10 +234,20 @@ Details of this more-detailed setup are out-of-scope of the {project_name} docum
                 
 </cache-container>
 ```
++
 NOTE: Details about the configuration options inside `replicated-cache-configuration` are explained in <<tuningcache>>, which includes information about tweaking some of those options.
-
-+  
-. Newer {jdgserver_name} releases require authorization before accessing protected caches over network. {project_name} requires updates to
++
+ifeval::[{project_community}==true]
+WARNING: Unlike in previous version, the {jdgserver_name} server `replicated-cache-configuration` needs to be configured without `transaction`
+element. See <<troubleshooting>> for more details.
+endif::[]
++
+. Some {jdgserver_name} server releases require authorization before accessing protected caches over network.
++
+NOTE: You should not see any issue if you use recommended {jdgserver_name} {jdgserver_version} server and this step can (and should) be ignored.
+Issues related to authorization may exist just for some other versions of {jdgserver_name} server.
++
+{project_name} requires updates to
 `___script_cache` cache containing scripts. If you get errors accessing this cache, you will need to set up authorization in
 `clustered.xml` configuration as described below:
 +
@@ -375,14 +389,14 @@ In production you will likely need to have a separate database server in every d
 .. Add this `module` attribute under `cache-container` element of name `keycloak` :
 +
 ```xml
- <cache-container name="keycloak" jndi-name="infinispan/Keycloak" module="org.keycloak.keycloak-model-infinispan">
+ <cache-container name="keycloak" module="org.keycloak.keycloak-model-infinispan">
 ``` 
 +
 
 .. Add the `remote-store` under `work` cache:
 +
 ```xml
-<replicated-cache name="work" mode="SYNC">
+<replicated-cache name="work">
     <remote-store cache="work" remote-servers="remote-cache" passivation="false" fetch-state="false" purge="false" preload="false" shared="true">
         <property name="rawValues">true</property>
         <property name="marshaller">org.keycloak.cluster.infinispan.KeycloakHotRodMarshallerFactory</property>
@@ -394,7 +408,7 @@ In production you will likely need to have a separate database server in every d
 .. Add the `remote-store` like this under `sessions` cache:
 +
 ```xml
-<distributed-cache name="sessions" mode="SYNC" owners="1">
+<distributed-cache name="sessions" owners="1">
     <remote-store cache="sessions" remote-servers="remote-cache" passivation="false" fetch-state="false" purge="false" preload="false" shared="true">   
         <property name="rawValues">true</property>
         <property name="marshaller">org.keycloak.cluster.infinispan.KeycloakHotRodMarshallerFactory</property>
@@ -406,36 +420,36 @@ In production you will likely need to have a separate database server in every d
 .. Do the same for `offlineSessions`, `clientSessions`, `offlineClientSessions`, `loginFailures`, and `actionTokens` caches (the only difference from `sessions` cache is that `cache` property value are different):
 +
 ```xml
-<distributed-cache name="offlineSessions" mode="SYNC" owners="1">
+<distributed-cache name="offlineSessions" owners="1">
     <remote-store cache="offlineSessions" remote-servers="remote-cache" passivation="false" fetch-state="false" purge="false" preload="false" shared="true">
         <property name="rawValues">true</property>
         <property name="marshaller">org.keycloak.cluster.infinispan.KeycloakHotRodMarshallerFactory</property>
     </remote-store>
 </distributed-cache>
 
-<distributed-cache name="clientSessions" mode="SYNC" owners="1">
+<distributed-cache name="clientSessions" owners="1">
     <remote-store cache="clientSessions" remote-servers="remote-cache" passivation="false" fetch-state="false" purge="false" preload="false" shared="true">
         <property name="rawValues">true</property>
         <property name="marshaller">org.keycloak.cluster.infinispan.KeycloakHotRodMarshallerFactory</property>
     </remote-store>
 </distributed-cache>
 
-<distributed-cache name="offlineClientSessions" mode="SYNC" owners="1">
+<distributed-cache name="offlineClientSessions" owners="1">
     <remote-store cache="offlineClientSessions" remote-servers="remote-cache" passivation="false" fetch-state="false" purge="false" preload="false" shared="true">
         <property name="rawValues">true</property>
         <property name="marshaller">org.keycloak.cluster.infinispan.KeycloakHotRodMarshallerFactory</property>
     </remote-store>
 </distributed-cache>
 
-<distributed-cache name="loginFailures" mode="SYNC" owners="1">
+<distributed-cache name="loginFailures" owners="1">
     <remote-store cache="loginFailures" remote-servers="remote-cache" passivation="false" fetch-state="false" purge="false" preload="false" shared="true">
         <property name="rawValues">true</property>
         <property name="marshaller">org.keycloak.cluster.infinispan.KeycloakHotRodMarshallerFactory</property>
     </remote-store>
 </distributed-cache>
 
-<distributed-cache name="actionTokens" mode="SYNC" owners="2">
-    <eviction max-entries="-1" strategy="NONE"/>
+<distributed-cache name="actionTokens" owners="2">
+    <object-memory size="-1"/>
     <expiration max-idle="-1" interval="300000"/>
     <remote-store cache="actionTokens" remote-servers="remote-cache" passivation="false" fetch-state="false" purge="false" preload="true" shared="true">
         <property name="rawValues">true</property>
@@ -597,7 +611,7 @@ There are 2 ways to take the site offline.
 
 **Manually by admin** - Admin can use the `jconsole` or other tool and run some JMX operations to manually take the particular site offline.
 This is useful especially if the outage is planned. With `jconsole` or CLI, you can connect to the `jdg1` server and take the `site2` offline. 
-More details about this are available in the link:https://access.redhat.com/documentation/en-us/red_hat_jboss_data_grid/7.1/html/administration_and_configuration_guide/set_up_cross_datacenter_replication#taking_a_site_offline[JDG documentation]. 
+More details about this are available in the link:{jdgserver_crossdcdocs_link}#taking_a_site_offline[JDG documentation].
  
 WARNING: These steps usually need to be done for all the {project_name} caches mentioned in <<backups>>.
 
@@ -636,7 +650,7 @@ A bidirectional state transfer will ensure that entities which were created *aft
 Unfortunately, there is no any universal solution to this. Split-brains and network outages are just state, which is usually impossible to be handled 100% correctly with 100% consistent data between sites. In the case of {project_name}, it typically is not a critical issue. In the worst case, users will need to re-login again to their clients, or have the improper count of loginFailures tracked for brute force protection. See the {jdgserver_name}/JGroups documentation for more tips how to deal with split-brain.
 
 The state transfer can be also done on the {jdgserver_name} server side through JMX. The operation name is `pushState`. There are few other operations to monitor status, cancel push state, and so on.
-More info about state transfer is available in the link:https://access.redhat.com/documentation/en-us/red_hat_jboss_data_grid/7.1/html/administration_and_configuration_guide/set_up_cross_datacenter_replication#state_transfer_between_sites[{jdgserver_name} docs].
+More info about state transfer is available in the link:{jdgserver_crossdcdocs_link}#state_transfer_between_sites[{jdgserver_name} docs].
 
 
 [[clearcache]]
@@ -836,3 +850,15 @@ which is caused by cache items not being properly expired. In that case, update 
         <expiration />
     </replicated-cache>
 ```
+
+* If you see Warnings in the {jdgserver_name} server log like:
++
+```
+18:06:19,687 WARN  [org.infinispan.server.hotrod.Decoder2x] (HotRod-ServerWorker-7-12) ISPN006011: Operation 'PUT_IF_ABSENT' forced to
+  return previous value should be used on transactional caches, otherwise data inconsistency issues could arise under failure situations
+18:06:19,700 WARN  [org.infinispan.server.hotrod.Decoder2x] (HotRod-ServerWorker-7-10) ISPN006010: Conditional operation 'REPLACE_IF_UNMODIFIED' should
+  be used with transactional caches, otherwise data inconsistency issues could arise under failure situations
+```
++
+you can just ignore them. To avoid the warning, the caches on {jdgserver_name} server side could be changed to transactional caches, but this is not recommended as it can cause some
+other issues caused by the bug https://issues.jboss.org/browse/ISPN-9323. So for now, the warnings just need to be ignored.

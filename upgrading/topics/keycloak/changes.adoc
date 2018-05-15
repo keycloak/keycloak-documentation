@@ -1,5 +1,69 @@
 == Migration Changes
 
+=== Migrating to 4.6.0
+
+==== New default client scopes
+
+We have added new realm default client scopes `roles` and `web-origins`. These client scopes contain protocol
+mappers to add the roles of the user and allowed web origins to the token. During migration, these client scopes should be
+automatically added to all the OpenID Connect clients as default client scopes. Hence no setup should be required after database
+migration is finished.
+
+===== Protocol mapper SPI addition
+Related to this, there is a small addition in the (unsupported) Protocol Mappers SPI. You can be affected only if you
+implemented a custom ProtocolMapper. There is a new `getPriority()`` method on the ProtocolMapper interface. The method has the
+default implementation set to return 0. If your protocol mapper implementation relies on the roles in the access token `realmAccess`
+or `resourceAccess` properties, you may need to increase the priority of your mapper.
+
+===== Audience resolving
+
+Audiences of all the clients, for which authenticated user has at least one client role in the token, are automatically added
+to the `aud` claim in the access token now.
+
+==== JavaScipt Adapter Promise
+
+To use native JavaScript promise with the JavaScript adapter it is now required to set `promiseType` to `native` in the
+init options.
+
+In the past if native promise was available a wrapper was returned that provided both the legacy Keycloak promise and
+the native promise. This was causing issues as the error handler was not always set prior to the native error event, which
+resulted in `Uncaught (in promise)` error.
+
+=== Migrating to 4.4.0
+
+==== Upgrade to Wildfly 13
+
+The {project_name} server was upgraded to use Wildfly 13 as the underlying container. This does not directly involve any
+specific {project_name} server functionality, but there are few changes related to the migration, which worth mentioning.
+
+Dependency updates::
+  The dependencies were updated to the versions used by Wildfly 13 server. For example, Infinispan is now 9.2.4.Final and Undertow is 2.0.9.Final
+
+Configuration changes::
+  There are few configuration changes in the `standalone(-ha).xml` and `domain.xml` files. You should follow the <<_install_new_version>>
+  section to handle the migration of configuration files automatically. If more detail is needed, because, for example, you did some configuration
+  changes on your own, here is a list of the most important changes:
+  * Element `eviction` on infinispan caches is now deprecated (unused) and was replaced by element `object-memory`
+  * There is no `jndi-attribute` on `cache-container` element in infinispan subsystem.
+
+Cross-Datacenter Replication changes::
+  * You will need to upgrade {jdgserver_name} server to version {jdgserver_version}. The older version may still work, but it is
+  not guaranteed as we don't test it anymore.
+  * You don't need to configure security anymore in the {jdgserver_name} server configuration file.
+ifeval::[{project_community}==true]
+  * There is a need to remove `transaction` element from the configuration of replicated caches in the {jdgserver_name} server
+  configuration file. This is needed because of the infinispan bug https://issues.jboss.org/browse/ISPN-9323.
+endif::[]
+
+=== Migration to 4.3.0
+
+==== Hostname configuration
+
+In previous versions it was recommended to use a filter to specify permitted hostnames. It is now possible to
+set a fixed hostname which makes it easier to make sure the valid hostname is used and also allows internal
+applications to invoke {project_name} through an alternative URL, for example an internal IP address. It is
+recommended that you switch to this approach in production.
+
 === Migrating to 4.0.0
 
 ==== Client Templates changed to Client Scopes

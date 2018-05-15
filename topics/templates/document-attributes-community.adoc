@@ -2,13 +2,14 @@
 :project_name_full: Keycloak
 :project_community: true
 :project_product: false
-:project_version: 4.1.0.Final
-:project_versionMvn: 4.1.0.Final
-:project_versionNpm: 4.1.0-final
-:project_versionDoc: 4.1
+:project_version: 4.6.0.Final
+:project_versionMvn: 4.6.0.Final
+:project_versionNpm: 4.6.0-final
+:project_versionDoc: 4.6
 :project_images: keycloak-images
 :project_doc_base_url: https://www.keycloak.org/docs/{project_versionDoc}
 :project_dirref: KEYCLOAK_HOME
+:project_openshift_product_name: Keycloak for OpenShift
 
 :quickstartRepo_link: https://github.com/keycloak/keycloak-quickstarts
 :quickstartRepo_name: Keycloak Quickstarts Repository
@@ -22,6 +23,8 @@
 :adminguide_link: {project_doc_base_url}/server_admin/
 :adminguide_bruteforce_name: Password guess: brute force attacks
 :adminguide_bruteforce_link: {adminguide_link}#password-guess-brute-force-attacks
+:adminguide_timeouts_name: Timeouts
+:adminguide_timeouts_link: {adminguide_link}#_timeouts
 :adminguide_clearcache_name: Clearing Server Caches
 :adminguide_clearcache_link: {adminguide_link}#_clear-cache
 :apidocs_name: API Documentation
@@ -61,27 +64,28 @@
 
 :appserver_name: WildFly
 :appserver_dirref: WILDFLY_HOME
-:appserver_doc_base_url: https://docs.jboss.org/author/display/WFLY10
-:appserver_version: 10
-:appserver_socket_link: {appserver_doc_base_url}/Interfaces+and+ports
+:appserver_doc_base_url: http://docs.wildfly.org/13
+:appserver_version: 13
+:appserver_socket_link: {appserver_doc_base_url}/Admin_Guide.html#Interfaces_and_ports
 :appserver_socket_name: {appserver_name} {appserver_version} Documentation
-:appserver_jgroups_link: {appserver_doc_base_url}/JGroups+Subsystem
+:appserver_jgroups_link: {appserver_doc_base_url}/High_Availability_Guide.html#JGroups_Subsystem
 :appserver_jgroups_name: {appserver_name} {appserver_version} Documentation
-:appserver_jpa_link: {appserver_doc_base_url}/JPA+Reference+Guide#JPAReferenceGuide-Hibernateproperties
-:appserver_jpa_name: JBoss EAP Development Guide
-:appserver_network_link: {appserver_doc_base_url}/Interfaces+and+ports
+:appserver_jpa_link: {appserver_doc_base_url}/Developer_Guide.html#hibernate-properties
+:appserver_jpa_name: {appserver_name} {appserver_version} Development Guide
+:appserver_network_link: {appserver_doc_base_url}/Admin_Guide.html#Interfaces_and_ports
 :appserver_network_name: {appserver_name} {appserver_version} Documentation
-:appserver_datasource_link: {appserver_doc_base_url}/DataSource+configuration
+:appserver_datasource_link: {appserver_doc_base_url}/Admin_Guide.html#DataSource
 :appserver_datasource_name: {appserver_name} {appserver_version} Documentation
-:appserver_caching_link: {appserver_doc_base_url}/Infinispan+Subsystem
+:appserver_caching_link: {appserver_doc_base_url}/High_Availability_Guide.html#Infinispan_Subsystem
 :appserver_caching_name: {appserver_name} {appserver_version} Documentation
-:appserver_admindoc_link: {appserver_doc_base_url}/Documentation
+:appserver_admindoc_link: {appserver_doc_base_url}/Admin_Guide.html
 :appserver_admindoc_name: {appserver_name} {appserver_version} Documentation
-:appserver_loadbalancer_link: {appserver_doc_base_url}/High+Availability+Guide
+:appserver_loadbalancer_link: {appserver_doc_base_url}/High_Availability_Guide.html
 :appserver_loadbalancer_name: {appserver_name} {appserver_version} Documentation
 
 :jdgserver_name: Infinispan
-:jdgserver_version: 8.2.8
+:jdgserver_version: 9.2.4
+:jdgserver_crossdcdocs_link: https://access.redhat.com/documentation/en-us/red_hat_jboss_data_grid/7.2/html/administration_and_configuration_guide/set_up_cross_datacenter_replication
 
 :fuseVersion: JBoss Fuse 6.3.0 Rollup 5
 :fuseHawtioEAPVersion: JBoss EAP 6.4
@@ -89,5 +93,10 @@
 
 :fuse7Version: JBoss Fuse 7.0.1
 
-:subsystem_undertow_xml_urn: urn:jboss:domain:undertow:4.0
+:subsystem_undertow_xml_urn: urn:jboss:domain:undertow:6.0
+:subsystem_infinispan_xml_urn: urn:jboss:domain:infinispan:6.0
+:subsystem_datasources_xml_urn: urn:jboss:domain:datasources:5.0
 :saml_adapter_xsd_urn: https://www.keycloak.org/schema/keycloak_saml_adapter_1_9.xsd
+
+:generic_adapter_name: keycloak-gatekeeper
+:generic_adapter_name_full: Keycloak Gatekeeper
