@@ -503,7 +503,7 @@ eap-app   eap-app-eap-app-demo.openshift.example.com             eap-app    8080
 Access the application in your browser using the URL *\http://eap-app-eap-app-demo.openshift.example.com/app-jsp*. You should see output similar to what you see in the following image:
 
 [.text-center]
-image:../images/sso_app_jee_jsp.svg[RH-SSO Example JSP Application]
+image:../../images/sso_app_jee_jsp.svg[RH-SSO Example JSP Application]
 
 Perform the following to test the application:
 
