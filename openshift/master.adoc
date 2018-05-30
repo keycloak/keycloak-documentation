@@ -9,14 +9,4 @@ include::topics/templates/document-attributes-product.adoc[]
 
 = Red Hat Single Sign-On for OpenShift
 
-== Getting Started
-include::content/getting_started/getting_started.adoc[]
-
-== Advanced Concepts
-include::content/advanced_concepts/advanced_concepts.adoc[]
-
-== Tutorials
-include::content/tutorials/tutorials.adoc[]
-
-== Reference
-include::content/reference/reference.adoc[]
+include::topics.adoc[]
