@@ -17,6 +17,8 @@
 :authorizationguide_link: {project_doc_base_url}/authorization_services/
 :adapterguide_name: Securing Applications and Services Guide
 :adapterguide_link: {project_doc_base_url}/securing_apps/
+:adapterguide_kcinit_name: Securing Applications and Services Guide
+:adapterguide_kcinit_link: {adapterguide_link}#_kcinit
 :adminguide_name: Server Administration Guide
 :adminguide_link: {project_doc_base_url}/server_admin/
 :adminguide_bruteforce_name: Password guess: brute force attacks
@@ -29,6 +31,8 @@
 :developerguide_link: {project_doc_base_url}/server_development/
 :developerguide_actiontoken_name: Action Token SPI
 :developerguide_actiontoken_link: {developerguide_link}#_action_token_spi
+:developerguide_auth_spi_console_name: Authentication SPI
+:developerguide_auth_spi_console_link: {developerguide_link}#_auth_spi
 :gettingstarted_name: Getting Started Guide
 :gettingstarted_link: {project_doc_base_url}/getting_started/
 :upgradingguide_name: Upgrading Guide

@@ -1,6 +1,7 @@
 http://localhost:8080*
 http://localhost:8180*
 http://localhost:8181*
+http://localhost:*
 https://myhost.com/myapp/k_jwks
 https://myhost.com/myapp
 http://host:port*

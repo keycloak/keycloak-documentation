@@ -1,0 +1,137 @@
+[[_kcinit]]
+
+== Securing Command Line Applications
+
+Many applications need a command line interface to administer and configure themselves.
+If these command line interfaces are invoking on back-end admin REST interfaces that
+are secured by {project_name}, they need a way to obtain a token to invoke on them.
+This chapter discusses some utilities that {project_name} has that you can
+use to secure your command line interfaces.
+
+The initial and standard way to obtain a token for a command line application
+is to prompt the user for username and password and invoke on the <<_resource_owner_password_credentials_flow, Resource Owners Credential Grant>>
+ OAuth endpoint that {project_name} has.  While a completely acceptable solution,
+there are some disadvantages to this approach.  The obvious one is that you'll have to
+code the protocol and manage the tokens.  This means your CLI app will have to manage
+and be aware of token timeouts and refresh tokens.  The second disadvantage is
+that if there are other CLI apps using {project_name}, you'll have to relogin
+to each different CLI app that is secured by {project_name}.  No SSO on the command line.
+Finally, your app will have to be hard coded to specific credential types.  If you've
+only implemented password support and the {project_name} realm admin decides that an
+OTP will also be required to login, you will have to change your CLI application to
+support it.
+
+=== Kcinit CLI Utility
+
+To help developers solve some of the CLI security issues, the {project_name} team created the `kcinit` command line utility.
+This utility handles login with a Keycloak realm and stores and manages tokens locally.
+These tokens can then be passed along to your CLI applications as a command line switch or an environment variable.
+Using this tool is best described with a real example.  {project_name} has integration with the Kubernetes project.  Kubernetes
+has a backend REST API that is secured with bearer tokens and accessed with the command line utility `kubectl`.
+You can use `kcinit` to obtain and manage tokens and pass these tokens along via the `kubectl` switch `--token`.
+For example:
+
+----
+     kubectl --token=$(kcinit token)
+----
+
+`kcinit` would prompt you for login using a text-based interface.  `kcinit` would perform the OAuth protocol behind the
+scenes to obtain a token, and output the token to STDOUT.  Any access or refresh token that `kcinit` obtains
+is managed and stored locally.  This allows you to login once, and `kcinit` will handle whether you have to log
+in again.  It handles refreshing tokens automatically.  If you are using `kcinit` as command line SSO with other CLI apps,
+`kcinit` can also perform token exchanges to obtain the correct token for the exact REST backend your CLI app is invoking on.
+
+`kcinit` supports all out-of-the-box authenticators and required actions that come with {project_name}. Interaction is rendered
+in text to your console and doesn't require a browser.  Behind the scenes {project_name} uses a simple custom HTTP challenge
+protocol to obtain what needs to be displayed and inputted by users logging in.  All this text input and output use the same
+template engine that browser screens use.  This means that you can create specific themes for text logins and the text output
+is all internationalizable.
+
+If you have written some custom authenticators or required actions which do not support
+a text-based login, the {project_name} server will detect this automatically.  `kcinit` will be told that a browser is required
+to finish the login and try and launch a browser to complete the login.
+
+==== Setting Up Kcinit Within a Realm
+
+Since `kcinit` uses OAuth for login, you will have to create dedicated client for it within the {project_name}
+admin console.  This client has to be an __openid-connect__ client and must have a redirect URI pattern of
+`http://localhost:*` registered as a valid endpoint.  This redirect URI is used if the browser needs to be involved in a login.
+
+You may have to configure other things as well in the {project_name} admin console depending on how you've modeled
+security in your realm.  You can either have one dedicated client whose token will contain all user role mappings
+and claims needed to interact with the REST services your CLI applications invoke on.  Or you can have `kcinit` perform a
+<<_token-exchange,token exchange>> before it passes a token to your CLI application. In that case you'll have
+to set up token exchange permissions.  See our <<_token-exchange,token exchange>> docs for more information.
+
+==== Obtaining Kcinit
+
+The `kcinit` tool is distributed as a native binary.  Binaries for the most
+common operating systems are available from our downloads page.  If a binary
+does not exist for the platform you want to run `kcinit` on, you have the option
+to build it natively directly from link:https://github.com/keycloak/kcinit[sources]
+ using Golang.  See the `kcinit` link:https://github.com/keycloak/kcinit[repo] for more details.
+ 
+==== Configuring Kcinit Locally
+
+If `kcinit` is not configured on the machine it runs on, the end-user
+will be prompted to configure it.
+Installation involves iteractively prompting you for information `kcinit` needs to run.
+
+You can also perform the installation up front by invoking the following command:
+
+----
+     $ kcinit install
+----
+
+This will prompt you for information about the URL of the auth server, the keycloak realm, and the client you want to use to login with.
+This information is stored in the file `$HOME/.keycloak/kcinit/kcinit.yaml`.  If you want to store your configuration someplace else,
+set the `KCINIT_CONFIG` environment variable before running `install`.
+
+==== Usage
+
+After you have installed kcinit, you can login with this command
+
+----
+     $ kcinit login
+----
+
+After successful authentication, `kcinit` stores the login token in
+a file named after the client used to login.  This file will be in the directory `$HOME/.keycloak/kcinit/tokens`.
+
+===== Getting token for your CLI App
+
+The `kcinit token` command will output the access token that was obtained from a login to STDOUT.  You can redirect this
+output to an environment variable or a command line switch for your application.  For example
+
+----
+$ kubectl --token=$(kcinit token)
+----
+
+The `kcinit token` command first looks to see if you have previously performed a login and whether or not
+the token is already stored locally.  It will also check to see if the stored access token needs to be refreshed.
+If you have not logged in yet, or a refresh fails, `kcinit token` will prompt you to login.  All prompt text
+is outputted to STDERR.  After finishing login, the token is stored locally for later use and outputted to STDOUT.
+
+===== Token Exchange and CLI SSO
+
+There are two different ways you can model single sign on if you have multiple CLI applications you are
+securing with `kcinit`.  The first way is that the token created for the dedicated `kcinit` client has all the
+claims and role mappings each CLI app needs to invoke on back end services.  You have to be careful with this
+approach if your backend services are only partially trusted as those backend services can reuse the token themselves
+to invoke on any service the token has permission to invoke on.
+
+The second way is to set up <<_token-exchange,token exchange>> and have a specific client for each backend service
+you are invoking on.  For this to work with `kcinit`, the dedicated `kcinit` client must have token exchange privileges
+for each of the backend services.  Once this is set up, you can use pass the client id as a parameter
+to the `kcinit token` command.  For example:
+----
+$ kubectl --token=$(kcinit token k8s)
+----
+
+For this example, when `kcinit token k8s` is invoked, `kcinit` will try and perform a token exchange from the token
+obtained for a login with the dedicated `kcinit` client and exchange it for a token generated for the `k8s` client.
+
+===== Support for Custom Authenticators and Required Actions
+
+If you have written a custom authenticator or required action, you can add support for `kcinit` by using the
+console extensions described in the link:{developerguide_auth_spi_console_link}[{developerguide_auth_spi_console_name}]

@@ -797,4 +797,154 @@ Here you need to implement `org.keycloak.adapters.authentication.ClientCredentia
 
 Server side::
   Here you need to implement `org.keycloak.authentication.ClientAuthenticatorFactory` and `org.keycloak.authentication.ClientAuthenticator` . You also need to add the file `META-INF/services/org.keycloak.authentication.ClientAuthenticatorFactory` with the name of the implementation classes.
-  See <<_auth_spi_walkthrough,authenticators>> for more details.             
+  See <<_auth_spi_walkthrough,authenticators>> for more details.
+
+=== Different Rendering Formats via Display Mode
+
+The OpenID Connect specification has an interesting query parameter called `display` that you can specify when invoking on the OAuth
+authorization endpoint.  The link:http://openid.net/specs/openid-connect-core-1_0.html#AuthRequest[`display`] query parameter allows a client to specify how it wants authentication and consent
+pages to be displayed to the end-user.  {project_name} has some facilities
+to support his OIDC feature.
+
+The Authentication SPI has has a couple of mixin interfaces you can
+use when developing your custom authenticators and required actions.  These mixin interfaces allow you to support
+different rendering formats for the same authenticator or required action.  For authenticators, you would use
+the `DisplayTypeAuthenticatorFactory` interface.
+
+[source,java]
+----
+package org.keycloak.authentication;
+
+public interface DisplayTypeAuthenticatorFactory {
+    Authenticator createDisplay(KeycloakSession session, String displayType);
+}
+----
+
+This is a simple interface that your authenticator factories must __additionally__ implement.  It has one method
+called `createDisplay()` that declares the value of the `display` parameter that was sent with the OAuth authorization
+request.  If the {project_name} runtime sees that the `display` parameter was specified by the client, it will
+check to see if your `AuthenticatorFactory` class also implements the `DisplayTypeAuthenticatorFactory` interface.
+If so, the runtime invokes the `createDisplay()` method.
+
+The implementation of the `createDisplay()` method allows you to completely control what `Authenticator` you want
+to use to service the request in the authentication flow.
+
+Required actions have a similar mixin interface:
+
+[source,java]
+----
+package org.keycloak.authentication;
+
+public interface DisplayTypeRequiredActionFactory {
+    RequiredActionProvider createDisplay(KeycloakSession session, String displayType);
+}
+----
+
+[[_console_display_mode]]
+==== Built in Console Display Mode Support
+
+{project_name} has a custom built in display mode called `console`.  The console display mode was
+developed to help bring link:{adapterguide_kcinit_link}[single sign-on to command-line interfaces].  It allows
+command line clients to authenticate via a pure text-base interface instead of a browser.
+Every out-of-the-box authenticator and required action that {project_name} has supports console mode.
+
+Console mode is integrated with {project_name}'s templating engine.  Each out-of-the-box authenticator and
+require action has a corresponding pure-text template file or theme message properties that can be changed
+as needed to render the pure text you want to display to your login clients.
+
+Your current custom authenticator and require action classes do not have to support `console` mode.
+If your providers do not support this display mode, the link:{adapterguide_kcinit_link}[kcinit] tool will
+tell the login user that a browser is required to finish authentication and launch it if possible.
+
+===== Console Protocol
+
+The `console` display mode works with the OAuth code-to-token flow.  After the initial OAuth authentication
+request, the `console` display mode uses a simple challenge-based protocol to render and prompt the
+user for credential input.  This protocol centers around the HTTP 401 response code and the `WWW-Authenticate`
+HTTP header.  Here is an example challenge response a client would receive.
+
+----
+HTTP/1.1 401 Unauthorized
+WWW-Authenticate: X-Text-Form-Challenge callback="url" \
+                              param="username" label="Username:" mask=false \
+                              param="password" label="Password:" mask=true
+Content-Type: text/plain
+
+Welcome!
+----
+
+The content of the response is text that the client should render before prompting for
+input.
+
+The `WWW-Authenticate` header contains `X-Text-Form-Challenge` which identifies
+the protocol.  The `callback` name/value pair contains the URL that the client
+should post input to.  Next is one or more `param`, `label`, and `mask` name/value
+pairs.  `param` specifies the form parameter that should be posted back to the callback url.
+`label` is what should be rendered as the prompt for the credential.  The `mask`
+value, if true, requires the client to hide the input credential when typing it in.
+
+After gathering all input for all parameters defined in the header, the client
+executes an HTTP POST using the `application/x-www-form-urlencoded` media
+type to pass the parameters values that were collected.
+
+===== Console Protocol Helper Class
+
+To help implement the protocol, the `org.keycloak.authentication.ConsoleDisplayMode`
+utility class provides a fluent API to build HTTP responses for the challenge
+protocol.  Here's an example of using a Freemarker template as a splash screen
+and asking for username and password input:
+
+[source,java]
+----
+ConsoleDisplayMode.challenge(context)
+                .header()
+                .param("username").label("console-username")
+                .param("password").labelText("Password:").mask(true)
+                .challenge()
+                .form().createForm("cli_splash.ftl");
+----
+
+The initial `challenge()` method call takes a `AuthenticationFlowContext`
+or `RequiredActionFlowContext` parameter depending on whether you are creating
+console support for a authenticator or required action.  This parameter is used to automatically
+generate the callback URL for the `WWW-Authenticate` header.
+
+The `param()` method specifies the name of the parameter that should be used
+in the HTTP Form POST request that is made to the callback URL.
+
+The `label()` method takes the message id of a message stored in the theme's
+message.properties files.  This allows you to create parameter labels that
+are internationalized. If you want to just specify the text instead of using
+a message property, you can use the `labelText()` method.
+
+The `form().createForm()` invocation allows you to specify a Freemarker template to use
+that is contained in the login theme. This form will be used as the content
+sent back with the HTTP response.  Text that will be displayed first before prompting
+for user input.
+
+Instead of `form().createForm()` you can end the building of the header with the `message()`
+method. This method takes a theme message property id and will send that back
+as the HTTP response's content.  For example:
+
+[source,java]
+----
+ConsoleDisplayMode.challenge(context)
+                .header()
+                .param("username").label("console-username")
+                .param("password").labelText("Password:").mask(true)
+                .challenge()
+                .message(Messages.INVALID_USER);
+----
+
+If you want a complete example, search for the `ConsoleUsernamePasswordAuthenticator`
+class in the {project_name} source code.  This class is a `console` mode authenticator
+for processing username and password input. It is
+a good example on how to display an initial splash screen via a Freemarker template
+and how input errors are built and displayed to the client.
+
+
+
+
+
+
+
