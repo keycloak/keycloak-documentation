@@ -80,6 +80,17 @@ object, rather than the `keycloak.json` file:
     let keycloak = new Keycloak({ store: memoryStore }, kcConfig);
 ----
 
+Behind a proxy::
+By specifying the attribute `proxyUrl` property in the configuration object, you can use this adapter behind a proxy server.
+[source,javascript]
+----
+    let kcConfig = {
+        proxyUrl: 'http://my-proxy-corp:3128',
+        ...
+    };
+
+    let keycloak = new Keycloak({ store: memoryStore }, kcConfig);
+----
 
 Configuring a web session store::
 
