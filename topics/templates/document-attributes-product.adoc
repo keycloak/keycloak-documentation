@@ -33,6 +33,8 @@
 :gettingstarted_link: {project_doc_base_url}/getting_started_guide/
 :upgradingguide_name: Upgrading Guide
 :upgradingguide_link: {project_doc_base_url}/upgrading_guide/
+:releasenotes_name: Release Notes
+:releasenotes_link: {project_doc_base_url}/release_notes/
 :installguide_name: Server Installation and Configuration Guide
 :installguide_link: {project_doc_base_url}/server_installation_and_configuration_guide/
 :installguide_clustering_name: Clustering
