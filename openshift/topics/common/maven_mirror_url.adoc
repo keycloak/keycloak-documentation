@@ -25,24 +25,21 @@ build configuration of the application as follows:
 . Identify the name of the build configuration to apply `MAVEN_MIRROR_URL`
   variable against:
 +
-[subs="attributes"]
 ----
 oc get bc -o name
-buildconfig/{bcname}
+buildconfig/sso
 ----
-. Update build configuration of `{bcname}` with a `MAVEN_MIRROR_URL` environment variable
+. Update build configuration of `sso` with a `MAVEN_MIRROR_URL` environment variable
 +
-[subs="attributes"]
 ----
-oc env bc/{bcname} MAVEN_MIRROR_URL="http://10.0.0.1:8080/repository/internal/"
-buildconfig "{bcname}" updated
+oc env bc/sso MAVEN_MIRROR_URL="http://10.0.0.1:8080/repository/internal/"
+buildconfig "sso" updated
 ----
 . Verify the setting
 +
-[subs="attributes"]
 ----
-oc env bc/{bcname} --list
-# buildconfigs {bcname}
+oc env bc/sso --list
+# buildconfigs sso
 MAVEN_MIRROR_URL=http://10.0.0.1:8080/repository/internal/
 ----
 . Schedule new build of the application

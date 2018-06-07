@@ -1,3 +1,5 @@
+== Before You Begin
+
 === Comparison: {xpaasproduct-shortname} Image and Red Hat Single Sign-On
 The {xpaasproduct-shortname} image version number 7.2 is based on Red Hat Single Sign-On 7.2. There are some differences in functionality between the {xpaasproduct-shortname} image and Red Hat Single Sign-On:
 
