@@ -1,0 +1,65 @@
+ifeval::[{project_community}==true]
+= 4.0.0.Final
+endif::[]
+ifeval::[{project_product}==true]
+= 7.3.0 CD1
+endif::[]
+
+
+== Authorization Services
+
+=== UMA 2.0
+
+Authorization Services have now introduced support for UMA 2.0 and added support for users to manage user access through
+the account management console. There's also a number of other additions and improvements to authorization services.
+
+=== Pushed Claims
+
+With pushed claims it is now possible for clients to push additional claims to have them used by policies when evaluating
+permissions.
+
+=== Resource Attributes
+
+It is now possible to define attributes on resources in order to have them used by policies when evaluating permissions.
+
+
+== Themes and Theme Resources
+
+It's now possible to hot-deploy themes to Keycloak through a regular provider deployment. We've also added support for
+theme resources. Theme resources allows adding additional templates and resources without creating a theme. Perfect for
+custom authenticators that require additional pages added to the authentication flow.
+
+We've also added support to override the theme for specific clients. If that doesn't cover your needs, then there's a
+new Theme Selector SPI that allows you to implement custom logic to select the theme.
+
+
+== Instagram Identity Provider
+
+We've added support to login with Instagram. Thanks to https://github.com/hguerrero[hguerrero] for the contribution.
+
+
+== Search by User ID in Admin Console
+
+If you wanted to search by a user by id in the admin console you had to edit the URL. It's now possible to do it
+directly in the user search field.
+
+
+== Adapters
+
+=== Sprint Boot 2
+
+We now have support for Spring Boot 2.
+
+=== Fuse 7
+
+We now have support for Fuse 7.
+
+=== JavaScript - Native Promise Support
+
+The JavaScript adapter now supports native promises. Of course it still has support for the old style promises as well.
+Both can be used interchangeably.
+
+=== JavaScript - Cordova Options
+
+It's now possible to pass Cordova specific options to login and other methods in the JavaScript adapter.
+Thanks to https://github.com/looorent[loorent] for the contribution.
