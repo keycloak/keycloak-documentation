@@ -15,10 +15,16 @@ To add it manually using Maven, add the following to your dependencies:
 [source,xml,subs="attributes+"]
 ----
 
-
+<!-- for spring-boot 1.x -->
 <dependency>
     <groupId>org.keycloak</groupId>
     <artifactId>keycloak-spring-boot-starter</artifactId>
+</dependency>
+
+<!-- for spring-boot 2.x -->
+<dependency>
+    <groupId>org.keycloak</groupId>
+    <artifactId>keycloak-spring-boot-2-starter</artifactId>
 </dependency>
 
 ----
