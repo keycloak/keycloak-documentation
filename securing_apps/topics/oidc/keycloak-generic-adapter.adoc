@@ -1,5 +1,5 @@
-[[_golang_adapter]]
-=== Golang Adapter
+[[_keycloak_generic_adapter]]
+=== Keycloak generic Adapter
 
 {project_name} provides a Go programming language adapter which supports both access tokens in a browser cookie or bearer tokens. Here is a more detailed list of features:
 
@@ -16,11 +16,11 @@
 * Listen on UNIX sockets, proxy upstream to UNIX sockets
 * Let's Encrypt support
 
-See the included help file for a full list of commands and switches by entering the following at the command line (modify the location to match where you install keycloak-proxy):
+See the included help file for a full list of commands and switches by entering the following at the command line (modify the location to match where you install keycloak-generic-adapter):
 
 [source,bash]
 ----
-    $ bin/keycloak-proxy help
+    $ bin/keycloak-generic-adapter help
 ----
 
 ==== Building
@@ -32,7 +32,7 @@ See the included help file for a full list of commands and switches by entering 
 .Procedure
 .Run `make` (or `'make static` for static linking).
 
-NOTE: You can also build via docker container: make docker-build. A Docker image is available at link:https://quay.io/repository/gambol99/keycloak-proxy[https://quay.io/repository/gambol99/keycloak-proxy].
+NOTE: You can also build via docker container: make docker-build. A Docker image is available at link:https://quay.io/repository/gambol99/keycloak-generic-adapter[https://quay.io/repository/gambol99/keycloak-generic-adapter].
 
 ==== Configuration
 
@@ -134,7 +134,7 @@ Anything defined in a configuration file can also be configured using command li
 
 [source,bash]
 ----
-bin/keycloak-proxy \
+bin/keycloak-generic-adapter \
     --discovery-url=https://keycloak.example.com/auth/realms/<REALM_NAME> \
     --client-id=<CLIENT_ID> \
     --client-secret=<SECRET> \
@@ -180,8 +180,8 @@ You have collection of micro-services which are permitted to speak to one anothe
 
 [source,yaml]
 ----
-- name: keycloak-proxy
-  image: quay.io/gambol99/keycloak-proxy:latest
+- name: keycloak-generic-adapter
+  image: quay.io/gambol99/keycloak-generic-adapter:latest
   args:
   - --enable-forwarding=true
   - --forwarding-username=projecta
@@ -203,7 +203,7 @@ You have collection of micro-services which are permitted to speak to one anothe
 $ curl -k --proxy http://127.0.0.1:3000 https://test.projesta.svc.cluster.local
 ----
 
-Receiver side you could setup the keycloak-proxy (--no=redirects=true) and permit this proxy to verify and handle admission for you. Alternatively, the access token can found as a bearer token in the request.
+Receiver side you could setup the keycloak-generic-adapter (--no=redirects=true) and permit this proxy to verify and handle admission for you. Alternatively, the access token can found as a bearer token in the request.
 
 ==== Forwarding Signing HTTPS Connect
 
@@ -212,7 +212,7 @@ Handling HTTPS requires man in the middling the TLS connection. By default if no
 [source,bash]
 ----
 $ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ca.key -out ca.pem
-$ bin/keycloak-proxy \
+$ bin/keycloak-generic-adapter \
   --enable-forwarding \
   --forwarding-username=USERNAME \
   --forwarding-password=PASSWORD \
@@ -496,6 +496,6 @@ Assuming `--enable-metrics` has been set, a Prometheus endpoint can be found on 
 
 ==== Limitations
 
-Keep in mind link:http://browsercookielimits.squawky.net/[browser cookie limits] if you use access or refresh tokens in the browser cookie. Keycloak-proxy divides cookie automatically if your cookie is longer than 4093 bytes. Real size of the cookie depends on the content of the issued access token. Also, encryption might add additional bytes to the cookie size. If you have large cookies (>200 KB), you might reach browser cookie limits.
+Keep in mind link:http://browsercookielimits.squawky.net/[browser cookie limits] if you use access or refresh tokens in the browser cookie. Keycloak-generic-adapter divides cookie automatically if your cookie is longer than 4093 bytes. Real size of the cookie depends on the content of the issued access token. Also, encryption might add additional bytes to the cookie size. If you have large cookies (>200 KB), you might reach browser cookie limits.
 
 All cookies are part of the header request, so you might find a problem with the max headers size limits in your infrastructure (some load balancers have very low this value, such as 8 KB). Be sure that all network devices have sufficient header size limits. Otherwise, your users won't be able to obtain an access token.
