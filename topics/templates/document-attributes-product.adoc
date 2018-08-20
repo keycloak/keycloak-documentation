@@ -95,7 +95,6 @@ endif::[]
 :appserver_managementcli_link: https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.0/html-single/configuration_guide/#management_cli_overview
 :appserver_managementconsole_link: https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.0/html-single/configuration_guide/#management_console_overview
 
-
 :jdgserver_name: JDG
 :jdgserver_version: 7.1.0
 
@@ -107,3 +106,7 @@ endif::[]
 
 :subsystem_undertow_xml_urn: urn:jboss:domain:undertow:4.0
 :saml_adapter_xsd_urn: https://www.keycloak.org/schema/keycloak_saml_adapter_1_9.xsd
+
+:generic_adapter_name: tbd
+:generic_adapter_name_full: To Be Determined
+:generic_adapter_link: tocome

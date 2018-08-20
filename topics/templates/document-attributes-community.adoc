@@ -91,3 +91,6 @@
 
 :subsystem_undertow_xml_urn: urn:jboss:domain:undertow:4.0
 :saml_adapter_xsd_urn: https://www.keycloak.org/schema/keycloak_saml_adapter_1_9.xsd
+
+:generic_adapter_name: tbd
+:generic_adapter_name_full: To Be Determined
