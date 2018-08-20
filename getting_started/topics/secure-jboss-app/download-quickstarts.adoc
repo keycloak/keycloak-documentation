@@ -17,6 +17,15 @@ NOTE: You can obtain the code by cloning the repository at {quickstartRepo_link}
 
 endif::[]
 
+Make sure to change your wilfly/standalone/configuration/standalone.xml from
+
+<mechanism mechanism-name="KEYCLOAK">
+
+to
+
+<mechanism mechanism-name="BASIC">
+                            
+
 Make sure your {appserver_name} application server is started before you continue.
 
 To download, build, and deploy the code, complete the following steps.
