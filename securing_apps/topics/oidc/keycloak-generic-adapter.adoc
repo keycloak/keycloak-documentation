@@ -1,5 +1,5 @@
 [[_keycloak_generic_adapter]]
-=== Keycloak generic adapter
+=== {generic_adapter_name_full}
 
 {project_name} provides a Go programming language adapter for use with OpenID Connect (OIDC) that supports both access tokens in a browser cookie or bearer tokens. Features include:
 
@@ -20,7 +20,7 @@ See the included help file for a full list of commands and switches by entering 
 
 [source,bash]
 ----
-    $ bin/keycloak-generic-adapter help
+    $ bin/{generic_adapter_name} help
 ----
 
 ==== Building
@@ -136,7 +136,7 @@ Anything defined in a configuration file can also be configured using command li
 
 [source,bash]
 ----
-bin/keycloak-generic-adapter \
+bin/{generic_adapter_name} \
     --discovery-url=https://keycloak.example.com/auth/realms/<REALM_NAME> \
     --client-id=<CLIENT_ID> \
     --client-secret=<SECRET> \
@@ -182,7 +182,7 @@ You have collection of micro-services which are permitted to speak to one anothe
 
 [source,yaml]
 ----
-- name: keycloak-generic-adapter
+- name: {generic_adapter_name}
   image: quay.io/gambol99/keycloak-generic-adapter:latest
   args:
   - --enable-forwarding=true
@@ -214,7 +214,7 @@ Handling HTTPS requires a man-in-the-middle sort of TLS connection. By default, 
 [source,bash]
 ----
 $ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ca.key -out ca.pem
-$ bin/keycloak-generic-adapter \
+$ bin/{generic_adapter_name} \
   --enable-forwarding \
   --forwarding-username=USERNAME \
   --forwarding-password=PASSWORD \
@@ -386,7 +386,7 @@ You can match on the group claims within a token via the `groups` parameter avai
 
 ==== Custom pages
 
-By default, the proxy will immediately redirect you for authentication and hand back a 403 for access denied. Most users will probably want to present the user with a more friendly sign-in and access denied page. You can pass the command line options (or via config file) paths to the files with `--signin-page=PATH`. The sign-in page will have a 'redirect' variable passed into the scope and holding the oauth redirection url. If you wish to pass additional variables into the templates, such as title, sitename and so on, you can use the -`-tags key=pair` option, like this: `--tags title="This is my site"` and the variable would be accessible from `{{ .title }}`.
+By default, {generic_adapter_name_full} will immediately redirect you for authentication and hand back a 403 for access denied. Most users will probably want to present the user with a more friendly sign-in and access denied page. You can pass the command line options (or via config file) paths to the files with `--signin-page=PATH`. The sign-in page will have a 'redirect' variable passed into the scope and holding the oauth redirection url. If you wish to pass additional variables into the templates, such as title, sitename and so on, you can use the -`-tags key=pair` option, like this: `--tags title="This is my site"` and the variable would be accessible from `{{ .title }}`.
 
 [source,html]
 ----
