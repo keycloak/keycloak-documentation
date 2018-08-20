@@ -1,7 +1,7 @@
 [[_keycloak_generic_adapter]]
 === Keycloak generic adapter
 
-{project_name} provides a Go programming language adapter for use with OpenID Connect (OIDC) which supports both access tokens in a browser cookie or bearer tokens. Features include:
+{project_name} provides a Go programming language adapter for use with OpenID Connect (OIDC) that supports both access tokens in a browser cookie or bearer tokens. Features include:
 
 * Support for role-based uri controls
 * Web Socket connection upgrading
@@ -34,7 +34,7 @@ See the included help file for a full list of commands and switches by entering 
 
 NOTE: You can also build via docker container: `make docker-build`. A Docker image is available at link:https://quay.io/repository/gambol99/keycloak-generic-adapter[https://quay.io/repository/gambol99/keycloak-generic-adapter].
 
-==== Configuration
+==== Configuration options
 
 Configuration can come from a yaml/json file or by using command line options. Here is a list of options.
 
