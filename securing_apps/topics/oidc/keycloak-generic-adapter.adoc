@@ -1,22 +1,11 @@
 [[_keycloak_generic_adapter]]
 === {generic_adapter_name_full}
 
-{project_name} provides a Go programming language adapter for use with OpenID Connect (OIDC) that supports both access tokens in a browser cookie or bearer tokens. Features include:
+{project_name} provides a Go programming language adapter for use with OpenID Connect (OIDC) that supports both access tokens in a browser cookie or bearer tokens.
 
-* Support for role-based uri controls
-* Web Socket connection upgrading
-* Token claim matching for additional ACL controls
-* Custom claim injections into authenticated requests
-* Stateless offline refresh tokens with optional predefined session limits
-* TLS and mutual TLS support
-* JSON field bases access logs
-* Custom Sign-in and access forbidden pages
-* Forward Signed Proxy
-* URL Role Tokenization
-* Listen on UNIX sockets, proxy upstream to UNIX sockets
-* Let's Encrypt support
+This documentation details how to build and configure {generic_adapter_name} followed by details of how to use each of its features.
 
-See the included help file for a full list of commands and switches by entering the following at the command line (modify the location to match where you install keycloak-generic-adapter):
+For further information, see the included help file which includes a full list of commands and switches. View the file by entering the following at the command line (modify the location to match where you install {generic_adapter_name}):
 
 [source,bash]
 ----
@@ -205,7 +194,7 @@ You have collection of micro-services which are permitted to speak to one anothe
 $ curl -k --proxy http://127.0.0.1:3000 https://test.projesta.svc.cluster.local
 ----
 
-On the receiver side you could set up the keycloak-generic-adapter (--no=redirects=true) and permit this to verify and handle admission for you. Alternatively, the access token can found as a bearer token in the request.
+On the receiver side you could set up the {generic_adapter_name_full} (--no=redirects=true) and permit this to verify and handle admission for you. Alternatively, the access token can found as a bearer token in the request.
 
 ==== Forwarding signed HTTPS connections
 
