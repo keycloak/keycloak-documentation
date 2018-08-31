@@ -1,7 +1,7 @@
 
 === Installing the Client Adapter
 
-Download the {appserver_name} distribution and extract it from the compressed file into a directory on your machine.
+Download the {appserver_name} distribution from http://wildfly.org/downloads/ and extract it from the compressed file into a directory on your machine.
 
 ifeval::[{project_community}==true]
 Download the WildFly OpenID Connect adapter distribution from link:https://www.keycloak.org/downloads.html[keycloak.org].
