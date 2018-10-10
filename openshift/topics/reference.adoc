@@ -299,6 +299,30 @@ physical destination name defaults instead of `queue/MyQueue` and `topic/MyTopic
 option, printing the commands and their arguments as they are executed.
 |*_true_*
 
+[[service-wait-name]]
+|*_SERVICE_WAIT_NAME_*
+|Name of the OpenShift service, the RH-SSO pod should wait for to become
+reachable over network, prior starting the RH-SSO server. Not set by default.
+|*_sso-mysql_*
+
+|*_SERVICE_WAIT_INTRO_MESSAGE_*
+|Message to be displayed prior starting the connect-retry loop, in which the
+RH-SSO pod is waiting for the xref:service-wait-name[SERVICE_WAIT_NAME] to
+become reachable over network. Typically describes additional requirements in
+order the connect-retry loop of the RH-SSO pod successfully to finish. Not set
+by default.
+|*_Ensure a persistent volume is available for the
+\"${APPLICATION_NAME}-mysql-claim\" or a storage class is set._*
+
+|*_SERVICE_WAIT_RETRY_MESSAGE_*
+|Message to be displayed in connect-retry loop, in which the RH-SSO pod is
+waiting for the xref:service-wait-name[SERVICE_WAIT_NAME] to become reachable
+over network. Defaults to *_Waiting for the \"${SERVICE_WAIT_NAME}\" service to
+become available ..._* if the xref:service-wait-name[SERVICE_WAIT_NAME]
+variable *is set.*
+|*_Waiting for the \"${SERVICE_WAIT_NAME}\" service to become reachable over
+network ..._*
+
 |*_SSO_ADMIN_PASSWORD_*
 |Password of the administrator account for the `master` realm of the RH-SSO
 server. *Required.* If no value is specified, it is auto generated and
