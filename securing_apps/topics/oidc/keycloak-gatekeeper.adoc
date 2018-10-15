@@ -7,9 +7,9 @@ This documentation details how to build and configure {generic_adapter_name} fol
 
 For further information, see the included help file which includes a full list of commands and switches. View the file by entering the following at the command line (modify the location to match where you install {generic_adapter_name}):
 
-[source,bash subs="attributes"]
+[source,bash]
 ----
-    $ bin/{generic_adapter_name} help
+    $ bin/keycloak-gatekeeper help
 ----
 
 ==== Building
