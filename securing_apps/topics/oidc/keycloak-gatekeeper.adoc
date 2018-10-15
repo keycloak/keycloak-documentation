@@ -7,7 +7,7 @@ This documentation details how to build and configure {generic_adapter_name} fol
 
 For further information, see the included help file which includes a full list of commands and switches. View the file by entering the following at the command line (modify the location to match where you install {generic_adapter_name}):
 
-[source,bash]
+[source,bash subs="attributes"]
 ----
     $ bin/{generic_adapter_name} help
 ----
@@ -37,11 +37,11 @@ discovery-url: https://keycloak.example.com/auth/realms/<REALM_NAME>
 client-id: <CLIENT_ID>
 # the secret associated to the 'client' application
 client-secret: <CLIENT_SECRET>
-# the interface definition you wish the proxy to listen, all interfaces is specified as ':<port>', unix sockets as unix://<REL_PATH>|</ABS PATH>
+# the interface definition you wish the {generic_adapter_name_full} to listen, all interfaces is specified as ':<port>', unix sockets as unix://<REL_PATH>|</ABS PATH>
 listen: 127.0.0.1:3000
 # whether to enable refresh tokens
 enable-refresh-tokens: true
-# the location of a certificate you wish the proxy to use for TLS support
+# the location of a certificate you wish the {generic_adapter_name_full} to use for TLS support
 tls-cert:
 # the location of a private key for TLS
 tls-private-key:
@@ -163,9 +163,9 @@ By default the access and refresh cookies are session-only and disposed of on br
 
 ==== Forward-signing proxy
 
-Forward-signing provides a mechanism for authentication and authorization between services using tokens issued from the IdP. When operating in this mode the proxy will automatically acquire an access token (handling the refreshing or logins on your behalf) and tag outbound requests with a Authorization header. You can control which domains are tagged with the --forwarding-domains option. Note, this option use a **contains** comparison on domains. So, if you wanted to match all domains under *.svc.cluster.local you can use: --forwarding-domain=svc.cluster.local.
+Forward-signing provides a mechanism for authentication and authorization between services using tokens issued from the IdP. When operating in this mode the {generic_adapter_name_full} will automatically acquire an access token (handling the refreshing or logins on your behalf) and tag outbound requests with a Authorization header. You can control which domains are tagged with the --forwarding-domains option. Note, this option use a **contains** comparison on domains. So, if you wanted to match all domains under *.svc.cluster.local you can use: --forwarding-domain=svc.cluster.local.
 
-At present the service performs a login using oauth client_credentials grant type, so your IdP service must support direct (username/password) logins.
+At present the service performs a login using OAuth 2.0 client credentials grant type, so your IdP service must support direct (username/password) logins.
 
 Example setup:
 
@@ -196,11 +196,11 @@ You have collection of micro-services which are permitted to speak to one anothe
 $ curl -k --proxy http://127.0.0.1:3000 https://test.projesta.svc.cluster.local
 ----
 
-On the receiver side you could set up the {generic_adapter_name_full} (--no=redirects=true) and permit this to verify and handle admission for you. Alternatively, the access token can found as a bearer token in the request.
+On the receiver side you could set up the {generic_adapter_name_full} (--no=redirects=true) and permit this to verify and handle admission for you. Alternatively, the access token can be found as a bearer token in the request.
 
 ==== Forwarding signed HTTPS connections
 
-Handling HTTPS requires a man-in-the-middle sort of TLS connection. By default, if no `--tls-ca-certificate` and `--tls-ca-key` are provided the proxy will use the default certificate. If you wish to verify the trust, you'll need to generate a CA, for example.
+Handling HTTPS requires a man-in-the-middle sort of TLS connection. By default, if no `--tls-ca-certificate` and `--tls-ca-key` are provided the {generic_adapter_name_full} will use the default certificate. If you wish to verify the trust, you'll need to generate a CA, for example.
 
 [source,bash]
 ----
@@ -218,7 +218,7 @@ $ bin/{generic_adapter_name} \
 
 ==== HTTPS redirect
 
-The proxy supports an HTTP listener, so the only real requirement here is to perform an HTTP -> HTTPS redirect. You can enable the option like this:
+The {generic_adapter_name_full} supports an HTTP listener, so the only real requirement here is to perform an HTTP -> HTTPS redirect. You can enable the option like this:
 
 [source,bash]
 ----
@@ -251,7 +251,7 @@ By default, the session token is placed into a cookie in plaintext. If you prefe
 
 ==== Upstream headers
 
-On protected resources, the upstream endpoint will receive a number of headers added by the proxy, along with custom claims, like this:
+On protected resources, the upstream endpoint will receive a number of headers added by the {generic_adapter_name_full}, along with custom claims, like this:
 
 [source,golang]
 ----
@@ -310,7 +310,7 @@ In order to remain stateless and not have to rely on a central cache to persist 
 
 ==== Claim matching
 
-The proxy supports adding a variable list of claim matches against the presented tokens for additional access control. You can match the 'iss' or 'aud' to the token or custom attributes; each of the matches are regex's. For example, `--match-claims 'aud=sso.\*'` or `--claim iss=https://.*'` or via the configuration file, like this:
+the {generic_adapter_name_full} supports adding a variable list of claim matches against the presented tokens for additional access control. You can match the 'iss' or 'aud' to the token or custom attributes; each of the matches are regex's. For example, `--match-claims 'aud=sso.\*'` or `--claim iss=https://.*'` or via the configuration file, like this:
 
 [source,yaml]
 ----
@@ -416,15 +416,15 @@ Or on the command line
 
 ==== Mutual TLS
 
-The proxy support enforcing mutual TLS for the clients by adding the `--tls-ca-certificate` command line option or configuration file option. All clients connecting must present a certificate which was signed by the CA being used.
+The {generic_adapter_name_full} supports enforcing mutual TLS for the clients by adding the `--tls-ca-certificate` command line option or configuration file option. All clients connecting must present a certificate which was signed by the CA being used.
 
 ==== Certificate rotation
 
-The proxy will automatically rotate the server certificates if the files change on disk. Note, no down time will occur as the change is made inline. Clients who connected prior to the certificate rotation will be unaffected and will continue as normal with all new connections presented with the new certificate.
+The {generic_adapter_name_full} will automatically rotate the server certificates if the files change on disk. Note, no down time will occur as the change is made inline. Clients who connected prior to the certificate rotation will be unaffected and will continue as normal with all new connections presented with the new certificate.
 
 ==== Refresh tokens
 
-If a request for an access token contains a refresh token and  `--enable-refresh-tokens` is set to `true`, the proxy will automatically refresh the access token for you. The tokens themselves are kept either as an encrypted *(--encryption-key=KEY)* cookie *(cookie name: kc-state).* or a store *(still requires encryption key)*.
+If a request for an access token contains a refresh token and  `--enable-refresh-tokens` is set to `true`, The {generic_adapter_name_full} will automatically refresh the access token for you. The tokens themselves are kept either as an encrypted *(--encryption-key=KEY)* cookie *(cookie name: kc-state).* or a store *(still requires encryption key)*.
 
 At present the only store options supported are link:https://github.com/antirez/redis[Redis] and link:https://github.com/boltdb/bolt[Boltdb].
 
@@ -470,14 +470,14 @@ or via the command line:
 
 ==== Upstream URL
 
-You can control the upstream endpoint via the `--upstream-url` option. Both HTTP and HTTPS are supported with TLS verification and keep-alive support configured via the `--skip-upstream-tls-verify` / `--upstream-keepalives` option. Note, the proxy can also upstream via a UNIX socket, `--upstream-url unix://path/to/the/file.sock`.
+You can control the upstream endpoint via the `--upstream-url` option. Both HTTP and HTTPS are supported with TLS verification and keep-alive support configured via the `--skip-upstream-tls-verify` / `--upstream-keepalives` option. Note, The {generic_adapter_name_full} can also upstream via a UNIX socket, `--upstream-url unix://path/to/the/file.sock`.
 
 ==== Endpoints
 
 * **/oauth/authorize** is authentication endpoint which will generate the OpenID redirect to the provider
 * **/oauth/callback** is provider OpenID callback endpoint
 * **/oauth/expired** is a helper endpoint to check if a access token has expired, 200 for ok and, 401 for no token and 401 for expired
-* **/oauth/health** is the health checking endpoint for the proxy, you can also grab version from headers
+* **/oauth/health** is the health checking endpoint for the {generic_adapter_name_full}, you can also grab version from headers
 * **/oauth/login** provides a relay endpoint to login via `grant_type=password`, for example, `POST /oauth/login` form values are `username=USERNAME&password=PASSWORD` (must be enabled)
 * **/oauth/logout** provides a convenient endpoint to log the user out, it will always attempt to perform a back channel log out of offline tokens
 * **/oauth/token** is a helper endpoint which will display the current access token for you
@@ -489,6 +489,6 @@ Assuming `--enable-metrics` has been set, a Prometheus endpoint can be found on 
 
 ==== Limitations
 
-Keep in mind link:http://browsercookielimits.squawky.net/[browser cookie limits] if you use access or refresh tokens in the browser cookie. Keycloak-generic-adapter divides the cookie automatically if your cookie is longer than 4093 bytes. Real size of the cookie depends on the content of the issued access token. Also, encryption might add additional bytes to the cookie size. If you have large cookies (>200 KB), you might reach browser cookie limits.
+Keep in mind link:http://browsercookielimits.squawky.net/[browser cookie limits] if you use access or refresh tokens in the browser cookie. {generic_adapter_name_full} divides the cookie automatically if your cookie is longer than 4093 bytes. Real size of the cookie depends on the content of the issued access token. Also, encryption might add additional bytes to the cookie size. If you have large cookies (>200 KB), you might reach browser cookie limits.
 
 All cookies are part of the header request, so you might find a problem with the max headers size limits in your infrastructure (some load balancers have very low this value, such as 8 KB). Be sure that all network devices have sufficient header size limits. Otherwise, your users won't be able to obtain an access token.
