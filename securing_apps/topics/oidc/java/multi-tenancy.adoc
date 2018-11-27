@@ -17,26 +17,35 @@ To achieve this first you need to create an implementation of `org.keycloak.adap
 ----
 package example;
 
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.keycloak.adapters.KeycloakConfigResolver;
 import org.keycloak.adapters.KeycloakDeployment;
 import org.keycloak.adapters.KeycloakDeploymentBuilder;
+import org.keycloak.adapters.OIDCHttpFacade;
 
 public class PathBasedKeycloakConfigResolver implements KeycloakConfigResolver {
 
-    @Override
-    public KeycloakDeployment resolve(OIDCHttpFacade.Request request) {
-        if (path.startsWith("alternative")) {
-            KeycloakDeployment deployment = cache.get(realm);
-            if (null == deployment) {
-                InputStream is = getClass().getResourceAsStream("/tenant1-keycloak.json");
-                return KeycloakDeploymentBuilder.build(is);
-            }
-        } else {
-            InputStream is = getClass().getResourceAsStream("/default-keycloak.json");
-            return KeycloakDeploymentBuilder.build(is);
-        }
-    }
+    private Map<String, KeycloakDeployment> cache = new HashMap<>();
 
+    @Override
+    public KeycloakDeployment resolve(final OIDCHttpFacade.Request request) {
+      String path = request.getRelativePath();
+      if (path.startsWith("alternative")) {
+        KeycloakDeployment deployment = cache.get("alternative");
+        if (null == deployment) {
+          InputStream is = getClass().getResourceAsStream("/tenant1-keycloak.json");
+          deployment = KeycloakDeploymentBuilder.build(is);
+          cache.put("alternative", deployment);
+        }
+        return deployment;
+      } else {
+          InputStream is = getClass().getResourceAsStream("/default-keycloak.json");
+          return KeycloakDeploymentBuilder.build(is);
+      }
+    }
 }
 ----
 
