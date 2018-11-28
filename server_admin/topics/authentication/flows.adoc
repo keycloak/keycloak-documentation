@@ -97,4 +97,74 @@ function authenticate(context) {
   context.success();
 }
 ----                        
+
+More examples
+
+This script will do additional checks for clients that have "foobar" as client-id prefix.
+It will then check if the user is member of a group with the same name like the client-id to which the user tries to login.
+
+[source,javascript]
+----
+function authenticate(context) {
+
+LOG.info(script.name + ': started');
+
+var client_id = httpRequest.getUri().getQueryParameters().get("client_id").toString();
+client_id = client_id.substring(1, client_id.length() - 1);
+
+if ( client_id.indexOf("foobar") !== 0 ) {
+LOG.info(script.name + ": allow login for non foobar client " + client_id);
+context.success();
+return;
+}
+
+var group = realm.searchForGroupByName(client_id, 0, 1)[0];
+
+if ( user.isMemberOf(group) ) {
+LOG.info(script.name + ": allow login for foobar user " + user.username + 
+" for group " + group.getName());
+context.success();
+return;
+}
+
+LOG.info(script.name + ": deny login for " + user.username);
+context.failure(AuthenticationFlowError.USER_DISABLED);
+return;
+
+}
+----
+
+This script will do the same like before but instead of groups it will check if the user got a role that is named like the client-id to which the user tries to login.
+
+[source,javascript]
+----
+function authenticate(context) {
+    
+    LOG.info(script.name + ': started');
+
+    var client_id = httpRequest.getUri().getQueryParameters().get("client_id").toString();
+    client_id = client_id.substring(1, client_id.length() - 1);
+
+    if ( client_id.indexOf("foobar") !== 0 ) {
+        LOG.info(script.name + ": allow login for non foobar client " + client_id);
+        context.success();
+        return;
+    }
+    
+    var role = realm.getRole(client_id);
+
+    if ( user.hasRole(role) ) {
+        LOG.info(script.name + ": allow login for foobar user " + user.username + 
+                 " for role " + role.getName());
+        context.success();
+        return;
+    }
+    
+    LOG.info(script.name + ": deny login for " + user.username);
+	context.failure(AuthenticationFlowError.USER_DISABLED);
+    return;
+    
+}
+----
+
 endif::[]
