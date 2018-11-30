@@ -44,15 +44,6 @@ To enable the preview profile start the server with:
 bin/standalone.sh|bat -Dkeycloak.profile=preview
 ----
 
-You can set this permanently by creating the file `standalone/configuration/profile.properties`
-(or `domain/servers/server-one/configuration/profile.properties` for `server-one` in domain mode). Add the following to
-the file:
-
-[source]
-----
-profile=preview
-----
-
 The features that can be enabled and disabled are:
 
 [cols="3*", options="header"]
@@ -97,7 +88,9 @@ bin/standalone.sh|bat -Dkeycloak.profile.feature.<feature name>=disabled
 
 For example to disable Impersonation use `-Dkeycloak.profile.feature.impersonation=disabled`.
 
-You can set this permanently in the `profile.properties` file by adding:
+You can set this permanently by creating the file `standalone/configuration/profile.properties`
+(or `domain/servers/server-one/configuration/profile.properties` for `server-one` in domain mode). For example, add the following to
+the file:
 
 [source]
 ----
@@ -110,6 +103,13 @@ To enable a specific feature without enabling the full preview profile you can s
 [source]
 ----
 bin/standalone.sh|bat -Dkeycloak.profile.feature.<feature name>=enabled`
+----
+
+Or add this to the `profile.properties file`:
+
+[source]
+----
+profile=preview
 ----
 
 For example to enable Authorization Services use `-Dkeycloak.profile.feature.authorization=enabled`.
