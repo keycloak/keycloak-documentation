@@ -1,6 +1,6 @@
 = Overview
 
-The Red Hat Single Sign-On (RH-SSO) Server, based on the Keycloak project, enables you to secure your web applications by providing Web SSO capabilities based on popular standards such as SAML 2.0, OpenID Connect, and OAuth 2.0. The Server can act as a SAML or OpenID Connect-based identity provider (IdP), mediating with your enterprise user directory or third-party identity provider for identity information and your applications using standards-based tokens.
+The Red Hat Single Sign-On (RH-SSO) Server, based on the Keycloak project, enables you to secure your web applications by providing Web SSO capabilities based on popular standards such as OpenID Connect, OAuth 2.0, and SAML 2.0. The Server can act as a OpenID Connect-based or SAML identity provider (IdP), mediating with your enterprise user directory or third-party identity provider for identity information and your applications using standards-based tokens.
 
 The following notes apply to the RH-SSO 7.3 release.
 
@@ -11,7 +11,7 @@ More than 1,200 issues were resolved in this release.
 
 = New or Improved Feature Overview
 
-Some of the new features in this release are technology preview features, which means they are available, but not fully supported. You may use these for testing, but features marked for technology preview are not supported for use in production. These are marked as technology preview in this list and in our documentation. Because they are not fully supported for production use, technology preview features are disabled by default, but the features can be enabled if you want to try them out. We are seeking feedback on the technology preview features, so please log a support ticket if you have comments on a technology preview feature.
+Some of the new features in this release are technology preview features, which means they are available, but not fully supported. You may use these for testing, but features marked for technology preview are not supported for use in production. These are marked as technology preview in this list and in our documentation. Because they are not fully supported for production use, technology preview features are disabled by default, but the features can be enabled if you want to try them out. We are seeking feedback on the technology preview features, so please log a support ticket if you have comments on a technology preview feature. Once a feature transitions from technology preview to production supported, the API and functionality are fixed for the lifecyle of the major version, so comment during the tech preview period are critical to iinfluencing a feature in the way you want.
 
 Features that remain in tech preview in this release include:
 
