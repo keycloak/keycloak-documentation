@@ -1,0 +1,36 @@
+
+==== VK.com
+
+There are a number of steps you have to complete to be able to login to VK.com.  First, go to the `Identity Providers` left menu item
+and select `VKontakte` from the `Add provider` drop-down list.  This will bring you to the `Add identity provider` page.
+
+.Add Identity Provider
+image:images/vk-add-identity-provider.png[]
+
+You can't click save yet, as you'll need to obtain a `Client ID` and `Client Secret` from VK.com.  One piece of data you'll need from this
+page is the `Redirect URI`.  You'll have to provide that to VK.com when you register {project_name} as a client there, so
+copy this URI to your clipboard.
+
+To enable login with VK.com, you first have to register an application project in
+`\https://vk.com/apps?act=manage`.
+
+.Add a new App
+image:images/vk-app-reg-0.png[]
+
+Click the `Create Application` button.
+
+.Register App
+image:images/vk-app-reg-1.png[]
+
+Now enter an application title, select `Website` as the platform and add your domain and base-URL. 
+Next click `Connect Site` to proceed. Your application will get created, and you have to go to the `Settings` menu on the left-hand side.
+
+.Do the following changes
+image:images/vk-app-reg-2.png[]
+
+- Copy `Application ID` (`Client ID`) and `Secure key` (`Client Secret`) so you can paste them into the {project_name} `Add identity provider` page.
+- Enable `Open API` by clicking on the `Disabled` link beside it and select `Enabled`.
+- Copy the `Redirect URI` from the {project_name} `Add Identity Provider` page and enter it into the `Authorized redirect URI` field.
+- Confirm your settings by pressing the `Save` button
+- Add at least `email` as `Default Scopes` in the {project_name} `Add Identity Provider` page. If you want to use the VK API for other requests
+  You can request additional scopes. Please check the official documentation at https://vk.com/dev/permissions[Application Access Permissions]
