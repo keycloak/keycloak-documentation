@@ -152,31 +152,92 @@ org.keycloak.examples.authenticator.AnotherProviderFactory
 
 This services/ file is used by Keycloak to scan the providers it has to load into the system. 
 
-To deploy this jar, just copy it to the providers directory. 
+To deploy this jar, just copy it to the providers directory.
+
+===== Implementing an Authenticator: Project Prerequisites
+
+Before implementing a custom Authenticator, we need to import the Keycloak dependency containing the Authenticator
+interface which is defined within the artifact `keycloak-server-spi-private` using the Keycloak release version.
+Also, the dependencies `keycloak-server-spi-private` and `keycloak-server-spi-private` are required to access other
+parts of the Keycloak server and inbound HTTP request parts such as Cookies.
+
+The POM snippet should look similar to the following:
+
+[source,xml]
+----
+    <properties>
+        <keycloak.version>4.8.1.Final</keycloak.version> <!--1-->
+        <resteasy.version>3.6.1.Final</resteasy.version> <!--2-->
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-server-spi</artifactId>
+            <version>${keycloak.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-server-spi-private</artifactId>
+            <version>${keycloak.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxrs</artifactId>
+            <version>${resteasy.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+----
+<1> Define a version property to simplify upgrading
+<2> The RestEasy dependency is required to access HTTP request parts, such as Cookies.
+
+After loading the above dependencies into the project, we may start implementing an Authenticator.
 
 ==== Implementing an Authenticator
 
-When implementing the Authenticator interface, the first method that needs to be implemented is the requiresUser() method.
-For our example, this method must return true as we need to validate the secret question associated with the user.
-A provider like kerberos would return false from this method as it can resolve a user from the negotiate header.
-This example, however, is validating a specific credential of a specific user. 
+When implementing the Authenticator interface, we first need to implement the `requiresUser()` method.
+In this example, the `requiresUser()` method must return true as we need to validate the secret question
+associated with the user. A provider like kerberos would return false from this method as it can resolve a user
+from the negotiate header. This example, however, is validating a specific credential of a specific user.
+
+[source,java]
+----
+    @Override
+    public boolean requiresUser() {
+        return true;
+    }
+----
 
 The next method to implement is the configuredFor() method.
 This method is responsible for determining if the user is configured for this particular authenticator.
 For this example, we need to check if the answer to the secret question has been set up by the user or not.
-In our case we are storing this information, hashed, within a UserCredentialValueModel within the UserModel (just like passwords are stored).  Here's how we do this very simple check: 
+In our case we are storing this information, hashed, within a UserCredentialValueModel within the UserModel
+(just like passwords are stored).  Here's how we do this very simple check:
 
 [source,java]
 ----
-@Override
-  public boolean configuredFor(KeycloakSession session, RealmModel realm, UserModel user) {
-     return session.users().configuredForCredentialType("secret_question", realm, user);
+    /**
+     * The type string separates this Authenticator from other Authenticators.
+     */
+    public static final String SECRET_QUESTION_TYPE = "secret_question";
+
+    @Override
+    public boolean configuredFor(final KeycloakSession session,
+                                 final RealmModel realm,
+                                 final UserModel user) {
+
+        return session.userCredentialManager().isConfiguredFor(realm, user, SECRET_QUESTION_TYPE);
     }
 ----            
 
-The configuredForCredentialType() call queries the user to see if it supports that credential type. 
+The isConfiguredFor() call queries the user to see if it supports that credential type.
 
-The next method to implement on the Authenticator is setRequiredActions().  If configuredFor() returns false and our example authenticator is required within the flow, this method will be called.
+The next method to implement on the Authenticator is setRequiredActions().
+If configuredFor() returns false and our example authenticator is required within the flow, this method will be called.
 It is responsible for registering any required actions that must be performed by the user.
 In our example, we need to register a required action that will force the user to set up the answer to the secret question.
 We will implement this required action provider later in this chapter.
@@ -184,46 +245,111 @@ Here is the implementation of the setRequiredActions() method.
 
 [source,java]
 ----
+    /**
+     * Called if this Authenticator is <em>not</em> configured for the provided user (i.e. if the
+     * {@link #configuredFor(KeycloakSession, RealmModel, UserModel)} method returned <code>false</code>).
+     * This method defines required actions which must be performed by the user before this {@link Authenticator}
+     * can be used.
+     *
+     * {@inheritDoc}
+     */
     @Override
-    public void setRequiredActions(KeycloakSession session, RealmModel realm, UserModel user) {
-        user.addRequiredAction("SECRET_QUESTION_CONFIG");
+    public void setRequiredActions(final KeycloakSession session,
+                                   final RealmModel realm,
+                                   final UserModel user) {
+
+        user.addRequiredAction("SECRET_QUESTION_CONFIGURATION");
     }
 ----            
 
 Now we are getting into the meat of the Authenticator implementation.
-The next method to implement is authenticate().  This is the initial method the flow invokes when the execution is first visited.
-What we want is that if a user has answered the secret question already on their browser's machine, then the user doesn't have to answer the question again, making that machine "trusted".  The authenticate() method isn't responsible for processing the secret question form.
-Its sole purpose is to render the page or to continue the flow. 
+The next method to implement is authenticate(), which is the initial method the flow invokes when the execution is
+first visited.
+What we want is that if a user has answered the secret question already on their browser's machine, then the user
+doesn't have to answer the question again, making that machine "trusted".  The authenticate() method isn't responsible
+for processing the secret question form. Its sole purpose is to render the page or to continue the flow.
 
 [source,java]
 ----
-
     @Override
-    public void authenticate(AuthenticationFlowContext context) {
-        if (hasCookie(context)) {
-           context.success();
-           return;
+    public void authenticate(final AuthenticationFlowContext context) {
+
+        if (hasValidCookie(context, "secQConfig")) {
+
+            context.success();
+            return;
         }
-        Response challenge = loginForm(context).createForm("secret_question.ftl");
+
+        final Response challenge = context.form().createForm("secret_question.ftl");
         context.challenge(challenge);
     }
 ----            
 
-The hasCookie() method checks to see if there is already a cookie set on the browser which indicates that the secret question has already been answered.
-If that returns true, we just mark this execution's status as SUCCESS using the AuthenticationFlowContext.success() method and returning from the authentication() method. 
+The hasValidCookie() method checks to see if there is already a cookie set on the browser which indicates that the
+secret question has already been answered. If that returns true, we just mark this execution's status as SUCCESS using
+the AuthenticationFlowContext.success() method and returning from the authentication() method. One such example method
+is provided below, where the important bit is to illustrate how to access HTTP request data from within the
+AuthenticationFlowContext. Note that the AuthenticationFlowContext uses RestEasy to access the underlying HTTP data,
+which implies a need for the `resteasy-jaxrs` dependency as illustrated above.
 
-If the hasCookie() method returns false, we must return a response that renders the secret question HTML form.
-AuthenticationFlowContext has a form() method that initializes a Freemarker page builder with appropriate base information needed to build the form.
-This page builder is called `org.keycloak.login.LoginFormsProvider`.
+[source,java]
+----
+    /**
+     * Checks a named Cookie in the underlying HTTP request, and verifies that its value can be
+     * parsed into a LocalDate in the future.
+     *
+     * @param context    The active AuthenticationFlowContext.
+     * @param cookieName A non-empty name of a Cookie.
+     * @return True if a Cookie with the supplied name exists within the underlying HTTP request, and its
+     * value is a LocalDate object in the future.
+     */
+    public static boolean hasValidCookie(final AuthenticationFlowContext context, final String cookieName) {
+
+        final boolean canValidateCookie = cookieName != null
+                && !cookieName.trim().isEmpty()
+                && context != null
+                && context.getHttpRequest() != null
+                && context.getHttpRequest().getHttpHeaders() != null
+                && context.getHttpRequest().getHttpHeaders().getCookies() != null
+                && context.getHttpRequest().getHttpHeaders().getCookies().get(cookieName) != null;
+
+        boolean toReturn = false;
+
+        if (canValidateCookie) {
+
+            final Map<String, Cookie> cookieMap = context.getHttpRequest().getHttpHeaders().getCookies();
+            final Cookie cookie = cookieMap.get(cookieName);
+
+            if (cookie != null) {
+
+                // Valid Cookies have a String value parse-able to a future LocalDate.
+                try {
+                    final LocalDate lastValidityDate = (LocalDate) DateTimeFormatter.ISO_DATE.parse(cookie.getValue());
+                    toReturn = lastValidityDate.isAfter(LocalDate.now());
+                } catch (Exception e) {
+                    // Ignore this.
+                }
+            }
+        }
+
+        return toReturn;
+    }
+----
+
+If the hasValidCookie() method returns false, we must return a response that renders the secret question HTML form.
+AuthenticationFlowContext has a form() method that initializes a Freemarker page builder with appropriate base
+information needed to build the form. This page builder is called `org.keycloak.login.LoginFormsProvider`.
 the LoginFormsProvider.createForm() method loads a Freemarker template file from your login theme.
-Additionally you can call the LoginFormsProvider.setAttribute() method if you want to pass additional information to the Freemarker template.
-We'll go over this later. 
+Additionally you can call the LoginFormsProvider.setAttribute() method if you want to pass additional information to
+the Freemarker template. We'll go over this later.
 
 Calling LoginFormsProvider.createForm() returns a JAX-RS Response object.
 We then call AuthenticationFlowContext.challenge() passing in this response.
-This sets the status of the execution as CHALLENGE and if the execution is Required, this JAX-RS Response object will be sent to the browser. 
+This sets the status of the execution as CHALLENGE and if the execution is Required, this JAX-RS Response object will
+be sent to the browser.
 
-So, the HTML page asking for the answer to a secret question is displayed to the user and the user enteres in the answer and clicks submit.
+So, the HTML page asking for the answer to a secret question is displayed to the user and the user enters in the
+answer and clicks submit.
 The action URL of the HTML form will send an HTTP request to the flow.
 The flow will end up invoking the action() method of our Authenticator implementation. 
 
@@ -258,13 +384,15 @@ In this case we want the max age of the cookie to be configurable.
 [source,java]
 ----
 
-    protected void setCookie(AuthenticationFlowContext context) {
-        AuthenticatorConfigModel config = context.getAuthenticatorConfig();
-        int maxCookieAge = 60 * 60 * 24 * 30; // 30 days
+    protected void setCookie(final AuthenticationFlowContext context) {
+
+        final AuthenticatorConfigModel config = context.getAuthenticatorConfig();
+
+        int maxCookieAge = (int) Duration.ofDays(30).toMillis();
         if (config != null) {
             maxCookieAge = Integer.valueOf(config.getConfig().get("cookie.max.age"));
-
         }
+
         ... set the cookie ...
     }
 ----            
