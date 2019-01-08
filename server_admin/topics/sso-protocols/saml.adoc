@@ -59,12 +59,10 @@ This is used most often for REST or SOAP-based clients.
 ===== Artifact Binding
 
 The SAML _Artifact_ binding works alongside the standard _Redirect_ or _POST_ bindings. The purpose of this binding is
-to prevent SAML messages from passing by the browser. The manner in which this works is the following: when a SAML message would be sent
-to the application or the {project_name}, it is saved and instead a Redirect or a POST is sent containing an unique identifier (this is the artifact).
-The contacted party sends via SOAP a message containing the artifact directly to the originator, which in turn replies via SOAP with
-the saved SAML message. This binding can have some security benefits, for example when the user is not trusted with the contents of a SAML assertion.
+to prevent SAML messages from passing by the browser. When a SAML message would be sent to the application or the {project_name}, it is instead saved and in its place a Redirect or a POST is sent containing an unique identifier (this is the artifact).
+The contacted party uses SOAP to send a message containing the artifact directly to the originator, which in turn replies via SOAP with the saved SAML message. 
 
-Instead, they are exchanged between the application and {project_name} via SOAP.
+This binding can have some security benefits, for example when the user is not trusted with the contents of a SAML assertion. Instead, they are exchanged between the application and {project_name} via SOAP.
 
 ====  {project_name} Server SAML URI Endpoints
 
