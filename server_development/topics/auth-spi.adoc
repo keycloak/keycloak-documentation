@@ -251,7 +251,6 @@ Here is the implementation of the setRequiredActions() method.
      * This method defines required actions which must be performed by the user before this {@link Authenticator}
      * can be used.
      *
-     * {@inheritDoc}
      */
     @Override
     public void setRequiredActions(final KeycloakSession session,
