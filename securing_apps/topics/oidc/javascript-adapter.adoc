@@ -144,6 +144,50 @@ keycloak.init({ flow: 'implicit' })
 One thing to note is that only an access token is provided and there is no refresh token. This means that once the access token has expired the application
 has to do the redirect to the {project_name} again to obtain a new access token.
 
+For SPAs, there's a the possibility to use a _silent refresh_ of the access token when using the implicit flow.
+This is achieved with the help of a hidden iframe in the application.
+Therefore, the init parameter `silentRefreshRedirectUri` needs to be provided on {project_name} initialization.
+This URI needs to be a valid endpoint in the application (and of course it must be configured as a valid redirect for the client in the {project_name} Administration Console):
+
+[source,javascript]
+----
+keycloak.init({
+  flow: 'implicit',
+  silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html'
+})
+----
+
+The page at the silent refresh uri is loaded in the iframe after successfully obtaining new tokens from the {project_name} server.
+It has no other task than sending the received tokens to the main application and should only look like this:
+
+[source,html]
+----
+<html>
+<body>
+  <script>
+    parent.postMessage(location.href, location.origin)
+  </script>
+</body>
+</html>
+----
+
+If you have the {project_name} Javascript adapter available as a separate UMD, you can also use this handy code for the page at the silent refresh uri:
+
+[source,html]
+----
+<html>
+<head>
+  <script src="path/to/keycloak.js"></script>
+</head>
+<body onload="Keycloak.silentlyRefreshPage()"></body>
+</html>
+----
+
+Please keep in mind, that this page at the specified location must be provided by the application and is _not_ part of the JavaScript adapter!
+
+Now, the access token can be refreshed using the `updateToken` method, like with the standard Authorization Code flow.
+
+
 {project_name} also supports the https://openid.net/specs/openid-connect-core-1_0.html#HybridFlowAuth[Hybrid] flow.
 
 This requires the client to have both the `Standard Flow Enabled` and `Implicit Flow Enabled` flags enabled in the admin console.
@@ -304,6 +348,7 @@ Options is an Object, where:
 * checkLoginIframeInterval - Set the interval to check login state (default is 5 seconds).
 * responseMode - Set the OpenID Connect response mode send to {project_name} server at login request. Valid values are query or fragment . Default value is fragment, which means that after successful authentication will {project_name} redirect to javascript application with OpenID Connect parameters added in URL fragment. This is generally safer and recommended over query.
 * flow - Set the OpenID Connect flow. Valid values are standard, implicit or hybrid.
+* silentRefreshRedirectUri - Set the redirect uri for silent refresh of access token for implicit flow.
 * promiseType - If set to `native` all methods returning a promise will return a native JavaScript promise. If not set will return Keycloak specific promise objects.
 
 Returns promise to set functions to be invoked on success or error.
