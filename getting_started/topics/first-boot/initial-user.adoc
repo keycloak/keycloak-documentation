@@ -5,7 +5,7 @@ After the server boots, open http://localhost:8080/auth in your web browser. The
 
 Enter a username and password to create an initial admin user. 
 
-This account will be permitted to log in to the `master` realm's administration console, from which you will create realms and users and register applications to be secured by {project_name}.
+This account will be allowed to log in to the `master` realm's administration console, from which you will create realms and users and register applications to be secured by {project_name}.
 
 NOTE:  You can only create an initial admin user on the Welcome Page if you connect using `localhost`. This is a security
        precaution. You can create the initial admin user at the command line with the `add-user-keycloak.sh` script. For more information, see the
