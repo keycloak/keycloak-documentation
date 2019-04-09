@@ -5,6 +5,36 @@
 {project_name} is designed to cover most use-cases without requiring custom code, but we also want it to be customizable.
 To achieve this {project_name} has a number of Service Provider Interfaces (SPI) for which you can implement your own providers.
 
+=== Getting started
+
+{project_name} Service Provider Interfaces are available as Maven artifacts. Here is a `pom.xml` sample to get you started:
+
+[source,xml]
+----
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.keycloak.bom</groupId>
+            <artifactId>keycloak-spi-bom</artifactId>
+            <version>5.0.0</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
+<dependencies>
+    <dependency>
+        <groupId>org.keycloak</groupId>
+        <artifactId>keycloak-server-spi</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.keycloak</groupId>
+        <artifactId>keycloak-core</artifactId>
+    </dependency>
+</dependencies>
+----
+
 === Implementing an SPI
 
 To implement an SPI you need to implement its ProviderFactory and Provider interfaces. You also need to create a service configuration file.
@@ -307,4 +337,4 @@ public class EjbExampleUserStorageProviderFactory
 
 === Available SPIs
 
-If you want to see list of all available SPIs at runtime, you can check `Server Info` page in admin console as described in <<_providers_admin_console,Admin Console>> section.
+If you want to see the list of all available SPIs at runtime, you can check `Server Info` page in admin console as described in <<_providers_admin_console,Admin Console>> section.
