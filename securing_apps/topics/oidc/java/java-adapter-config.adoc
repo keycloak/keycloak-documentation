@@ -197,6 +197,10 @@ client-key-password::
 always-refresh-token::
   If _true_, the adapter will refresh token in every request.
 
+NOTE: This may have a significant impact on performance. Only enable this feature if you can't rely on backchannel messages to propagate logout and not before
+    policies. Another thing to consider is that by default access tokens has a short expiration so even if logout is not propagated the token will expire within
+    minutes of the logout.
+
 register-node-at-startup::
   If _true_, then adapter will send registration request to {project_name}.
   It's _false_ by default and useful only when application is clustered.
