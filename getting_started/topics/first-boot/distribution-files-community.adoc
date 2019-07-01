@@ -18,7 +18,7 @@ $ unzip keycloak-{project_version}.zip
 
 or
 
-$ tar -xvzf keycloak-{project_version}.tar.gz
+$ tar xvzf keycloak-{project_version}.tar.gz
 ----
 
 .Windows
