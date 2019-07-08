@@ -18,10 +18,10 @@ endif::[]
 
 ifeval::[{project_product_cd}==true]
 :project_name_full: Red Hat Single Sign-On Continuous Delivery
-:project_version: 6
-:project_versionDoc: 6
+:project_version: 7.4.0.CD05
+:project_versionDoc: 5
 :project_templates_version: sso-cd
-:project_latest_image_tag: 6
+:project_latest_image_tag: 1.0
 :project_doc_base_url: https://access.redhat.com/documentation/en-us/red_hat_single_sign-on_continuous_delivery/{project_versionDoc}/html-single
 :maven_repository: https://maven.repository.redhat.com/earlyaccess/
 endif::[]
@@ -48,7 +48,7 @@ endif::[]
 :adminguide_clearcache_name: Clearing Server Caches
 :adminguide_clearcache_link: {adminguide_link}#_clear-cache
 :apidocs_name: API Documentation
-:apidocs_link: {project_doc_base_url}/api-documentation/
+:apidocs_link: {project_doc_base_url}/api_documentation/
 :developerguide_name: Server Developer Guide
 :developerguide_link: {project_doc_base_url}/server_developer_guide/
 :developerguide_actiontoken_name: Action Token SPI
