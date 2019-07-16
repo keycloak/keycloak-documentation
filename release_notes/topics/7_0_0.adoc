@@ -5,3 +5,7 @@ Java adapter for Apache Tomcat 8 and Apache Tomcat 9 was unified and now it serv
 = WildFly 17 Upgrade
 
 Keycloak server was upgraded to use WildFly 17 under the covers.
+
+= Resolved "You took too long to login" issue
+
+Sometimes, entering valid login credentials right away after login form was displayed resulted in You took too long to login error instead of continuing login flow. This has now been fixed. 
