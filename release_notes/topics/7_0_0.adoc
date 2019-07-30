@@ -8,6 +8,14 @@ Keycloak server was upgraded to use WildFly 17 under the covers.
 
 Java adapter for Apache Tomcat 8 and Apache Tomcat 9 was unified and now it serves for both of them.
 
+== Gatekeeper
+
+It is now possible to force cookie encryption for hybrid scenarios where the token in the header may be in the clear and the token in cookie is always encrypted. 
+
+There was a bug on Gatekeeper when enabled the `Revoke Refresh Token` on the Keycloak server. The issue was fixed.
+
+Thanks to https://github.com/fredbi[fredbi] for contributing a signficant part of this work.
+
 == New Account Console
 
 A lot of work has been done on the new Account Console and Account REST API. It's not quite ready yet, but it's getting
