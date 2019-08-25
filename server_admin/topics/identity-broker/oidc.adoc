@@ -23,6 +23,9 @@ You must define the OpenID Connect configuration options as well.  They basicall
 |Token URL
 |Token URL endpoint required by the OIDC protocol.
 
+|Client Authentication
+|The way the client will authenticate token url calls to the identity provider. See https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication
+
 |Logout URL
 |Logout URL endpoint defined in the OIDC protocol.  This value is optional.
 
