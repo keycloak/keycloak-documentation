@@ -64,7 +64,14 @@ settings (public key, realm name, various URLs).  The `keycloak.json` file
 is obtained from the {project_name} Admin Console.
 
 Instantiation with this method results in all of the reasonable defaults
-being used. As alternative, it's also possible to provide a configuration
+being used. You may also provide the Path to a json file (relative to the project directory).
+
+[source,javascript]
+----
+    let keycloak = new Keycloak({ store: memoryStore }, './config/keycloak.json');
+----
+
+As alternative, it's also possible to provide a configuration
 object, rather than the `keycloak.json` file:
 
 [source,javascript]
