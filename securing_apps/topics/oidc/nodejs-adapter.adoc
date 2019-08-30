@@ -119,7 +119,7 @@ Once instantiated, install the middleware into your connect-capable app:
 ==== Configuration for Proxies
 
 If the application is running behind a proxy that terminates an SSL connection
-express must be configured per the link:https://expressjs.com/en/guide/behind-proxies.html[express behind proxies] guide.
+Express must be configured per the link:https://expressjs.com/en/guide/behind-proxies.html[express behind proxies] guide.
 Using an incorrect proxy configuration can result in invalid redirect URIs
 being generated.
 
