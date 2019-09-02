@@ -22,6 +22,11 @@ there and hopefully will be fully done for Keycloak 8.
 The Keycloak team has spent a significant amount of time on automation around testing and releases both for Keycloak and
 Red Hat Single Sign-On.
 
+== FileTruststoreProviderFactory doesn't support `disabled` flag anymore
+
+The `FileTruststoreProviderFactory` will not support `disabled` configuration flag anymore.
+Please use the `enabled` flag in the Provider xml configuration in the server.
+
 = Other improvements
 
 * PKCE support added to JavaScript adapter. Thanks to https://github.com/thomasdarimont[thomasdarimont]

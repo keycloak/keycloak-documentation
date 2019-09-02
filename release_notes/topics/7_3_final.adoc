@@ -127,6 +127,11 @@ In the past, starting RH-SSO could take a long time if there were many offline s
 == Support for DB2 removed
 DB2 support has been deprecated for a while. With this release we have removed all support for DB2.
 
+== FileTruststoreProviderFactory doesn't support `disabled` flag anymore
+
+The `FileTruststoreProviderFactory` will not support `disabled` configuration flag anymore.
+Please use the `enabled` flag in the Provider xml configuration in the server.
+
 == Minor Improvements
 
 * Authenticator to automatically link Identity Provider identity to an existing account after first Idp authentication.
