@@ -153,7 +153,7 @@ By default the roles defined on a resource perform a logical `AND` so all roles 
 
 ==== Integration with Kubernetes
 
-Keycloak Gatekeeper can be run as a sidecar container. Example deployment configuration:
+Keycloak Gatekeeper can be run as a sidecar container. Example deployment configuration for a container, deployment and service named my-app:
 
 [source,yaml]
 ----
