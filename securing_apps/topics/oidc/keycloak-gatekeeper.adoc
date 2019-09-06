@@ -151,6 +151,67 @@ bin/{generic_adapter_name} \
 
 By default the roles defined on a resource perform a logical `AND` so all roles specified must be present in the claims, this behavior can be altered by the `require-any-role` option, however, so as long as one role is present the permission is granted.
 
+==== Integration with Kubernetes
+
+Keycloak Gatekeeper can be run as a sidecar container. Example deployment configuration:
+
+[source,yaml]
+----
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      name: my-app
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - image: <CONTAINER_REGISTRY>/<CONTAINER_NAME>:<TAG>
+        name: my-app
+        env:
+        - name: PORT # For the my-app main container this environment variable specifies the exposed port
+          value: <PORT>
+      - image: keycloak/keycloak-gatekeeper:7.0.0
+        name: gatekeeper-sidecar
+        ports:
+        - containerPort: 3000 # expose port 3000
+        args:
+        - --discovery-url=https://<KEYCLOAK_HOST>/auth/realms/<REALM> # Note that when KEYCLOAK_HOST runs in Kubernetes too the host's Ingress should have whitelisted internal IPs. I.e., 10.0.1.1/24.
+        - --client-id=<CLIENT_ID>
+        - --client-secret=<CLIENT_SECRET>
+        - --listen=0.0.0.0:3000 # listen on port 3000 on all interfaces
+        - --redirection-url=<HOST_OF_THE_APP>
+        - --upstream-url=http://127.0.0.1:<PORT> # To connect with the main container's port
+----
+
+Then add a service that connects with port 3000 of my-app.
+
+[source,yaml]
+----
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app
+spec:
+  type: NodePort
+  ports:
+  - name: jetty
+    protocol: TCP
+    port: <PORT>
+    targetPort: 3000 # bind to exposed port of Keycloak Gatekeeper sidecar container
+  selector:
+    app: my-app
+----
+
+This way all requests for my-app are proxied through the Keycloak Gatekeeper sidecar container.
+
 ==== OpenID Provider Communication
 By default the communication with the OpenID provider is direct. If you wish, you can specify a forwarding proxy server in your configuration file:
 [source,yaml]
