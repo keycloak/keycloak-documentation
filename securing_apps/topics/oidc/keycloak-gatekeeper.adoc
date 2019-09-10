@@ -183,7 +183,7 @@ spec:
         ports:
         - containerPort: 3000 # expose port 3000
         args:
-        - --discovery-url=https://<KEYCLOAK_HOST>/auth/realms/<REALM> # Note that when KEYCLOAK_HOST runs in Kubernetes too the host's Ingress should have whitelisted internal IPs. I.e., 10.0.1.1/24.
+        - --discovery-url=https://<KEYCLOAK_HOST>/auth/realms/<REALM> # Note that when KEYCLOAK_HOST runs in Kubernetes too the host's Ingress should have whitelisted internal IPs. I.e., 10.0.0.0/8.
         - --client-id=<CLIENT_ID>
         - --client-secret=<CLIENT_SECRET>
         - --listen=0.0.0.0:3000 # listen on port 3000 on all interfaces
