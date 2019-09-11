@@ -5,7 +5,25 @@
 To safeguard registration against bots, {project_name} has integration with Google reCAPTCHA.
 To enable this you need to first go to link:https://developers.google.com/recaptcha/[Google Recaptcha Website]
 and create an API key so that you can get your reCAPTCHA site key and secret.
-(FYI, localhost works by default so you don't have to specify a domain).
+(FYI, localhost does not work by default so you need to add in 'Domains').
+
+Choosing the type of reCAPTCHA
+
+There are mainly two types of reCAPTCHA. 
+
+`reCAPTCHA v3` (Preferred)
+
+reCAPTCHA v3 allows you to verify if an interaction is legitimate without any user interaction. It is a pure JavaScript API returning a score, giving you the ability to take action in the context of your site: for instance requiring additional factors of authentication, sending a post to moderation, or throttling bots that may be scraping content.
+v3 requires `Site Key` & `Secret Key`. Optinally, you can configure `Site Score` & `Site Action Name`. 
+
+For more information: https://developers.google.com/recaptcha/docs/v3[reCAPTCHA v3 Docs]
+
+`reCAPTCHA v2 ("I'm not a robot" Checkbox)`
+
+The "I'm not a robot" Checkbox requires the user to click a checkbox indicating the user is not a robot. This will either pass the user immediately (with No CAPTCHA) or challenge them to validate whether or not they are human. This is the simplest option to integrate with and only requires two lines of HTML to render the checkbox.
+v2 requires `Site Key` & `Secret Key`.
+
+For more information: https://developers.google.com/recaptcha/docs/display[reCAPTCHA v2 Docs]
 
 Next, there are a few steps you need to perform in the {project_name} Admin Console.
 Click the `Authentication` left menu item and go to the `Flows` tab.  Select the `Registration` flow from the drop down
@@ -15,9 +33,8 @@ list on this page.
 image:{project_images}/registration-flow.png[]
 
 
-Set the 'reCAPTCHA' requirement to `Required` by clicking the appropriate radio button.  This will enable
-reCAPTCHA on the screen.  Next, you have to enter in the reCAPTCHA site key and secret that you generated at the Google reCAPTCHA Website.
-Click on the 'Actions' button that is to the right of the reCAPTCHA flow entry, then "Config" link, and enter in the reCAPTCHA site key and secret on this config page.
+Set the 'reCAPTCHA' requirement to `Required` by clicking the appropriate radio button. Click on the 'Actions' button that is to the right of the reCAPTCHA flow entry, then "Config" link. This will enable
+reCAPTCHA config on the screen.  Next, Select your reCAPTCHA version from the dropdown `reCAPTCHA Version` and then you have to enter in the reCAPTCHA site key and secret that you generated at the https://www.google.com/recaptcha/admin/[Google reCAPTCHA Admin console]. If you are using v3, you can update `reCAPTCHA Score` & `reCAPTCHA Action`.
 
 .Recaptcha Config Page
 image:{project_images}/recaptcha-config.png[]
