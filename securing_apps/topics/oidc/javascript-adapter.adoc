@@ -79,9 +79,9 @@ It has no other task than sending the received tokens to the main application an
 ----
 <html>
 <body>
-  <script>
-    parent.postMessage(location.href, location.origin)
-  </script>
+    <script>
+        parent.postMessage(location.href, location.origin)
+    </script>
 </body>
 </html>
 ----
@@ -432,10 +432,10 @@ For example:
 [source,javascript]
 ----
 keycloak.loadUserProfile().success(function(profile) {
-        alert(JSON.stringify(profile, null, "  "));
-    }).error(function() {
-        alert('Failed to load user profile');
-    });
+    alert(JSON.stringify(profile, null, "  "));
+}).error(function() {
+    alert('Failed to load user profile');
+});
 ----
 
 ====== isTokenExpired(minValidity)
@@ -453,14 +453,14 @@ For example:
 [source,javascript]
 ----
 keycloak.updateToken(5).success(function(refreshed) {
-        if (refreshed) {
-            alert('Token was successfully refreshed');
-        } else {
-            alert('Token is still valid');
-        }
-    }).error(function() {
-        alert('Failed to refresh the token, or the session has expired');
-    });
+    if (refreshed) {
+        alert('Token was successfully refreshed');
+    } else {
+        alert('Token is still valid');
+    }
+}).error(function() {
+    alert('Failed to refresh the token, or the session has expired');
+});
 ----
 
 ====== clearToken()
