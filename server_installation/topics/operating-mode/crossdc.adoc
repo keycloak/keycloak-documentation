@@ -2,11 +2,14 @@
 [[crossdc-mode]]
 === Cross-Datacenter Replication Mode
 
-NOTE: Cross-Datacenter Replication Mode is Technology Preview and is not fully supported.
-
 :tech_feature_name: Cross-Datacenter Replication Mode
 :tech_feature_disabled: false
 include::../templates/techpreview.adoc[]
+
+[NOTE]
+====
+Cross-Datacenter Replication Mode is Technology Preview and is not fully supported.
+====
 
 Cross-Datacenter Replication mode is for when you want to run {project_name} in a cluster across multiple data centers, most typically using data center sites that are in different geographic regions. When using this mode, each data center will have its own cluster of {project_name} servers.
 
