@@ -18,10 +18,10 @@ endif::[]
 
 ifeval::[{project_product_cd}==true]
 :project_name_full: Red Hat Single Sign-On Continuous Delivery
-:project_version: 6
-:project_versionDoc: 6
+:project_version: 8
+:project_versionDoc: 8
 :project_templates_version: sso-cd
-:project_latest_image_tag: 6
+:project_latest_image_tag: 8
 :project_doc_base_url: https://access.redhat.com/documentation/en-us/red_hat_single_sign-on_continuous_delivery/{project_versionDoc}/html-single
 :maven_repository: https://maven.repository.redhat.com/earlyaccess/
 endif::[]
@@ -113,14 +113,14 @@ endif::[]
 :jdgserver_version: 7.3.0
 :jdgserver_crossdcdocs_link: https://access.redhat.com/documentation/en-us/red_hat_data_grid/7.3/html/red_hat_data_grid_user_guide/x_site_replication
 
-:fuseVersion: JBoss Fuse 6.3.0 Rollup 11
+:fuseVersion: JBoss Fuse 6.3.0 Rollup 12
 :fuseHawtioEAPVersion: JBoss EAP 6.4
-:fuseHawtioWARVersion: hawtio-wildfly-1.4.0.redhat-630377.war
+:fuseHawtioWARVersion: hawtio-wildfly-1.4.0.redhat-630396.war
 
-:fuse7Version: JBoss Fuse 7.3.1
+:fuse7Version: JBoss Fuse 7.4.0
 
-:subsystem_undertow_xml_urn: urn:jboss:domain:undertow:9.0
-:subsystem_infinispan_xml_urn: urn:jboss:domain:infinispan:8.0
+:subsystem_undertow_xml_urn: urn:jboss:domain:undertow:10.0
+:subsystem_infinispan_xml_urn: urn:jboss:domain:infinispan:9.0
 :subsystem_datasources_xml_urn: urn:jboss:domain:datasources:5.0
 :saml_adapter_xsd_urn: https://www.keycloak.org/schema/keycloak_saml_adapter_1_10.xsd
 :generic_adapter_name: keycloak-gatekeeper
