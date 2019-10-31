@@ -52,3 +52,13 @@ Thanks to https://github.com/tnorimat[tnorimat], we support more signing algorit
 In this release, possibility to authenticate OIDC providers with signed JWT or basic authentication was added. So all the client
 authentication methods mentioned in the https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication[OIDC specification]
 are supported now. Thanks to https://github.com/madgaet[madgaet] and https://github.com/rradillen[rradillen] for contributions.
+
+== Support enable/disable logging into the JavaScript adapter
+
+Thanks to https://github.com/jonkoops[jonkoops] now it's possible to enable or disable logging for the JS adapter.
+
+== Updates for Gatekeeper 
+
+* Secure token and logout endpoint were included in Gatekeeper. Thanks to https://github.com/fredbi[fredbi]
+* There was a bug on Gatekeeper which was making cookies to be applied to subdomains. Thanks to https://github.com/daniel-ac-martin[daniel-ac-martin] the issue was fixed
+* Now Gatekeeper provides support to https://www.owasp.org/index.php/SameSite[Same-site cookies]. Thanks to https://github.com/fiji-flo[fiji-flo]
