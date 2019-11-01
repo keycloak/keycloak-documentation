@@ -1,0 +1,24 @@
+// Metadata created by nebel
+//
+// UserStory: As an RH SSO customer, I want to login into my account
+
+[id="login-admin"]
+= Logging into the Admin Console
+
+After you create the initial admin account, you can log in to the Admin Console.
+
+.Procedure
+. Click the *Administration Console* link on the *Welcome* page or go directly to http://localhost:8080/auth/admin/ (the console URL). 
+
++
+[NOTE]
+====
+The Administration Console is generally referred to as the Admin Console for short in {project_name} documentation.
+====
+
+. Type the username and password you created on the *Welcome* page to open the *{project_name} Admin Console*.
++
+.Admin Console
+image:{project_images}/admin-console.png[]
+
+Notice that you are in the *Master* realm.  From this realm, you can create other realms that contain users and applications.

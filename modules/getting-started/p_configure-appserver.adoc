@@ -1,0 +1,54 @@
+// Metadata created by nebel
+//
+// UserStory: As an RH SSO customer, I want to configure my JBoss EAP instance
+
+[id="configure-appserver"]
+= Configuring the {appserver_name} instance
+
+The {appserver_name} servlet application requires additional configuration before it is secured by {project_name}. Use the following procedure to configure the {appserver_name} instance.
+
+.Procedure
+
+. Open the `standalone/configuration/standalone.xml` file in the {appserver_name} instance that the application is deployed on and search for the following text:
++
+[source,xml]
+----
+<subsystem xmlns="urn:jboss:domain:keycloak:1.1"/>
+----
+
+. Modify this text to prepare the file for pasting in contents from the *Keycloak OIDC JBoss Subsystem XML* template we obtained {project_name} Admin Console *Installation* tab by changing the XML entry from self-closing to using a pair of opening and closing tags:
++
+[source,xml]
+----
+<subsystem xmlns="urn:jboss:domain:keycloak:1.1">
+</subsystem>
+----
+
+. Paste the contents of the template within the `<subsystem>` element, as shown in this example:
++
+[source,xml]
+----
+<subsystem xmlns="urn:jboss:domain:keycloak:1.1">
+  <secure-deployment name="WAR MODULE NAME.war">
+    <realm>demo</realm>
+    <auth-server-url>http://localhost:8180/auth</auth-server-url>
+    <public-client>true</public-client>
+    <ssl-required>EXTERNAL</ssl-required>
+    <resource>vanilla</resource>
+  </secure-deployment>
+</subsystem>
+----
+
+. Change the `name` to `vanilla.war`:
++
+[source,xml]
+----
+<subsystem xmlns="urn:jboss:domain:keycloak:1.1">
+  <secure-deployment name="vanilla.war">
+  ...
+</subsystem>
+----
+
+. Reboot the application server.
+
+. Go to http://localhost:8080/vanilla and click *Login*. When the {project_name} login page opens, log in using the user that you created in <<create-user, Creating a user>>.

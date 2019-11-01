@@ -1,0 +1,22 @@
+// Metadata created by nebel
+//
+// UserStory: As an RH SSO customerr, I want to test the login for the first user
+
+[id="account-console"]
+= Logging into the Account Console
+Every user in a realm has access to the Account Console. You use this console to update your profile information and change your credentials. You can now test logging in with that user in the realm that you created.
+
+.Procedure
+. Log out of the Admin Console by opening the user menu and selecting *Sign Out*.
+
+. Go to http://localhost:8080/auth/realms/demo/account and log in to your `demo` realm with the user you just created.
+
+. Type the username and password you created. You will be required to create a permanent password after you successfully log in, unless you changed the *Temporary* setting to *Off* when you created the password.
+
+The Account Console opens. 
+
+
+
+
+
+

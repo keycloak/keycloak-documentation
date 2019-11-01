@@ -1,0 +1,13 @@
+// Metadata created by nebel
+//
+// UserStory: As an RH SSO customer, I need to know what are the purposes of different realms
+
+[id="realms-users-apps"]
+= Realms, users, and applications
+When you log in to the Admin Console, you work in a realm, which is a space where you manage objects. Two types of realms exist:
+
+* The master realm - This realm was created for you when you first started {project_name}. It contains the admin account you created at the first login.
+
+* Other realms - These realms are created by the admin in the master realm. You can use these realms to create users and applications. The applications are owned by the users.
+
+image:images/master_realm.png[]

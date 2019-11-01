@@ -1,0 +1,33 @@
+// Metadata created by nebel
+//
+// UserStory: As an RH SSO customer, I want to register my first client
+
+[id="register-client"]
+= Registering the {appserver_name} application
+
+After you have installed the sample code, you can define and register the client in the {project_name} Admin Console.
+
+.Procedure 
+
+. Log in to the Admin Console with your admin account.  
+
+. In the top left drop-down list and select the `Demo` realm. Click `Clients` in the left side menu to open the Clients page.
++
+.Clients
+image:{project_images}/clients.png[]
+
+. On the right side, click *Create*.  
+
+. Complete the fields as shown here:
++
+.Add Client
+image:{project_images}/add-client.png[]
+
+. Click *Save* to create the client application entry.
+
+. Click the *Installation* tab in the Admin Console to obtain a configuration template.
+
+. Select *Keycloak OIDC JBoss Subsystem XML* to generate an XML template. Copy the contents for use in the next section.
++
+.Template XML
+image:{project_images}/client-install-selected.png[]

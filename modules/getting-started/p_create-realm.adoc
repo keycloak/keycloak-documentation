@@ -1,0 +1,25 @@
+// Metadata created by nebel
+//
+// UserStory: As an RH SSO customer, I need to know to create a realm that protects applications
+
+[id="create-realm"]
+= Creating a realm
+
+As the admin in the master realm, you create the realms in which you add users and applications. Use the following steps to create the first realm.
+
+.Prerequisites
+
+* {project_name} is installed.
+* You have the admin user account for the master realm.
+
+.Procedure
+
+. Go to http://localhost:8080/auth/admin/ and log in to the {project_name} Admin Console using the admin account.
+
+. From the *Master* menu, click *Add Realm*. When you are logged in to the master realm, this menu lists all existing realms.
+
+. Type `demo` in the *Name* field and click *Create*.
+
+NOTE: The realm name is case-sensitive, so make note of the case that you use.
+
+When the realm is created, the main Admin Console page opens. Notice the current realm is now set to `demo`. Switch between managing the `master` realm and the realm you just created by clicking entries in the *Select realm* drop-down list.

@@ -1,0 +1,45 @@
+// Metadata created by nebel
+//
+// UserStory: As an RH SSO customer, I want to create a local JBoss instance
+
+[id="separate-appserver"]
+= Using a separate {appserver_name} instance
+
+To run your Java servlet application,  you cannot use this app server as an application container. You must run a separate {appserver_name} instance on the same machine as the {project_name} server. To avoid port conflicts, you need different ports to run {project_name} and {appserver_name}.
+
+.Prerequisites
+
+* {project_name} is installed.
+* You have access to the initial admin user for {project_name}.
+
+ifeval::[{project_community}==true]
+* WildFly is downloaded and installed from link:https://wildfly.org[WildFly.org].
+endif::[]
+ifeval::[{project_product}==true]
+* JBoss EAP 7.2 is downloaded and installed from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?product=appplatform&downloadType=distributions[Red Hat customer portal].
+endif::[]
+
+.Procedure
+
+. Start the {project_name} server by supplying a value for the `jboss.socket.binding.port-offset` system property. The value of this property is a number that is added to the base value of every port opened by the {project_name} server. In the following examples, 100 is the number used.
+
+
++
+.Linux/Unix
+[source,bash,subs=+attributes]
+----
+$ cd bin
+$ ./standalone.sh -Djboss.socket.binding.port-offset=100
+----
+
++
+.Windows
+[source,bash,subs=+attributes]
+----
+> ...\bin\standalone.bat -Djboss.socket.binding.port-offset=100
+----
+
+. Confirm that the {project_name} server is running. Go to http://localhost:8180/auth/admin/ to access the Admin Console.
+
+.Next Steps
+Before you can use {project_name} to secure this servlet, you need to install the {project_name} client adapter on the {appserver_name} application server distribution.

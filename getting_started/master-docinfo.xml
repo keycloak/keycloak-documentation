@@ -4,8 +4,9 @@
 <title>{gettingstarted_name}</title>
 <release>{project_versionDoc}</release>
 <abstract>
-	    <para>This guide consists of basic information and instructions to get started with {project_name_full} {project_versionDoc}</para>
-    </abstract>
+<para>This guide helps you practice using {project_name} to evaluate it before you use it in a production environment. It includes instructions for installing the {project_name} server in standalone mode, creating accounts and realms for managing users and applications, and securing a {appserver_name} server application. 
+</para>
+</abstract>
 <authorgroup>
     <orgname>Red Hat Customer Content Services</orgname>
 </authorgroup>

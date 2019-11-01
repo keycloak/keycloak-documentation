@@ -1,26 +1,27 @@
+// UserStory: As an Keycloak user, I want to install Keycloak in standalone mode
 
-=== Installing Distribution Files
+[id="standalone-keycloak-install"]
 
-Download the {project_name} Server:
+== Installing the Server
+You can install the server on Linux or Windows. The server download ZIP file contains the scripts and binaries to run the {project_name} server.
 
-* *keycloak-{project_version}.[zip|tar.gz]*
 
-NOTE: This file can be downloaded from https://www.keycloak.org/downloads.html[Keycloak downloads].
+.Procedure
 
-The *keycloak-{project_version}.[zip|tar.gz]* file is the server-only distribution. It contains only the scripts and binaries to run the {project_name} server.
+. Download *keycloak-{project_version}.[zip|tar.gz]* from  https://www.keycloak.org/downloads.html[Keycloak downloads].
 
-Place the file in a directory you choose and use either the `unzip` or `tar` utility to extract it.
+. Place the file in a directory you choose.
 
+. Unpack the ZIP file using the appropriate `unzip` utility, such as jar or unzip.
+
++
 .Linux/Unix
 [source,bash,subs=+attributes]
 ----
-$ unzip keycloak-{project_version}.zip
-
-or
-
 $ tar -xvzf keycloak-{project_version}.tar.gz
 ----
 
++
 .Windows
 [source,bash,subs=+attributes]
 ----

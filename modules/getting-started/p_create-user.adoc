@@ -1,0 +1,25 @@
+// Metadata created by nebel
+//
+// UserStory: As an RH SSO customer, I want to create a user in my first realm
+
+[id="create-user"]
+= Creating a user
+
+In the `demo` realm, you create a new user and a temporary password for that new user.
+
+.Procedure
+
+. From the menu, click *Users* to open the user list page.
+
+. On the right side of the empty user list, click *Add User* to open the add user page.
+
+. Enter a name in the `Username` field; this is the only required field. Flip the *Email Verified* switch from *Off* to *On* and click *Save* to save the data and open the management page for the new user.
+
+. Click the *Credentials* tab to set a temporary password for the new user.
+
+. Type a new password and confirm it. Click *Reset Password* to set the user password to the new one you specified.  
+
+NOTE: This password is temporary and the user will be required to change it after the first login. To create a password that is persistent, flip the *Temporary* switch from *On* to *Off* before clicking *Reset Password*.
+
+
+

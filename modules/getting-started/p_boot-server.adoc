@@ -1,0 +1,24 @@
+[id="boot-server"]
+= Starting the {project_name} server
+
+If you saw no errors during the {project_name} server installation, you can now start the server.
+
+.Procedure
+. Go to the `bin` directory of the server distribution.
+. Run the `standalone` boot script.
+
++
+.Linux/Unix
+[source,bash,subs=+attributes]
+----
+$ cd bin
+$ ./standalone.sh
+----
+
++
+.Windows
+[source,bash,subs=+attributes]
+----
+> ...\bin\standalone.bat
+----
+

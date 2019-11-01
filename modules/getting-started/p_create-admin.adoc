@@ -1,0 +1,20 @@
+// Metadata created by nebel
+//
+// UserStory: As an RH SSO customer, I want to create an account for myself
+
+[id="create-admin"]
+= Creating the admin account
+
+After the server starts, you are ready to create the admin account.
+
+.Procedure
+
+. Open http://localhost:8080/auth in your web browser. The welcome page will indicate that the server is running.
+
+. Enter a username and password to create an initial admin user. 
+
+You use this account to log in to the `master` realm's Admin Console and create realms. In these other realms, you add users and register applications to be secured by {project_name}.
+
+// Additional resources
+// For more information, see the
+// link:{installguide_link}[{installguide_name}] and the link:{adminguide_link}[{adminguide_name}].

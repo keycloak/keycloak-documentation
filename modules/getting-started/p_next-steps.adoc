@@ -1,0 +1,19 @@
+// Metadata created by nebel
+//
+// UserStory: As an RH SSO customer, I want to now use the actual product.
+
+[id="next-steps"]
+= Choosing the next step
+
+By performing the steps in this guide, you have a standalone version of {project_name}. You are now ready to install this software for use in a production environment.
+
+ifeval::[{project_product}==false]
+For installation instructions that apply to a production environment and a deeper description of features and configuration options, see the https://www.keycloak.org/documentation.html[Keycloak documentation].
+endif::[]
+
+ifeval::[{project_product}==true]
+For installation instructions that apply to a production environment and a deeper description of features and configuration options, see the https://access.redhat.com/products/red-hat-single-sign-on[Red Hat Single Sign-On documentation.]
+
+.Additional resources
+{project_name} is based on the open source link:https://www.keycloak.org/[Keycloak] community project. That project has complete documentation https://www.keycloak.org/documentation.html[here].
+endif::[]

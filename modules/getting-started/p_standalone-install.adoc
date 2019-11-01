@@ -1,0 +1,34 @@
+// Metadata created by nebel
+//
+// UserStory: As an RH SSO customer, I want to install SSO in standalone mode
+
+[id="standalone-install"]
+= Installing the {project_name} server
+
+For this sample instance of {project_name}, this procedure involves installation in standalone mode. The server download ZIP file contains the scripts and binaries to run the {project_name} server. You can install the server on Linux or Windows.
+
+
+.Procedure
+
+. Go to the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&product=core.service.rhsso[Red Hat customer portal].
+
+. Download the {project_name} Server: *rh-sso-{project_version}.zip*
+
+. Place the file in a directory you choose.
+
+. Unpack the ZIP file using the appropriate `unzip` utility.
+
++
+.Linux/Unix
+[source,bash,subs=+attributes]
+----
+$ jar xf rh-sso-{project_version}.zip
+----
+
++
+.Windows
+[source,bash,subs=+attributes]
+----
+$ unzip rhsso-{project_version}.zip
+----
+
