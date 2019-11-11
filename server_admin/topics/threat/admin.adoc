@@ -2,7 +2,7 @@
 === Admin Endpoints and Console
 
 The {project_name} administrative REST API and the web console are exposed by default on the same port as non-admin
-usage. If access to the admin console is not needed externally we recommend not exposing the admin endpoints on the
+usage. If access to the admin console is not needed externally, we recommend not exposing the admin endpoints on the
 Internet.
 
 This can be achieve either directly in {project_name} or with a proxy such as Apache or nginx.
