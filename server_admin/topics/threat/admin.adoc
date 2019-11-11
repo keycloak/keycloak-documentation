@@ -13,7 +13,7 @@ to `/auth/admin`.
 To achieve this directly in {project_name} there are a few options. This document covers two options, IP restriction
 and separate ports.
 
-Once the admin console is no longer accessible on the frontend URL of Keycloak you need to configure a fixed admin
+Once the admin console is no longer accessible on the frontend URL of Keycloak, you need to configure a fixed admin
 URL in the default hostname provider.
 
 ==== IP Restriction
