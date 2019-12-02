@@ -8,8 +8,3 @@ This release fixes a critical vulnerability in LDAP introduced in Keycloak 7. If
 == WildFly 18.0.1.Final
 
 Upgrade to WildFly 18.0.1.Final which includes updates to a number of CVEs in third-party libraries.
-
-== Default first broker login flow is broken after migration
-
-The changes to authentication flows introduced in 8.0.0 broke the default first broker login flow. See
-https://issues.jboss.org/browse/KEYCLOAK-12278[KEYCLOAK-12278] for more details.
