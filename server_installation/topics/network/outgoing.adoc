@@ -60,7 +60,7 @@ proxy-mappings::
   See the section on <<_proxymappings, Proxy Mappings for Outgoing HTTP Requests>> for more details.
   
 disable-trust-manager::
-  If the outgoing requests requires HTTPS and this config option is set to `true` you do not have to specify a truststore.
+  If an outgoing request requires HTTPS and this config option is set to `true` you do not have to specify a truststore.
   This setting should only be used during development and *never* in production as it will disable verification of SSL certificates.
   This is _OPTIONAL_.
   The default value is `false`.
