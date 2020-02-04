@@ -62,7 +62,14 @@ Verify Existing Account By Re-authentication::
   This authenticator is used if email authenticator is disabled or not available (SMTP not configured for realm). It will display a login screen
   where the user needs to authenticate with his password to link their {project_name} account with the Identity provider.
   User can also re-authenticate with some different identity provider, which is already linked to their {project_name} account.
-  You can also force users to use OTP. Otherwise it's optional and used only if OTP is already set for the user account.
+  You can also force users to use OTP. Otherwise it's optional and used only if OTP is already set for the user account. +
+   +
+  This authenticator will behave differently depending on whether the Keycloak user identity has been already established by preceding executions.
+  For example, `Create User If Unique` guarantees that the Keycloak user will be either resolved (matching the external identity), or created otherwise.
+  In this case, login field will be pre-filled and non-editable.
+  However, there are cases where the users neither should be auto-created (e.g. read-only LDAP), nor they could be matched to the external identity (e.g. usernames are different).
+  In this scenario, you should turn off `Create User If Unique` and `Confirm Link Existing Account`.
+  Login field will become editable, allowing to link to an arbitrary Keycloak user.
 
 ==== Automatically Link Existing First Login Flow
 WARNING: The AutoLink authenticator would be dangerous in a generic environment where users can register themselves using arbitrary usernames/email addresses. Do not use this authenticator unless registration of users is carefully curated and usernames/email addresses are assigned, not requested.
