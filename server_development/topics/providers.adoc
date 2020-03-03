@@ -311,6 +311,7 @@ public class EjbExampleUserStorageProviderFactory
 * Authenticator
 * JavaScript Policy
 * OpenID Connect Protocol Mapper
+* SAML Protocol Mapper
 
 ==== Authenticator
 
