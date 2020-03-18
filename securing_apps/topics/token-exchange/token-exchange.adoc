@@ -128,31 +128,31 @@ Clients that want to exchange tokens for a different client need to be authorize
 You'll need to define a `token-exchange` fine grain permission in the target client you want permission to exchange to.
 
 .Target Client Permission
-image:{project_images}/exchange-target-client-permission-unset.png[]
+image:../../keycloak-images/exchange-target-client-permission-unset.png[]
 
 Toggle the `Permissions Enabled` switch to ON.
 
 .Target Client Permission
-image:{project_images}/exchange-target-client-permission-set.png[]
+image:../../keycloak-images/exchange-target-client-permission-set.png[]
 
 You should see a `token-exchange` link on the page.  Click that to start defining the permission.  It will bring you
 to this page.
 
 .Target Client Exchange Permission Setup
-image:{project_images}/exchange-target-client-permission-setup.png[]
+image:../../keycloak-images/exchange-target-client-permission-setup.png[]
 
 You'll have to define a policy for this permission.  Click the `Authorization` link, go to the `Policies` tab and create
 a `Client` Policy.
 
 .Client Policy Creation
-image:{project_images}/exchange-target-client-policy.png[]
+image:../../keycloak-images/exchange-target-client-policy.png[]
 
 Here you enter in the starting client, that is the authenticated client that is requesting a token exchange.  After you
 create this policy, go back to the target client's `token-exchange` permission and add the client policy you just
 defined.
 
 .Apply Client Policy
-image:{project_images}/exchange-target-client-exchange-apply-policy.png[]
+image:../../keycloak-images/exchange-target-client-exchange-apply-policy.png[]
 
 Your client now has permission to invoke.  If you do not do this correctly, you will get a 403 Forbidden response if you
 try to make an exchange.
@@ -214,31 +214,31 @@ permission for the calling client to exchange tokens with the external identity 
 to the client you must go to the identity provider's configuration page to the `Permissions` tab.
 
 .Identity Provider Permission
-image:{project_images}/exchange-idp-permission-unset.png[]
+image:../../keycloak-images/exchange-idp-permission-unset.png[]
 
 Toggle the `Permissions Enabled` switch to true.
 
 .Identity Provider Permission
-image:{project_images}/exchange-idp-permission-set.png[]
+image:../../keycloak-images/exchange-idp-permission-set.png[]
 
 You should see a `token-exchange` link on the page.  Click that to start defining the permission.  It will bring you
 to this page.
 
 .Identity Provider Exchange Permission Setup
-image:{project_images}/exchange-idp-permission-setup.png[]
+image:../../keycloak-images/exchange-idp-permission-setup.png[]
 
 You'll have to define a policy for this permission.  Click the `Authorization` link, go to the `Policies` tab and create
 a `Client` Policy.
 
 .Client Policy Creation
-image:{project_images}/exchange-idp-client-policy.png[]
+image:../../keycloak-images/exchange-idp-client-policy.png[]
 
 Here you enter in the starting client, that is the authenticated client that is requesting a token exchange.  After you
 create this policy, go back to the identity providers's `token-exchange` permission and add the client policy you just
 defined.
 
 .Apply Client Policy
-image:{project_images}/exchange-idp-apply-policy.png[]
+image:../../keycloak-images/exchange-idp-apply-policy.png[]
 
 Your client now has permission to invoke.  If you do not do this correctly, you will get a 403 Forbidden response if you
 try to make an exchange.
@@ -417,31 +417,31 @@ Additionally, the calling client must be granted permission to impersonate users
 `Users` screen and click on the `Permissions` tab.
 
 .Users Permission
-image:{project_images}/exchange-users-permission-unset.png[]
+image:../../keycloak-images/exchange-users-permission-unset.png[]
 
 Toggle the `Permissions Enabled` switch to true.
 
 .Identity Provider Permission
-image:{project_images}/exchange-users-permission-set.png[]
+image:../../keycloak-images/exchange-users-permission-set.png[]
 
 You should see a `impersonation` link on the page.  Click that to start defining the permission.  It will bring you
 to this page.
 
 .Users Impersonation Permission Setup
-image:{project_images}/exchange-users-permission-setup.png[]
+image:../../keycloak-images/exchange-users-permission-setup.png[]
 
 You'll have to define a policy for this permission.  Click the `Authorization` link, go to the `Policies` tab and create
 a `Client` Policy.
 
 .Client Policy Creation
-image:{project_images}/exchange-users-client-policy.png[]
+image:../../keycloak-images/exchange-users-client-policy.png[]
 
 Here you enter in the starting client, that is the authenticated client that is requesting a token exchange.  After you
 create this policy, go back to the users' `impersonation` permission and add the client policy you just
 defined.
 
 .Apply Client Policy
-image:{project_images}/exchange-users-apply-policy.png[]
+image:../../keycloak-images/exchange-users-apply-policy.png[]
 
 Your client now has permission to impersonate users.  If you do not do this correctly, you will get a 403 Forbidden response if you
 try to make this type of exchange.
