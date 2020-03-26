@@ -294,4 +294,4 @@ $ domain.sh --host-config=host-master.xml
 $ domain.sh --host-config=host-slave.xml
 ----
 
-To test it out, open your browser and go to http://localhost:8080/auth.
+To try it out, open your browser and go to http://localhost:8080/auth.
