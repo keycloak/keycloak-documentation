@@ -87,7 +87,9 @@ If {project_name} uses any configured relative URLs, this value is prepended to 
 
 This is a required field.  Enter in a URL pattern and click the + sign to add.  Click the - sign next to URLs you want to remove.
 Remember that you still have to click the `Save` button!
-Wildcards (*) are only allowed at the end of a URI, i.e. $$http://host.com/*$$
+Wildcards (*) are allowed at the end of a URI, i.e. `$$https://host.com/*$$` to match different redirect pathnames of a client.
+It is also possible to use a wildcard for subdomains, i.e. `$$https://*.host.com$$`. Only one label will be matched, means `$$https://sub.host.com$$` but not `$$https://sub.sub.host.com$$` will match for the previous example.
+You may also use a combination of both, i.e. `$$https://*.host.com/*$$`.
 
 You should take extra precautions when registering valid redirect URI patterns. If you make
 them too general you are vulnerable to attacks.  See <<_unspecific-redirect-uris, Threat Model Mitigation>> chapter
