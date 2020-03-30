@@ -71,7 +71,7 @@ $ oc policy add-role-to-user view system:serviceaccount:$(oc project -q):default
 
 ==== Deploying the {project_name} Image using the Application Template
 
-===== Deploying the Template via OpenShift CLI
+===== Deploying the Template via OpenShift 3.x CLI
 
 . List the available {project_name} application templates:
 +
