@@ -55,7 +55,8 @@
 
        div.top-menu-version {
            position: fixed;
-           top: 0;
+           top: 52px;
+           left: 0;
            z-index: 9999;
        }
 
@@ -64,7 +65,14 @@
            margin: 0;
            background-color: #eee;
            height: 48px;
+           width: 20em;
            padding: 7px;
+       }
+
+       @media only screen and (max-width: 1280px) {
+              div.top-menu-version .content {
+                     width: 15em;
+              }
        }
 
        .versionarchive {
@@ -154,7 +162,7 @@ body.toc2 {
 
 @media only screen and (min-width:1280px) {
     #toc.toc2 {
-        top: 48px;
+        top: 100px;
     }
 
     body.toc2 {
