@@ -64,7 +64,7 @@ Use this for {fuseVersion}:
 +
 [source,subs="attributes"]
 ----
-cd /path-to-fuse/jboss-fuse-6.3.0.redhat-254
+cd /path-to-fuse/jboss-fuse-6.3.0.redhat-XXX
 ifeval::[{project_community}==true]
 unzip -q /path-to-adapter-zip/keycloak-fuse-adapter-{project_versionMvn}.zip
 endif::[]

@@ -65,7 +65,7 @@ To run Hawtio on the {fuseHawtioEAPVersion} server, complete the following steps
 * your {project_name} is running on `localhost:8080`
 * the {fuseHawtioEAPVersion} server with deployed Hawtio will be running on `localhost:8181`. The directory with this server is referred in next steps as `$EAP_HOME`.
 
-. Copy the `{fuseHawtioWARVersion}` archive to the `$EAP_HOME/standalone/configuration` directory. For more details about deploying Hawtio see the https://access.redhat.com/documentation/en-us/red_hat_jboss_fuse/6.3/html-single/deploying_into_a_web_server/[Fuse Hawtio documentation].
+. Copy the Hawtio web archive, matching your {fuseVersion} version, to the `$EAP_HOME/standalone/configuration` directory. For more details about deploying Hawtio see the https://access.redhat.com/documentation/en-us/red_hat_jboss_fuse/6.3/html-single/deploying_into_a_web_server/[Fuse Hawtio documentation].
 
 . Copy the `keycloak-hawtio.json` and `keycloak-hawtio-client.json` files with the above content to the `$EAP_HOME/standalone/configuration` directory.
 
