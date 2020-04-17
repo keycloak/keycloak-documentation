@@ -318,6 +318,40 @@ X-Auth-Given-Name: Beloved
 X-Auth-Name: Beloved User
 ----
 
+In order to customize the above Header names created out of claims, one should pass in the claims with a | separator, with the latter part to be the new header name
+for eg :
+
+[source,yaml]
+----
+add-claims:
+- preferred_username|Impersonate-User
+----
+
+would add addition headers to authenticated request with custome header names like :
+
+[source,bash]
+----
+Impersonate-User: username
+----
+
+Note that the claim headers are processed as a map so the latter ones will replace the existing previous keys
+
+For eg :
+
+[source,yaml]
+----
+add-claims:
+- preferred_username|Impersonate-User
+- preferred_username
+----
+
+will result in header like below to be sent.
+
+[source,bash]
+----
+X-Auth-Impersonate-User: username
+----
+
 ==== Custom headers
 
 You can inject custom headers using the `--headers="name=value"` option or the configuration file:
