@@ -53,6 +53,9 @@ You must define the SAML configuration options as well.  They basically describe
 |Force Authentication
 |Indicates that the user will be forced to enter in their credentials at the external IDP even if they are already logged in.
 
+|Pass login_hint
+|Whether or not a `login_hint` query parameter should be forwarded to the IDP. This allows a url builder and/or a social button to give a login hint to prefill its destination login form. This parameter is sanitized and is added to the destination url as two query parameters named `login_hint` and `username`. When no login_hint is provided, nothing is forwarded. This option should be used only with IDPs compatible with `login_hint` and `username` query parameters. When no `login_hint` parameter is provided to the login url, this parameter is not forwarded.
+
 |Validate Signature
 |Whether or not the realm should expect that SAML requests and responses from the external IDP be digitally signed.  It is highly recommended you turn this on!
 
