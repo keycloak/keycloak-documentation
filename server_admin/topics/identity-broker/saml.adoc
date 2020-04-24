@@ -87,4 +87,14 @@ This metadata is also available publicly by going to the URL.
 http[s]://{host:port}/auth/realms/{realm-name}/broker/{broker-alias}/endpoint/descriptor
 ----
 
+[[_identity_broker_saml_login_hint]]
+==== Send Subject in SAML requests
 
+By default, a social button pointing to a SAML Identity Provider redirects the user to a login URL:
+
+[source]
+----
+http[s]://{host:port}/auth/realms/${realm-name}/broker/{broker-alias}/login
+----
+
+Adding a query parameter named `login_hint` to this URL will add its value to SAML request as a Subject attribute. When this query parameter is absent or left empty, no subject will be added to the request.
