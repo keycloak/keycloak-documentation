@@ -19,6 +19,9 @@ Let's walk through each of the items on this page.
 |Revoke Refresh Token
 |For OIDC clients that are doing the refresh token flow, this flag, if on, will revoke that refresh token and issue another token with the request that the client has to use. The result is that each refresh token is used only once. 
 
+|Refresh Token Max Reuse
+|Maximum number of times a refresh token can be reused. When a different token is used, revocation is immediate.
+
 |SSO Session Idle
 |Also pertains to OIDC clients.  If the user is not active for longer than this timeout, the user session will be invalidated.  The idle timeout is reset by a client requesting authentication or by a refresh token request.
 There is a small window of time that is always added to the idle timeout before the session  invalidation takes effect. See the note below.
