@@ -4,8 +4,8 @@
 
 Offline access is a feature described in https://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess[OpenID Connect specification] .
 The idea is that during login, your client application will request an Offline token instead of a classic Refresh token.
-The application can save this offline token in a database or on disk and can use it later even if user is logged out.
-This is useful if your application needs to do some "offline" actions on behalf of user even when the user is not online.
+The application can save this offline token in a database or on disk and can use it later even if the user is logged out.
+This is useful if your application needs to do some "offline" actions on behalf of the user even when she is not online.
 An example is a periodic backup of some data every night.
 
 Your application is responsible for persisting the offline token in some storage (usually a database) and then using it to retrieve new access token from {project_name} server.
