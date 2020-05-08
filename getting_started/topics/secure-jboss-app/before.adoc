@@ -1,7 +1,13 @@
 
 === Before You Start
 
-Before you can secure a Java servlet application, you must complete the installation of {project_name} and create the initial admin user as shown in  <<_install-boot, Installing and Booting>>.
+Before you can secure a Java servlet application, you must have the following installed on your machine and available in your PATH:
+
+* Java JDK 8
+* Apache Maven 3.3.3 or higher
+* Git
+
+and you must complete the installation of {project_name} and create the initial admin user as shown in  <<_install-boot, Installing and Booting>>.
 
 There is one caveat: Even though {appserver_name} is bundled with {project_name}, you cannot use this as an application container.  Instead, you must run a separate {appserver_name} instance on the same machine as the {project_name} server to run your Java servlet application. Run the {project_name} using a different port than the {appserver_name}, to avoid port conflicts.
 
