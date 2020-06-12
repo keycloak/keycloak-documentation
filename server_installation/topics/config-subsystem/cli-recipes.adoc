@@ -18,6 +18,12 @@ For domain mode, this would mean something like:
 ----
 /subsystem=keycloak-server/:write-attribute(name=web-context,value=myContext)
 ----
+_Note: If you change the web-context, change index.html under welcome-content folder as well. For above example it will be_
+[source]
+-----
+window.location.href = "/myContext/"
+<a href='/myContext'>
+-----
 ==== Set the global default theme
 [source]
 ----
