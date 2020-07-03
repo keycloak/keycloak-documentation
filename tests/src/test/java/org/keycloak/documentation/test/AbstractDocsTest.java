@@ -35,7 +35,7 @@ public abstract class AbstractDocsTest {
 
     @BeforeClass
     public static void beforeClass() {
-        linkUtils = new LinkUtils(config, verbose);
+        linkUtils = new LinkUtils(config, true);
     }
 
     @Before

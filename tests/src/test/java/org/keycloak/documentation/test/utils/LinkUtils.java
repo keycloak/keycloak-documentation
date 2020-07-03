@@ -57,7 +57,6 @@ public class LinkUtils {
         Matcher m = p.matcher(body);
         while (m.find()) {
             String link = m.group(1);
-
             if (verifyLink(link, ignoredLinks, invalidLinks)) {
                 if (link.startsWith("http")) {
                     String anchor = link.contains("#") ? link.split("#")[1] : null;
@@ -80,15 +79,13 @@ public class LinkUtils {
                     if (error == null) {
                         verifiedLinks.put(link, System.currentTimeMillis());
 
-                        if (verbose) {
                             System.out.println("[OK]  " + link);
+                        if (verbose) {
                         }
                     } else {
                         invalidLinks.add(new InvalidLink(link, error));
 
-                        if (verbose) {
-                            System.out.println("[BAD] " + link);
-                        }
+                        System.out.println("[BAD] " + link);
                     }
                 } else if (link.startsWith("file")) {
                     File f = new File(new URL(link).getFile());
@@ -137,9 +134,7 @@ public class LinkUtils {
                     } else {
                         missingImages.add(image);
 
-                        if (verbose) {
-                            System.out.println("[BAD]  " + image);
-                        }
+                        System.out.println("[BAD]  " + image);
                     }
                 }
             }
