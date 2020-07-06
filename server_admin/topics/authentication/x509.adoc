@@ -66,7 +66,7 @@ The following sections describe how to configure {appserver_name}/Undertow and t
 
 [[_enable-mtls-wildfly]]
 Enable mutual SSL in {appserver_name}::
-See link:https://docs.jboss.org/author/display/WFLY10/Admin+Guide#AdminGuide-EnableSSL[Enable SSL] and link:https://docs.jboss.org/author/display/WFLY10/Admin+Guide#AdminGuide-%7B%7B%3Cssl%2F%3E%7D%7D[SSL] for the instructions how to enable SSL in {appserver_name}.
+See link:https://docs.jboss.org/author/display/WFLY10/Admin%20Guide.html#91947111_AdminGuide-EnableSSL[Enable SSL] and link:https://docs.jboss.org/author/display/WFLY10/Admin%20Guide.html#91947111_AdminGuide-%7B%7B%3Cssl%2F%3E%7D%7D[SSL] for the instructions how to enable SSL in {appserver_name}.
 
 * Open {project_dirref}/standalone/configuration/standalone.xml and add a new realm:
 ```xml
@@ -121,7 +121,7 @@ The password to open the truststore
 
 Enable https listener::
 
-See link:https://docs.jboss.org/author/display/WFLY10/Admin+Guide#AdminGuide-HTTPSlistener[HTTPS Listener] for the instructions how to enable HTTPS in WildFly.
+See link:https://docs.jboss.org/author/display/WFLY10/Admin%20Guide.html#91947111_AdminGuide-HTTPSlistener[HTTPS Listener] for the instructions how to enable HTTPS in WildFly.
 
 * Add the <https-listener> element as shown below:
 
