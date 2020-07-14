@@ -124,7 +124,7 @@ $ oc new-app --template={project_templates_version}-x509-https
 
 ===== Deploying the Template via the OpenShift Web Console
 
-Alternatively, perform the following steps to deploy the {project_name} template via the OpenShift web console:
+Alternatively, you can perform the following steps to deploy the {project_name} template via the OpenShift web console:
 
 . Log in to the OpenShift web console and select the _sso-app-demo_ project space.
 . Click *Add to Project*, then *Browse Catalog* to list the default image streams and templates.
