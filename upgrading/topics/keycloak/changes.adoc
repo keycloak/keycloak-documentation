@@ -1,5 +1,16 @@
 == Migration Changes
 
+=== Migrating to 11.0.1
+
+=== Changes of default configuration values
+
+Reduced default HTTP socket read timeout::
+The default read timeout for the HTTP and HTTPS listeners has been reduced from 120 to 30 seconds.
+
+Increased default JDBC connection pool size::
+The default connection pool size of the default H2 JDBC datasource has been increased from 20 to 100 connections. It is recommended to set a sufficient pool size for the production datasource as well.
+
+
 === Migrating to 11.0.0
 
 ==== Upgrade to Wildfly 20

@@ -117,3 +117,15 @@ Upload of scripts through admin rest endpoints/console is deprecated. It will be
 
 The Authorization Services Drools Policy has been removed.
 
+=== Changes of default configuration values
+
+Reduced default HTTP socket read timeout::
+  The default read timeout for the HTTP and HTTPS listeners has been reduced from 120 to 30 seconds.
+
+Increased default JDBC connection pool size::
+  The default connection pool size of the default H2 JDBC datasource has been increased from 20 to 100 connections. It is recommended to set a sufficient pool size for the production datasource as well.
+
+==== Upgrading
+
+The configuration changes affect standalone(-ha).xml and domain.xml files. Follow the link:{upgradingguide_link}#upgrading[Upgrading the {project_name} server section] to handle the migration of configuration files automatically.
+
