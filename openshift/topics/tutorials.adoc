@@ -1371,7 +1371,7 @@ Create the _realm management user_:
 . Click *Users* in the *Manage* sidebar to view the user information for the realm.
 . Click *Add User*.
 . Enter a valid *Username* (this example uses the user _eap-mgmt-user_) and click *Save*.
-. Edit the user configuration. Click the *Credentials* tab in the user space and enter a password for the user. After the password has been confirmed you can click *Reset Password* to set the user password. A pop-up window prompts for additional confirmation.
+. Edit the user configuration. Click the *Credentials* tab in the user space, enter a password for the user, and confirm it. Set *Temporary* to *OFF*. Click *Reset Password* to set the user password. A pop-up window prompts for additional confirmation.
 . Click *Role Mappings* to list the realm and client role configuration. In the *Client Roles* drop-down menu, select *realm-management* and add all of the available roles to the user. This provides the user {project_name} server rights that can be used by the {appserver_name} image to create clients.
 
 Create the _application user_:
