@@ -165,7 +165,7 @@ The resulting element, `server name="default-server"`, which is a child element 
 
 [source,xml,subs="attributes+"]
 ----
-<subsystem xmlns="{subsystem_undertow_xml_urn}">
+<subsystem xmlns="urn:jboss:domain:undertow:11.0">
    <buffer-cache name="default"/>
    <server name="default-server">
       <https-listener name="https" socket-binding="https" security-realm="UndertowRealm"/>
