@@ -190,7 +190,8 @@ password::
   This is _REQUIRED_ if any of these properties are defined.
 
 hostname-verification-policy::
-  Defaults to `WILDCARD` if not defined.
+  `WILDCARD` by default.
   For HTTPS requests, this verifies the hostname of the server's certificate.
-  `ANY` means that the hostname is not verified. `WILDCARD` Allows wildcards in subdomain names i.e.
+   `ANY` means that the hostname is not verified. `WILDCARD` Allows wildcards in subdomain names i.e.
   *.foo.com. `STRICT` CN must match hostname exactly.
+
