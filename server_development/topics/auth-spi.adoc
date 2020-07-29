@@ -518,7 +518,7 @@ Here is the implementation of the setRequiredActions() method.
 ----
     @Override
     public void setRequiredActions(KeycloakSession session, RealmModel realm, UserModel user) {
-        user.addRequiredAction("SECRET_QUESTION_CONFIG");
+        user.addRequiredAction("secret_question_config");
     }
 ----
 
