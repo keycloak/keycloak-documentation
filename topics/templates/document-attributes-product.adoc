@@ -1,15 +1,14 @@
 :project_community: false
 :project_product: true
 :project_name: Red Hat Single Sign-On
-:project_versionMvn: 9.0.3.redhat-00002
-:project_versionNpm: 9.0.3.redhat-00002
+:project_versionMvn: 9.0.4.redhat-00001
+:project_versionNpm: 9.0.4.redhat-00001
 :project_images: rhsso-images
-
 :project_name_full: Red Hat Single Sign-On
 :project_version_base: 7.4
-:project_version: 7.4.1
+:project_version: 7.4.2
 :keycloak_upgrade_version: 9.0.x
-:project_versionDoc: 7.4.1
+:project_versionDoc: 7.4.2
 :project_templates_base_url: https://raw.githubusercontent.com/jboss-container-images/redhat-sso-7-openshift-image/sso74-dev/templates
 :project_latest_image_tag: 1.0
 :project_doc_base_url: https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/{project_versionDoc}/html-single
@@ -142,11 +141,11 @@
 :jdgserver_version: 7.3.5
 :jdgserver_crossdcdocs_link: https://access.redhat.com/documentation/en-us/red_hat_data_grid/7.3/html/red_hat_data_grid_user_guide/x_site_replication
 
-:fuseVersion: JBoss Fuse 6.3.0 Rollup 12
+:fuseVersion: JBoss Fuse 6.3.0
 :fuseHawtioEAPVersion: JBoss EAP 6.4
-:fuseHawtioWARVersion: hawtio-wildfly-1.4.0.redhat-630396.war
+:fuseHawtioWARVersion: your-hawtio-webarchive.war
 
-:fuse7Version: JBoss Fuse 7.4.0
+:fuse7Version: JBoss Fuse 7.x
 
 :subsystem_undertow_xml_urn: urn:jboss:domain:undertow:10.0
 :subsystem_infinispan_xml_urn: urn:jboss:domain:infinispan:9.0
