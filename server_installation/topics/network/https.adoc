@@ -173,4 +173,12 @@ The resulting element, `server name="default-server"`, which is a child element 
 </subsystem>
 ----
 
+==== Enabling SSL/HTTPS for the {project_name} Server in Docker
+If you are running Keycloak with Docker and if you are not using a reverse proxy or load balancer to handle HTTPS traffic you can configure the container to handle HTTPS traffic. By default the container uses port 8443 for HTTPS connections and will generate a self-signed certificate. If the right parameters are given when starting the container it will use an existing certificate. The container will read "/etc/x509/https/tls.crt" and "/etc/x509/https/tls.key" and generate a Java keystore which gets used. Care must be taken to allow the container to read these files securely.
 
+===== Docker HTTPS Example
+[source]
+----
+
+$ docker run .... -p 8443:8443 .... -v /etc/ssl/cert.pem:/etc/x509/https/tls.crt -v /etc/ssl/privkey.pem:/etc/x509/https/tls.key .... quay.io/keycloak/keycloak:latest
+----
