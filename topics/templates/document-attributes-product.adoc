@@ -12,7 +12,8 @@
 :project_versionDoc: 7.4.1
 :project_templates_base_url: https://raw.githubusercontent.com/jboss-container-images/redhat-sso-7-openshift-image/sso74-dev/templates
 :project_latest_image_tag: 1.0
-:project_doc_base_url: https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/{project_versionDoc}/html-single
+:project_doc_base_url: https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/{project_version_base}
+:project_doc_html_single_url: {project_doc_base_url}/html-single
 :maven_repository: https://maven.repository.redhat.com/ga/
 
 :project_openshift_product_name: {project_name} for OpenShift
@@ -31,13 +32,13 @@
 :quickstartRepo_dir: redhat-sso-quickstarts
 
 :authorizationguide_name: Authorization Services Guide
-:authorizationguide_link: {project_doc_base_url}/authorization_services_guide/
+:authorizationguide_link: {project_doc_html_single_url}/authorization_services_guide/
 :adapterguide_name: Securing Applications and Services Guide
-:adapterguide_link: {project_doc_base_url}/securing_applications_and_services_guide/
+:adapterguide_link: {project_doc_html_single_url}/securing_applications_and_services_guide/
 :adapterguide_link_js_adapter: {adapterguide_link}#_javascript_adapter
 :adapterguide_logout_link: {adapterguide_link}#_java_adapter_logout
 :adminguide_name: Server Administration Guide
-:adminguide_link: {project_doc_base_url}/server_administration_guide/
+:adminguide_link: {project_doc_html_single_url}/server_administration_guide/
 :adminguide_authentication_flow_name: authentication flow
 :adminguide_authentication_flow_link: {adminguide_link}#_authentication-flows
 :adminguide_bruteforce_name: Password guess: brute force attacks
@@ -49,26 +50,26 @@
 :adminguide_clearcache_name: Clearing Server Caches
 :adminguide_clearcache_link: {adminguide_link}#_clear-cache
 :apidocs_name: API Documentation
-:apidocs_link: {project_doc_base_url}/api_documentation/index
+:apidocs_link: {project_doc_html_single_url}/api_documentation/index
 :developerguide_name: Server Developer Guide
-:developerguide_link: {project_doc_base_url}/server_developer_guide/
+:developerguide_link: {project_doc_html_single_url}/server_developer_guide/
 :developerguide_actiontoken_name: Action Token SPI
 :developerguide_actiontoken_link: {developerguide_link}#_action_token_spi
 :developerguide_jsproviders_name: JavaScript Providers
 :developerguide_jsproviders_link: {developerguide_link}#_script_providers
 :gettingstarted_name: Getting Started Guide
-:gettingstarted_link: {project_doc_base_url}/getting_started_guide/
+:gettingstarted_link: {project_doc_html_single_url}/getting_started_guide/
 :upgradingguide_name: Upgrading Guide
-:upgradingguide_link: {project_doc_base_url}/upgrading_guide/
+:upgradingguide_link: {project_doc_html_single_url}/upgrading_guide/
 :releasenotes_name: Release Notes
-:releasenotes_link: {project_doc_base_url}/release_notes/
+:releasenotes_link: {project_doc_html_single_url}/release_notes/
 :openshift_openjdk_name: Red Hat Single Sign-On for OpenShift on OpenJDK
-:openshift_openjdk_link: {project_doc_base_url}/red_hat_single_sign-on_for_openshift/
+:openshift_openjdk_link: {project_doc_html_single_url}/red_hat_single_sign-on_for_openshift/
 :openshift_openjdk_platforms: x86_64
 :openshift_openjdk_image: redhat-sso-7/sso74-openshift-rhel8
 :openshift_openjdk_project_templates_version: sso74
 :openshift_openj9_name: Red Hat Single Sign-On for OpenShift on OpenJ9
-:openshift_openj9_link: {project_doc_base_url}/red_hat_single_sign-on_for_openshift_on_openj9/
+:openshift_openj9_link: {project_doc_html_single_url}/red_hat_single_sign-on_for_openshift_on_openj9/
 :openshift_openj9_platforms: s390x
 :openshift_openj9_image: redhat-sso-7/sso74-openj9-openshift-rhel8
 :openshift_openj9_project_templates_version: sso74-openj9
@@ -90,7 +91,7 @@
 :ocp311docs_reencrypt_route_link: {official_ocp_docs_link}/3.11/architecture/networking/routes.html#re-encryption-termination
 
 :installguide_name: Server Installation and Configuration Guide
-:installguide_link: {project_doc_base_url}/server_installation_and_configuration_guide/
+:installguide_link: {project_doc_html_single_url}/server_installation_and_configuration_guide/
 :installguide_clustering_name: Clustering
 :installguide_clustering_link: {installguide_link}#_clustering
 :installguide_database_name: Database
