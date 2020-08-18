@@ -13,17 +13,13 @@ For this sample instance of {project_name}, this procedure involves installation
 
 . Place the file in a directory you choose.
 
-. Unpack the ZIP file using the appropriate `unzip` utility, such as unzip, tar, or Expand-Archive.
+. Unpack the ZIP file using the appropriate `unzip` utility, such as unzip, or Expand-Archive.
 
 +
 .Linux/Unix
 [source,bash,subs=+attributes]
 ----
 $ unzip rhsso-{project_version_base}.zip
-
-or
-
-$ tar -xvzf rh-sso-{project_version_base}.tar.gz
 ----
 
 +

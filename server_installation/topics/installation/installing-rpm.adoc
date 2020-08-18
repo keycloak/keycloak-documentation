@@ -66,4 +66,4 @@ Your installation is complete. The default RH-SSO_HOME path for the RPM installa
 
 .Additional resources
 
-For details on installing the {project_version} patch for {project_name}, see link:https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/{project_version_base}/html/upgrading_guide/upgrading#rpm-patching[RPM patching].
+For details on installing the {project_version} patch for {project_name}, see link:https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/{project_versionDoc}/html/upgrading_guide/upgrading#rpm-patching[RPM patching].

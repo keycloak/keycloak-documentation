@@ -34,7 +34,7 @@ custom server extensions as long as no private, unsupported, or tech preview API
 ==== Micro Updates
 
 Red Hat Single Sign-On {project_versionDoc} also periodically provides micro releases that contain bug and security fixes.
-Micro releases increment the minor release version by the last digit, for example from  {project_versionDoc}.0 to {project_versionDoc}.1. These releases
+Micro releases increment the minor release version by the last digit, for example from  {project_version_base} to {project_versionDoc}.1. These releases
 do not require migration and should not impact the server configuration files. The patch management system for ZIP
 installations can also rollback the patch and server configuration.
 

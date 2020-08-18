@@ -1,15 +1,15 @@
 
 === Installing RH-SSO from a ZIP File
 
-The {project_name} server download ZIP file contains the scripts and binaries to run the {project_name} server. You install the {project_version_base} server first, then the {project_version} server patch.
+The {project_name} server download ZIP file contains the scripts and binaries to run the {project_name} server. You install the {project_version_base_ga} server first, then the {project_version} server patch.
 
 .Procedure
 
 . Go to the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&product=core.service.rhsso[Red Hat customer portal].
 
-. Download the {project_name} {project_version_base} server.
+. Download the {project_name} {project_version_base_ga} server.
 
-. Unpack the ZIP file using the appropriate `unzip` utility, such as unzip, tar, or Expand-Archive.
+. Unpack the ZIP file using the appropriate `unzip` utility, such as unzip, or Expand-Archive.
 
 . Return to the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html?downloadType=distributions&product=core.service.rhsso[Red Hat customer portal].
 
@@ -39,12 +39,12 @@ $ jboss-cli.sh
 +
 [source,bash,subs=+attributes]
 ----
-$ patch apply <path-to-zip>/rh-sso-{project_version}-patch.zip
+$ patch apply <path-to-zip>/rh-sso-{project_version_MMM}-patch.zip
 ----
 
 .Additional resources
 
-For more details on applying patches, see link:https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/{project_version_base}/html/upgrading_guide/upgrading#zip-patching[Patching a ZIP/Installer Installation].
+For more details on applying patches, see link:https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/{project_versionDoc}/html/upgrading_guide/upgrading#zip-patching[Patching a ZIP/Installer Installation].
 
 
 
