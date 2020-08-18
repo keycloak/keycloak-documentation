@@ -88,7 +88,7 @@
 :ocpdocs_install_cluster_link: {official_ocp_docs_link}/latest/architecture/architecture-installation.html
 :ocpdocs_default_service_accounts_link: {official_ocp_docs_link}/latest/authentication/using-service-accounts-in-applications.html#default-service-accounts-and-roles_using-service-accounts
 :ocpdocs_jobs_link: {official_ocp_docs_link}/latest/nodes/jobs/nodes-nodes-jobs.html
-:ocpdocs_ingress_service_external_ip_link: {official_ocp_docs_link}/latest/networking/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-service-external-ip.html#nw-service-external-ip_configuring-ingress-cluster-traffic-service-external-ip
+:ocpdocs_ingress_service_external_ip_link: {official_ocp_docs_link}/latest/networking/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-service-external-ip.html#nw-service-externalip-create_configuring-ingress-cluster-traffic-service-external-ip
 :ocpdocs_cluster_local_registry_access_link: {official_ocp_docs_link}/latest/registry/accessing-the-registry.html#registry-accessing-directly_accessing-the-registry
 :ocp311docs_passthrough_route_link: {official_ocp_docs_link}/3.11/architecture/networking/routes.html#passthrough-termination
 :ocp311docs_reencrypt_route_link: {official_ocp_docs_link}/3.11/architecture/networking/routes.html#re-encryption-termination
