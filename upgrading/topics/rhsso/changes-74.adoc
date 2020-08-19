@@ -110,7 +110,7 @@ Reduced default HTTP socket read timeout::
 Increased default JDBC connection pool size::
   The default connection pool size of the default H2 JDBC datasource has been increased from 20 to 100 connections. It is recommended to set a sufficient pool size for the production datasource as well.
 
-==== Upgrading
+==== Upgrading Configuration
 
 The configuration changes affect standalone(-ha).xml and domain.xml files. Follow the link:{upgradingguide_link}#upgrading[Upgrading the {project_name} server section] to handle the migration of configuration files automatically.
 
