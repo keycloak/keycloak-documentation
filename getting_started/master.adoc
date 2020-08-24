@@ -11,3 +11,5 @@ include::topics/templates/document-attributes-product.adoc[]
 = {gettingstarted_name}
 
 include::topics.adoc[]
+
+//testing if I have a permission to make changes to this doc
