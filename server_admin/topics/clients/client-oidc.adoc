@@ -95,7 +95,7 @@ for more information.
 
 *Base URL*
 
-If {project_name} needs to link to the client, this URL is used.
+If {project_name} needs to send link to the client, this URL is used.
 
 *Admin URL*
 
