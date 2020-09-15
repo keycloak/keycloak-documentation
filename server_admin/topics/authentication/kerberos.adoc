@@ -5,7 +5,7 @@
 {project_name} supports login with a Kerberos ticket through the SPNEGO protocol.
 SPNEGO (Simple and Protected GSSAPI Negotiation Mechanism) is used to authenticate transparently through the web browser after the user
 has been authenticated when logging-in his session.
-For non-web cases or when ticket is not available during login, {project_name} also supports login with Kerberos username/password.
+For non-web cases or when the ticket is not available during login, {project_name} also supports login with Kerberos username/password.
 
 A typical use case for web authentication is the following:
 
@@ -18,7 +18,7 @@ A typical use case for web authentication is the following:
 . {project_name} validates token from the browser and authenticates the user.
   It provisions user data from LDAP (in case of LDAPFederationProvider with Kerberos authentication support) or let user
   to update his profile and prefill data (in case of KerberosFederationProvider).
-. {project_name} returns back to the application.
+. {project_name} returns to the application.
   Communication between {project_name} and application happens through OpenID Connect or SAML messages.
   The fact that {project_name} was authenticated through Kerberos is hidden from the application.
   So {project_name} acts as broker to Kerberos/SPNEGO login.
@@ -40,10 +40,10 @@ At least you will need to:
 * Add some user principals to your Kerberos database.
   You can also integrate your Kerberos with LDAP, which means that user accounts will be provisioned from LDAP server.
 * Add service principal for "HTTP" service.
-  For example if your {project_name} server will be running on `www.mydomain.org` you may need to add principal `HTTP/www.mydomain.org@MYDOMAIN.ORG`
+  For example, if your {project_name} server will be running on `www.mydomain.org` you may need to add principal `HTTP/www.mydomain.org@MYDOMAIN.ORG`
   assuming that MYDOMAIN.ORG will be your Kerberos realm.
 +
-For example on MIT Kerberos you can run a "kadmin" session.
+For example, on MIT Kerberos you can run a "kadmin" session.
 If you are on the same machine where is MIT Kerberos, you can simply use the command:
 
 [source]
@@ -77,7 +77,7 @@ For the example realm MYDOMAIN.ORG you may configure the `domain_realm` section 
 
 Next you need to export the keytab file with the HTTP principal and make sure the file is accessible to the process under which {project_name} server is running.
 For production, it's ideal if it's readable just by this process and not by someone else.
-For the MIT Kerberos example above, we already exported keytab to `/tmp/http.keytab` . If your KDC and {project_name} are running on same host,
+For the MIT Kerberos example above, we already exported keytab to `/tmp/http.keytab` . If your KDC and {project_name} are running on the same host,
 you have that file already available.
 
 ===== Enable SPNEGO Processing
@@ -118,7 +118,7 @@ User profile information like first name, last name, and email are not provision
 ==== Setup and configuration of client machines
 
 Clients need to install kerberos client and setup krb5.conf as described above.
-Additionally they need to enable SPNEGO login support in their browser.
+Additionally, they need to enable SPNEGO login support in their browser.
 See link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system-level_authentication_guide/configuring_applications_for_sso[configuring Firefox for Kerberos] if you are using that browser.
 URI `.mydomain.org` must be allowed in the `network.negotiate-auth.trusted-uris` config option.
 
@@ -131,8 +131,8 @@ For easier testing with Kerberos, we provided some example setups to test.
 
 ===== {project_name} and FreeIPA docker image
 
-Once you install https://www.docker.com/[docker], you can run docker image with FreeIPA server installed.
-FreeIPA provides integrated security solution with MIT Kerberos and 389 LDAP server among other things . The image provides also {project_name}
+Once you install https://www.docker.com/[docker], you can run a docker image with FreeIPA server installed.
+FreeIPA provides an integrated security solution with MIT Kerberos and 389 LDAP servers among other things. The image provides also {project_name}
 server configured with LDAP Federation provider and enabled SPNEGO/Kerberos authentication against the FreeIPA server.
 See details https://github.com/mposolda/keycloak-freeipa-docker/blob/master/README.md[here] .
 
@@ -192,18 +192,18 @@ WARNING: Credential delegation has some security implications so only use it if 
 
 In the Kerberos V5 protocol, the `realm` is a set of Kerberos principals defined in the Kerberos database (typically LDAP server).
 The Kerberos protocol has a concept of cross-realm trust. For example, if there are 2 kerberos realms A and B, the cross-realm trust
-will allow the users from realm A to access resources (services) of realm B. This means that realm B trusts the realm A.
+will allow the users from realm A to access resources (services) of realm B. This means that realm B trusts realm A.
 
 .Kerberos cross-realm trust
 image:images/kerberos-trust-basic.png[]
 
 
-The {project_name} server has support for cross-realm trust. There are few things which need to be done to achieve this:
+The {project_name} server has support for cross-realm trust. There are a few things which need to be done to achieve this:
 
 * Configure the Kerberos servers for the cross-realm trust. This step is dependent on the concrete Kerberos server implementations used.
 In general, it is needed to add the Kerberos principal `krbtgt/B@A` to both Kerberos databases of realm A and B. It is needed that
-this principal has same keys on both Kerberos realms. This is usually achieved when the principals have same password, key version number
-and there are same ciphers used in both realms. It is recommended to consult the Kerberos server documentation for more details.
+this principal has the same keys on both Kerberos realms. This is usually achieved when the principals have the same password, key version number
+and there are the same ciphers used in both realms. It is recommended to consult the Kerberos server documentation for more details.
 
 NOTE: The cross-realm trust is unidirectional by default. If you want bidirectional trust to have realm A also trust realm B,
 you must also add the principal `krbtgt/A@B` to both Kerberos databases. However, trust is transitive by default. If realm B
@@ -219,7 +219,7 @@ example: `HTTP/mydomain.com@B`. The LDAP server must be able to find the users f
 successfully authenticate to {project_name}, as {project_name} server must be able to do SPNEGO flow and then find the users.
 For example, kerberos principal user `john@A` must be available as a user in the LDAP under an LDAP DN
 such as `uid=john,ou=People,dc=example,dc=com`. If you want both users from realm A and B to authenticate, you need to ensure
-that LDAP is able to find users from both realms A and B. We want to improve this limitation in future versions, so you can
+that LDAP can find users from both realms A and B. We want to improve this limitation in future versions, so you can
 potentially create more separate LDAP providers for separate realms and ensure that SPNEGO works for both of them.
 
 ** If you use a Kerberos user storage provider (typically the Kerberos without LDAP integration), you need to configure the
@@ -233,7 +233,7 @@ future versions and provide some more flexible mappings from Kerberos principals
 
 If you have issues, we recommend that you enable additional logging to debug the problem:
 
-* Enable `Debug` flag in admin console for Kerberos or LDAP federation providers
-* Enable TRACE logging for category `org.keycloak` in logging section of `standalone/configuration/standalone.xml` to receive more info `standalone/log/server.log`
+* Enable `Debug` flag in the admin console for Kerberos or LDAP federation providers
+* Enable TRACE logging for category `org.keycloak` in the logging section of `standalone/configuration/standalone.xml` to receive more info `standalone/log/server.log`
 * Add system properties `-Dsun.security.krb5.debug=true` and `-Dsun.security.spnego.debug=true`
 
