@@ -16,6 +16,9 @@ You must define the SAML configuration options as well.  They basically describe
 |===
 |Configuration|Description
 
+|Service Provider Entity ID
+|This is a required field and specifies the SAML Entity ID that the remote Identity Provider will use to identify requests coming from this Service Provider. By default it is set to the realm base URL `<root>/auth/realms/{realm-name}`.
+
 |Single Sign-On Service URL
 |This is a required field and specifies the SAML endpoint to start the authentication process.  If your SAML IDP publishes an IDP entity descriptor, the value of
  this field will be specified there.
