@@ -72,6 +72,70 @@ You must define the SAML configuration options as well.  They basically describe
 |Whether or not a `login_hint` query parameter should be forwarded to the IDP. When provided, this login_hint parameter is added to AuthnRequest's Subject. This allows destination providers to prefill their login form. When no login_hint is provided, nothing is forwarded as an AuthnRequest Subject.
 |===
 
+Admin can also configure additional metadata in the separate fieldset "SAML metadata extensions".
+
+.SAML metadata extensions
+image:{project_images}/saml-metadata-extensions.png[]
+
+The above table describe this metadata.
+
+.SAML metadata extension
+|===
+|SAML attributes
+|In a table add SAML attributes. If attribute values are more than one for the same attribute name, add them with comma separated.
+
+|Registration authority
+|Registration information is useful for determining the identity federation of a given SAML IdP configured from a metadata source.
+
+|Registration policy
+|Registration policy.
+
+|Description
+|A brief, localized description of SAML IdP.
+
+|Information url
+|Localized information about the SAML IdP.
+
+|Privacy statement url
+|External location for localised privacy statements.
+
+|Logo
+|Localized logo (URL or base64-encoded image data) fit for display to users.
+
+|Logo width
+|Logo width.
+
+|Logo height
+|Logo height.
+
+|Organization name
+|Organization name.
+
+|Organization display name
+|Organization display name.
+
+|Organization URL
+|Organization URL.
+
+|Contact person type
+|Type of contact person of organization.The possible values are technical, support, administrative, billing, and other.
+
+|Contact person company name
+|SAML IdP contact person company name.
+
+|Contact person given name
+|SAML IdP contact person given name.
+
+|Contact person surname
+|SAML IdP contact person surname.
+
+|Contact person emails
+|SAML IdP contact person emails separated by comma.
+
+|Contact person telephone numbers
+|SAML IdP contact person telephone numbers separated by comma.
+|===
+
 
 You can also import all this configuration data by providing a URL or file that points to the SAML IDP entity descriptor of the external IDP.
 If you are connecting to a {project_name} external IDP, you can import the IDP settings from the URL `<root>/auth/realms/{realm-name}/protocol/saml/descriptor`.
@@ -114,6 +178,8 @@ http[s]://{host:port}/auth/realms/{realm-name}/broker/{broker-alias}/endpoint/de
 ----
 
 Make sure to save any configuration changes before accessing the descriptor or they will not be reflected in the metadata.
+Metadata extensions values (mdrpi:RegistrationInfo, mdui:UIInfo, md:Organization, md:ContactPerson) in produced xml is taken from realm metadata settings ( tab SAML metadata extensions in Realm Settings)
+
 
 [[_identity_broker_saml_login_hint]]
 ==== Send Subject in SAML requests
