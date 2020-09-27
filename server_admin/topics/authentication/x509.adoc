@@ -303,7 +303,7 @@ Example of NGINX configuration file :
 [source,txt]
 ----
  ...
- server { 
+ server {
     ...
     ssl_client_certificate                  trusted-ca-list-for-client-auth.pem;
     ssl_verify_client                       optional_no_ca;
@@ -319,6 +319,53 @@ Example of NGINX configuration file :
 ----
 
 NOTE: all certificates in trusted-ca-list-for-client-auth.pem must be added to link:{installguide_truststore_link}[{installguide_truststore_name}].
+
+
+===== Envoy certificate lookup provider
+
+You can use this provider when your {project_name} server is behind an Envoy proxy. Configure the server like this:
+
+[source,xml]
+----
+<spi name="x509cert-lookup">
+    <default-provider>envoy</default-provider>
+    <provider name="envoy" enabled="true" />
+    <!-- Properties are not needed as the headers are not configurable -->
+</spi>
+----
+
+
+You want to ensure that the `x-forwarded-client-cert` header is set, and `Chain` is provided in it.
+This field in the header will contain the entire certificate chain for the client certificate downstream.
+
+Consult the link:https://www.envoyproxy.io/docs/envoy/v1.15.0/configuration/http/http_conn_man/headers#config-http-conn-man-headers-x-forwarded-client-cert[Envoy documentation] for more info.
+The HTTP connection manager filter in Envoy should roughly be configured as follows:
+
+[source,yaml]
+----
+static_resources:
+  listeners:
+  - filter_chains:
+    - filters:
+      - name: envoy.filters.network.http_connection_manager
+        typed_config:
+          "@type": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
+          forward_client_cert_details: SANITIZE_SET  # Ensure that x-forwarded-client-cert exists
+          set_current_client_cert_details:
+            chain: true  # Provide Chain inside the XFCC header
+          # [...]
+      transport_socket:
+        name: envoy.transport_sockets.tls
+        typed_config:
+          "@type": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext
+          require_client_certificate: true  # True if client certificates are mandatory for this filter chain
+          common_tls_context:
+            tls_certificates:
+              # [...]
+            validation_context:
+              trusted_ca:
+                filename: /tls/ca.crt  # The CA that signs client certificates
+----
  
 ===== Other reverse proxy implementations
 
