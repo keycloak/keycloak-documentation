@@ -1,0 +1,6 @@
+=== Localization fields support
+
+Keycloak supports client name and description localization.
+
+Realm admin can add localized name and description in a separate fieldset with two table exist.
+In these table user can add name/description for all supported locale by deployed Keycloak version.

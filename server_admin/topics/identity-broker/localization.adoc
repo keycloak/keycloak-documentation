@@ -1,0 +1,7 @@
+=== Localization name support
+
+In the login page users can see SAML and OIDC Identity Provider name based on the selected locale ( for Internationalization Enabled realm).
+If localized Identity Provider name exists, this is displayed. Otherwise general Identity Provider name( or alias if general name does not exist) is displayed.
+
+For SAML and OIDC Identity Provider name a separate fieldset with a table exists.
+In this table user can add name for all supported locale by deployed Keycloak version.
