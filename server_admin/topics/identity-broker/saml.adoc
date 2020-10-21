@@ -114,6 +114,7 @@ http[s]://{host:port}/auth/realms/{realm-name}/broker/{broker-alias}/endpoint/de
 ----
 
 Make sure to save any configuration changes before accessing the descriptor or they will not be reflected in the metadata.
+Some metadata attributes values are common across all Identity Providers. These attributes can be configured per realm in a separate tab(SAML metadata extension tab) of the realm configuration panel. 
 
 [[_identity_broker_saml_login_hint]]
 ==== Send Subject in SAML requests
