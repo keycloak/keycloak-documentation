@@ -12,4 +12,4 @@ include::oidc/con-confidential-client-credentials.adoc[]
 
 include::oidc/proc-using-a-service-account.adoc[]
 
-include::oidc/audience.adoc[]
+include::oidc/con-audience.adoc[]
