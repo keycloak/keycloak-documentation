@@ -5,6 +5,10 @@
 :project_versionNpm: 9.0.3.redhat-00002
 :project_images: rhsso-images
 
+:standalone:
+:api-management!:
+:on-prem:
+
 :project_name_full: Red Hat Single Sign-On
 :project_version_base: 7.4
 :project_version: 7.4.1
