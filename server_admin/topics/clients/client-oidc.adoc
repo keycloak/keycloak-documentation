@@ -1,9 +1,15 @@
 
 === OIDC Clients
-
+[role="_abstract"]
 <<_oidc,OpenID Connect>> is the preferred protocol to secure applications.  It was designed from the ground up to be web friendly
 and work best with HTML5/JavaScript applications.
 
-include::proc-creating-oidc-client.adoc[]
+include::oidc/proc-creating-oidc-client.adoc[]
 
-include::con-advanced-settings.adoc[]
+include::oidc/con-advanced-settings.adoc[]
+
+include::oidc/con-confidential-client-credentials.adoc[]
+
+include::oidc/proc-using-a-service-account.adoc[]
+
+include::oidc/audience.adoc[]
