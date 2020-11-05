@@ -89,6 +89,7 @@ This is also used by REST clients, but instead of obtaining a token that works o
 of an external user, a token is created based on the metadata and permissions of a service account that is associated with the client.
 More info together with example is in <<_service_accounts,Service Accounts>> chapter.
 
+[[_oidc-endpoints]]
 ====  {project_name} Server OIDC URI Endpoints
 
 Here's a list of OIDC endpoints that the {project_name} publishes.  These URLs are useful if you are using a non-{project_name} client adapter to
@@ -105,6 +106,6 @@ _/auth_:  i.e. $$https://localhost:8080/auth$$
 /realms/{realm-name}/protocol/openid-connect/userinfo::
   This is the URL endpoint for the User Info service described in the OIDC specification.
 /realms/{realm-name}/protocol/openid-connect/revoke::
-  This is the URL endpoint for OAuth 2.0 Token Revocation described in https://tools.ietf.org/html/rfc7009[RFC7009].
+  This is the URL endpoint for OAuth 2.0 Token Revocation, which is described in https://tools.ietf.org/html/rfc7009[RFC7009].
 
 In all of these replace _{realm-name}_ with the name of the realm.

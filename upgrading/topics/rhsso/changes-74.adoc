@@ -114,3 +114,16 @@ Increased default JDBC connection pool size::
 
 The configuration changes affect standalone(-ha).xml and domain.xml files. Follow the link:{upgradingguide_link}#upgrading[Upgrading the {project_name} server section] to handle the migration of configuration files automatically.
 
+==== Client Credentials Grant without refresh token by default
+
+From this {project_name} version, the OAuth2 Client Credentials Grant endpoint does not issue refresh tokens by default. This behavior is aligned with the OAuth2 specification.
+As a side-effect of this change, there is no user session created on the {project_name} server side after successful Client Credentials authentication, which results
+in improved performance and memory consumption. Clients that use Client Credentials Grant are encouraged to stop using
+refresh tokens and instead always authenticate at every request with `grant_type=client_credentials` instead of using `refresh_token` as grant type.
+In relation to this situation, {project_name} has support for revocation of access tokens in the OAuth2 Revocation Endpoint, hence clients are allowed
+to revoke individual access tokens if needed.
+
+For the backwards compatibility, there is a possibility to stick to the behavior of old versions. When this option is used, the refresh token will be still issued after
+a successful authentication with the Client Credentials Grant and also the user session will be created. This capability can be enabled for the particular client in
+the {project_name} admin console, in client details in the section with `OpenID Connect Compatibility Modes` with the switch `Use Refresh Tokens For Client Credentials Grant`.
+
