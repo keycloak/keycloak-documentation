@@ -16,13 +16,13 @@ The features that can be enabled and disabled are:
 
 |account2
 |New Account Management Console
-|No
-|Preview
+|Yes
+|Supported
 
 |account_api
 |Account Management REST API
-|No
-|Preview
+|Yes
+|Supported
 
 |admin_fine_grained_authz
 |Fine-Grained Admin Permissions
