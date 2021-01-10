@@ -13,7 +13,7 @@ will be used by default, giving you the time to update your custom theme to the 
 
 == OpenID Connect Back-Channel Logout
 
-Support for OpenID Connect Back-Channel Logout is no available, thanks to https://github.com/DaSmoo[DaSmoo] and
+Support for OpenID Connect Back-Channel Logout is now available, thanks to https://github.com/DaSmoo[DaSmoo] and
 https://github.com/benjamin37[benjamin37].
 
 == Upgrade to Wildfly 21
