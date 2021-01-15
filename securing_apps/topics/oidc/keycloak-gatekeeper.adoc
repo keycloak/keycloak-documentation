@@ -1,6 +1,9 @@
 [[_keycloak_generic_adapter]]
 === {generic_adapter_name_full}
 
+NOTE: {project_name} aka Louketo Proxy is EOL. See https://www.keycloak.org/2020/08/sunsetting-louketo-project.adoc
+
+
 {project_name} provides a Go programming language adapter for use with OpenID Connect (OIDC) that supports both access tokens in a browser cookie or bearer tokens.
 
 This documentation details how to build and configure {generic_adapter_name} followed by details of how to use each of its features.
