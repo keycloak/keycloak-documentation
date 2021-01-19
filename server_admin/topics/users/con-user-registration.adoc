@@ -1,0 +1,19 @@
+// Module included in the following assemblies:
+//
+// server_admin/topics/users.adoc
+
+[id="con-user-registration_{context}"]
+= User Registration
+
+[role="_abstract"]
+You can use {project_name} as a third-party authorization server to manage application users, including users who self-register. If you enable self-registration, the login page displays a registration link so that user can create an account.
+
+.Registration Link
+image:{project_images}/registration-link.png[]
+
+A user must add profile information to the registration form to complete registration. The registration form can be customized by removing or adding the fields that must be completed by a user.
+
+
+[role="_additional-resources"]
+.Additional resources
+* For more information on customizing user registration, see the link:{developerguide_link}[{developerguide_name}].
