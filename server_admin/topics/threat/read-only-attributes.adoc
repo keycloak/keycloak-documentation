@@ -1,4 +1,5 @@
-[[_read_only_user_attributes]]
+
+[id="con-read-only-user-attributes_{context}"]
 === Read-only User Attributes
 
 Typical users who are stored in {project_name} have various attributes related to their user profiles. Such attributes include email, firstName or lastname.
@@ -8,8 +9,7 @@ be even read-only for the administrators when creating or updating user with the
 
 The metadata attributes are usually attributes from those groups:
 
-* Various links or metadata related to the user storage providers. For example in case of the LDAP integration, the `LDAP_ID` attribute contains
-the ID of the user in the LDAP server.
+* Various links or metadata related to the user storage providers. For example in case of the LDAP integration, the `LDAP_ID` attribute contains the ID of the user in the LDAP server.
 * Metadata provisioned by User Storage. For example `createdTimestamp` provisioned from the LDAP should be always read-only by user or administrator.
 * Metadata related to various authenticators. For example `KERBEROS_PRINCIPAL` attribute can contain the kerberos principal name of the particular user. Similarly attribute
 `usercertificate` can contain metadata related to binding the user with the data from the X.509 certificate, which is used typically when X.509 certificate authentication is enabled.
