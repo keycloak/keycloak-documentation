@@ -1,4 +1,4 @@
-[[_clients]]
+[id="assembly-managing-clients_{context}"]
 
 == Managing Clients
 

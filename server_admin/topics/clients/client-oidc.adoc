@@ -1,7 +1,8 @@
 
+[id="assembly-oidc-clients_{context}"]
 === OIDC Clients
 
-<<_oidc,OpenID Connect>> is the preferred protocol to secure applications.  It was designed from the ground up to be web friendly
+xref:con-oidc_{context}[OpenID Connect] is the preferred protocol to secure applications.  It was designed from the ground up to be web friendly
 and work best with HTML5/JavaScript applications.
 
 To create an OIDC client go to the `Clients` left menu item.  On this page you'll see a `Create` button on the right.
@@ -24,6 +25,8 @@ tab.
 
 .Client Settings
 image:{project_images}/client-settings-oidc.png[]
+
+[id="proc-creating-oidc-client_{context}"]
 
 Let's walk through each configuration item on this page.
 
@@ -69,15 +72,15 @@ _bearer-only_::
 
 *Standard Flow Enabled*
 
-If this is on, clients are allowed to use the OIDC <<_oidc-auth-flows,Authorization Code Flow>>.
+If this is on, clients are allowed to use the OIDC xref:con-oidc-auth-flows_{context}[Authorization Code Flow].
 
 *Implicit Flow Enabled*
 
-If this is on, clients are allowed to use the OIDC <<_oidc-auth-flows,Implicit Flow>>.
+If this is on, clients are allowed to use the OIDC xref:con-oidc-auth-flows_{context}[Implicit Flow].
 
 *Direct Access Grants Enabled*
 
-If this is on, clients are allowed to use the OIDC <<_oidc-auth-flows,Direct Access Grants>>.
+If this is on, clients are allowed to use the OIDC xref:con-oidc-auth-flows_{context}[Direct Access Grants].
 
 *Root URL*
 
