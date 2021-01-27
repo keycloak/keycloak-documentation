@@ -2,11 +2,9 @@
 
 === Dedicated Realm Admin Consoles
 
-Each realm has a dedicated Admin Console that can be accessed by going to the url `/auth/admin/{realm-name}/console`.
-Users within that realm can be granted realm management permissions by assigning specific user role mappings.
+Each realm has an Admin Console. Access the admin console by going to the `/auth/admin/{realm-name}/console` url. Users within that realm can get realm management permissions by assigning specific user role mappings.
 
-Each realm has a built-in client called `realm-management`.  You can view this client by going to the
-`Clients` left menu item of your realm.  This client defines client-level roles that specify permissions that can be granted to manage the realm.
+Each realm has a client named `realm-management`. You can view this client in the `Clients` menu in your realm. The client defines client-level roles that specify permissions for management of the realm.
 
 * view-realm
 * view-users
@@ -21,5 +19,4 @@ Each realm has a built-in client called `realm-management`.  You can view this c
 * manage-identity-providers
 * impersonation
 
-Assign the roles you want to your users and they will only be able to use that specific part of the administration console.
-
+Users with these roles can use that specific part of the administration console only.
