@@ -55,9 +55,27 @@ While its use is not required, it greatly simplifies your security context confi
 ----
 
 
+@Configuration
+public class SessionConfig
+{
+    /**
+    * Defines the session registry as a bean.
+    */
+    @Bean
+    public SessionRegistry sessionRegistry() {
+        return new SessionRegistryImpl();
+    }
+}
+
 @KeycloakConfiguration
 public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
 {
+    /**
+    * Injects the session registry bean.
+    */
+    @Autowired
+    private SessionRegistry sessionRegistry;
+    
     /**
      * Registers the KeycloakAuthenticationProvider with the authentication manager.
      */
@@ -72,7 +90,7 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
     @Bean
     @Override
     protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
-        return new RegisterSessionAuthenticationStrategy(new SessionRegistryImpl());
+        return new RegisterSessionAuthenticationStrategy(sessionRegistry);
     }
 
     @Override
@@ -89,6 +107,8 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
 ----
 
 You must provide a session authentication strategy bean which should be of type `RegisterSessionAuthenticationStrategy` for public or confidential applications and `NullAuthenticatedSessionStrategy` for bearer-only applications.
+
+TIP: The `SessionRegistryImpl` must be registered as bean in Spring ApplicationContext, it's required to handle properly the `SessionDestroyedEvent` and prevent leaks of `SessionInformation`.
 
 Spring Security's `SessionFixationProtectionStrategy` is currently not supported because it changes the session identifier after login via Keycloak.
 If the session identifier changes, universal log out will not work because Keycloak is unaware of the new session identifier.
