@@ -156,6 +156,8 @@ Two features have a change in status:
 
 * Upload of scripts through admin rest endpoints/console is deprecated. It will be removed at a future release.
 
+include::https://github.com/redhat-documentation/mw-shared-modules/blob/master/modules/ref_runtimes_metering_labels.adoc[]
+
 = Fixed Issues
 
 More than 1100 issues were fixed during this release. For details on the fixed issues, see link:https://issues.redhat.com/browse/KEYCLOAK-13785?filter=12346377[https://issues.redhat.com/issues/?filter=12346377].

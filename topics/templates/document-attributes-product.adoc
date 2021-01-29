@@ -4,7 +4,8 @@
 :project_versionMvn: 9.0.3.redhat-00002
 :project_versionNpm: 9.0.3.redhat-00002
 :project_images: rhsso-images
-
+:component-name: "SSO"
+:component-version: 7.4.5
 :project_name_full: Red Hat Single Sign-On
 :project_version_base: 7.4
 :project_version: 7.4.1
