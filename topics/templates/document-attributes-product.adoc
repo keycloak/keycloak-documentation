@@ -16,6 +16,10 @@
 :project_doc_base_url: https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/{project_versionDoc}/html-single
 :maven_repository: https://maven.repository.redhat.com/ga/
 
+//Runtimes component attributes
+:component-name: "SSO"
+:component-version: {project_version_MMM}
+
 :project_openshift_product_name: {project_name} for OpenShift
 
 :project_operator: Red Hat Single Sign-On Operator
