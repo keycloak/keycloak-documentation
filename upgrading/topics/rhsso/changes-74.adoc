@@ -127,3 +127,10 @@ For the backwards compatibility, there is a possibility to stick to the behavior
 a successful authentication with the Client Credentials Grant and also the user session will be created. This capability can be enabled for the particular client in
 the {project_name} admin console, in client details in the section with `OpenID Connect Compatibility Modes` with the switch `Use Refresh Tokens For Client Credentials Grant`.
 
+==== Valid Request URIs
+
+If you use the OpenID Connect parameter `request_uri`, a requirement exists that your client needs to have `Valid Request URIs` configured.
+This parameter can be configured through the admin console on the client details page or through the admin REST API or client registration API. Valid Request URIs need
+to contain the list of Request URI values that are permitted for the particular client. This is to avoid SSRF attacks. There is a possibility to use wildcards
+or relative paths similarly such as the `Valid Redirect URIs` option, however for security purposes, we typically recommend to use as specific value
+as possible.
