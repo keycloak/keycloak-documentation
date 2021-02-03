@@ -1,13 +1,13 @@
 :project_community: false
 :project_product: true
 :project_name: Red Hat Single Sign-On
-:project_versionMvn: 9.0.10.redhat-00001
+:project_versionMvn: 9.0.11.redhat-00001
 :project_versionNpm: 9.0.10-redhat-00001
 :project_images: rhsso-images
 :project_name_full: Red Hat Single Sign-On
 :project_version_base: 7.4.0
 :project_version_base_ga: {project_version_base}.GA
-:project_version_MMM: 7.4.4
+:project_version_MMM: 7.4.5
 :project_version: {project_version_MMM}.GA
 :keycloak_upgrade_version: 9.0.x
 :project_versionDoc: 7.4
