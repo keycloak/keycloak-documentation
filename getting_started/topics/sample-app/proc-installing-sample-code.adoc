@@ -37,6 +37,13 @@ $ cd {quickstartRepo_dir}/app-profile-jee-vanilla/config
 ----
 $ mvn clean wildfly:deploy
 ----
+*Note: For all getting a Compilation failure within deploying, you have to add the following two lines within the configuration of the pom.xml in the root of the keycloak-quickstarts folder: 
+
+<maven.compiler.source>1.8</maven.compiler.source>
+<maven.compiler.target>1.8</maven.compiler.target>
+
+This pom.xlm is connected to the ones in the project examples.
+
 
 . Confirm that the application installationt succeeded. Go to http://localhost:8080/vanilla where a login page is displayed.
 +
