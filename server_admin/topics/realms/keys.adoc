@@ -1,94 +1,126 @@
+
 [[realm_keys]]
-=== Realm Keys
+=== Configuring realm keys
 
-The authentication protocols that are used by {project_name} require cryptographic signatures and sometimes
-encryption.  {project_name} uses asymmetric key pairs, a private and public key, to accomplish this.
+{project_name}'s authentication protocols require cryptographic signatures and, in some cases, encryption.  {project_name} implements asymmetric key pairs (a private and public key) to address this situation.
 
-{project_name} has a single active keypair at a time, but can have several passive keys as well. The active keypair
-is used to create new signatures, while the passive keypairs can be used to verify previous signatures. This makes it
-possible to regularly rotate the keys without any downtime or interruption to users.
+When {project_name} creates a realm, a key pair and a self-signed certificate are automatically generated. {project_name} realms have a single active key pair but can have multiple passive keys as well. {project_name} uses the active key pair to create new signatures and the passive key pairs to verify previous signatures. Using this method, {project_name} regularly rotates keys without downtime or interruption to users.
 
-When a realm is created a key pair and a self-signed certificate is automatically generated.
+To view the active keys for a realm, perform the following:
 
-To view the active keys for a realm select the realm in the admin console click on `Realm settings` then `Keys`. This
-will show the currently active keys for the realm.
+.Procedure
+. Select the realm in the Admin Console.
+. Click *Realm settings*.
+. Click *Keys*.
+. Click *Passive* to view passive keys.
+. Click *Disabled* to view disabled keys.
 
-To view passive or disabled keys select `Passive` or `Disabled`. 
-A keypair can have the status `Active`, but still not be selected as the currently active keypair for the realm. 
-The selected active pair which is used for signatures is selected based on the first key provider sorted by priority 
-that is able to provide an active keypair.
+The status of a key pair can be `Active` but still unselected as the currently active key pair for the realm. {project_name} selects the active key pair used for signatures based on the first key provider, sorted by priority, that can provide an active key pair.
 
 ==== Rotating keys
 
-It's recommended to regularly rotate keys. To do so you should start by creating new keys with a higher priority than
-the existing active keys. Or create new keys with the same priority and making the previous keys passive.
+Rotate keys regularly by:
 
-Once new keys are available all new tokens and cookies will be signed with the new keys. When a user authenticates to an
-application the SSO cookie is updated with the new signature. When OpenID Connect tokens are refreshed new tokens are
-signed with the new keys. This means that over time all cookies and tokens will use the new keys and after a while the
-old keys can be removed.
+* Creating new keys with a higher priority than the existing active keys or
+* Creating new keys with the same priority and making the previous keys passive.
 
-How long you wait to delete old keys is a tradeoff between security and making sure all cookies and tokens are updated.
-In general it should be acceptable to drop old keys after a few weeks. Users that have not been active in the period
-between the new keys where added and the old keys removed will have to re-authenticate.
+When new keys are available, {project_name} signs new tokens and cookies with the new keys. When users authenticate an application, {project_name} updates the SSO cookie with the new signature. When {project_name} refreshes OpenID Connect tokens, the new tokens are signed with the new keys. Over time, all cookies and tokens use the new keys and eventually, all old keys can be removed. 
 
-This also applies to offline tokens. To make sure they are updated the applications need to refresh the tokens before
-the old keys are removed.
+Applications using offline refresh tokens must refresh the tokens before old keys are removed.
 
-As a guideline, it may be a good idea to create new keys every 3-6 months and delete old keys 1-2 months after the new
-keys were created.
+==== Adding a generated key pair
 
-==== Adding a generated keypair
+To add a new generated key pair:
 
-To add a new generated keypair select `Providers` and choose `rsa-generated` from the dropdown. You can change the priority
-to make sure the new keypair becomes the active keypair. You can also change the `keysize` if you want smaller or larger keys (default is 2048,
-supported values are 1024, 2048 and 4096).
+.Procedure
+. Select the realm in the Admin Console.
+. Click *Realm settings*.
+. Click the *Keys* tab.
+. Click the *Providers* tab.
+. Click *Add keystore* and select *rsa-generated*. 
+. Enter a number in the *Priority* field. This number determines if the new key pair becomes the active key pair.
+. Select a value for *keysize*.
+. Click *Save*.
 
-Click `Save` to add the new keys. This will generated a new keypair including a self-signed certificate.
+Clicking *Save* generates a new key pair. The new key pair includes a new self-signed certificate.
 
-Changing the priority for a provider will not cause the keys to be re-generated, but if you want to change the keysize
-you can edit the provider and new keys will be generated.
+Changing the priority does not regenerate the keys but changing the key size will generate new keys.
 
-==== Adding an existing keypair and certificate
+==== Adding an existing key pair and certificate
 
-To add a keypair and certificate obtained elsewhere select `Providers` and choose `rsa` from the dropdown. You can change
-the priority to make sure the new keypair becomes the active keypair.
+To add a key pair and certificate generated outside of {project_name}:
 
-Click on `Select file` for `Private RSA Key` to upload your private key. The file should be encoded in PEM format. You
-don't need to upload the public key as it is automatically extracted from the private key.
+.Prerequisites
+* A private key file. The file must be PEM formatted.
 
-If you have a signed certificate for the keys click on `Select file` next to `X509 Certificate`. If you don't have one
- you can skip this and a self-signed certificate will be generated.
+.Procedure
+. Select the realm in the Admin Console.
+. Click *Realm settings*.
+. Click the *Keys* tab.
+. Click the *Providers* tab.
+. Click *Add keystore* and select *rsa*. 
+. Enter a number in the *Priority* field. This number determines if the new key pair becomes the active key pair.
+. Click *Select file* beside *Private RSA Key* to upload the private key file.
+. If you have a signed certificate for your private key,  click *Select file* beside *X509 Certificate* to upload the certificate file. {project_name} autmatically generates a self-signed certificate if you do not upload a certificate.
+. Click *Save*.
 
 ==== Loading keys from a Java Keystore
 
-To add a keypair and certificate stored in a Java Keystore file on the host select `Providers` and choose `java-keystore`
-from the dropdown. You can change the priority to make sure the new keypair becomes the active keypair.
+To add a key pair and certificate stored in a Java Keystore file:
 
-Fill in the values for `Keystore`, `Keystore Password`, `Key Alias` and `Key Password` and click on `Save`.
+.Procedure
+. Select the realm in the Admin Console.
+. Click *Realm settings*.
+. Click the *Keys* tab.
+. Click the *Providers* tab.
+. Click *Add keystore* and select *java-keystore*. 
+. Enter a number in the *Priority* field. This number determines if the new key pair becomes the active key pair.
+. Enter a value for *Keystore*.
+. Enter a value for *Keystore Password*.
+. Enter a value for *Key Alias*.
+. Enter a value for *Key Password*.
+. Click *Save*.
 
 ==== Making keys passive
 
-Locate the keypair in `Active` then click on the provider in the `Provider` column. This will take you to the
-configuration screen for the key provider for the keys. Click on `Active` to turn it `OFF`, then click on `Save`. The
-keys will no longer be active and can only be used for verifying signatures.
+.Procedure
+. Select the realm in the Admin Console.
+. Click Realm settings.
+. Click the *Keys* tab.
+. Click the *Active* tab.
+. Click the provider of the key you want to make passive.
+. Toggle *Active* to *OFF*.
+. Click *Save*.
 
 ==== Disabling keys
 
-Locate the keypair in `Active` then click on the provider in the `Provider` column. This will take you to the
-configuration screen for the key provider for the keys. Click on `Enabled` to turn it `OFF`, then click on `Save`. The
-keys will no longer be enabled.
-
-Alternatively, you can delete the provider from the `Providers` table.
+.Procedure
+. Select the realm in the Admin Console.
+. Click Realm settings.
+. Click the *Keys* tab.
+. Click the *Active* tab.
+. Click the provider of the key you want to make passive.
+. Toggle *Enabled* to *OFF*.
+. Click *Save*.
 
 ==== Compromised keys
 
 {project_name} has the signing keys stored just locally and they are never shared with the client applications, users or other
-entities. However if you think that your realm signing key was compromised, you should first generate new keypair as described above and
+entities. However, if you think that your realm signing key was compromised, you should first generate new keypair as described above and
 then immediately remove the compromised keypair.
 
-Then to ensure that client applications won't accept the tokens signed by the compromised key, you should update and push not-before policy for
-the realm, which is doable from the admin console. Pushing new policy will ensure that client applications won't accept the existing
-tokens signed by the compromised key, but also the client application will be forced to download new keypair from the {project_name}, hence
-the tokens signed by the compromised key won't be valid anymore. Note that your REST and confidential clients must have set `Admin URL`, so that
-{project_name} is able to send them the request about pushed not-before policy.
+To ensure that client applications do not accept the tokens signed by compromised keys, update and push the not-before policy for the realm.
+
+.Procedure
+. Click *Clients* in the menu.
+. Click *security-admin-console*.
+. Click the *Revocation* tab.
+. Click *Set to now*.
+. Click *Push*.
+
+Pushing the not-before policy ensures that client applications do not accept the existing tokens signed by the compromised key. The client application is forced to download new key pairs from {project_name} also so the tokens signed by the compromised key will be invalid.
+
+[NOTE]
+====
+REST and confidential clients must set *Admin URL* so {project_name} can send clients the pushed not-before policy request.
+====
