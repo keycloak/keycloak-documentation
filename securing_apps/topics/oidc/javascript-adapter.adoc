@@ -91,8 +91,7 @@ It has no other task than sending the received tokens to the main application an
 
 Please keep in mind that this page at the specified location must be provided by the application itself and is _not_ part of the JavaScript adapter!
 
-WARNING: Starting with Chrome version 80 (released on February 2020), silent `check-sso` functionality will work only
-when the SSL / TLS connection is configured on the {project_name} side.
+WARNING: _Silent_ `check-sso` functionality is limited in some modern browsers. Please see the <<_modern_browsers,Modern Browsers with Tracking Protection Section>>.
 
 To enable `login-required` set `onLoad` to `login-required` and pass to the init method:
 
@@ -154,10 +153,14 @@ This feature can be disabled by setting `checkLoginIframe: false` in the options
 You should not rely on looking at this cookie directly. Its format can change and it's also associated with the URL of the {project_name} server, not
 your application.
 
+<<<<<<< HEAD
 WARNING: Starting with Chrome version 80 (released on February 2020), status iframe will only be able to see the special
 cookie over the SSL / TLS connection configured on the {project_name} side. Using an insecure connection may lead to redirecting
 to {project_name} every time iframe checks the status. You can avoid this behavior by disabling iframe
 or link:{installguide_link}#_setting_up_ssl[configuring the SSL / TLS] on the {project_name} side.
+=======
+WARNING: Session Status iframe functionality is limited in some modern browsers. Please see <<_modern_browsers,Modern Browsers with Tracking Protection Section>>.
+>>>>>>> e18ea48b... KEYCLOAK-16929 Adding conscious language preface of the release notes
 
 [[_javascript_implicit_flow]]
 ==== Implicit and Hybrid Flow
@@ -369,7 +372,7 @@ Options is an Object, where:
 
 * redirectUri - Specifies the uri to redirect to after login.
 * prompt - This parameter allows to slightly customize the login flow on the {project_name} server side.
-For example enforce displaying the login screen in case of value `login`. See link:#_params_forwarding[Parameters Forwarding Section]
+For example enforce displaying the login screen in case of value `login`. See link:{adapterguide_link}#_params_forwarding[Parameters Forwarding Section]
 for the details and all the possible values of the `prompt` parameter.
 * maxAge - Used just if user is already authenticated. Specifies maximum time since the authentication of user happened. If user is already authenticated for longer time than `maxAge`, the SSO is ignored and he will need to re-authenticate again.
 * loginHint - Used to pre-fill the username/email field on the login form.
