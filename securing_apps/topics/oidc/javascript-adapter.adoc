@@ -155,12 +155,6 @@ your application.
 
 WARNING: Session Status iframe functionality is limited in some modern browsers. Please see <<_modern_browsers,Modern Browsers with Tracking Protection Section>>.
 
-WARNING: Session Status iframe functionality is limited in some modern browsers. Please see <<_modern_browsers,Modern Browsers with Tracking Protection Section>>.
-
-WARNING: Session Status iframe functionality is limited in some modern browsers. Please see <<_modern_browsers,Modern Browsers with Tracking Protection Section>>.
-
-WARNING: Session Status iframe functionality is limited in some modern browsers. Please see <<_modern_browsers,Modern Browsers with Tracking Protection Section>>.
-
 [[_javascript_implicit_flow]]
 ==== Implicit and Hybrid Flow
 
