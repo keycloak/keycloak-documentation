@@ -155,10 +155,14 @@ your application.
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 WARNING: Starting with Chrome version 80 (released on February 2020), status iframe will only be able to see the special
 cookie over the SSL / TLS connection configured on the {project_name} side. Using an insecure connection may lead to redirecting
 to {project_name} every time iframe checks the status. You can avoid this behavior by disabling iframe
 or link:{installguide_link}#_setting_up_ssl[configuring the SSL / TLS] on the {project_name} side.
+=======
+WARNING: Session Status iframe functionality is limited in some modern browsers. Please see <<_modern_browsers,Modern Browsers with Tracking Protection Section>>.
+>>>>>>> e18ea48b... KEYCLOAK-16929 Adding conscious language preface of the release notes
 =======
 WARNING: Session Status iframe functionality is limited in some modern browsers. Please see <<_modern_browsers,Modern Browsers with Tracking Protection Section>>.
 >>>>>>> e18ea48b... KEYCLOAK-16929 Adding conscious language preface of the release notes
