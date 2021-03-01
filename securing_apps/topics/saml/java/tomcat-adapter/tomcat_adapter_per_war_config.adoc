@@ -16,6 +16,16 @@ This is a Tomcat specific config file and you must define a Keycloak specific Va
 Next you must create a `keycloak-saml.xml` adapter config file within the `WEB-INF` directory of your WAR.
 The format of this config file is described in the <<_saml-general-config,General Adapter Config>> section.
 
+In case a file location is required for `keycloak-saml.xml` (in cases of shared files and/or runtime configuration). It is possible to user a file location parameter  name "keycloak.config.file", as in the example bellow:
+
+[source,xml]
+----
+<Context path="/your-context-path">
+    <Valve className="org.keycloak.adapters.saml.tomcat.SamlAuthenticatorValve"/>
+    <Parameter name="keycloak.config.file" value="/shared/site/conf/keycloak-saml.xml" />
+</Context>
+----
+
 Finally you must specify both a `login-config` and use standard servlet security to specify role-base constraints on your URLs.
 Here's an example: 
 
