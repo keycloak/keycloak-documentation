@@ -21,7 +21,7 @@ As the admin in the master realm, you create the realms where administrators cre
 .A new realm
 image:images/add-demo-realm.png[A new realm]
 +
-NOTE: The realm name is case-sensitive, so make note of the case that you use.
+NOTE: The realm name is case-sensitive, so make note of the case that you use.  If the name has spaces for a two word name i.e. "demo name" will cause some issues functionality throughout keycloak.  Be sure to have the names one work or join with underscore such as: "demo_name" or "demoName".
 
 . Click *Create*.
 +
