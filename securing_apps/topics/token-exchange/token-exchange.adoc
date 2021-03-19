@@ -3,6 +3,7 @@
 
 == Token Exchange
 
+:project_images: ../../keycloak-images
 :tech_feature_name: Token Exchange
 :tech_feature_setting: -Dkeycloak.profile.feature.token_exchange=enabled
 include::../templates/techpreview.adoc[]
