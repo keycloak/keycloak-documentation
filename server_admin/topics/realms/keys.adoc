@@ -65,6 +65,8 @@ If you have a signed certificate for the keys click on `Select file` next to `X5
 To add a keypair and certificate stored in a Java Keystore file on the host select `Providers` and choose `java-keystore`
 from the dropdown. You can change the priority to make sure the new keypair becomes the active keypair.
 
+For the associated certificate chain to be loaded it must be imported to the Java Keystore file with the same `Key Alias` used to load the keypair.
+
 Fill in the values for `Keystore`, `Keystore Password`, `Key Alias` and `Key Password` and click on `Save`.
 
 ==== Making keys passive
