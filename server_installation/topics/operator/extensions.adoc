@@ -46,3 +46,9 @@ You can package and deploy themes in the same way as any other extensions. See {
 
 The Operator downloads the extension or theme and installs it.
 
+It is possible to use a private extension through the use of an HTTP basic auth URL.
+
+```
+https://username:password@host.com/theme.jar
+```
+
