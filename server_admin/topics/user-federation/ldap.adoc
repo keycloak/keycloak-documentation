@@ -98,6 +98,25 @@ There is a configuration property `Use Truststore SPI` in the LDAP federation pr
 By default, the value is `Only for ldaps`, which is fine for most deployments.  The Truststore SPI will only be used
 if the connection URL to LDAP starts with `ldaps`.
 
+If the LDAP server is setup with Mutual TLS, the server will request a client certificate from Keycloak.
+
+If using ldaps, specify the client certificate to respond to the client request, start keycloak with following:
+[source]
+----
+
+bin/standalone.sh
+-Dkeycloak.tls.keystore.path=KEYSTORE_PATH
+-Dkeycloak.tls.keystore.password=KEYSTORE_PASSWORD
+----
+If using starttls, specify the client certificate to respond to the client request, start keycloak with the following:
+[source]
+----
+
+bin/standalone.sh
+-Djavax.net.ssl.keyStore=KEYSTORE_PATH
+-Djavax.net.ssl.keyStorePassword=KEYSTORE_PASSWORD
+----
+
 ==== Sync of LDAP users to {project_name}
 
 If you enable the Import Users option, the LDAP Provider will automatically take care of synchronization (import) of needed LDAP users into the {project_name} local database.
