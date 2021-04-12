@@ -489,7 +489,7 @@ endif::[]
 </distributed-cache>
 
 <distributed-cache name="actionTokens" owners="2">
-    <object-memory size="-1"/>
+    <heap-memory size="-1"/>
     <expiration max-idle="-1" interval="300000"/>
     <remote-store cache="actionTokens" remote-servers="remote-cache" passivation="false" fetch-state="false" purge="false" preload="true" shared="true">
         <property name="rawValues">true</property>
