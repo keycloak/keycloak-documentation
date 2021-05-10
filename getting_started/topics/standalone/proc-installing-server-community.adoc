@@ -28,3 +28,5 @@ $ tar -xvzf keycloak-{project_version}.tar.gz
 ----
 > Expand-Archive -Path 'C:Downloads\keycloak-{project_version}.zip` -DestinationPath 'C:\Downloads'
 ----
+Download and Extract the ".tar.gz" file using Power shell by entering the following command:
+ tar -xvzf keycloak-{project_version}.tar.gz
