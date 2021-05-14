@@ -48,6 +48,7 @@
 :adminguide_timeouts_link: {adminguide_link}#_timeouts
 :adminguide_clearcache_name: Clearing Server Caches
 :adminguide_clearcache_link: {adminguide_link}#_clear-cache
+:adminguide_clientscopes_link: {adminguide_link}#client_scopes
 :apidocs_name: API Documentation
 :apidocs_link: {project_doc_base_url}/api_documentation/index
 :developerguide_name: Server Developer Guide
