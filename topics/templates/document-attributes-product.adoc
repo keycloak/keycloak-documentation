@@ -93,7 +93,7 @@
 :installguide_name: Server Installation and Configuration Guide
 :installguide_link: {project_doc_base_url}/server_installation_and_configuration_guide/
 :installguide_clustering_name: Clustering
-:installguide_clustering_link: {installguide_link}#_clustering
+:installguide_clustering_link: {installguide_link}#clustering
 :installguide_database_name: Database
 :installguide_database_link: {installguide_link}#_database
 :installguide_disablingcaching_name: Disabling caching
