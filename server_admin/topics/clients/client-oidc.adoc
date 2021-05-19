@@ -105,6 +105,18 @@ for more information.
 
 If {project_name} needs to link to the client, this URL is used.
 
+*Logo URL*
+
+URL that references a logo for the Client application.
+
+*Policy URL*
+
+URL that the Relying Party Client provides to the End-User to read about the how the profile data will be used.
+
+*Terms of Service URL*
+
+URL that the Relying Party Client provides to the End-User to read about the Relying Party's terms of service.
+
 *Admin URL*
 
 For {project_name} specific client adapters, this is the callback endpoint for the client.  The {project_name}

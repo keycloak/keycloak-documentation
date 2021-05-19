@@ -150,6 +150,18 @@ Valid Redirect URIs::
 
 Base URL::
   If {project_name} needs to link to the client, this URL would be used.
+  
+*Logo URL*
+
+URL that references a logo for the Client application.
+
+*Policy URL*
+
+URL that the Relying Party Client provides to the End-User to read about the how the profile data will be used.
+
+*Terms of Service URL*
+
+URL that the Relying Party Client provides to the End-User to read about the Relying Party's terms of service.
 
 Master SAML Processing URL::
   This URL will be used for all SAML requests and the response will be directed to the SP.
