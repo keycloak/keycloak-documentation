@@ -62,6 +62,31 @@ var keycloak = new Keycloak({
 });
 ----
 
+If you are using different Identity Provider, you can create adapter by passing OIDC discovery endpoint URL:
+
+[source,javascript]
+----
+var keycloak = new Keycloak({
+    oidcProvider: 'http://oidc-server/auth',
+    clientId: 'myapp'
+});
+----
+
+In this case, final discovery endpoint URL will be `http://oidc-server/auth/.well-known/openid-configuration`
+
+You can also specify endpoints directly:
+
+[source,javascript]
+----
+var keycloak = new Keycloak({
+    oidcProvider: {
+        authorization_endpoint: 'https://oidc-server/oauth',
+        token_endpoint: 'https://oidc-server/oauth/access_token'
+    },
+    clientId: 'myapp'
+});
+----
+
 By default to authenticate you need to call the `login` function. However, there are two options available to make the adapter automatically authenticate. You
 can pass `login-required` or `check-sso` to the init function. `login-required` will authenticate the client if the user is logged-in to {project_name}
 or display the login page if not. `check-sso` will only authenticate the client if the user is already logged-in, if the user is not logged-in the browser will be
@@ -360,7 +385,22 @@ An affected browser is e.g. Safari starting with version 13.1.
 ----
 new Keycloak();
 new Keycloak('http://localhost/keycloak.json');
-new Keycloak({ url: 'http://localhost/auth', realm: 'myrealm', clientId: 'myApp' });
+new Keycloak({
+    url: 'http://localhost/auth',
+    realm: 'myrealm',
+    clientId: 'myApp'
+});
+new Keycloak({
+    oidcProvider: 'http://localhost/auth',
+    clientId: 'myApp'
+});
+new Keycloak({
+    oidcProvider: {
+        authorization_endpoint: 'http://localhost/auth',
+        token_endpoint: 'http://localhost/auth/token'
+    },
+    clientId: 'myApp' 
+});
 ----
 
 ===== Properties
