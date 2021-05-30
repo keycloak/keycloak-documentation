@@ -73,6 +73,9 @@ image:{project_images}/saml-add-identity-provider.png[Add Identity Provider]
 
 |Pass subject
 |Controls if {project_name} forwards a `login_hint` query parameter to the IDP. {project_name} adds this field's value to the login_hint parameter in the AuthnRequest's Subject so destination providers can pre-fill their login form.
+
+|Attribute Consuming Service Index
+|A numeric index that identifies the attribute set to request to the remote IDP. Attribute sets and their indexes should be manually added to the client metadata document and shared with the IDP. If empty, the IDP decides which attribute set to return.
 |===
 
 You can import all configuration data by providing a URL or a file pointing to the SAML IDP entity descriptor of the external IDP. If you are connecting to a {project_name} external IDP, you can import the IDP settings from the URL `<root>/auth/realms/{realm-name}/protocol/saml/descriptor`. This link is an XML document describing metadata about the IDP. You can also import all this configuration data by providing a URL or XML file pointing to the external SAML IDP's entity descriptor to connect to.
