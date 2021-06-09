@@ -1,9 +1,9 @@
 
-=== System Requirements
+=== Installation prerequisites
 
-These are the requirements to run the {project_name} authentication server:
+These prerequisites exist for installing the {project_name} server:
 
-* Can run on any operating system that runs Java
+* An operating system that runs Java
 * Java 8 JDK
 * zip or gzip and tar
 * At least 512M of RAM
