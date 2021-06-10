@@ -1,4 +1,4 @@
-[[_client_scopes]]
+[[client_scopes]]
 === Client Scopes
 
 If you have many applications you need to secure and register within your organization, it can become tedious to configure the

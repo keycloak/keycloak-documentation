@@ -20,7 +20,7 @@ image:{project_images}/full-client-scope.png[]
 
 You can see from the picture that the effective roles of the scope are every declared role in the realm.
 To change this default behavior, you must explicitly turn off the `Full Scope Allowed` switch and declare the specific roles you want in each individual
-client.  Alternatively, you can also use <<_client_scopes, client scopes>>
+client.  Alternatively, you can also use <<client_scopes, client scopes>>
 to define the same role scope mappings for a whole set of clients.
 
 .Partial Scope

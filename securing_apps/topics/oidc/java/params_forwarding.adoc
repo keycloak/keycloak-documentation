@@ -17,7 +17,7 @@ and the parameter `scope=offline_access` will be automatically forwarded to the 
 
 The supported parameters are:
 
-* scope - Use a space-delimited list of scopes. A space-delimited list typically references link:{adminguide_link}#_client_scopes[Client scopes]
+* scope - Use a space-delimited list of scopes. A space-delimited list typically references link:{adminguide_link}#client_scopes[Client scopes]
 defined on particular client. Note that the scope `openid` will be always be added to the list of scopes by the adapter. For example, if you
 enter the scope options `address phone`, then the request to {project_name} will contain the scope parameter `scope=openid address phone`.
 

@@ -43,7 +43,7 @@ your services to verify the audience on the token. If this is done, the flow abo
 
 . A user is authenticated in {project_name}. {project_name} then issued tokens to the `my-app` application. The client application
   already knows that it will need to invoke service `evil-service`, so it used `scope=evil-service` in the authentication request
-  sent to the {project_name} server. See <<_client_scopes, Client Scopes section>> for more details about the _scope_ parameter.
+  sent to the {project_name} server. See <<client_scopes, Client Scopes section>> for more details about the _scope_ parameter.
   The token issued to the `my-app` client contains the audience, as in `"audience": [ "evil-service" ]`, which declares that the
   client wants to use this access token to invoke just the service `evil-service`.
 
