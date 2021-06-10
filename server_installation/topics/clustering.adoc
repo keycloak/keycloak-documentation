@@ -1,5 +1,5 @@
 
-[[_clustering]]
+[[clustering]]
 == Clustering
 
 This section covers configuring {project_name} to run in a cluster.  There's a number
