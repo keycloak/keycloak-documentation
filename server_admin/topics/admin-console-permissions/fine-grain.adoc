@@ -19,6 +19,7 @@ and assign restricted access policies for managing a realm.  Things like:
 * Being able to assign a specific restricted set of roles to a composite role.
 * Being able to assign a specific restricted set of roles to a client's scope.
 * New general policies for viewing and managing users, groups, roles, and clients.
+* Allowing regular expressions as valid redirect URIs for a specific OIDC-client.
 
 There are some important things to note about fine grain admin permissions:
 
@@ -27,6 +28,7 @@ There are some important things to note about fine grain admin permissions:
 * Fine grain permissions are used to grant additional permissions.  You cannot override the
   default behavior of the built in admin roles.
 
+[[_managing_one_specific_client]]
 ==== Managing One Specific Client
 
 Let's look first at allowing
@@ -190,6 +192,27 @@ image:{project_images}/fine-grain-client-permissions-tab-on.png[]
 If you grant access to this particular permission to an admin, that admin will be able
 map any role defined by the client.
 
+==== Regular expressions as valid redirect URIs
+
+To allow regular expressions as valid redirect URIs on a specific client the admin can use fine grain admin permissions. This only works with clients using the `openid-connect` protocol. The setup is similar to <<_managing_one_specific_client, Managing One Specific Client>>. 
+
+.Client Permissions Tab
+image:{project_images}/fine-grain-client-regex-permissions-tab-on.png[]
+
+With `Permissions Enabled` on, clicking on `allow-regex-redirect-uri`  will take you to the permission that handles the `allow-regex-redirect-uri` permission in the `realm-management` client's `Authorization` tab.
+
+.Client Allow-Regex-Redirect-URI Permission
+image:{project_images}/fine-grain-client-regex-permission.png[]
+
+Like in the <<_managing_one_specific_client, Managing One Specific Client>> section apply the `sales-app-admin` policy with the client `sales-application` to the permission. `Resource` and `Scopes` are being configured automatically.
+
+Now you can navigate to the settings of the client `sales-application` to set regular expressions as valid redirect URIs.
+
+.Regular Expression as valid redirect URI
+image:{project_images}/fine-grain-client-regex-settings.png[]
+
+
+
 ==== Full List of Permissions
 
 You can do a lot more with fine grain permissions beyond managing a specific client or the specific roles of a client.
@@ -249,6 +272,8 @@ map-roles-client-scope::
     to the scope of another client.
     This is a shortcut, easy-of-use feature to avoid having to define policies
     for each and every role defined by the client.
+allow-regex-redirect-uri::
+    Policies that decide if a OIDC-client can configure regular expressions as valid redirect uris.
 
 [[_users-permissions]]
 ===== Users

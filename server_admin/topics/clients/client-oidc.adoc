@@ -97,6 +97,8 @@ This is a required field.  Enter in a URL pattern and click the + sign to add.  
 Remember that you still have to click the `Save` button!
 Wildcards (*) are only allowed at the end of a URI, i.e. $$http://host.com/*$$
 
+Additionally, it is possible to use regular expressions as valid redirect URIs configurable via the <<_fine_grain_permissions, Fine Grain Admin Permissions>>. Using wildcards is still the recommended way.
+
 You should take extra precautions when registering valid redirect URI patterns. If you make
 them too general you are vulnerable to attacks.  See <<_unspecific-redirect-uris, Threat Model Mitigation>> chapter
 for more information.
