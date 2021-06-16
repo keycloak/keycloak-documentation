@@ -6,6 +6,7 @@
 // This page describes MAVEN_MIRROR_URL variable usage
 // It requires 'bcname' attribute to be set to the name of the product
 
+[role="_abstract"]
 A repository in Maven holds build artifacts and dependencies of various types
 (all the project jars, library jar, plugins or any other project specific
 artifacts). It also specifies locations from where to download artifacts from,
@@ -25,17 +26,19 @@ Often, a repository manager can serve as local cache to a mirror. Assuming that
 the repository manager is already deployed and reachable externally at
 *_pass:[http://10.0.0.1:8080/repository/internal/]_*, the S2I build can then use this
 manager by supplying the `MAVEN_MIRROR_URL` environment variable to the
-build configuration of the application as follows:
+build configuration of the application using the following procedure:
+
+.Procedure
 
 . Identify the name of the build configuration to apply `MAVEN_MIRROR_URL`
-  variable against:
+  variable against.
 +
 [source,bash,subs="attributes+,macros+"]
 ----
 $ oc get bc -o name
 buildconfig/sso
 ----
-. Update build configuration of `sso` with a `MAVEN_MIRROR_URL` environment variable
+. Update build configuration of `sso` with a `MAVEN_MIRROR_URL` environment variable.
 +
 [source,bash,subs="attributes+,macros+"]
 ----
@@ -43,7 +46,7 @@ $ oc set env bc/sso \
   -e MAVEN_MIRROR_URL="http://10.0.0.1:8080/repository/internal/"
 buildconfig "sso" updated
 ----
-. Verify the setting
+. Verify the setting.
 +
 [source,bash,subs="attributes+,macros+"]
 ----
@@ -51,7 +54,7 @@ $ oc set env bc/sso --list
 # buildconfigs sso
 MAVEN_MIRROR_URL=http://10.0.0.1:8080/repository/internal/
 ----
-. Schedule new build of the application
+. Schedule new build of the application.
 
 NOTE: During application build, you will notice that Maven dependencies are
 pulled from the repository manager, instead of the default public repositories.
