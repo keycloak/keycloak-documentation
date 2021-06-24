@@ -77,6 +77,10 @@ Sync Registrations::
   Does your LDAP support adding new users?  Click this switch if you want new users created by {project_name} in the admin console or the registration page
   to be added to LDAP.
 
+Filter Registrations::
+  Switch it on if you want to sync registrations only for users with a username that matches Regular Expression Filter. If the username does not match the regular expression, {project_name} will try lower
+  priority providers and eventually use local storage to register the new user.
+
 Allow Kerberos authentication::
   Enable Kerberos/SPNEGO authentication in realm with users data provisioned from LDAP.
   More info in <<_kerberos,Kerberos section>>.
