@@ -1,7 +1,6 @@
-[id="con-sso-docker_{context}"]
 
 [[_docker]]
-
+[id="con-sso-docker_{context}"]
 === Docker registry v2 authentication
 
 [NOTE]

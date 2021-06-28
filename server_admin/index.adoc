@@ -17,3 +17,4 @@ include::topics/templates/release-header.adoc[]
 include::topics.adoc[]
 
 :context:
+

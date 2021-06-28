@@ -136,7 +136,7 @@ Configuration changes::
 
 ==== Skip creation of user session for the Docker protocol authentication
 
-No user session is created after successful authentication with the Docker protocol. For details, please refer to the link:{adminguide_link}#_docker[{adminguide_name}].
+No user session is created after successful authentication with the Docker protocol. For details, please refer to the link:{adminguide_link}con-sso-docker_{context}{adminguide_name}].
 
 ==== Upgrade to PatternFly 4
 

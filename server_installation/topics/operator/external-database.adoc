@@ -55,7 +55,7 @@ data:
 
 The Operator will create a Service named `keycloak-postgresql`. This Service is configured by the Operator to expose the external database based on the content of `POSTGRES_EXTERNAL_ADDRESS`. {project_name} uses this Service to connect to the Database, which means it does not connect to the Database directly but rather through this Service.
 
-The Keycloak custom resource requires updates to enable external database support. 
+The Keycloak custom resource requires updates to enable external database support.
 
 .Example YAML file for `Keycloak` custom resource that supports an external database
 ```yaml
@@ -65,10 +65,10 @@ metadata:
   labels:
 ifeval::[{project_community}==true]
       app: example-keycloak
-endif::[]  
+endif::[]
 ifeval::[{project_product}==true]
       app: sso
-endif::[]  
+endif::[]
   name: example-keycloak
   namespace: keycloak
 spec:
@@ -150,7 +150,7 @@ keycloak-postgresql-c8vv27m 1/1    Running   0          36m   192.0.2.3
 ----
 
 ifeval::[{project_community}==true]
-.Additional Resources
+.Additional resources
 
 * To back up your database using custom resources, see xref:_backup-cr[Scheduling database backups].
 

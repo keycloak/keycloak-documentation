@@ -12,7 +12,7 @@ The dependencies were updated to the versions used by EAP 7.4 server. For exampl
 
 ==== Configuration changes
 
-There are a few configuration changes in the standalone(-ha).xml and domain.xml files. You should follow the <<_install_new_version>> section to handle the migration of configuration files automatically. 
+There are a few configuration changes in the standalone(-ha).xml and domain.xml files. You should follow the <<_install_new_version>> section to handle the migration of configuration files automatically.
 
 ==== SmallRye manual changes
 Manual changes are required when standalone.xml contains references to SmallRye modules. These modules were removed from the underlying {appserver_name} distribution, and the server does not start if the configuration references them. The server configuration migration via `migrate-standalone.cli` fails before any changes are made to the configuration.
@@ -37,7 +37,7 @@ To correct this problem, remove all the lines that refer to SmallRye modules. In
 
 * We recommend that you use `remoteStoreSecurityEnabled` property under the `connectionsinfinispan` subsystem. For more details, see the Cross-Datacenter documentation.
 
-=== UserModel Migration 
+=== UserModel Migration
 The  `UserModel` includes certain fields, `username`, `email`, `firstName` and `lastName`, which are now converted to custom attributes.  This change was made to prepare for adding more sophisticated user profiles to {project_name} in an upcoming version.
 
 NOTE: If a database contains users with custom attributes of that exact name, these attributes will no longer be read from the database and may be deleted. Therefore, before upgrading to RH SSO 7.5, rename any custom attribute that matches one of these names.
@@ -48,7 +48,7 @@ Users of the policy evaluation feature should adapt their policies if they use t
 
 The public API of `UserModel` did not change. No changes to frontend resources or SPIs accessing user data are necessary.  Also, the database did not change yet.
 
-=== Upgrade to PatternFly 4 
+=== Upgrade to PatternFly 4
 
 The {project_name} login theme components have been upgraded to PatternFly 4.
 The old PatternFly 3 runs simultaneously with the new one, so it's possible to keep PF3 components.
@@ -64,11 +64,11 @@ For users who use Instagram IdP to log into Instagram, those users need a differ
 === Valid Request URIs for SSRF protection
 If you use the OpenID Connect parameter `request_uri`, your client needs to have `Valid Request URIs` configured to protect against SSRF attacks
 
-You can configure this feature through the Admin Console on the client details page, or through the admin REST API or client registration API. Valid Request URIs need to contain the list of Request URI values that are permitted for the particular client. 
+You can configure this feature through the Admin Console on the client details page, or through the admin REST API or client registration API. Valid Request URIs need to contain the list of Request URI values that are permitted for the particular client.
 
 You could instead use wildcards or relative paths, such as the `Valid Redirect URIs` option. However, we recommend using as specific value as possible for security purposes.
 
-=== Read-only user attributes 
+=== Read-only user attributes
 Read-only user attributes are now available.  Some of these user attributes are not to be edited by the user or administrator when updating users with the REST API or with the {project_name} user interfaces. In particular, this change is important when you use any of the following:
 
 * Custom user storage providers
@@ -79,8 +79,8 @@ Read-only user attributes are now available.  Some of these user attributes are 
 
 For more details, see the link:{adminguide_link}#_read_only_user_attributes[Threat model mitigation chapter].
 
-=== No user session needed after Docker authentication  
-No user session is created after successful authentication with the Docker protocol. For details, please refer to the link:{adminguide_link}#_docker[{adminguide_name}].
+=== No user session needed after Docker authentication
+No user session is created after successful authentication with the Docker protocol. For details, please refer to the link:{adminguide_link}#docker-authentication-flow[{adminguide_name}].
 
 === Client Credentials Grant without default refresh token
 For this {project_name} version, the OAuth2 Client Credentials Grant endpoint does not issue refresh tokens by default. This behavior is aligned with the OAuth2 specification.
@@ -101,15 +101,11 @@ For backwards compatibility, you could stay with the previous version’s behavi
 
 === Non-standard token introspection endpoint removed
 In previous versions, {project_name} advertised two introspection endpoints: `token_introspection_endpoint` and `introspection_endpoint`.
-The latter is the one defined by https://datatracker.ietf.org/doc/html/rfc8414#section-2[RFC-8414]. The former was deprecated 
+The latter is the one defined by https://datatracker.ietf.org/doc/html/rfc8414#section-2[RFC-8414]. The former was deprecated
 and is now removed.
 
 === LDAP no-import fix
-In the previous {project_name} version, when the LDAP provider was configured with `Import Users` OFF, it was possible to update the user even if some non-LDAP mapped attributes were changed. This situation resulted in confusing behavior. The attribute appeared to be updated, but it was not updated. 
+In the previous {project_name} version, when the LDAP provider was configured with `Import Users` OFF, it was possible to update the user even if some non-LDAP mapped attributes were changed. This situation resulted in confusing behavior. The attribute appeared to be updated, but it was not updated.
 
 For example, if you had tried to update a user with the admin REST API and the user had some incorrect attribute changes, the update was possible. With the
 current version, the update is not possible and you are immediately informed about the reason.
-
-
-
-

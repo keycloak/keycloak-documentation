@@ -17,6 +17,7 @@ When a realm is created a key pair and a self-signed certificate is automaticall
 . Click *Passive* to view passive keys.
 . Click *Disabled* to view disabled keys.
 
+To view passive or disabled keys select `Passive` or `Disabled`.
 A keypair can have the status `Active`, but still not be selected as the currently active keypair for the realm.
 The selected active pair which is used for signatures is selected based on the first key provider sorted by priority
 that is able to provide an active keypair.
@@ -37,6 +38,7 @@ Rotating keys also applies to offline tokens. To make sure they are updated, the
 
 ==== Adding a generated keypair
 
+
 .Procedure
 . Select the realm in the Admin Console.
 . Click *Realm settings*.
@@ -54,7 +56,7 @@ you can edit the provider and new keys will be generated.
 
 ==== Adding an existing keypair and certificate
 
-To add a keypair and certificate obtained elsewhere select `Providers` and choose `rsa` from the dropdown. You can change
+To add a keypair and certificate obtained elsewhere select `Providers` and choose `rsa` from the item list. You can change
 the priority to make sure the new keypair becomes the active keypair.
 
 .Prerequisites
@@ -74,7 +76,7 @@ the priority to make sure the new keypair becomes the active keypair.
 ==== Loading keys from a Java Keystore
 
 To add a keypair and certificate stored in a Java Keystore file on the host select `Providers` and choose `java-keystore`
-from the dropdown. You can change the priority to make sure the new keypair becomes the active keypair.
+from the item list. You can change the priority to make sure the new keypair becomes the active keypair.
 
 For the associated certificate chain to be loaded it must be imported to the Java Keystore file with the same `Key Alias` used to load the keypair.
 
@@ -134,3 +136,4 @@ Pushing the not-before policy ensures that client applications do not accept the
 ====
 REST and confidential clients must set *Admin URL* so {project_name} can send clients the pushed not-before policy request.
 ====
+

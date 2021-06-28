@@ -31,7 +31,7 @@ The https://hub.docker.com/r/freeipa/freeipa-server/[FreeIPA Docker image] is av
  -v /var/lib/ipa-data:/data:Z freeipa/freeipa-server
 ----
 +
-The parameter `-h` with `server.freeipa.local` represents the FreeIPA/IdM server hostname. 
+The parameter `-h` with `server.freeipa.local` represents the FreeIPA/IdM server hostname.
 Change `YOUR_PASSWORD` to a password of your own.
 
 . After the container starts, change the `/etc/hosts` file to include:

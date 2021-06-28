@@ -1,4 +1,4 @@
-
+[[instagram]]
 ==== Instagram
 
 .Procedure
@@ -20,7 +20,7 @@ image:images/instagram-add-new-app.png[Add a New App]
 .Create a new app ID
 image:images/instagram-create-app-id.png[]
 +
-.. Fill in all required fields. 
+.. Fill in all required fields.
 .. Click *Create App*. Facebook then brings you to the dashboard.
 .. In the navigation panel, select *Settings* - *Basic*.
 +
@@ -35,7 +35,7 @@ image:images/instagram-add-platform.png[Add Platform]
 image:images/instagram-add-product.png[]
 +
 .. Select `Dashboard` from the menu.
-.. Click *Set Up* in the Instagram box. 
+.. Click *Set Up* in the Instagram box.
 .. Select *Instagram* - *Basic Display* from the menu.
 .. Click *Create New App*.
 +

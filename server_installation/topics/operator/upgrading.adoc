@@ -37,7 +37,7 @@ spec:
 ```
 
 ifeval::[{project_community}==true]
-.Additional Resources
+.Additional resources
 
 * For more information on rolling updates, see the https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/#rolling-update[Updating StatefulSets manual].
 endif::[]

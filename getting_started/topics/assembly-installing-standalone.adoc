@@ -9,12 +9,12 @@
 ifdef::context[:parent-context: {context}]
 
 [id="installing-standalone_{context}"]
-== Installing a sample instance of {project_name} 
+== Installing a sample instance of {project_name}
 
 This section describes how to install and start a {project_name} server in standalone mode, set up the initial admin user, and log in to the {project_name} Admin Console.
 
 ifeval::[{project_product}==true]
-.Additional Resources
+.Additional resources
 This installation is intended for practice use of {project_name}. For instructions on installation in a production environment and full details on all product features, see the other guides in the link:https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/{project_versionDoc}[{project_name}] documentation.
 endif::[]
 

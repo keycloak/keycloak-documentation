@@ -22,3 +22,4 @@ image:{project_images}/twitter-add-identity-provider.png[Add Identity Provider]
 . In {project_name}, paste the value of the *Consumer Key* into the *Client ID* field.
 . In {project_name}, paste the value of the *Consumer Secret* into the *Client Secret* field.
 . Click *Save*.
+
