@@ -335,7 +335,7 @@ When the session is terminated at {project_name} the application will notice and
 
 ===== Frontchannel Logout
 
-This is also a browser-based logout. In contrast to the Session Managment based logout approach {project_name} will send logout
+This is also a browser-based logout. In contrast to the Session Management based logout approach {project_name} will send logout
 requests to the clients. Applications or clients need to have a frontchannel logout URL registered at {project_name}.
 After triggering a logout at {project_name}, it will send logout requests to these registered URLs that will terminate the client sessions.
 
