@@ -19,9 +19,9 @@ stringData:
     POSTGRES_HOST: <Database Service Name>
     POSTGRES_PASSWORD: <Database Password>
     # Required for AWS Backup functionality
-    POSTGRES_SUPERUSER: true
+    POSTGRES_SUPERUSER: "true"
     POSTGRES_USERNAME: <Database Username>
- type: Opaque
+type: Opaque
 ```
 
 The following properties set the hostname or IP address and port of the database.
