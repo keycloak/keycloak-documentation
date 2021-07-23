@@ -62,6 +62,26 @@ Here is the equivalent configuration using CLI commands:
 /subsystem=keycloak-server/spi=vault/provider=files-plaintext/:add(enabled=true,properties={dir => "${jboss.home.dir}/standalone/configuration/vault"})
 ----
 
+=== Amazon AWS Secrets Manager Vault Provider
+
+{project_name} provides support for reading secrets stored in an AWS Secrets Manager store.  This vault provider is named `awssecretsmgr` and handles secrets stored in plain text in AWS SM with names formatted as `<REALM>_<SECRET-NAME>`. The vault reference for these secrets in {project_name} must be formatted as `${vault.<SECRET-NAME>}`.
+
+To use this vault provider, add the following to the server configuration, e.g. `standalone.xml`, in the `urn:jboss:domain:keycloak-server` subsystem:
+```
+<spi name="vault">
+    <default-provider>awssecretsmgr</default-provider>
+    <provider name="awssecretsmgr" enabled="true">
+        <properties>
+            <property name="defaultRegion" value="<AWS-REGION>"/>
+        </properties>
+    </provider>
+</spi>
+```
+
+The default region configured above may be overridden via an environment variable named `KEYCLOAK_AWSSM_REGION`.
+
+Credentials for the AWS Secrets Manager instance must be configured per Amazon's SDK instructions in whichever way you prefer.
+
 === Elytron Credential Store Vault Provider
 
 {project_name} also provides support for reading secrets stored in an Elytron credential store. The `elytron-cs-keystore`
