@@ -6,6 +6,7 @@
 :project_versionMvn: 16.0.0
 :project_versionNpm: 16.0.0
 :project_versionDoc: 16.0
+
 ifeval::["{project_buildType}" == "latest"]
 :project_versionLinks: latest
 endif::[]
