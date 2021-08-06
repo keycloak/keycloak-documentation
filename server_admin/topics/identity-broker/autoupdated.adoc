@@ -1,0 +1,36 @@
+[[_mappers]]
+=== Automatic Updated SAML/ OIDC Identity Providers
+
+SAML and OIDC Identity Providers can be configured to automatically be updated from their metadata URL (during Identity Provider creation and update).
+Autoupdate field was added (default value false). When autoupdate is true, the realm admin must fulfill Refresh period field( default 1 day).
+For SAML Identity Provider, the realm admin must fulfill Metadata URL.
+For OIDC Identity Provider, the realm admin must fulfill Issuer. Metadata URL automatically becomes equal to issuer + '/.well-known/openid-configuration'.
+
+image:{project_images}/auto-updated.png[]
+
+In this case, SAML/OIDC Identity Provider is automatically updated every Refresh period. Last refresh time is automatically filled and shows the last Identity Provider autoupdate.
+
+SAML fields that are updated automatically are: 
+* Enabled
+* Hide on Login Page
+* Single Sign-On Service URL
+* Single Logout Service URL
+* NameID Policy Format 
+* HTTP-POST Binding Response 
+* HTTP-POST Binding for AuthnRequest 
+* HTTP-POST Binding Logout
+* Want AuthnRequests Signed
+* Validate Signature
+* encryptionPublicKey
+* Validating X509 Certificates
+
+
+OIDC fields that are updated automatically are: 
+* Authorization URL 
+* Token URL 
+* Logout URL
+* User Info URL
+* Validate Signatures 
+* Use JWKS URL
+* JWKS URL 
+
