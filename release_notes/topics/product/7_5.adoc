@@ -25,16 +25,16 @@ The {project_name} login theme components have been upgraded to PatternFly 4. Pa
 
 Also, the login theme provides a better user experience and you can define an icon for your custom Identity providers. For details, see the link:{developerguide_link}#custom-identity-providers-icons[Server Developer Guide].
 
-== Users can delete their own accounts 
-You can allow users in a given realm to delete their own account through the Account Console. This capability is enabled by the *Delete Account* action in the Admin Console.  
+== Users can delete their own accounts
+You can allow users in a given realm to delete their own account through the Account Console. This capability is enabled by the *Delete Account* action in the Admin Console.
 
-== Identity brokering sync-mode 
+== Identity brokering sync-mode
 With Identity Brokering Sync Mode, you can now control if user profiles are updated on the first login or on every login from an external Identity Provider. You can also override this behavior on individual mappers.
 
 == Client Session Timeout for OpenID Connect / OAuth 2.0
 Typically, an SSO session lasts for days or even months, but individual client sessions should ideally be much shorter. You can now configure a separate timeout for individual clients and a default for all clients within a realm.
 
-You can also configure a client offline session timeout, which determines the maximum time before an offline token is expired and invalidated. 
+You can also configure a client offline session timeout, which determines the maximum time before an offline token is expired and invalidated.
 
 == OAuth 2.0 Token Revocation (RFC 7009)
 For applications that use {project_name} as an OAuth 2.0 Authorization Server, you can now revoke refresh tokens through the token revocation endpoint.
@@ -42,7 +42,7 @@ For applications that use {project_name} as an OAuth 2.0 Authorization Server, y
 == OAuth 2.0 Device Authorization Grant (RFC 8628)
 Support for OAuth 2.0 Device Authorization Grant is now available.
 
-== OpenID Connect Back-channel logout 
+== OpenID Connect Back-channel logout
 Support for OpenID Connect Back-Channel Logout is now available.
 
 == Improvements to offline sessions
@@ -71,14 +71,14 @@ Default roles are now internally stored as new composite roles that are typicall
 === Not email password policy
 You can use a Not Email policy to disallow a password to be the same as the email address.
 
-=== Support for a redirect-uri for any port with \http://127.0.0.1 
+=== Support for a redirect-uri for any port with \http://127.0.0.1
 \http://localhost is used as a callback when an HTTP server is started on a random port. The best practice is to use \http://127.0.0.1 instead of localhost.
 
 == Other improvements
 
 * Support for invoking Application Initiated Actions added to {project_name} JavaScript adapter.
-* Support for AES 192 and AES 256 algorithms used for signed and encrypted ID tokens. 
-* Support for OAuth2 Client Credentials grant without refresh token and without user session. 
+* Support for AES 192 and AES 256 algorithms used for signed and encrypted ID tokens.
+* Support for OAuth2 Client Credentials grant without refresh token and without user session.
 * Support for send access tokens to the OAuth2 Revocation endpoint.
 * Support for configuring a maximum number of active authentication sessions. The default value is set to 300 authentication sessions (browser tabs) per browser session.
 * Support for LDAPv3 password modify operation, including the Admin Console ability to request metadata from the configured LDAP server to see if it supports LDAPv3 password modify operations.
@@ -110,7 +110,7 @@ These features have a change in status:
 * The Spring Boot Adapter is deprecated and will not be included in the 8.0 and higher versions of RH-SSO. This adapter will be maintained during the lifecycle of RH-SSO 7.x. Users are urged to migrate to Spring Security to integrate their Spring Boot applications with RH-SSO.
 * Installation from an RPM is deprecated. Red Hat Single Sign-On will continue to deliver RPMs for the life of the 7.x product, but will not deliver RPMs with the next major version. The product will continue to support installation from a ZIP file and installation on OpenShift.
 * Authorization Services Drools Policy has been removed.
-* Upload of scripts through admin rest endpoints/console is deprecated. It will be removed at a future release. 
+* Upload of scripts through admin rest endpoints/console is deprecated. It will be removed at a future release.
 
 = Fixed Issues
 
@@ -120,7 +120,10 @@ More than 3,700 issues were fixed between RH SSO 7.4 and 7.5.0. For details, see
 
 This release includes the following known issues:
 
-*Asking Pavel for input*.
+*  link:https://issues.redhat.com/browse/KEYCLOAK-18115 - Attempt to edit attribute denied in RHSSO 7.4.6
+*  link:https://issues.redhat.com/browse/KEYCLOAK-18318 - CVE-2021-28170 jakarta.el: jakarta-el: ELParserTokenManager enables invalid EL expressions to be evaluate [rhsso-7]
+*  link:https://issues.redhat.com/browse/KEYCLOAK-18338 - Attempt to update user account with configured SSSD leads to Internal Server Error
+*  link:https://issues.redhat.com/browse/KEYCLOAK-18994 - deleteExpiredClientSessions very slow on MariaDB
 
 = Supported configurations
 
@@ -128,4 +131,4 @@ The set of supported features and configurations for RH-SSO Server 7.5 is availa
 
 = Component versions
 
-The list of supported component versions for RH-SSO 7.5 is available on the link:https://access.redhat.com/articles/2342881[Customer Portal]. 
+The list of supported component versions for RH-SSO 7.5 is available on the link:https://access.redhat.com/articles/2342881[Customer Portal].
