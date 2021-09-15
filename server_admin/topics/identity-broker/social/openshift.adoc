@@ -58,7 +58,7 @@ You can register your client using `oc` command line tool.
 ----
 $ oc create -f <(echo '
 kind: OAuthClient
-apiVersion: v1
+apiVersion: oauth.openshift.io/v1
 metadata:
  name: keycloak-broker <1>
 secret: "..." <2>
