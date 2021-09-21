@@ -1,4 +1,4 @@
-[[_oidc]]
+[id="con-oidc_{context}"]
 
 === OpenID Connect
 
@@ -28,6 +28,8 @@ OIDC has different ways for a client or application to authenticate a user and r
 path you use depends greatly on the type of application or client requesting access.  All of these flows are described in the
 OIDC and OAuth 2.0 specifications so only a brief overview will be provided here.
 
+[[_oidc-auth-flows-authorization]]
+
 ===== Authorization Code Flow
 
 This is a browser-based protocol and it is what we recommend you use to authenticate and authorize browser-based applications.  It makes
@@ -55,9 +57,11 @@ to provide a client secret when they exchange the temporary codes for tokens.  _
 _Public_ clients are perfectly fine so long as HTTPS is strictly enforced and you are very strict about what redirect URIs are registered for the
 client.  HTML5/JavaScript clients always have to be _public_ clients because there is no way to transmit the client secret to them in a secure
 manner.  Again, this is ok so long as you use HTTPS and strictly enforce redirect URI registration.  This guide goes more detail
-into this in the <<_clients, Managing Clients>> chapter.
+into this in the xref:assembly-managing-clients_{context}[Managing Clients] chapter.
 
 {project_name} also supports the optional https://datatracker.ietf.org/doc/html/rfc7636[Proof Key for Code Exchange] specification.
+
+[[_oidc-auth-flows-implicit]]
 
 ===== Implicit Flow
 
@@ -74,6 +78,8 @@ Here's a brief summary of the protocol:
   redirects back to the application using the callback URL provided earlier and additionally adding the _identity_ and
   _access_ tokens as query parameters in the callback URL.
 . The application extracts the _identity_ and _access_ tokens from the callback URL.
+
+[[_oidc-auth-flows-direct]]
 
 ===== Resource Owner Password Credentials Grant (Direct Access Grants)
 
