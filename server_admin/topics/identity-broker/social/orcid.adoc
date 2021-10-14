@@ -1,0 +1,34 @@
+
+====  ORCID
+
+There are a number of steps you have to complete to be able to enable login with ORCID.  Firstly, go to the `Identity Providers` left menu item
+and select `ORCID` from the `Add provider` drop down list.  This will bring you to the `Add identity provider` page.
+
+.Add Identity Provider
+image:{project_images}/orcid-add-identity-provider.png[]
+
+You can't click save yet, as you'll need to obtain a `Client ID` and `Client Secret` from ORCID.  One piece of data you'll need from this
+page is the `Redirect URI`.  You'll have to provide that to ORCID as `Redirect URIs`.
+
+To enable login with ORCID you must do appropriate configuration through https://orcid.org/developer-tools[ORCID Developer Tools].
+
+Click the `Register for the free ORCID public API` button. 
+image:images/orcid-register-application.png[]
+
+After agreeing the terms of service, you must complete the form presented to register a new application.
+image:images/orcid-configure-application.png[]
+
+You must configure following values:
+
+* `Name`: The name of your application.
+* `Website`: The website the user can visit to learn more about your application.
+* `Description`: Information about the application. This will be displayed to users on the OAuth screen.
+* `Redirect URIs`: URIs for use with the OAuth 2.0 protocol. Add here the Keycloak `Redirect URI`. 
+Only https Redirect URIs are accepted for original ORCID Registry. You must set up https://www.keycloak.org/docs/latest/server_installation/index.html#_setting_up_ssl[HTTPS/SSL] in Keycloak.
+
+Click the Save icon at the bottom of the form to generate your API credentials. 
+
+Detail information can be found in https://info.orcid.org/documentation/integration-guide/registering-a-public-api-client/#easy-faq-2606[ORCID Developer Documentation].
+
+You will need also to obtain the Client ID and Client Secret from this page so you can enter them into the {project_name} `Add identity provider` page.
+To obtain this click on `Show Details` button. Go back to {project_name} and specify those items and finally save your Orcid Identity Provider.
