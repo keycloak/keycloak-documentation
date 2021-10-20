@@ -34,10 +34,10 @@ spec:
     matchLabels:
 ifeval::[{project_community}==true]
       app: example-keycloak
-endif::[]  
+endif::[]
 ifeval::[{project_product}==true]
       app: sso
-endif::[]  
+endif::[]
 ```
 
 .Prerequisites
@@ -96,10 +96,10 @@ Name:         example-realm-user
 Namespace:    keycloak
 ifeval::[{project_community}==true]
 Labels:       app=example-keycloak
-endif::[]  
+endif::[]
 ifeval::[{project_product}==true]
 Labels:       app=sso
-endif::[]  
+endif::[]
 API Version:  keycloak.org/v1alpha1
 Kind:         KeycloakUser
 Spec:
@@ -107,10 +107,10 @@ Spec:
     Match Labels:
 ifeval::[{project_community}==true]
       App: example-keycloak
-endif::[]  
+endif::[]
 ifeval::[{project_product}==true]
       App: sso
-endif::[]  
+endif::[]
   User:
     Email:           realm_user@redhat.com
     Credentials:
@@ -130,5 +130,3 @@ Events:     <none>
 .Additional resources
 
 * If you have an external database, you can modify the Keycloak custom resource to support it. See xref:_external_database[Connecting to an external database].
-
-* To back up your database using custom resources, see xref:_backup-cr[schedule database backups].

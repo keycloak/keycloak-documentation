@@ -12,7 +12,7 @@ image:{project_images}/google-add-identity-provider.png[Add Identity Provider]
 . In a separate browser tab open https://console.cloud.google.com/[the Google Cloud Platform console].
 . In the Google dashboard for your Google app, click the *OAuth consent screen* menu. Create a consent screen, ensuring that the user type of the consent screen is external.
 . In the Google dashboard:
-.. Click the *Credentials* menu. 
+.. Click the *Credentials* menu.
 .. Click *CREATE CREDENTIALS* - *OAuth Client ID*.
 .. From the *Application type* list, select *Web application*.
 .. Click *Create*.

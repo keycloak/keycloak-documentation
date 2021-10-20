@@ -19,7 +19,6 @@ You can create custom resources to perform the following tasks:
 * xref:_client-cr[Create clients]
 * xref:_user-cr[Create users]
 * xref:_external_database[Connect to an external database]
-* xref:_backup-cr[Schedule database backups]
 * xref:_operator-extensions[Install extensions and themes]
 
 [NOTE]
