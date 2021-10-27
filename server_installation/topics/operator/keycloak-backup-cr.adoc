@@ -8,6 +8,11 @@ ifeval::[{project_community}==true]
 endif::[]
 and reports back its status.
 
+====
+[NOTE]
+The capability for scheduling database backups is deprecated.  It will be removed at a future release.
+====
+
 ifeval::[{project_community}==true]
 Two options exist to schedule backups:
 
