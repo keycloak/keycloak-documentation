@@ -7,7 +7,7 @@ For more information about Keycloak visit the [Keycloak homepage](http://keycloa
 
 
 Contributing to Keycloak Documentation
---------------------------------------
+----------------------------------------
 
 See our [Contributor's Guide](internal_resources/contributing.adoc). The directory also includes a set of templates and other resources to help you get started.
 
@@ -15,7 +15,7 @@ If you want to file a bug report or tell us about any other issue with this docu
 
 
 Building Keycloak Documentation
--------------------------------
+---------------------------------
 
 Ensure that you have [Maven installed](https://maven.apache.org/).
 
