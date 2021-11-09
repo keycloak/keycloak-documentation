@@ -37,7 +37,7 @@ The other properties work in the same way for a hosted or external database. Set
 * `POSTGRES_PASSWORD` - Database password
 * `POSTGRES_SUPERUSER` - Indicates, whether backups should run as super user. Typically `true`.
 
-The {project_operator} will create a Service that connects to an external database, such as `keycloak-postgresql`, that connects {project_name} to the Database that contains the IP address or Service name that is specified by the POSTGRES_EXTERNAL_ADDRESS.
+The Operator will create a Service named `keycloak-postgresql`. This Service is configured by the Operator to expose the external database based on the content of `POSTGRES_EXTERNAL_ADDRESS`. {project_name} uses this Service to connect to the Database, which means it does not connect to the Database directly but rather through this Service.
 
 The Keycloak custom resource requires updates to enable external database support. 
 
