@@ -44,7 +44,7 @@ You can add this configuration to your `standalone(-*).xml` files to the configu
 [options="nowrap"]
 ----
 <spi name="userProfile">
-    <provider name="legacy-user-profile" enabled="true">
+    <provider name="declarative-user-profile" enabled="true">
         <properties>
             <property name="read-only-attributes" value="[&quot;foo&quot;,&quot;bar*&quot;]"/>
             <property name="admin-read-only-attributes" value="[&quot;foo&quot;]"/>
@@ -59,9 +59,9 @@ The same can be configured with the usage of the JBoss CLI with the commands:
 [options="nowrap"]
 ----
 /subsystem=keycloak-server/spi=userProfile/:add
-/subsystem=keycloak-server/spi=userProfile/provider=legacy-user-profile/:add(properties={},enabled=true)
-/subsystem=keycloak-server/spi=userProfile/provider=legacy-user-profile/:map-put(name=properties,key=read-only-attributes,value=[foo,bar*])
-/subsystem=keycloak-server/spi=userProfile/provider=legacy-user-profile/:map-put(name=properties,key=admin-read-only-attributes,value=[foo])
+/subsystem=keycloak-server/spi=userProfile/provider=declarative-user-profile/:add(properties={},enabled=true)
+/subsystem=keycloak-server/spi=userProfile/provider=declarative-user-profile/:map-put(name=properties,key=read-only-attributes,value=[foo,bar*])
+/subsystem=keycloak-server/spi=userProfile/provider=declarative-user-profile/:map-put(name=properties,key=admin-read-only-attributes,value=[foo])
 ----
 endif::[]
 
