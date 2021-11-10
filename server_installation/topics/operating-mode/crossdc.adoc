@@ -137,10 +137,9 @@ For more detail about how caches can be configured see <<tuningcache>>.
 [[communication]]
 ==== Communication details
 
-{project_name} uses multiple, separate clusters of Infinispan caches. Every {project_name} node is in the cluster with the other {project_name} nodes in same data center, but not with the {project_name} nodes in different data centers. A {project_name} node does not communicate directly with the {project_name} nodes from different data centers. {project_name} nodes use external {jdgserver_name} servers for communication across data centers. This is done using the link:https://infinispan.org/docs/11.0.x/titles/hotrod_java/hotrod_java.html[Infinispan Hot Rod protocol].
+{project_name} uses multiple, separate clusters of Infinispan caches. Every {project_name} node is in the cluster with the other {project_name} nodes in same data center, but not with the {project_name} nodes in different data centers. A {project_name} node does not communicate directly with the {project_name} nodes from different data centers. {project_name} nodes use external JDG (actually {jdgserver_name} servers) for communication across data centers. This is done using the link:https://infinispan.org/docs/10.1.x/titles/server/server.html#hot_rod[Infinispan HotRod protocol].
 
-The Infinispan caches on the {project_name} side use link:https://infinispan.org/docs/stable/titles/configuring/configuring.html#remote_cache_store[`remoteStore`] configuration to offload data to a remote {jdgserver_name} cluster.
-{jdgserver_name} clusters in separate data centers then replicate that data to ensure it is backed up.
+The Infinispan caches on the {project_name} side must be configured with the link:https://infinispan.org/docs/10.1.x/titles/configuring/configuring.html#remote_cache_store[remoteStore] to ensure that data are saved to the remote cache. There is separate Infinispan cluster between JDG servers, so the data saved on JDG1 on `site1` are replicated to JDG2 on `site2` .
 
 The receiving {jdgserver_name} server notifies the {project_name} servers in its cluster through Client Listeners, which are a feature of the Hot Rod protocol. {project_name} nodes on `site2` then update their Infinispan caches and the particular user session is also visible on {project_name} nodes on `site2`.
 
@@ -672,7 +671,7 @@ There are 2 ways to take the site offline.
 This is useful especially if the outage is planned. With `jconsole` or CLI, you can connect to the `server1` server and take the `site2` offline.
 More details about this are available in the
 ifeval::[{project_product}==true]
-link:{jdgserver_crossdcdocs_link}#xsite_auto_offline-xsite[{jdgserver_name} documentation].
+link:{jdgserver_crossdcdocs_link}[{jdgserver_name} documentation].
 endif::[]
 ifeval::[{project_community}==true]
 link:{jdgserver_crossdcdocs_link}[{jdgserver_name} documentation].
@@ -715,7 +714,7 @@ A bidirectional state transfer will ensure that entities which were created *aft
 Unfortunately, there is no any universal solution to this. Split-brains and network outages are just state, which is usually impossible to be handled 100% correctly with 100% consistent data between sites. In the case of {project_name}, it typically is not a critical issue. In the worst case, users will need to re-login again to their clients, or have the improper count of loginFailures tracked for brute force protection. See the {jdgserver_name}/JGroups documentation for more tips how to deal with split-brain.
 
 The state transfer can be also done on the {jdgserver_name} server side through JMX. The operation name is `pushState`. There are few other operations to monitor status, cancel push state, and so on.
-More info about state transfer is available in the link:{jdgserver_crossdcdocs_link}#cli_xsite_push-cli-ops[{jdgserver_name} docs].
+More info about state transfer is available in the link:{jdgserver_crossdcdocs_link}[{jdgserver_name} docs].
 
 
 [[clearcache]]

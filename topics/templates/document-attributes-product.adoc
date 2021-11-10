@@ -1,18 +1,23 @@
 :project_community: false
 :project_product: true
 :project_name: Red Hat Single Sign-On
-:project_versionMvn: 9.0.3.redhat-00002
-:project_versionNpm: 9.0.3.redhat-00002
+:project_versionMvn: 15.0.2.redhat-00001
+:project_versionNpm: 15.0.2.redhat-00001
 :project_images: rhsso-images
 
+:standalone:
+:api-management!:
+:on-prem:
+
 :project_name_full: Red Hat Single Sign-On
-:project_version_base: 7.4
-:project_version: 7.4.1
-:keycloak_upgrade_version: 9.0.x
-:project_versionDoc: 7.4
-:project_templates_base_url: https://raw.githubusercontent.com/jboss-container-images/redhat-sso-7-openshift-image/sso74-dev/templates
+:project_version_base: 7.5
+:project_version: 7.5.0
+:keycloak_upgrade_version: 15.0.x
+:project_versionDoc: 7.5
+:project_templates_base_url: https://raw.githubusercontent.com/jboss-container-images/redhat-sso-7-openshift-image/sso75-cpaas-dev/templates
 :project_latest_image_tag: {project_versionDoc}
 :project_doc_base_url: https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/{project_versionDoc}/html-single
+:project_doc_base_url_latest: https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/{project_versionDoc}/html-single
 :maven_repository: https://maven.repository.redhat.com/ga/
 
 :project_openshift_product_name: {project_name} for OpenShift
@@ -34,6 +39,7 @@
 :authorizationguide_link: {project_doc_base_url}/authorization_services_guide/
 :adapterguide_name: Securing Applications and Services Guide
 :adapterguide_link: {project_doc_base_url}/securing_applications_and_services_guide/
+:adapterguide_link_latest: {project_doc_base_url_latest}/securing_applications_and_services_guide/
 :adapterguide_link_js_adapter: {adapterguide_link}#_javascript_adapter
 :adapterguide_logout_link: {adapterguide_link}#_java_adapter_logout
 :adminguide_name: Server Administration Guide
@@ -67,15 +73,15 @@
 :openshift_openjdk_name: Red Hat Single Sign-On for OpenShift on OpenJDK
 :openshift_openjdk_link: {project_doc_base_url}/red_hat_single_sign-on_for_openshift/
 :openshift_openjdk_platforms: x86_64
-:openshift_openjdk_image_stream: sso74-openshift-rhel8
+:openshift_openjdk_image_stream: sso75-openshift-rhel8
 :openshift_openjdk_image_repository: {openshift_image_repository_productline}/{openshift_openjdk_image_stream}
-:openshift_openjdk_project_templates_version: sso74
+:openshift_openjdk_project_templates_version: sso75
 :openshift_openj9_name: Red Hat Single Sign-On for OpenShift on Eclipse OpenJ9
-:openshift_openj9_link: {project_doc_base_url}/red_hat_single_sign-on_for_openshift_on_openj9/
+:openshift_openj9_link: {project_doc_base_url}/red_hat_single_sign-on_for_openshift_on_eclipse_openj9/
 :openshift_openj9_platforms: IBM Z/IBM Power Systems
-:openshift_openj9_image_stream: sso74-openj9-openshift-rhel8
+:openshift_openj9_image_stream: sso75-openj9-openshift-rhel8
 :openshift_openj9_image_repository: {openshift_image_repository_productline}/{openshift_openj9_image_stream}
-:openshift_openj9_project_templates_version: sso74-openj9
+:openshift_openj9_project_templates_version: sso75-openj9
 
 // Aggregate various frequently referred links to the official OCP documentation
 :official_ocp_docs_link: https://docs.openshift.com/container-platform
@@ -115,11 +121,11 @@
 :apidocs_javadocs_name: JavaDocs Documentation
 :apidocs_javadocs_link: https://access.redhat.com/webassets/avalon/d/red-hat-single-sign-on/version-{project_versionDoc}/javadocs/
 :apidocs_adminrest_name: Administration REST API
-:apidocs_adminrest_link: https://access.redhat.com/webassets/avalon/d/red-hat-single-sign-on/version-{project_versionDoc}/restapi/
+:apidocs_adminrest_link: https://access.redhat.com/webassets/avalon/d/red-hat-single-sign-on/version-{project_versionDoc}/rest-api/
 
 :appserver_name: JBoss EAP
 :appserver_dirref: EAP_HOME
-:appserver_version: 7.3
+:appserver_version: 7.4
 
 :appserver_doc_base_url: https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/{appserver_version}
 :appserver_config_guide_link: {appserver_doc_base_url}/html-single/configuration_guide
@@ -145,7 +151,7 @@
 :jdgserver_name: RHDG
 :jdgserver_version: 7.3
 :jdgserver_version_latest: 8.1
-:jdgserver_crossdcdocs_link: https://access.redhat.com/documentation/en-us/red_hat_data_grid/8.1/html/data_grid_guide_to_cross-site_replication/
+:jdgserver_crossdcdocs_link: https://access.redhat.com/documentation/en-us/red_hat_data_grid/8.1/html/data_grid_guide_to_cross-site_replication/index/
 
 :fuseVersion: JBoss Fuse 6.3.0 Rollup 12
 :fuseHawtioEAPVersion: JBoss EAP 6.4

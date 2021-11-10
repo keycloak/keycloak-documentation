@@ -1,4 +1,4 @@
-[[_oidc]]
+[id="con-oidc_{context}"]
 
 === OpenID Connect
 
@@ -28,6 +28,8 @@ OIDC has different ways for a client or application to authenticate a user and r
 path you use depends greatly on the type of application or client requesting access.  All of these flows are described in the
 OIDC and OAuth 2.0 specifications so only a brief overview will be provided here.
 
+[[_oidc-auth-flows-authorization]]
+
 ===== Authorization Code Flow
 
 This is a browser-based protocol and it is what we recommend you use to authenticate and authorize browser-based applications.  It makes
@@ -55,9 +57,11 @@ to provide a client secret when they exchange the temporary codes for tokens.  _
 _Public_ clients are perfectly fine so long as HTTPS is strictly enforced and you are very strict about what redirect URIs are registered for the
 client.  HTML5/JavaScript clients always have to be _public_ clients because there is no way to transmit the client secret to them in a secure
 manner.  Again, this is ok so long as you use HTTPS and strictly enforce redirect URI registration.  This guide goes more detail
-into this in the <<_clients, Managing Clients>> chapter.
+into this in the xref:assembly-managing-clients_{context}[Managing Clients] chapter.
 
 {project_name} also supports the optional https://datatracker.ietf.org/doc/html/rfc7636[Proof Key for Code Exchange] specification.
+
+[[_oidc-auth-flows-implicit]]
 
 ===== Implicit Flow
 
@@ -74,6 +78,8 @@ Here's a brief summary of the protocol:
   redirects back to the application using the callback URL provided earlier and additionally adding the _identity_ and
   _access_ tokens as query parameters in the callback URL.
 . The application extracts the _identity_ and _access_ tokens from the callback URL.
+
+[[_oidc-auth-flows-direct]]
 
 ===== Resource Owner Password Credentials Grant (Direct Access Grants)
 
@@ -332,11 +338,31 @@ Again since all of this is described in the OIDC specification we will only give
 This is a browser-based logout. The application obtains session status information from {project_name} at a regular basis.
 When the session is terminated at {project_name} the application will notice and trigger it's own logout.
 
-===== Frontchannel Logout
+===== Front-Channel Logout
 
-This is also a browser-based logout. In contrast to the Session Managment based logout approach {project_name} will send logout
-requests to the clients. Applications or clients need to have a frontchannel logout URL registered at {project_name}.
-After triggering a logout at {project_name}, it will send logout requests to these registered URLs that will terminate the client sessions.
+This is also a browser-based logout where the logout starts by redirecting the user to a specific endpoint at {project_name}.
+
+Once the user is redirected to the logout endpoint, {project_name} is going to send logout requests to
+clients to let them to invalidate their local user sessions, and potentially redirect the user to some URL
+once the logout process is finished.
+
+Depending on the client configuration, logout requests can be sent to clients through the front-channel or through the back-channel.
+
+To configure clients to receive logout requests through the front-channel, look at the <<_front-channel-logout, Front-Channel Logout>> client setting. When using this method, consider the following:
+
+* Logout requests sent by {project_name} to clients rely on the browser and on embedded `iframes` that are rendered for the logout page.
+* By being based on `iframes`, front-channel logout might be impacted by Content Security Policies (CSP) and logout requests might be blocked.
+* If the user closes the browser prior to rendering the logout page or before logout requests are actually sent to clients, their sessions at
+the client might not be invalidated.
+
+[NOTE]
+====
+Consider using Back-Channel Logout as it provides a more reliable and secure approach to log out users and terminate their sessions
+on the clients.
+====
+
+If the client is not enabled with front-channel logout, then {project_name} is going to try first to send logout requests through the back-channel
+using the <<_back-channel-logout-url, Back-Channel Logout URL>>. If not defined, the server is going to fall back to using the <<_admin-url, Admin URL>>.
 
 ===== Backchannel Logout
 
