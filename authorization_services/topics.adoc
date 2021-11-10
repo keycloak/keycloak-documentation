@@ -1,3 +1,5 @@
+include::topics/templates/making-open-source-more-inclusive.adoc[]
+
 include::topics/auth-services-overview.adoc[leveloffset=+1]
 
 include::topics/auth-services-architecture.adoc[leveloffset=+2]
@@ -51,6 +53,12 @@ include::topics/policy-client-policy.adoc[leveloffset=+2]
 include::topics/policy-group-policy.adoc[leveloffset=+2]
 
 include::topics/policy-group-policy-extend-children.adoc[leveloffset=+3]
+
+include::topics/policy-client-scope-policy.adoc[leveloffset=+2]
+
+include::topics/policy-client-scope-policy-required-client-scope.adoc[leveloffset=+3]
+
+include::topics/policy-regex-policy.adoc[leveloffset=+2]
 
 include::topics/policy-logic.adoc[leveloffset=+2]
 

@@ -3,7 +3,7 @@
 Red Hat is proud to announce the release of version 7.4 of {project_name} (RH-SSO). RH-SSO is based on the Keycloak project, and enables you to secure your web applications by providing Web SSO capabilities based on popular standards such as OpenID Connect, OAuth 2.0, and SAML 2.0. The RH-SSO server acts as an OpenID Connect or SAML-based identity provider (IdP), allowing your enterprise user directory or third-party IdP to secure your applications via standards-based security tokens.
 
 [NOTE]
-{project_name} for IBM Z is supported only in the OpenShift environment. Bare metal installations on IBM Z are not supported.
+{project_name} for IBM Z and IBM Power Systems is supported only in the OpenShift environment. Bare metal installations on IBM Z and IBM Power Systems are not supported.
 
 The following notes apply to the RH-SSO 7.4 release.
 
@@ -35,7 +35,10 @@ RH-SSO offers the possibility to add conditions at specific places of the authen
 
 Adding conditional authenticators allowed us to remove the OPTIONAL requirement for the authentication executions. Conditional authenticators are more flexible and allow for support of everything that was previously allowed with the OPTIONAL authentication execution requirement. If you use the OPTIONAL authentication execution, your authentication flows are migrated automatically.
 
-See the link:{upgradingguide_link}[{upgradingguide_name}] for more details.
+[role="_additional-resources"]
+.Additional resources
+
+* link:{upgradingguide_link}[{upgradingguide_name}]
 
 === Credentials management
 
@@ -47,7 +50,9 @@ Administrators can see all credentials of a particular user and some public meta
 
 Users can see all their credentials in the Account Console and add or delete credentials. See the section on the New Account Console, which is a Technology Preview feature. The currently supported account console, the User Account Service, does not support this feature. It supports OTP in a similar way to the previous RH-SSO version.
 
-See link:{adminguide_authentication_flow_link}[{adminguide_authentication_flow_name}] in the link:{adminguide_link}[{adminguide_name}] for more details.
+[role="_additional-resources"]
+.Additional resources
+* link:{adminguide_authentication_flow_link}[Server Administration Guide]
 
 == Vaults for secrets
 
@@ -71,7 +76,10 @@ RH-SSO includes a new built-in vault provider that reads secrets from a keystore
 
 A vault SPI has been introduced to enable development of extensions to access secrets from custom vaults.
 
-See the link:{adminguide_link}[{adminguide_name}] and the link:{developerguide_link}[{developerguide_name}] for more details.
+[role="_additional-resources"]
+.Additional resources
+* link:{adminguide_link}[{adminguide_name}]
+* link:{developerguide_link}[{developerguide_name}]
 
 == WebAuthn (Preview)
 
@@ -100,9 +108,16 @@ standalone -Dkeycloak.profile.feature.account_api=enabled -Dkeycloak.profile.fea
 
 When you go to Manage Account, you will see the new Account Console.  Here is a sample screen:
 
-image:{project_images}/device-activity.png[]
+.Device activity
+image:{project_images}/device-activity.png[Device activity]
 
-This new console is based on link:https://reactjs.org/[React] and link:https://www.patternfly.org/v4/[PatternFly 4].  It allows you to use link:https://www.patternfly.org/v4/get-started/global-css-variables/#global-css-variables[PatternFly CSS variables] for easy styling.  It also allows you to remove pages and add your own pages.  Full documentation will be provided at a future release.
+This new console is based on React and PatternFly 4.  It allows you to use PatternFly CSS variables for easy styling.  It also allows you to remove pages and add your own pages.  Full documentation will be provided at a future release.
+
+.Additional resources
+[role="_additional-resources"]
+* link:https://reactjs.org/[React]
+* link:https://www.patternfly.org/v4/[PatternFly 4]
+* link:https://www.patternfly.org/v4/developer-resources/global-css-variables/#global-variables[PatternFly CSS variables]
 
 == New default hostname provider
 
@@ -148,9 +163,15 @@ The following features continue to be in a Technology Preview status:
 
 * Fine-grained authorization permissions
 
-== Removed or deprecated features
+= Removed or deprecated features
 
-Two features have a change in status:
+These features have a change in status:
+
+* Support for Red Hat Single Sign-On (RH-SSO) on Red Hat Enterprise Linux 6 (RHEL 6) is deprecated and the 7.5 release of RH-SSO will not be supported on RHEL 6. RHEL 6 entered the ELS phase of its lifecycle on November 30, 2020 and the Red Hat JBoss Enterprise Application Platform (EAP) that RH-SSO depends upon will drop support for RHEL 6 with the EAP 7.4 release. Customers should deploy their RH-SSO 7.5 upgrades on RHEL 7 or 8 versions.
+
+* The Spring Boot Adapter is deprecated and will not be included in the 8.0 and higher versions of RH-SSO. This adapter will be maintained during the lifecycle of RH-SSO 7.x. Users are urged to migrate to Spring Security to integrate their Spring Boot applications with RH-SSO.
+
+* Installation from an RPM is deprecated. Red Hat Single Sign-On will continue to deliver RPMs for the life of the 7.x product, but will not deliver RPMs with the next major version. The product will continue to support installation from a ZIP file and installation on OpenShift.
 
 * Authorization Services Drools Policy has been removed
 
@@ -158,11 +179,11 @@ Two features have a change in status:
 
 = Fixed Issues
 
-More than 1100 issues were fixed during this release. For details on the fixed issues, see link:https://issues.redhat.com/issues/?filter=12346377[https://issues.redhat.com/issues/?filter=12346377].
+More than 1100 issues were fixed during this release. For details on the fixed issues, see link:https://issues.redhat.com/browse/KEYCLOAK-13785?filter=12346377[https://issues.redhat.com/issues/?filter=12346377].
 
 = Known issues
 
-This release includes the following link:https://issues.redhat.com/issues/?jql=project%20%3D%20KEYCLOAK%20AND%20issuetype%20%3D%20Bug%20AND%20fixVersion%20%3D%209.0.4%20AND%20component%20not%20in%20(Infra%2C%20Testsuite%2C%20%22Testsuite%20-%20Performance%22)[known issues] and in particular these higher level issues.
+This release includes the following known issues:
 
 * link:https://issues.redhat.com/browse/KEYCLOAK-13589[KEYCLOAK-13589] - Can't add user in admin console when 'Email as username' is enabled
 

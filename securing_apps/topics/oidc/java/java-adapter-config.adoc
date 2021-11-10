@@ -22,24 +22,27 @@ This is what one might look like:
   "enable-basic-auth" : false,
   "expose-token" : true,
   "verify-token-audience" : true,
-   "credentials" : {
-      "secret" : "234234-234234-234234"
-   },
+  "credentials" : {
+    "secret" : "234234-234234-234234"
+  },
 
-   "connection-pool-size" : 20,
-   "disable-trust-manager": false,
-   "allow-any-hostname" : false,
-   "truststore" : "path/to/truststore.jks",
-   "truststore-password" : "geheim",
-   "client-keystore" : "path/to/client-keystore.jks",
-   "client-keystore-password" : "geheim",
-   "client-key-password" : "geheim",
-   "token-minimum-time-to-live" : 10,
-   "min-time-between-jwks-requests" : 10,
-   "public-key-cache-ttl": 86400,
-   "redirect-rewrite-rules" : {
-   "^/wsmaster/api/(.*)$" : "/api/$1"
-   }
+  "connection-pool-size" : 20,
+  "socket-timeout-millis" : 5000,
+  "connection-timeout-millis" : 6000,
+  "connection-ttl-millis" : 500,
+  "disable-trust-manager" : false,
+  "allow-any-hostname" : false,
+  "truststore" : "path/to/truststore.jks",
+  "truststore-password" : "geheim",
+  "client-keystore" : "path/to/client-keystore.jks",
+  "client-keystore-password" : "geheim",
+  "client-key-password" : "geheim",
+  "token-minimum-time-to-live" : 10,
+  "min-time-between-jwks-requests" : 10,
+  "public-key-cache-ttl" : 86400,
+  "redirect-rewrite-rules" : {
+    "^/wsmaster/api/(.*)$" : "/api/$1"
+  }
 }
 ----
 
@@ -62,7 +65,7 @@ resource::
 realm-public-key::
   PEM format of the realm public key. You can obtain this from the administration console.
   This is _OPTIONAL_ and it's not recommended to set it. If not set, the adapter will download this from {project_name} and
-  it will always re-download it when needed (eg. {project_name} rotate it's keys). However if realm-public-key is set, then adapter
+  it will always re-download it when needed (eg. {project_name} rotates its keys). However if realm-public-key is set, then adapter
   will never download new keys from {project_name}, so when {project_name} rotate it's keys, adapter will break.
 
 auth-server-url::
@@ -149,6 +152,27 @@ connection-pool-size::
   This config option defines how many connections to the {project_name} server should be pooled.
   This is _OPTIONAL_.
   The default value is `20`.
+
+socket-timeout-millis::
+  Timeout for socket waiting for data after establishing the connection in milliseconds.
+  Maximum time of inactivity between two data packets.
+  A timeout value of zero is interpreted as an infinite timeout.
+  A negative value is interpreted as undefined (system default if applicable).
+  The default value is `-1`.
+  This is _OPTIONAL_.
+
+connection-timeout-millis::
+  Timeout for establishing the connection with the remote host in milliseconds.
+  A timeout value of zero is interpreted as an infinite timeout.
+  A negative value is interpreted as undefined (system default if applicable).
+  The default value is `-1`.
+  This is _OPTIONAL_.
+
+connection-ttl-millis::
+  Connection time-to-live for client in milliseconds.
+  A value less than or equal to zero is interpreted as an infinite value.
+  The default value is `-1`.
+  This is _OPTIONAL_.
 
 disable-trust-manager::
   If the {project_name} server requires HTTPS and this config option is set to `true` you do not have to specify a truststore.
@@ -260,4 +284,4 @@ verify-token-audience::
   If set to `true`, then during authentication with the bearer token, the adapter will verify whether the token contains this
   client name (resource) as an audience. The option is especially useful for services, which primarily serve requests authenticated
   by the bearer token. This is set to `false` by default, however for improved security, it is recommended to enable this.
-  See link:{adminguide_link}#_audience[Audience Support] for more details about audience support.
+  See link:{adminguide_link}#audience-support[Audience Support] for more details about audience support.

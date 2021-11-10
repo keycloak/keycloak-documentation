@@ -17,6 +17,9 @@ After the action is performed successfully, the user doesn't have to perform the
 {project_name} comes with some built in required actions like "reset password".  This action forces the user to change their password after they have logged in.
 You can write and plug in your own required actions.
 
+WARNING: If your authenticator or required action implementation is using some user attributes as the metadata attributes for linking/establishing the user identity,
+then please make sure that users are not able to edit the attributes and the corresponding attributes are read-only. See the details in the link:{adminguide_link}#_read_only_user_attributes[Threat model mitigation chapter].
+
 === Terms
 
 To first learn about the Authentication SPI, let's go over some of the terms used to describe it.
@@ -646,7 +649,7 @@ The config values can be defined within the admin console if you set up config d
 [source,java]
 ----
 @Override
-    public CredentialTypeMetadata getCredentialTypeMetadata() {
+    public CredentialTypeMetadata getCredentialTypeMetadata(CredentialTypeMetadataContext metadataContext) {
         return CredentialTypeMetadata.builder()
                 .type(getType())
                 .category(CredentialTypeMetadata.Category.TWO_FACTOR)
@@ -658,8 +661,7 @@ The config values can be defined within the admin console if you set up config d
     }
 ----
 
-Last method in SecretQuestionCredentialProvider class is getCredentialTypeMetadata(), which is an abstract method of CredentialProvider
-interface. Each Credential provider has to provide and implement this method. The method returns an instance of CredentialTypeMetadata,
+The last method to implement in the SecretQuestionCredentialProvider class is getCredentialTypeMetadata(CredentialTypeMetadataContext metadataContext), which is an abstract method of the CredentialProvider interface. Each Credential provider has to provide and implement this method. The method returns an instance of CredentialTypeMetadata,
 which should at least include type and category of authenticator, displayName and removable item. In this example, the builder
 takes type of authenticator from method getType(), category is Two Factor (the authenticator can be used as second factor of authentication)
 and removable, which is set up to false (user can't remove some previously registered credentials).
@@ -1180,12 +1182,12 @@ For more details about {project_name} adapter and OAuth2 flows see link:{adapter
 Actually {project_name} has 2 default implementations of client authentication:
 
 Traditional authentication with client_id and client_secret::
-  This is default mechanism mentioned in the https://openid.net/specs/openid-connect-core-1_0.html[OpenID Connect]                                or https://tools.ietf.org/html/rfc6749[OAuth2] specification and {project_name} supports it since it's early days.
+  This is default mechanism mentioned in the https://openid.net/specs/openid-connect-core-1_0.html[OpenID Connect]                                or https://datatracker.ietf.org/doc/html/rfc6749[OAuth2] specification and {project_name} supports it since it's early days.
   The public client needs to include `client_id` parameter with its ID in the POST request (so it's defacto not authenticated) and the confidential client needs to include `Authorization: Basic` header with the clientId and clientSecret used as username and password.
 
 Authentication with signed JWT::
-  This is based on the https://tools.ietf.org/html/rfc7523[JWT Bearer Token Profiles for OAuth 2.0] specification.
-  The client/adapter generates the https://tools.ietf.org/html/rfc7519[JWT] and signs it with his private key.
+  This is based on the https://datatracker.ietf.org/doc/html/rfc7523[JWT Bearer Token Profiles for OAuth 2.0] specification.
+  The client/adapter generates the https://datatracker.ietf.org/doc/html/rfc7519[JWT] and signs it with his private key.
   The {project_name} then verifies the signed JWT with the client's public key and authenticates client based on it.
 
 See the demo example and especially the `examples/preconfigured-demo/product-app` for the example application showing

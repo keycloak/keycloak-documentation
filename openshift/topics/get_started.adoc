@@ -5,7 +5,7 @@
 
 [IMPORTANT]
 ====
-Red Hat JBoss Middleware for OpenShift images are pulled on demand from the secured Red Hat Registry: link:https://access.redhat.com/containers/[registry.redhat.io], which requires authentication. To retrieve content, you will need to log into the registry using the Red Hat account.
+Red Hat JBoss Middleware for OpenShift images are pulled on demand from the secured Red Hat Registry: link:https://catalog.redhat.com[registry.redhat.io], which requires authentication. To retrieve content, you will need to log into the registry using the Red Hat account.
 
 To consume container images from *_registry.redhat.io_* in shared environments such as OpenShift, it is recommended for an administrator to use a Registry Service Account, also referred to as authentication tokens, in place of an individual person's Red Hat Customer Portal credentials.
 
@@ -37,7 +37,7 @@ $ oc login -u system:admin
 ----
 $ oc login -u kubeadmin -p password \https://openshift.example.com:6443
 ----
-  
+
 . Run the following commands to update the core set of {project_name} {project_version} resources for OpenShift in the `openshift` project:
 +
 [source,bash,subs="attributes+,macros+"]
@@ -57,7 +57,7 @@ done
 +
 [source,bash,subs="attributes+,macros+"]
 ----
-$ oc -n openshift import-image redhat-{project_templates_version}-openshift:{project_latest_image_tag}
+$ oc -n openshift import-image {openshift_image_repository}:{project_latest_image_tag} --from=registry.redhat.io/{openshift_image_repository}:{project_latest_image_tag} --confirm
 ----
 
 [[Example-Deploying-SSO]]
@@ -183,25 +183,14 @@ image:images/verify_deployment.png[]
 
 ==== Accessing the Administrator Console of the {project_name} Pod
 
-After the template got deployed, identify the available routes:
+After the template is deployed, identify the available routes:
 
 [source,bash,subs="attributes+,macros+"]
 ----
 $ oc get routes
+NAME     HOST/PORT
+sso      sso-sso-app-demo.openshift.example.com
 ----
-
-[cols="7",options="header"]
-|===
-|NAME |HOST/PORT |PATH |SERVICES |PORT |TERMINATION |WILDCARD
-
-|sso
-|sso-sso-app-demo.openshift.example.com
-|
-|sso
-|<all>
-|reencrypt
-|None
-|===
 
 and access the {project_name} administrator console at:
 

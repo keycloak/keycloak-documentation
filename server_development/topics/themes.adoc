@@ -160,7 +160,7 @@ to:
 
 [source]
 ----
-styles=web_modules/@fortawesome/fontawesome-free/css/icons/all.css web_modules/@patternfly/react-core/dist/styles/base.css
+styles=web_modules/@fontawesome/fontawesome-free/css/icons/all.css web_modules/@patternfly/react-core/dist/styles/base.css
 web_modules/@patternfly/react-core/dist/styles/app.css node_modules/patternfly/dist/css/patternfly.min.css
 node_modules/patternfly/dist/css/patternfly-additions.min.css css/login.css css/styles.css
 ----
@@ -280,8 +280,8 @@ See <<_locale_selector,Locale Selector>> on details on how the current locale is
 ==== Custom Identity providers icons
 
 {project_name} supports adding icons for custom Identity providers, which are displayed on the login screen.
-You just have to define an icon classes in your login `theme.properties` file (f.e. `themes/mytheme/login/theme.properties`) with key pattern `kcLogoIdP-<alias>`.
-For Identity provider with alias `myProvider`, you may add line, like below, to login theme properties of your custom theme.
+You just have to define icon classes in your login `theme.properties` file (i.e. `themes/mytheme/login/theme.properties`) with key pattern `kcLogoIdP-<alias>`.
+For Identity provider with an alias `myProvider`, you may add a line, like below, to `theme.properties` file of your custom theme.
 
 [source]
 ----
@@ -339,12 +339,12 @@ archive that lists the available themes in the archive as well as what types eac
 For example for the `mytheme` theme create `mytheme.jar` with the contents:
 
 * META-INF/keycloak-themes.json
-* theme/mytheme/login/theme.properties
-* theme/mytheme/login/login.ftl
-* theme/mytheme/login/resources/css/styles.css
-* theme/mytheme/login/resources/img/image.png
-* theme/mytheme/login/messages/messages_en.properties
-* theme/mytheme/email/messages/messages_en.properties
+* themes/mytheme/login/theme.properties
+* themes/mytheme/login/login.ftl
+* themes/mytheme/login/resources/css/styles.css
+* themes/mytheme/login/resources/img/image.png
+* themes/mytheme/login/messages/messages_en.properties
+* themes/mytheme/email/messages/messages_en.properties
 
 The contents of `META-INF/keycloak-themes.json` in this case would be:
 

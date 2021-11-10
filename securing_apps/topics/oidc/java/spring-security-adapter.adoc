@@ -1,4 +1,4 @@
-[[_spring_security_adapter]]
+<[[_spring_security_adapter]]
 ==== Spring Security Adapter
 
 To secure an application with Spring Security and Keycloak, add this adapter as a dependency to your project.
@@ -6,7 +6,7 @@ You then have to provide some extra beans in your Spring Security configuration 
 
 Unlike the other Keycloak Adapters, you should not configure your security in web.xml.
 However, keycloak.json is still required.
-In order for Single Sign Out work properly you have to define a session listener.
+In order for Single Sign Out to work properly you have to define a session listener.
 
 .The session listener can be defined:
 * in web.xml (for pure Spring Security environments):
@@ -72,7 +72,12 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
     @Bean
     @Override
     protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
-        return new RegisterSessionAuthenticationStrategy(new SessionRegistryImpl());
+        return new RegisterSessionAuthenticationStrategy(buildSessionRegistry());
+    }
+
+    @Bean
+    protected SessionRegistry buildSessionRegistry() {
+        return new SessionRegistryImpl();
     }
 
     @Override
@@ -93,8 +98,8 @@ You must provide a session authentication strategy bean which should be of type 
 Spring Security's `SessionFixationProtectionStrategy` is currently not supported because it changes the session identifier after login via Keycloak.
 If the session identifier changes, universal log out will not work because Keycloak is unaware of the new session identifier.
 
-TIP: The `@KeycloakConfiguration` annotation is a metadata annotion that defines all annotations that are needed to integrate
-{project_name} in Spring Security. If you have a complexe Spring Security setup you can simply have a look ath the annotations of
+TIP: The `@KeycloakConfiguration` annotation is a metadata annotation that defines all annotations that are needed to integrate
+{project_name} in Spring Security. If you have a complex Spring Security setup you can simply have a look at the annotations of
 the `@KeycloakConfiguration` annotation and create your own custom meta annotation or just use specific Spring annotations
 for the {project_name} adapter.
 
@@ -138,6 +143,11 @@ While Spring Security's XML namespace simplifies configuration, customizing the 
     <bean id="keycloakAuthenticationProcessingFilter" class="org.keycloak.adapters.springsecurity.filter.KeycloakAuthenticationProcessingFilter">
         <constructor-arg name="authenticationManager" ref="authenticationManager" />
     </bean>
+    <bean id="keycloakSecurityContextRequestFilter"
+          class="org.keycloak.adapters.springsecurity.filter.KeycloakSecurityContextRequestFilter" />
+
+<bean id="keycloakSecurityContextRequestFilter"
+     class="org.keycloak.adapters.springsecurity.filter.KeycloakSecurityContextRequestFilter" />
 
     <bean id="keycloakLogoutHandler" class="org.keycloak.adapters.springsecurity.authentication.KeycloakLogoutHandler">
         <constructor-arg ref="adapterDeploymentContext" />
@@ -162,6 +172,7 @@ While Spring Security's XML namespace simplifies configuration, customizing the 
     <security:http auto-config="false" entry-point-ref="keycloakAuthenticationEntryPoint">
         <security:custom-filter ref="keycloakPreAuthActionsFilter" before="LOGOUT_FILTER" />
         <security:custom-filter ref="keycloakAuthenticationProcessingFilter" before="FORM_LOGIN_FILTER" />
+        <security:custom-filter ref="keycloakSecurityContextRequestFilter" after="FORM_LOGIN_FILTER" />
         <security:intercept-url pattern="/customers**" access="ROLE_USER" />
         <security:intercept-url pattern="/admin**" access="ROLE_ADMIN" />
         <security:custom-filter ref="logoutFilter" position="LOGOUT_FILTER" />

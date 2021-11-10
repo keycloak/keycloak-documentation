@@ -1,5 +1,5 @@
 
-=== Outgoing HTTP Requests
+=== Outgoing HTTP requests
 
 The {project_name} server often needs to make non-browser HTTP requests to the applications and services it secures.
 The auth server manages these outgoing connections by maintaining an HTTP client connection pool.  There are some things
@@ -66,7 +66,7 @@ disable-trust-manager::
   The default value is `false`.
 
 [[_proxymappings]]
-==== Proxy Mappings for Outgoing HTTP Requests
+==== Proxy mappings for outgoing HTTP requests
 
 Outgoing HTTP requests sent by {project_name} can optionally use a proxy server based on a comma delimited list of proxy-mappings.
 A proxy-mapping denotes the combination of a regex based hostname pattern and a proxy-uri in the form of `hostnamePattern;proxyUri`,
@@ -135,8 +135,48 @@ Note that one needs to encode `"` characters with `\&quot;`.
 </spi>
 ----
 
+[[_proxy_env_vars]]
+==== Using standard environment variables
+
+Alternatively, it is possible to use standard environment variables to configure the proxy mappings, that is `HTTP_PROXY`, `HTTPS_PROXY`
+and `NO_PROXY` variables.
+
+The `HTTP_PROXY` and `HTTPS_PROXY` variables represent the proxy server that should be used for all outgoing HTTP requests.
+{project_name} does not differ between the two. If both are specified, `HTTPS_PROXY` takes the precedence regardless of
+the actual scheme the proxy server uses.
+
+The `NO_PROXY` variable is used to define a comma separated list of hostnames that should not use the proxy.
+If a hostname is specified, all its prefixes (subdomains) are also excluded from using proxy.
+
+Take the following example:
+[source]
+----
+HTTPS_PROXY=https://www-proxy.acme.com:8080
+NO_PROXY=google.com,login.facebook.com
+----
+In this example, all outgoing HTTP requests will use `\https://www-proxy.acme.com:8080` proxy server except for requests
+to for example `login.google.com`, `google.com`, `auth.login.facebook.com`. However, for example `groups.facebook.com` will be routed
+through the proxy.
+
+NOTE:  The environment variables can be lowercase or uppercase. Lowercase takes precedence. For example if both `HTTP_PROXY` and
+       `http_proxy` are defined, `http_proxy` will be used.
+
+If proxy mappings are defined using the subsystem configuration (as described above), the environment variables are not
+considered by {project_name}. This scenario applies in case no proxy server should be used despite having for example `HTTP_PROXY`
+environment variable defined. To do so, you can specify a generic no proxy route as follows:
+[source,xml]
+----
+<spi name="connectionsHttpClient">
+    <provider name="default" enabled="true">
+        <properties>
+            <property name="proxy-mappings" value=".*;NO_PROXY"/>
+        </properties>
+    </provider>
+</spi>
+----
+
 [[_truststore]]
-==== Outgoing HTTPS Request Truststore
+==== Outgoing HTTPS request truststore
 
 When {project_name} invokes on remote HTTPS endpoints, it has to validate the remote server's certificate in order to ensure it is connecting to a trusted server.
 This is necessary in order to prevent man-in-the-middle attacks.  The certificates of these remote server's or the CA that signed these
@@ -169,7 +209,6 @@ You can add your truststore configuration by using the following template:
             <property name="file" value="path to your .jks file containing public certificates"/>
             <property name="password" value="password"/>
             <property name="hostname-verification-policy" value="WILDCARD"/>
-            <property name="enabled" value="true"/>
         </properties>
     </provider>
 </spi>
@@ -184,19 +223,15 @@ file::
   This is what the trustore does.
   The keystore contains one or more trusted host certificates or certificate authorities.
   This truststore file should only contain public certificates of your secured hosts.
-  This is _REQUIRED_ if `enabled` is true.
+  This is _REQUIRED_ if any of these properties are defined.
 
 password::
-  Password for the truststore.
-  This is _REQUIRED_ if `enabled` is true.
+  Password of the keystore.
+  This is _REQUIRED_ if any of these properties are defined.
 
 hostname-verification-policy::
   `WILDCARD` by default.
   For HTTPS requests, this verifies the hostname of the server's certificate.
    `ANY` means that the hostname is not verified. `WILDCARD` Allows wildcards in subdomain names i.e.
   *.foo.com. `STRICT` CN must match hostname exactly.
-
-enabled::
-  If false (default value), truststore configuration will be ignored, and certificate checking will fall back to JSSE configuration as described.
-  If set to true, you must configure `file`, and `password` for the truststore.
 
