@@ -18,7 +18,7 @@ To enable the delete account role for a user, go to the Users menu, and find the
 
 Finally, select `delete-account` and click on add selected.
 
-image:images/delete-account-client-role.png[]
+Image:images/delete-account-client-role.png[]
 
 
 === Deleting a user in action

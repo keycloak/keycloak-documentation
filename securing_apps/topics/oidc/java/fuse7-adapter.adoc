@@ -11,7 +11,7 @@ endif::[]
 ifeval::[{project_product}==true]
 <<_jboss_adapter,JBoss EAP 7 Adapter>>
 endif::[]
-as {fuse7Version} is bundled with https://undertow.io/[Undertow HTTP engine] under the covers and Undertow is used for running various kinds of web applications.
+as {fuse7Version} is bundled with the Undertow HTTP engine under the covers and Undertow is used for running various kinds of web applications.
 
 WARNING: The only supported version of Fuse 7 is the latest release. If you use earlier versions of Fuse 7, it is possible that some functions will not work correctly. In particular, integration will not work at all for versions of Fuse 7 lower than 7.0.1.
 
@@ -20,7 +20,7 @@ Security for the following items is supported for Fuse:
 * Classic WAR applications deployed on Fuse with Pax Web War Extender
 * Servlets deployed on Fuse as OSGI services with Pax Web Whiteboard Extender and additionally servlets registered through
   org.osgi.service.http.HttpService#registerServlet() which is standard OSGi Enterprise HTTP Service
-* https://camel.apache.org/[Apache Camel] Undertow endpoints running with the https://camel.apache.org/components/latest/undertow-component.html[Camel Undertow] component
+* https://camel.apache.org/[Apache Camel] Undertow endpoints running with the https://camel.apache.org/components/next/undertow-component.html[Camel Undertow] component
 * https://cxf.apache.org/[Apache CXF] endpoints running on their own separate Undertow engine
 * https://cxf.apache.org/[Apache CXF] endpoints running on the default engine provided by the CXF servlet
 * SSH and JMX admin access
