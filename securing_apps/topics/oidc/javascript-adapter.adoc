@@ -24,17 +24,24 @@ The following example shows how to initialize the JavaScript adapter:
 
 [source,html]
 ----
+<html>
 <head>
     <script src="keycloak.js"></script>
     <script>
-        var keycloak = new Keycloak();
-        keycloak.init().then(function(authenticated) {
-            alert(authenticated ? 'authenticated' : 'not authenticated');
-        }).catch(function() {
-            alert('failed to initialize');
-        });
+        function initKeycloak() {
+            var keycloak = new Keycloak();
+            keycloak.init().then(function(authenticated) {
+                alert(authenticated ? 'authenticated' : 'not authenticated');
+            }).catch(function() {
+                alert('failed to initialize');
+            });
+        }
     </script>
 </head>
+<body onload="initKeycloak()">
+    <!-- your page content goes here -->
+</body>
+</html>
 ----
 
 If the `keycloak.json` file is in a different location you can specify it:
@@ -91,7 +98,7 @@ It has no other task than sending the received tokens to the main application an
 
 Please keep in mind that this page at the specified location must be provided by the application itself and is _not_ part of the JavaScript adapter!
 
-WARNING: _Silent_ `check-sso` functionality is limited in some modern browsers. Please see link:#_modern_browsers[Modern Browsers with Tracking Protection Section].
+WARNING: _Silent_ `check-sso` functionality is limited in some modern browsers. Please see the <<_modern_browsers,Modern Browsers with Tracking Protection Section>>.
 
 To enable `login-required` set `onLoad` to `login-required` and pass to the init method:
 
@@ -153,7 +160,7 @@ This feature can be disabled by setting `checkLoginIframe: false` in the options
 You should not rely on looking at this cookie directly. Its format can change and it's also associated with the URL of the {project_name} server, not
 your application.
 
-WARNING: Session Status iframe functionality is limited in some modern browsers. Please see link:#_modern_browsers[Modern Browsers with Tracking Protection Section].
+WARNING: Session Status iframe functionality is limited in some modern browsers. Please see <<_modern_browsers,Modern Browsers with Tracking Protection Section>>.
 
 [[_javascript_implicit_flow]]
 ==== Implicit and Hybrid Flow
@@ -430,8 +437,9 @@ Options is an Object, where:
 * responseMode - Set the OpenID Connect response mode send to {project_name} server at login request. Valid values are `query` or `fragment`. Default value is `fragment`, which means that after successful authentication will {project_name} redirect to JavaScript application with OpenID Connect parameters added in URL fragment. This is generally safer and recommended over `query`.
 * flow - Set the OpenID Connect flow. Valid values are `standard`, `implicit` or `hybrid`.
 * enableLogging - Enables logging messages from Keycloak to the console (default is `false`).
-* pkceMethod - The method for Proof Key Code Exchange (https://tools.ietf.org/html/rfc7636[PKCE]) to use. Configuring this value enables the PKCE mechanism. Available options:
+* pkceMethod - The method for Proof Key Code Exchange (https://datatracker.ietf.org/doc/html/rfc7636[PKCE]) to use. Configuring this value enables the PKCE mechanism. Available options:
     - "S256" - The SHA256 based PKCE method
+* messageReceiveTimeout - Set a timeout in milliseconds for waiting for message responses from the Keycloak server. This is used, for example, when waiting for a message during 3rd party cookies check. The default value is 10000.
 
 Returns a promise that resolves when initialization completes.
 
@@ -443,7 +451,7 @@ Options is an Object, where:
 
 * redirectUri - Specifies the uri to redirect to after login.
 * prompt - This parameter allows to slightly customize the login flow on the {project_name} server side.
-For example enforce displaying the login screen in case of value `login`. See link:#_params_forwarding[Parameters Forwarding Section]
+For example enforce displaying the login screen in case of value `login`. See link:{adapterguide_link}#_params_forwarding[Parameters Forwarding Section]
 for the details and all the possible values of the `prompt` parameter.
 * maxAge - Used just if user is already authenticated. Specifies maximum time since the authentication of user happened. If user is already authenticated for longer time than `maxAge`, the SSO is ignored and he will need to re-authenticate again.
 * loginHint - Used to pre-fill the username/email field on the login form.
@@ -495,9 +503,13 @@ Options are same as for the createLoginUrl method but 'action' is set to 'regist
 
 Redirects to the Account Management Console.
 
-====== createAccountUrl()
+====== createAccountUrl(options)
 
 Returns the URL to the Account Management Console.
+
+Options is an Object, where:
+
+* redirectUri - Specifies the uri to redirect to when redirecting back to the application.
 
 ====== hasRealmRole(role)
 

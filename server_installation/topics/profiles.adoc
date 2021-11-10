@@ -16,16 +16,36 @@ The features that can be enabled and disabled are:
 
 |account2
 |New Account Management Console
-|No
-|Preview
+|Yes
+|Supported
 
 |account_api
 |Account Management REST API
-|No
-|Preview
+|Yes
+|Supported
 
 |admin_fine_grained_authz
 |Fine-Grained Admin Permissions
+|No
+|Preview
+
+|ciba
+|OpenID Connect Client Initiated Backchannel Authentication (CIBA)
+|Yes
+|Supported
+
+|client_policies
+|Add client configuration policies
+|Yes
+|Supported
+
+|par
+|OAuth 2.0 Pushed Authorization Requests (PAR)
+|Yes
+|Supported
+
+|declarative_user_profile
+|Configure user profiles using a declarative style
 |No
 |Preview
 
@@ -55,7 +75,7 @@ The features that can be enabled and disabled are:
 |Preview
 
 |upload_scripts
-|Upload scripts through the {project_name} REST API
+|Upload scripts
 |No
 |Deprecated
 
@@ -64,13 +84,14 @@ The features that can be enabled and disabled are:
 
 ifeval::[{project_community}==true]
 |Yes
-|Experimental
+|Preview
 endif::[]
 
 ifeval::[{project_product}==true]
 |No
 |Preview
 endif::[]
+
 |===
 
 To enable all preview features start the server with:

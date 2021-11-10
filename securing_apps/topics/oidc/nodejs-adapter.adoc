@@ -196,7 +196,7 @@ If `response_mode` is set to `token`, permissions are obtained from the server o
 [source,javascript]
 ----
     app.get('/apis/me', keycloak.enforcer('user:profile', {response_mode: 'token'}), function (req, res) {
-        var token = var token = req.kauth.grant.access_token.content;
+        var token = req.kauth.grant.access_token.content;
         var permissions = token.authorization ? token.authorization.permissions : undefined;
 
         // show user profile
@@ -209,7 +209,7 @@ If `response_mode` is set to `permissions` (default mode), the server only retur
 
 [source,javascript]
 ----
-    app.get('/apis/me', keycloak.enforcer('user:profile', {response_mode: 'token'}), function (req, res) {
+    app.get('/apis/me', keycloak.enforcer('user:profile', {response_mode: 'permissions'}), function (req, res) {
         var permissions = req.permissions;
 
         // show user profile
@@ -264,6 +264,22 @@ for each section:
     }
 
     app.get( '/:section/:page', keycloak.protect( protectBySection ), sectionHandler );
+----
+
+Advanced Login Configuration:
+
+By default, all unauthorized requests will be redirected to the {project_name} login page unless your client is bearer-only. 
+However, a confidential or public client may host both browsable and API endpoints. To prevent redirects on unauthenticated 
+API requests and instead return an HTTP 401, you can override the redirectToLogin function.
+
+For example, this override checks if the URL contains /api/ and disables login redirects:
+
+[source,javascript]
+----
+    Keycloak.prototype.redirectToLogin = function(req) {
+    var apiReqMatcher = /\/api\//i;
+    return !apiReqMatcher.test(req.originalUrl || req.url);
+    };
 ----
 
 ==== Additional URLs

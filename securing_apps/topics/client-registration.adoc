@@ -108,7 +108,7 @@ This means that for the JavaScript adapter you can load the client configuration
 
 === OpenID Connect Dynamic Client Registration
 
-{project_name} implements https://openid.net/specs/openid-connect-registration-1_0.html[OpenID Connect Dynamic Client Registration], which extends https://tools.ietf.org/html/rfc7591[OAuth 2.0 Dynamic Client Registration Protocol] and https://tools.ietf.org/html/rfc7592[OAuth 2.0 Dynamic Client Registration Management Protocol].
+{project_name} implements https://openid.net/specs/openid-connect-registration-1_0.html[OpenID Connect Dynamic Client Registration], which extends https://datatracker.ietf.org/doc/html/rfc7591[OAuth 2.0 Dynamic Client Registration Protocol] and https://datatracker.ietf.org/doc/html/rfc7592[OAuth 2.0 Dynamic Client Registration Management Protocol].
 
 The endpoint to use these specifications to register clients in {project_name} is `/auth/realms/<realm>/clients-registrations/openid-connect[/<client id>]`.
 
@@ -163,9 +163,13 @@ client = reg.create(client);
 String registrationAccessToken = client.getRegistrationAccessToken();
 ----
 
+[[_client_registration_policies]]
 === Client Registration Policies
 
-{project_name} currently supports 2 ways how can be new clients registered through Client Registration Service.
+NOTE: The current plans are for the Client Registration Policies to be removed in favor of the Client Policies described in the link:{adminguide_link}#_client_policies[{adminguide_name}].
+Client Policies are more flexible and support more use cases.
+
+{project_name} currently supports two ways how new clients can be registered through Client Registration Service.
 
 * Authenticated requests - Request to register new client must contain either `Initial Access Token` or `Bearer Token` as mentioned above.
 
