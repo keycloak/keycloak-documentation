@@ -12,11 +12,12 @@
 :project_name_full: Red Hat Single Sign-On
 :project_version_base: 7.5
 :project_version: 7.5.0
-:keycloak_upgrade_version: 15.0.x
+:keycloak_upgrade_version: 15.0.2
 :project_versionDoc: 7.5
 :project_templates_base_url: https://raw.githubusercontent.com/jboss-container-images/redhat-sso-7-openshift-image/sso75-cpaas-dev/templates
 :project_latest_image_tag: {project_versionDoc}
 :project_doc_base_url: https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/{project_versionDoc}/html-single
+:project_doc_base_url_latest: https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/{project_versionDoc}/html-single
 :maven_repository: https://maven.repository.redhat.com/ga/
 
 :project_openshift_product_name: {project_name} for OpenShift
@@ -38,12 +39,13 @@
 :authorizationguide_link: {project_doc_base_url}/authorization_services_guide/
 :adapterguide_name: Securing Applications and Services Guide
 :adapterguide_link: {project_doc_base_url}/securing_applications_and_services_guide/
+:adapterguide_link_latest: {adapterguide_link}
 :adapterguide_link_js_adapter: {adapterguide_link}#_javascript_adapter
 :adapterguide_logout_link: {adapterguide_link}#_java_adapter_logout
 :adminguide_name: Server Administration Guide
 :adminguide_link: {project_doc_base_url}/server_administration_guide/
 :adminguide_authentication_flow_name: authentication flow
-:adminguide_authentication_flow_link: {adminguide_link}#_authentication-flows
+:adminguide_authentication_flow_link: {adminguide_link}#authentication-flows
 :adminguide_bruteforce_name: Password guess: brute force attacks
 :adminguide_bruteforce_link: {adminguide_link}#password-guess-brute-force-attacks
 :adminguide_disabling_automatic_user_creation_name: disabling automatic user creation
@@ -75,7 +77,7 @@
 :openshift_openjdk_image_repository: {openshift_image_repository_productline}/{openshift_openjdk_image_stream}
 :openshift_openjdk_project_templates_version: sso75
 :openshift_openj9_name: Red Hat Single Sign-On for OpenShift on Eclipse OpenJ9
-:openshift_openj9_link: {project_doc_base_url}/red_hat_single_sign-on_for_openshift_on_openj9/
+:openshift_openj9_link: {project_doc_base_url}/red_hat_single_sign-on_for_openshift_on_eclipse_openj9/
 :openshift_openj9_platforms: IBM Z/IBM Power Systems
 :openshift_openj9_image_stream: sso75-openj9-openshift-rhel8
 :openshift_openj9_image_repository: {openshift_image_repository_productline}/{openshift_openj9_image_stream}
@@ -119,7 +121,7 @@
 :apidocs_javadocs_name: JavaDocs Documentation
 :apidocs_javadocs_link: https://access.redhat.com/webassets/avalon/d/red-hat-single-sign-on/version-{project_versionDoc}/javadocs/
 :apidocs_adminrest_name: Administration REST API
-:apidocs_adminrest_link: https://access.redhat.com/webassets/avalon/d/red-hat-single-sign-on/version-{project_versionDoc}/restapi/
+:apidocs_adminrest_link: https://access.redhat.com/webassets/avalon/d/red-hat-single-sign-on/version-{project_versionDoc}/rest-api/
 
 :appserver_name: JBoss EAP
 :appserver_dirref: EAP_HOME
@@ -149,7 +151,7 @@
 :jdgserver_name: RHDG
 :jdgserver_version: 7.3
 :jdgserver_version_latest: 8.1
-:jdgserver_crossdcdocs_link: https://access.redhat.com/documentation/en-us/red_hat_data_grid/8.1/html/data_grid_guide_to_cross-site_replication/
+:jdgserver_crossdcdocs_link: https://access.redhat.com/documentation/en-us/red_hat_data_grid/8.1/html/data_grid_guide_to_cross-site_replication/index
 
 :fuseVersion: JBoss Fuse 6.3.0 Rollup 12
 :fuseHawtioEAPVersion: JBoss EAP 6.4

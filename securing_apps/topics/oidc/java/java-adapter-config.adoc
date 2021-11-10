@@ -22,27 +22,27 @@ This is what one might look like:
   "enable-basic-auth" : false,
   "expose-token" : true,
   "verify-token-audience" : true,
-   "credentials" : {
-      "secret" : "234234-234234-234234"
-   },
+  "credentials" : {
+    "secret" : "234234-234234-234234"
+  },
 
-   "connection-pool-size" : 20,
-   "socket-timeout-millis": 5000,
-   "connection-timeout-millis": 6000,
-   "connection-ttl-millis": 500,
-   "disable-trust-manager": false,
-   "allow-any-hostname" : false,
-   "truststore" : "path/to/truststore.jks",
-   "truststore-password" : "geheim",
-   "client-keystore" : "path/to/client-keystore.jks",
-   "client-keystore-password" : "geheim",
-   "client-key-password" : "geheim",
-   "token-minimum-time-to-live" : 10,
-   "min-time-between-jwks-requests" : 10,
-   "public-key-cache-ttl": 86400,
-   "redirect-rewrite-rules" : {
-   "^/wsmaster/api/(.*)$" : "/api/$1"
-   }
+  "connection-pool-size" : 20,
+  "socket-timeout-millis" : 5000,
+  "connection-timeout-millis" : 6000,
+  "connection-ttl-millis" : 500,
+  "disable-trust-manager" : false,
+  "allow-any-hostname" : false,
+  "truststore" : "path/to/truststore.jks",
+  "truststore-password" : "geheim",
+  "client-keystore" : "path/to/client-keystore.jks",
+  "client-keystore-password" : "geheim",
+  "client-key-password" : "geheim",
+  "token-minimum-time-to-live" : 10,
+  "min-time-between-jwks-requests" : 10,
+  "public-key-cache-ttl" : 86400,
+  "redirect-rewrite-rules" : {
+    "^/wsmaster/api/(.*)$" : "/api/$1"
+  }
 }
 ----
 
@@ -65,7 +65,7 @@ resource::
 realm-public-key::
   PEM format of the realm public key. You can obtain this from the administration console.
   This is _OPTIONAL_ and it's not recommended to set it. If not set, the adapter will download this from {project_name} and
-  it will always re-download it when needed (eg. {project_name} rotate it's keys). However if realm-public-key is set, then adapter
+  it will always re-download it when needed (eg. {project_name} rotates its keys). However if realm-public-key is set, then adapter
   will never download new keys from {project_name}, so when {project_name} rotate it's keys, adapter will break.
 
 auth-server-url::

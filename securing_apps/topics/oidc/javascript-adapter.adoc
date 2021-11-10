@@ -7,6 +7,8 @@ The library can be retrieved directly from the {project_name} server at `/auth/j
 
 A best practice is to load the JavaScript adapter directly from {project_name} Server as it will automatically be updated when you upgrade the server. If you copy the adapter to your web application instead, make sure you upgrade the adapter only after you have upgraded the server.
 
+NOTE: You can also download package from npm: https://www.npmjs.com/package/keycloak-js
+
 One important thing to note about using client-side applications is that the client has to be a public client as there is no secure way to store client
 credentials in a client-side application. This makes it very important to make sure the redirect URIs you have configured for the client are correct and as specific as possible.
 
@@ -445,9 +447,9 @@ Returns a promise that resolves when initialization completes.
 
 ====== login(options)
 
-Redirects to login form on (options is an optional object with redirectUri and/or prompt fields).
+Redirects to login form.
 
-Options is an Object, where:
+Options is an optional Object, where:
 
 * redirectUri - Specifies the uri to redirect to after login.
 * prompt - This parameter allows to slightly customize the login flow on the {project_name} server side.
@@ -461,15 +463,15 @@ always be added to the list of scopes by the adapter. For example, if you enter 
 to {project_name} will contain the scope parameter `scope=openid address phone`.
 * idpHint - Used to tell {project_name} to skip showing the login page and automatically redirect to the specified identity
 provider instead. More info in the link:{adminguide_link}#_client_suggested_idp[Identity Provider documentation].
-* action - If value is `register` then user is redirected to registration page, otherwise to login page.
+* action - If value is `register` then user is redirected to registration page, if the value is `UPDATE_PASSWORD` then the user will redirected to the reset password page (if not authenticated will send user to login page first and redirect after authenticated), otherwise to login page.
 * locale - Sets the 'ui_locales' query param in compliance with https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest[section 3.1.2.1 of the OIDC 1.0 specification].
 * cordovaOptions - Specifies the arguments that are passed to the Cordova in-app-browser (if applicable). Options `hidden` and `location` are not affected by these arguments. All available options are defined at https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-inappbrowser/. Example of use: `{ zoom: "no", hardwareback: "yes" }`;
 
 ====== createLoginUrl(options)
 
-Returns the URL to login form on (options is an optional object with redirectUri and/or prompt fields).
+Returns the URL to login form.
 
-Options is an Object, which supports same options like the function `login` .
+Options is an optional Object, which supports same options as the function `login` .
 
 ====== logout(options)
 
