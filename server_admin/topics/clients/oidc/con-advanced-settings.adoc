@@ -30,7 +30,7 @@ In the following cases, {project_name} will verify the client sending the access
 * A UserInfo request is sent to UserInfo endpoint with a holder-of-key access token.
 * A logout request is sent to Logout endpoint with a holder-of-key refresh token.
 
-See https://datatracker.ietf.org/doc/html/draft-ietf-oauth-mtls-08#section-3[Mutual TLS Client Certificate Bound Access Tokens] in the OAuth 2.0 Mutual TLS Client Authentication and Certificate Bound Access Tokens for more details.
+See https://datatracker.nosuch.ietf.org/doc/html/draft-ietf-oauth-mtls-08#section-3[Mutual TLS Client Certificate Bound Access Tokens] in the OAuth 2.0 Mutual TLS Client Authentication and Certificate Bound Access Tokens for more details.
 
 [NOTE]
 ====
