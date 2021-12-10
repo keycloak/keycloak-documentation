@@ -1,6 +1,6 @@
 
 [[_keycloak_cr]]
-=== {project_name} installation using a custom resource 
+=== Installing {project_name} using a custom resource 
 
 You can use the Operator to automate the installation of {project_name} by creating a Keycloak custom resource. When you use a custom resource to install {project_name}, you create the components and services that are described here and illustrated in the graphic that follows.
 
@@ -28,8 +28,11 @@ The Keycloak custom resource is a YAML file that defines the parameters for inst
 ifeval::[{project_community}==true]
  or an Ingress for Kubernetes
 endif::[]
- for the {project_name} cluster.
-* `externalDatabase` - applies only if you want to connect an externally hosted database. That topic is covered in the xref:_external_database[external database] section of this guide.
+ for the {project_name} cluster. You can set `host` to override the automatically chosen host name for Route
+ifeval::[{project_community}==true]
+ or default value `keycloak.local` set for Ingress.
+endif::[]
+* `externalDatabase` - in order to connect to an externally hosted database. That topic is covered in the xref:_external_database[external database] section of this guide. Setting it to false should be used only for testing purposes and will install an embedded PostgreSQL database. Be aware that externalDatabase:false is *NOT* supported in production environments.
 
 .Example YAML file for a Keycloak custom resource
 ```yaml
@@ -169,7 +172,7 @@ image:images/login-empty.png[]
 +
 [source,bash,subs=+attributes]
 ----
-$ {create_cmd_brief} get secret credentials-<CR-Name> -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
+$ {create_cmd_brief} get secret credential-<CR-Name> -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
 ----
 
 . Enter the username and password in the admin console login screen.
@@ -243,4 +246,4 @@ Events:
 
 * Once the installation of {project_name} completes, you are ready to xref:_realm-cr[create a realm custom resource].
 
-* If you have an external database, you can modify the Keycloak custom resource to support it. See xref:_external_database[Connecting to an external database].
+* An external database is the supported option and needs to be enabled in the Keycloak custom resource. You can disable this option only for testing and enable it when you switch to a production environment. See xref:_external_database[Connecting to an external database].

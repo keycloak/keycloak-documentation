@@ -35,7 +35,10 @@ RH-SSO offers the possibility to add conditions at specific places of the authen
 
 Adding conditional authenticators allowed us to remove the OPTIONAL requirement for the authentication executions. Conditional authenticators are more flexible and allow for support of everything that was previously allowed with the OPTIONAL authentication execution requirement. If you use the OPTIONAL authentication execution, your authentication flows are migrated automatically.
 
-See the link:{upgradingguide_link}[{upgradingguide_name}] for more details.
+[role="_additional-resources"]
+.Additional resources
+
+* link:{upgradingguide_link}[{upgradingguide_name}]
 
 === Credentials management
 
@@ -47,7 +50,9 @@ Administrators can see all credentials of a particular user and some public meta
 
 Users can see all their credentials in the Account Console and add or delete credentials. See the section on the New Account Console, which is a Technology Preview feature. The currently supported account console, the User Account Service, does not support this feature. It supports OTP in a similar way to the previous RH-SSO version.
 
-See link:{adminguide_authentication_flow_link}[{adminguide_authentication_flow_name}] in the link:{adminguide_link}[{adminguide_name}] for more details.
+[role="_additional-resources"]
+.Additional resources
+* link:{adminguide_authentication_flow_link}[Server Administration Guide]
 
 == Vaults for secrets
 
@@ -71,7 +76,10 @@ RH-SSO includes a new built-in vault provider that reads secrets from a keystore
 
 A vault SPI has been introduced to enable development of extensions to access secrets from custom vaults.
 
-See the link:{adminguide_link}[{adminguide_name}] and the link:{developerguide_link}[{developerguide_name}] for more details.
+[role="_additional-resources"]
+.Additional resources
+* link:{adminguide_link}[{adminguide_name}]
+* link:{developerguide_link}[{developerguide_name}]
 
 == WebAuthn (Preview)
 
@@ -100,9 +108,16 @@ standalone -Dkeycloak.profile.feature.account_api=enabled -Dkeycloak.profile.fea
 
 When you go to Manage Account, you will see the new Account Console.  Here is a sample screen:
 
-image:{project_images}/device-activity.png[]
+.Device activity
+image:{project_images}/device-activity.png[Device activity]
 
-This new console is based on link:https://reactjs.org/[React] and link:https://www.patternfly.org/v4/[PatternFly 4].  It allows you to use link:https://www.patternfly.org/v4/get-started/global-css-variables/#global-css-variables[PatternFly CSS variables] for easy styling.  It also allows you to remove pages and add your own pages.  Full documentation will be provided at a future release.
+This new console is based on React and PatternFly 4.  It allows you to use PatternFly CSS variables for easy styling.  It also allows you to remove pages and add your own pages.  Full documentation will be provided at a future release.
+
+.Additional resources
+[role="_additional-resources"]
+* link:https://reactjs.org/[React]
+* link:https://www.patternfly.org/v4/[PatternFly 4]
+* link:https://www.patternfly.org/v4/developer-resources/global-css-variables/#global-variables[PatternFly CSS variables]
 
 == New default hostname provider
 
@@ -148,12 +163,16 @@ The following features continue to be in a Technology Preview status:
 
 * Fine-grained authorization permissions
 
-== Removed or deprecated features
+= Removed or deprecated features
 
-Two features have a change in status:
+These features have a change in status:
 
-* Authorization Services Drools Policy has been removed
+* Support for Red Hat Single Sign-On (RH-SSO) on Red Hat Enterprise Linux 6 (RHEL 6) is deprecated and the 7.5 release of RH-SSO will not be supported on RHEL 6. RHEL 6 entered the ELS phase of its lifecycle on November 30, 2020 and the Red Hat JBoss Enterprise Application Platform (EAP) that RH-SSO depends upon will drop support for RHEL 6 with the EAP 7.4 release. Customers should deploy their RH-SSO 7.5 upgrades on RHEL 7 or 8 versions.
 
+* The Spring Boot Adapter is deprecated and will not be included in the 8.0 and higher versions of RH-SSO. This adapter will be maintained during the lifecycle of RH-SSO 7.x. Users are urged to migrate to Spring Security to integrate their Spring Boot applications with RH-SSO.
+
+* Installation from an RPM is deprecated. Red Hat Single Sign-On will continue to deliver RPMs for the life of the 7.x product, but will not deliver RPMs with the next major version. The product will continue to support installation from a ZIP file and installation on OpenShift.
+* Authorization Services Drools Policy has been removed.
 * Upload of scripts through admin rest endpoints/console is deprecated. It will be removed at a future release.
 
 = Fixed Issues
@@ -178,4 +197,4 @@ The set of supported features and configurations for RH-SSO Server 7.4 is availa
 
 = Component versions
 
-The list of supported component versions for RH-SSO 7.4 is available on the link:https://access.redhat.com/articles/2342881[Customer Portal]. 
+The list of supported component versions for RH-SSO 7.4 is available on the link:https://access.redhat.com/articles/2342881[Customer Portal].

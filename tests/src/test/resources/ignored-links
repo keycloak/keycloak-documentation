@@ -8,6 +8,7 @@ http://localhost:8181*
 http://127.0.0.1:3000*
 https://myhost.com/myapp/k_jwks
 https://myhost.com/myapp
+http://host.com/*
 http://host:port*
 https://host:port*
 http://broker-keycloak:8180*
@@ -30,7 +31,10 @@ http://127.0.0.1:3000/oauth/callback
 https://api.linkedin.com/v2/me
 https://raw.githubusercontent.com/jboss-container-images/redhat-sso-7-openshift-image/sso-cd-dev/templates/${resource}
 https://raw.githubusercontent.com/jboss-container-images/redhat-sso-7-openshift-image/sso73-dev/templates/${resource}
+https://raw.githubusercontent.com/jboss-container-images/redhat-sso-7-openshift-image/sso74-dev/templates/${resource}
+https://raw.githubusercontent.com/jboss-container-images/redhat-sso-7-openshift-image/sso74-dev/templates/openj9/${resource}
 https://issues.redhat.com/secure/CreateIssueDetails*
 https://developer.paypal.com/developer/applications
 https://account.live.com/developers/applications/create
 https://developer.twitter.com/apps/
+https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/#rolling-update

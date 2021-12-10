@@ -29,9 +29,14 @@ To upgrade {project_name} server RPM distribution, complete the following steps:
 
 . Prior to applying the upgrade, handle any open transactions and delete the /var/opt/rh/rh-sso7/lib/keycloak/standalone/data/tx-object-store/ transaction directory.
 . Make sure you have subscribed to proper repositories containing JBOSS EAP and {project_name}.
-
- subscription-manager repos --enable=jb-eap-7.1-for-rhel-7-server-rpms
- subscription-manager repos --enable=rh-sso-7.2-for-rhel-7-server-rpms
++
+For Red Hat Enterprise Linux 7:
++
+ subscription-manager repos --enable=rh-sso-7.5-for-rhel-7-x86_64-rpms
++
+For Red Hat Enterprise Linux 8:
++
+ subscription-manager repos --enable=rh-sso-7.5-for-rhel-8-x86_64-rpms
 +
 [NOTE]
 ====
@@ -91,16 +96,4 @@ To run the upgrade script for domain mode, complete the following steps:
 . Run the upgrade script on the domain controller only:
 
  bin/jboss-cli.sh --file=bin/migrate-domain.cli
-
-=== Running the Domain-clustered Mode Upgrade Script
-For domain-clustered mode, all instances must be upgraded at the same time.
-
-To run the upgrade script for domain-clustered mode, complete the following steps:
-
-. If you have changed the profile name, you must edit the upgrade script to change a variable near the beginning of the script.
-. Edit the domain-clustered script to include the location of the keycloak-server.json file.
-. Stop the server.
-. Run the upgrade script on the domain controller only:
-
- bin/jboss-cli.sh --file=bin/migrate-domain-clustered.cli
 
