@@ -2,9 +2,9 @@
 :project_name_full: Keycloak
 :project_community: true
 :project_product: false
-:project_version: 15.1.0
-:project_versionMvn: 15.1.0
-:project_versionNpm: 15.1.0
+:project_version: 15.1.1
+:project_versionMvn: 15.1.1
+:project_versionNpm: 15.1.1
 :project_versionDoc: 15.1
 
 :standalone:
