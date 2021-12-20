@@ -33,7 +33,7 @@ With this release, we have deprecated and/or marked as unsupported some features
 concerns the Backup CRD and the operator managed Postgres Database. For more details, please see the
 link:{installguide_link}#_operator_production_usage[related chapter in the {installguide_name}].
 
-=== Extensions
+=== Keycloak Operator examples including unsupported Metrics extension
 
 Previously, an unsupported extension was added in the example for the creation of the Keycloak CR by the {project_operator}. This has been removed.
 
