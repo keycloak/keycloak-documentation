@@ -35,7 +35,7 @@ link:{installguide_link}#_operator_production_usage[related chapter in the {inst
 
 === Keycloak Operator examples including unsupported Metrics extension
 
-Previously, an unsupported extension was added in the example for the creation of the Keycloak CR by the {project_operator}. This has been removed.
+Previously, an unsupported metrics extension was added in the example for the creation of the Keycloak CR by the {project_operator}. This has been removed.
 
 === Migrating to 14.0.0
 
