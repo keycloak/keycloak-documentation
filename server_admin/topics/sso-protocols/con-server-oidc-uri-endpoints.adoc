@@ -17,6 +17,9 @@ https://localhost:8080/auth
 
 /realms/{realm-name}/protocol/openid-connect/logout::
   Used for performing logouts.
+  
+/realms/{realm-name}/protocol/openid-connect/logout/backchannel-logout::
+  Used for performing OIDC Back-channel logouts.
 
 /realms/{realm-name}/protocol/openid-connect/userinfo::
   Used for the User Info service described in the OIDC specification.
