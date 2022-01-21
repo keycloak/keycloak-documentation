@@ -235,3 +235,53 @@ hostname-verification-policy::
    `ANY` means that the hostname is not verified. `WILDCARD` Allows wildcards in subdomain names i.e.
   *.foo.com. `STRICT` CN must match hostname exactly.
 
+[[_keystore]]
+==== Outgoing LDAP requests
+
+{project_name} supports authentication towards LDAP server using TLS client certificate as an alternative to simple bind.
+The Keystore SPI is used to configure client certificate and private key for the SASL EXTERNAL authentication mechanism.
+
+WARNING:  By default, a keystore provider is not configured, and any LDAP connections fall back to standard java keystore configuration as described in
+          https://docs.oracle.com/javase/8/docs/technotes/guides/security/jsse/JSSERefGuide.html[Java's JSSE Reference Guide].
+
+You can use _openssl_ to create a new keystore file from existing certificate and private key:
+
+[source]
+----
+openssl pkcs12 -export -passout pass:secret -noiter -nomaciter -in client-cert.pem -inkey client-key.pem -out keystore.p12
+----
+
+The keystore is configured within the `standalone.xml`, `standalone-ha.xml`, or `domain.xml` file in your distribution.
+The location of this file depends on your <<_operating-mode, operating mode>>.
+You can add your keystore configuration by using the following template:
+
+[source,xml]
+----
+<spi name="keystore">
+    <provider name="file" enabled="true">
+        <properties>
+            <property name="file" value="path to your .p12 or .jks file containing client certificate and private key"/>
+            <property name="password" value="password"/>
+            <property name="cache-ttl" value="period of time"/>
+        </properties>
+    </provider>
+</spi>
+----
+
+Possible configuration options for this setting are:
+
+file::
+  The path to a keystore file.
+  This is _REQUIRED_ if any of these properties are defined.
+
+password::
+  Password of the keystore.
+  This is _REQUIRED_ if any of these properties are defined.
+
+cache-ttl::
+  Sets the time to live for in-memory cache of keystore.
+  Keystore is reloaded from disk at the establishment of TLS connection if more time than `cache-ttl` has passed since the keystore was previously loaded.
+  This allows rotation of the certificate and private key without restarting {project_name}.
+  Valid values are for example: `2160h`, `45m`, `120s`.
+  This is _OPTIONAL_.
+  The default value is unlimited (keystore is never reloaded).

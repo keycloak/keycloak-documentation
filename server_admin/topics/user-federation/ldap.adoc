@@ -70,13 +70,18 @@ Enable Kerberos/SPNEGO authentication in the realm with user data provisioned fr
 Other options::
 Hover the mouse pointer over the tooltips in the Admin Console to see more details about these options.
 
-==== Connecting to LDAP over SSL
+==== Connecting to LDAP using TLS
 
-When you configure a secure connection URL to your LDAP store (for example,`ldaps://myhost.com:636`), {project_name} uses SSL to communicate with the LDAP server. Configure a truststore on the {project_name} server side so that {project_name} can trust the SSL connection to LDAP.
+{project_name} supports securing the connection to the LDAP server with StartTLS and LDAPS.
+LDAPS is configured by using connection URL `ldaps://` (for example,`ldaps://myhost.com:636`) and StartTLS by using `ldap://` together with `Enable StartTLS` selected.
 
-Configure the global truststore for {project_name} with the Truststore SPI. For more information about configuring the global truststore, see the link:{installguide_link}[{installguide_name}]. If you do not configure the Truststore SPI, the truststore falls back to the default mechanism provided by Java, which can be the file supplied by the `javax.net.ssl.trustStore` system property or the cacerts file from the JDK if the system property is unset.
+To verify the LDAP server certificate, configure trusted CA certificates to the global truststore for {project_name} with the Truststore SPI.
+For more information about configuring the global truststore, see the link:{installguide_link}[{installguide_name}]. If you do not configure the Truststore SPI, the truststore falls back to the default mechanism provided by Java, which can be the file supplied by the `javax.net.ssl.trustStore` system property or the cacerts file from the JDK if the system property is unset.
 
 The `Use Truststore SPI` configuration property, in the LDAP federation provider configuration, controls the truststore SPI. By default, {project_name} sets the property to `Only for ldaps`, which is adequate for most deployments.  {project_name} uses the Truststore SPI if the connection URL to LDAP starts with `ldaps` only.
+
+When bind type is set to `SASL EXTERNAL` then {project_name} will use client certificate to authenticate itself to the LDAP server.
+See the link:{installguide_link}[{installguide_name}] for more information how to configure client certificate and private key by using Keystore SPI.
 
 ==== Synchronizing LDAP users to {project_name}
 
