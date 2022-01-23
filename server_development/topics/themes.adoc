@@ -88,18 +88,18 @@ restarting {project_name}.
 </theme>
 ----
 
-. Create a directory in the `themes` directory.
+. Create a directory in the `theme` directory.
 +
 The name of the directory becomes the name of the theme. For example to
-create a theme called `mytheme` create the directory `themes/mytheme`.
+create a theme called `mytheme` create the directory `theme/mytheme`.
 
 . Inside the theme directory, create a directory for each of the types your theme is going to provide.
 +
-For example, to add the login type to the `mytheme` theme, create the directory `themes/mytheme/login`.
+For example, to add the login type to the `mytheme` theme, create the directory `theme/mytheme/login`.
 
 . For each type create a file `theme.properties` which allows setting some configuration for the theme.
 +
-For example, to configure the theme `themes/mytheme/login` to extend the base theme and import some common resources, create the file `themes/mytheme/login/theme.properties` with following contents:
+For example, to configure the theme `theme/mytheme/login` to extend the base theme and import some common resources, create the file `theme/mytheme/login/theme.properties` with following contents:
 +
 [source]
 ----
