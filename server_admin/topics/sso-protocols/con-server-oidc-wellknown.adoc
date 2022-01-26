@@ -1,0 +1,43 @@
+[id="con-server-oidc-wellknown_{context}"]
+
+====  {project_name} server OIDC well-known endpoint configuration
+[role="_abstract"]
+The {project_name} OIDC `well-known` configuration endpoint can be modified by providing an override file.
+The content of that file will replace the default values returned by the `well-known` endpoint.
+
+The default configuration for the `well-known` endpoint returns all the protocols, authentication flows,
+ciphers and hash algorithms supported by {project_name}. It may be required to limit the advertised options in
+some use cases.
+
+WARNING:  The override file will only modify the `well-known` endpoint configuration. All the options will still be available in the admin console. The override file is also global and will modify the configuration of all realms.
+
+To configure {project_name} to load the override file:
+
+.Procedure 
+
+. Add a configuration for the `well-known` SPI in the {project_name} configuration file.
+
+. Set the value of the `openid-configuration-override` property to the name of the override file
++
+[source, xml]
+----
+<spi name="well-known">
+  <provider name="openid-configuration" enabled="true">
+    <properties>
+      <property name="openid-configuration-override" value="oidc-wellknown-override.json"/>
+      <property name="include-client-scopes" value="true"/>
+    </properties>
+  </provider>
+</spi>
+----
+
+. Create the override file. For example, to limit the response types:
++
+[source, json]
+----
+{
+    "response_types_supported": ["code"]
+}
+----
+
+. Restart the {project_name} server
