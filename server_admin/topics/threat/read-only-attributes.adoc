@@ -33,7 +33,7 @@ You can add this configuration to your `standalone(-*).xml` files to the configu
 [options="nowrap"]
 ----
 <spi name="userProfile">
-    <provider name="legacy-user-profile" enabled="true">
+    <provider name="declarative-user-profile" enabled="true">
         <properties>
             <property name="read-only-attributes" value="[&quot;foo&quot;,&quot;bar*&quot;]"/>
             <property name="admin-read-only-attributes" value="[&quot;foo&quot;]"/>
