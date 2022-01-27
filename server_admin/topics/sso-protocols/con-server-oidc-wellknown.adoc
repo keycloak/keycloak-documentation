@@ -9,7 +9,7 @@ The default configuration for the `well-known` endpoint returns all the protocol
 ciphers and hash algorithms supported by {project_name}. It may be required to limit the advertised options in
 some use cases.
 
-WARNING:  The override file will only modify the `well-known` endpoint configuration. All the options will still be available in the admin console. The override file is also global and will modify the configuration of all realms.
+WARNING:  The override file will only modify the `well-known` endpoint configuration. All the options will still be available in the Admin Console. The override file is also global and will modify the configuration of all realms.
 
 To configure {project_name} to load the override file:
 
