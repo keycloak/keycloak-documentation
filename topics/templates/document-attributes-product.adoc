@@ -29,6 +29,7 @@
 :create_cmd: oc create
 :create_cmd_brief: oc
 
+:kc_dist: quarkus
 :kc_realms_path: /auth/realms
 :kc_admins_path: /auth/admin
 :kc_js_path: /auth/js

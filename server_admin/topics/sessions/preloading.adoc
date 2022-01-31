@@ -9,6 +9,14 @@ It can be achieved by setting `preloadOfflineSessionsFromDatabase` property in `
 
 The following example shows how to configure lazy offline sessions loading.
 
+ifeval::["{kc_dist}" == "quarkus"]
+[source,bash]
+----
+bin/kc.[sh|bat] start --spi-user-sessions-infinispan-preload-offline-sessions-from-database=false
+----
+endif::[]
+
+ifeval::["{kc_dist}" == "wildfly"]
 [source,xml]
 ----
 <subsystem xmlns="urn:jboss:domain:keycloak-server:1.1">
@@ -32,3 +40,4 @@ Equivalent configuration using CLI commands:
 /subsystem=keycloak-server/spi=userSessions:add(default-provider=infinispan)
 /subsystem=keycloak-server/spi=userSessions/provider=infinispan:add(properties={preloadOfflineSessionsFromDatabase => "false"},enabled=true)
 ----
+endif::[]
