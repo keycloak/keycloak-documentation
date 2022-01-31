@@ -14,7 +14,7 @@ If your server is accessible from `localhost`, perform these steps.
 
 .Procedure
 
-. In a web browser, go to the http://localhost:8080/auth URL.
+. In a web browser, go to the http://localhost:8080{kc_base_path} URL.
 
 . Supply a username and password that you can recall.
 +

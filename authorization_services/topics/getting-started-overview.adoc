@@ -20,5 +20,5 @@ $ .../bin/standalone.sh -Djboss.socket.binding.port-offset=100
 
 For more details about how to install and configure a {appserver_name}, please follow the steps on the link:{adapterguide_link}[{adapterguide_name}] tutorial.
 
-After installing and booting both servers you should be able to access {project_name} Admin Console at http://localhost:8180/auth/admin/ and also the {appserver_name} instance at
+After installing and booting both servers you should be able to access {project_name} Admin Console at http://localhost:8180{kc_admins_path}/ and also the {appserver_name} instance at
 http://localhost:8080.
