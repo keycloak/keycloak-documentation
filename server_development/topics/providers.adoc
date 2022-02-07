@@ -514,7 +514,7 @@ The name of the script file. This property is *mandatory* and should map to a fi
 ==== Deploy the script JAR
 
 ifeval::["{kc_dist}" == "quarkus"]
-Once you have a JAR file with a descriptor and the scripts you want to deploy, you just need to copy the JAR to the {project_name} `providers/` directory.
+Once you have a JAR file with a descriptor and the scripts you want to deploy, you just need to copy the JAR to the {project_name} `providers/` directory, then run `bin/kc.[sh|bat] build`.
 endif::[]
 
 ifeval::["{kc_dist}" == "wildfly"]
