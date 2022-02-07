@@ -20,7 +20,7 @@ A window opens where you can make changes.
 ====
 You can update the Keycloak CR YAML file and changes will be applied to the deployment.
 
-Updates to the other resources is limited:
+Updates to the other resources are limited:
 
 Keycloak Realm CR only supports basic creation and deletion without sync options.
 Keycloak User and Client CRs support unidirectional updates (changes to the CR are reflected in Keycloak but changes done in Keycloak are not updated in the CR).
