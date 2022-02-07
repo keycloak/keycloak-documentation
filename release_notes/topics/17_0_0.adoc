@@ -4,7 +4,7 @@
 
 The default Keycloak distribution is now based on Quarkus. The new distribution is faster, leaner, and a lot easier to configure!
 
-We appreciate migrating from the WildFly distribution is not going to be straightforward for everyone, since how you start and configure Keycloak has radically changed. With that in mind we will continue to support the WildFly distribution until June 2022.
+We appreciate migrating from the WildFly distribution is not going to be straightforward for everyone, since how you start and configure Keycloak has radically changed. With that in mind, we will continue to support the WildFly distribution until June 2022.
 
 Check out the upgrade guide for more information on how to migrate from the WildFly distribution, as well as some minor changes you have to do to remain on the WildFly distribution for the time being.
 
