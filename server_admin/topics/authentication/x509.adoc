@@ -199,7 +199,7 @@ image:images/x509-configuration.png[X509 Configuration]
 Defines the method for extracting the user identity from a client certificate.
 
 *Canonical DN representation enabled*::
-Defines whether to use canonical format to determine a distinguished name. The official link:https://docs.oracle.com/javase/8/docs/api/javax/securityauth/x500/X500Principal.html#getName-java.lang.String-[Java API documentation] describes the format. This option affects the two User Identity Sources _Match SubjectDN using regular expression_ and _Match IssuerDN using regular expression_ only. Enable this option when you set up a new {project_name} instance. Disable this option to retain backward compatibility with existing {project_name} instances.
+Defines whether to use canonical format to determine a distinguished name. The official link:https://docs.oracle.com/javase/8/docs/api/javax/security/auth/x500/X500Principal.html#getName-java.lang.String-[Java API documentation] describes the format. This option affects the two User Identity Sources _Match SubjectDN using regular expression_ and _Match IssuerDN using regular expression_ only. Enable this option when you set up a new {project_name} instance. Disable this option to retain backward compatibility with existing {project_name} instances.
 
 *Enable Serial Number hexadecimal representation*::
 Represent the link:https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.2[serial number] as hexadecimal. The serial number with the sign bit set to 1 must be left padded with 00 octet. For example, a serial number with decimal value _161_, or _a1_ in hexadecimal representation is encoded as _00a1_, according to RFC5280. See link:https://datatracker.ietf.org/doc/html/rfc5280#appendix-B[RFC5280, appendix-B] for more details.
