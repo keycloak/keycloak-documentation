@@ -74,9 +74,9 @@ The certificate identity mapping can map the extracted user identity to an exist
 
 ==== Enable X.509 client certificate user authentication
 
+ifeval::["{kc_dist}" == "wildfly"]
 The following sections describe how to configure {appserver_name}/Undertow and the {project_name} Server to enable X.509 client certificate authentication.
 
-ifeval::["{kc_dist}" == "wildfly"]
 [[_enable-mtls-wildfly]]
 ===== Enable mutual SSL in {appserver_name}
 
