@@ -21,7 +21,7 @@ A number of things have changed since the preview Quarkus distribution was relea
 * `h2-mem` and `h2-file` databases renamed to `dev-mem` and `dev-file`.
 * Features are now enabled/disabled with `--features` and `--features-disabled` replacing the previous approach that had an separate config key for each feature.
 * Runtime configuration can no longer be passed to `kc.[sh|bat] build` and is no longer persisted in the build
-
+* Logging does not need to be configured using raw quarkus properties anymore, you can use `--log-level` and `--log-format` now. 
 = Client Policies Migration : client-scopes
 
 If you used a policy including client-scopes condition and edited JSON document directly, you will need to change the "scope" field name in a JSON document to "scopes".
