@@ -21,6 +21,9 @@ A lot of effort went into polishing and improving the Quarkus distribution to ma
 * Custom, and unsupported, Quarkus configuration is done through `conf/quarkus.properties`.
 * Ability to add custom Java Options via JAVA_OPTS_APPEND (thanks to https://github.com/dasniko[dasniko])
 * Initial logging capabilities
+* Initial support for Cross-DC
+* User-defined profiles are no longer supported but using different configuration files to achieve the same goal
+* Quickstarts updated to use the new distribution
 == Other improvements
 
 === Offline sessions lazy loaded
