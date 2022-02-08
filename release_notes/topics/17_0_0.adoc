@@ -19,7 +19,7 @@ A lot of effort went into polishing and improving the Quarkus distribution to ma
 * `h2-mem` and `h2-file` databases renamed to `dev-mem` and `dev-file`.
 * Simplified enabling and disabling features
 * Custom, and unsupported, Quarkus configuration is done through `conf/quarkus.properties`.
-* Ability to add custom Java Options via JAVA_OPTS_APPEND (thx "dasniko")
+* Ability to add custom Java Options via JAVA_OPTS_APPEND (thanks to https://github.com/dasniko[dasniko])
 * Initial logging capabilities
 == Other improvements
 
