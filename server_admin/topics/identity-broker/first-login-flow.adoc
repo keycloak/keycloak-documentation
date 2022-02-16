@@ -110,5 +110,3 @@ You have to set the `First Login Flow` of the identity provider configuration to
 You could set the also set `Sync Mode` to `force` if you want to update the user profile (Last Name, First Name...) with the identity provider attributes.
 
 NOTE: This flow can be used if you want to delegate the identity to other identity providers (such as github, facebook ...) but you want to manage which users that can log in.
-
-With this configuration, {project_name} is unable to determine which internal account corresponds to the external identity. The *Verify Existing Account By Re-authentication* authenticator asks the provider for the username and password.
