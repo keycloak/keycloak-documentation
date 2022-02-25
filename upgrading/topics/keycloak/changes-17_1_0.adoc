@@ -1,0 +1,20 @@
+= Default distribution is now powered by Quarkus
+
+The default distribution of Keycloak is now powered by Quarkus, which brings a number of breaking changes to you configure Keycloak and deploy custom providers. For more information check out the https://www.keycloak.org/migration/migrating-to-quarkus[Quarkus Migration Guide].
+
+The WildFly distribution of Keycloak is now deprecated, with support ending June 2022. We recommend migrating to the Quarkus distribution as soon as possible. However, if you need to remain on the legacy WildFly distribution for some time, there are some changes to consider:
+
+* Container images for the legacy distribution tags have changed. To use the legacy distribution use the tags `legacy` or `18.0.0-legacy`.
+* Download on the website for the legacy distribution has changed to `keycloak-legacy-18.0.0.[zip|tar.gz]`.
+
+If you encounter problems migrating to the Quarkus distribution, missing ability to configure something, or have general ideas and feedback, please open a discussion in https://github.com/keycloak/keycloak/discussions/categories/keycloak-x-quarkus-distribution[GitHub Discussions].
+
+= Migrating from Keycloak 17.0.0
+
+A number of things have changed since Keycloak 17.0.0 was released. The changes include:
+
+= Using databases without XA transaction mode
+
+We improved the UX for database vendors that don't support the XA transaction type (e.g. Galera clusters, Azure managed MS-SQL). Setting the system properties `-Dkc.db-tx-type=enabled` and `-Dkc.db-driver=<nonxadriver>` won't work anymore. Instead, configure your database vendor and set `transaction-tx-enabled=false`. The appropriate database driver is chosen automatically.
+
+

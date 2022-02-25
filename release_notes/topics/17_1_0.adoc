@@ -1,0 +1,20 @@
+= Highlights
+
+== title
+
+lorem ipsum...
+
+== Updates
+
+A lot of effort improving the Quarkus distribution to make it as good as an experience as possible. We want to thank all of you for your feedback, and we are working to make the experience even better in the future.
+
+A few highlights include:
+
+* Upgraded Quarkus to 2.7.2.Final
+* Better UX when using database vendors that do not support the XA transaction mode (e.g. Galera, Azure managed SQL). Now you
+only set `db=<db>` and `transaction-xa-enabled=false` to use a non-XA JDBC driver with non-XA transaction handling.
+* Initial support for JSON log output using `log-json-enabled` configuration property
+* ...
+
+== Other improvements
+dolor sit amet
