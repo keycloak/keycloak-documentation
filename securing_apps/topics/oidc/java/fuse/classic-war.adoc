@@ -94,10 +94,10 @@ To enable the functionality, add this section to your `/WEB_INF/web.xml` file:
 
 [source,xml]
 ----
-<context-param>
+<init-param>
     <param-name>keycloak.config.resolver</param-name>
     <param-value>org.keycloak.adapters.osgi.PathBasedKeycloakConfigResolver</param-value>
-</context-param>
+</init-param>
 ----
 
 That component uses `keycloak.config` or `karaf.etc` java properties to search for a base folder to locate the configuration.
