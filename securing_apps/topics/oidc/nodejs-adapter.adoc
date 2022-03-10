@@ -314,6 +314,6 @@ to the `middleware()` call:
 [source,javascript]
     app.use( keycloak.middleware( { admin: '/callbacks' } );
 
-==== Additional examples 
+==== Complete example 
 
-Another example of Node.js adapter usage can be found on https://github.com/keycloak/keycloak-quickstarts/tree/latest/service-nodejs/[keycloack quickstarts for nodejs]
+A complete example using the Node.js adapter usage can be found in https://github.com/keycloak/keycloak-quickstarts/tree/latest/service-nodejs/[keycloack quickstarts for nodejs]
