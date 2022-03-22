@@ -5,7 +5,7 @@
 :project_version: DEV
 :project_versionMvn: 999-SNAPSHOT
 :project_versionNpm: 999
-:project_versionDoc: 999.
+:project_versionDoc: DEV
 
 :standalone:
 :api-management!:
