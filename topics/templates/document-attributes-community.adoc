@@ -2,7 +2,7 @@
 :project_name_full: Keycloak
 :project_community: true
 :project_product: false
-:project_version: 999
+:project_version: DEV
 :project_versionMvn: 999-SNAPSHOT
 :project_versionNpm: 999
 :project_versionDoc: 999.
