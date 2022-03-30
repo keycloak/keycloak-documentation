@@ -3,7 +3,7 @@
 
 {project_name} comes with a client-side JavaScript library that can be used to secure HTML5/JavaScript applications. The JavaScript adapter has built-in support for Cordova applications.
 
-A good practice is to include the JavaScript adapter in your application using a javascript package manager like npm or yarn. The keycloak-js package is available on the following locations:
+A good practice is to include the JavaScript adapter in your application using a package manager like NPM or Yarn. The `keycloak-js` package is available on the following locations:
 
 * NPM: https://www.npmjs.com/package/keycloak-js
 * Yarn: https://yarnpkg.com/package/keycloak-js
