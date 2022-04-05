@@ -2,6 +2,8 @@
 [[_spring_security_adapter]]
 ==== Spring Security adapter
 
+WARNING: Spring Security adapter has been deprecated and support for it will cease December 2022. Please refer to https://www.keycloak.org/2022/02/adapter-deprecation[Keycloak blog] for more information.
+
 To secure an application with Spring Security and Keycloak, add this adapter as a dependency to your project.
 You then have to provide some extra beans in your Spring Security configuration file and add the Keycloak security filter to your pipeline.
 
