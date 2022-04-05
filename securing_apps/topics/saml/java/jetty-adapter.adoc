@@ -2,6 +2,8 @@
 
 ==== Jetty SAML adapters
 
+WARNING: Jetty SAML adapter has been deprecated and support for it will cease December 2022. Please refer to https://www.keycloak.org/2022/02/adapter-deprecation[Keycloak blog] for more information.
+
 To be able to secure WAR apps deployed on Jetty you must install the {project_name} Jetty 9.x SAML adapter into your Jetty installation. You then provide some extra configuration in each WAR you deploy to Jetty.
 
 Use the following installation and configuration procedures.
