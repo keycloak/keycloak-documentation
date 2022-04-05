@@ -1,5 +1,7 @@
 === Java adapters
 
+WARNING: Java OIDC adapters have been deprecated and support for them will cease December 2022. Please refer to https://www.keycloak.org/2022/02/adapter-deprecation[Keycloak blog] for more information.
+
 {project_name} comes with a range of different adapters for Java application. Selecting the correct adapter depends on the target platform.
 
 All Java adapters share a set of common configuration options described in the <<_java_adapter_config,Java Adapters Config>> chapter.
