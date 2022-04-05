@@ -2,6 +2,8 @@
 [[_fuse7_adapter]]
 ==== JBoss Fuse 7 Adapter
 
+WARNING: JBoss Fuse 7 adapter has been deprecated and support for it will cease December 2022. Please refer to https://www.keycloak.org/2022/02/adapter-deprecation[Keycloak blog] for more information.
+
 {project_name} supports securing your web applications running inside https://developers.redhat.com/products/fuse/overview[JBoss Fuse 7].
 
 JBoss Fuse 7 leverages Undertow adapter which is essentially the same as
