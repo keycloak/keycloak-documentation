@@ -1,6 +1,8 @@
 [[_nodejs_adapter]]
 === Node.js adapter
 
+WARNING: Node.js adapter has been deprecated and support for it will cease December 2022. Please refer to https://www.keycloak.org/2022/02/adapter-deprecation[Keycloak blog] for more information.
+
 {project_name} provides a Node.js adapter built on top of https://github.com/senchalabs/connect[Connect] to protect server-side JavaScript apps - the goal was to be flexible enough to integrate with frameworks like https://expressjs.com/[Express.js].
 
 ifeval::[{project_community}==true]
