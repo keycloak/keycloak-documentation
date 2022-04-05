@@ -1,6 +1,8 @@
 [[_spring_boot_adapter]]
 ==== Spring Boot adapter
 
+WARNING: Spring Boot adapter has been deprecated and support for it will cease December 2022. Please refer to https://www.keycloak.org/2022/02/adapter-deprecation[Keycloak blog] for more information.
+
 ifeval::[{project_product}==true]
 ====
 [NOTE]
