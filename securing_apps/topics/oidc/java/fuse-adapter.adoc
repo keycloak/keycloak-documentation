@@ -2,6 +2,8 @@
 [[_fuse_adapter]]
 ==== JBoss Fuse 6 adapter
 
+WARNING: JBoss Fuse 6 adapter has been deprecated and support for it will cease December 2022. Please refer to https://www.keycloak.org/2022/02/adapter-deprecation[Keycloak blog] for more information.
+
 {project_name} supports securing your web applications running inside https://developers.redhat.com/products/fuse/overview[JBoss Fuse 6].
 
 ifeval::[{project_community}==true]
