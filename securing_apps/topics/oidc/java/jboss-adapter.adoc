@@ -7,6 +7,8 @@ ifeval::[{project_product}==true]
 ==== JBoss EAP adapter
 endif::[]
 
+WARNING: JBoss EAP/Wildfly adapter has been deprecated and support for it will cease December 2022. Please refer to https://www.keycloak.org/2022/02/adapter-deprecation[Keycloak blog] for more information.
+
 You can install this adapter from a ZIP file or from an RPM.
 
 * xref:jboss_adapter_installation[Installing JBOSS EAP adapters from a ZIP file]
