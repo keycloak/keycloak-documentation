@@ -33,7 +33,7 @@ There are more WebAuthn improvements and fixes in addition to that.
 
 == Client secret rotation
 
-{project_name} now supports Client Secret Rotation through customer policies. This feature allows thats confidential clients can be provided with realm policies allowing the use up to two secrets simultaneously.
+{project_name} now supports Client Secret Rotation through customer policies. This feature is now available as a preview feature and allows that confidential clients can be provided with realm policies allowing the use up to two secrets simultaneously.
 
 For more details, see link:{adminguide_link}#_secret_rotation[{adminguide_name}].
 
