@@ -31,6 +31,12 @@ Thanks to https://github.com/vanrar68[Joaquim Fellmann] for the contribution.
 
 There are more WebAuthn improvements and fixes in addition to that.
 
+== Client secret rotation
+
+{project_name} now supports Client Secret Rotation through customer policies. This feature allows thats confidential clients can be provided with realm policies allowing the use up to two secrets simultaneously.
+
+For more details, see link:{adminguide_link}#_secret_rotation[{adminguide_name}].
+
 == Other improvements
 
 * Support for encrypted User Info endpoint response. Thanks to https://github.com/giacomoa[Giacomo Altiero]
