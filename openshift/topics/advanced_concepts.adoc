@@ -542,7 +542,7 @@ In the preceding command, ``sso-postgresql`` appears because a PostgreSQL templa
 +
 [source,bash,subs=+attributes]
 ----
-oc env dc/sso -e "JAVA_OPTS_APPEND=-Dkeycloak.profile=preview"
+oc set env dc/sso -e "JAVA_OPTS_APPEND=-Dkeycloak.profile=preview"
 ----
 
 . Scale up the {project_name} pod:
