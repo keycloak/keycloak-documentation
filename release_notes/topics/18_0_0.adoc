@@ -2,7 +2,7 @@
 
 == New Operator preview
 
-With this release, we're introducing a brand new {project_operator} as a tech-preview. Apart from being rewritten from
+With this release, we're introducing a brand new {project_operator} as a preview. Apart from being rewritten from
 scratch, the main user-facing change from the legacy Operator is the used {project_name} distribution – the new Operator
 uses the Quarkus distribution of {project_name}. With that, the API (in form of Custom Resource Definitions) has changed.
 For details, incl. installation and migration instructions, see the https://www.keycloak.org/guides#operator[Operator related guides].
