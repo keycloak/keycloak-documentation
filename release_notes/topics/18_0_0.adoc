@@ -7,7 +7,7 @@ scratch, the main user-facing change from the legacy Operator is the used {proje
 uses the Quarkus distribution of {project_name}. With that, the API (in form of Custom Resource Definitions) has changed.
 For details, incl. installation and migration instructions, see the https://www.keycloak.org/guides#operator[Operator related guides].
 
-The link:{operatorRepo_link}[legacy Operator] will receive updates until June 2022 when the {project_name} WildFly
+The link:{operatorRepo_link}[legacy Operator] will receive updates until Keycloak 20 when the {project_name} WildFly
 distribution reaches EOL.
 
 === OperatorHub versioning scheme
