@@ -26,9 +26,10 @@ Toggle the *Default Action* switch to *ON* if you want all new users to be requi
 
 . Click *Authentication* in the menu.
 . Click the *Browser* flow.
-. Select *Duplicate* from the "ellipses button" to make a copy of the built-in *Browser* flow.
-. Enter a name for the copy.
+. Select *Duplicate* from the "Action list" to make a copy of the built-in *Browser* flow.
+. Enter "WebAuthn Browser" as the name of the copy.
 . Click *Duplicate*.
+. Click on the name to go to the details
 . Click on the *🗑️* (trash can icon) of the "WebAuthn Browser Browser - Conditional OTP" and click *Delete*.
 
 If you require WebAuthn for all users:

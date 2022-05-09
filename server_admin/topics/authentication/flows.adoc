@@ -84,7 +84,7 @@ To create a flow, perform the following:
 
 [NOTE]
 ====
-You can copy and then modify an existing flow. Click the "ellipses button" (the three dots at the end of the row), click *Duplicate*, and enter a name for the new flow.
+You can copy and then modify an existing flow. Click the "Action list" (the three dots at the end of the row), click *Duplicate*, and enter a name for the new flow.
 ====
 
 When creating a new flow, you must create a top-level flow first with the following options:

@@ -165,7 +165,7 @@ endif::[]
 
 ifeval::[{project_community}==true]
 . Click *Authentication* in the menu.
-. Select *Duplicate* from the "ellipses button" to make a copy of the built-in "Browser" flow.
+. Select *Duplicate* from the "Action list" to make a copy of the built-in "Browser" flow.
 . Enter a name for the copy.
 . Click *Duplicate*.
 . Click *Add step*.
@@ -280,7 +280,7 @@ If set, the client certificate trust chain will be always verified at the applic
 
 . Click *Authentication* in the menu.
 ifeval::[{project_community}==true]
-. Select *Duplicate* from the "ellipses button" to make a copy of the built-in "Direct grant" flow.
+. Select *Duplicate* from the "Action list" to make a copy of the built-in "Direct grant" flow.
 . Enter a name for the copy.
 . Click *Duplicate*.
 . Click the created flow.
