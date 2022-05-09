@@ -19,7 +19,9 @@ image:{project_images}/user-attributes.png[]
 . Click the *Attributes* tab.
 . Enter the attribute name in the *Key* field.
 . Enter the attribute value in the *Value* field.
+ifeval::[{project_product}==true]
 . Click *Add*.
+endif::[]
 . Click *Save*.
 
 
