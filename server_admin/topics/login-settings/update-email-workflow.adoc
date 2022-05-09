@@ -23,3 +23,8 @@ Please note that Update Email Workflow support is in development. Use this featu
 ====
 
 endif::[]
+
+[NOTE]
+====
+If you enable this feature, and you are migrating from previous version, you will need to register `Update Email` required action in your realms. Otherwise, your users won't be able to update their email addresses.
+====
