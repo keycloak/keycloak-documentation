@@ -26,5 +26,5 @@ endif::[]
 
 [NOTE]
 ====
-If you enable this feature, and you are migrating from previous version, you will need to register `Update Email` required action in your realms. Otherwise, your users won't be able to update their email addresses.
+If you enable this feature and you are migrating from a previous version, enable the `Update Email` required action in your realms. Otherwise, users cannot update their email addresses.
 ====
