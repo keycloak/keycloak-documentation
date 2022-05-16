@@ -16,7 +16,12 @@ image:{project_images}/user-details.png[]
 
 In both instances, the *User Account Management* page of the impersonated user is displayed.
 
+ifeval::[{project_community}==true]
+You can access the *Impersonate* from the *Action* menu tab on the *User details* page.
+endif::[]
+ifeval::[{project_product}==true]
 You can access the *Impersonate* button from the *Details* tab on the *Users* page.
+endif::[]
 
 
 .Additional resources
