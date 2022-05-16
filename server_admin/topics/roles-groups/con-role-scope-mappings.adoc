@@ -13,7 +13,7 @@ ifeval::[{project_community}==true]
 You can view the role mappings in the *Scope* tab of each client.
 . Click *Clients* in the menu
 . Click the client to go to the details.
-. Click *Client scopes* tab.
+. Click the *Client scopes* tab.
 . Click *<client-name>-dedicated* scope.
 . Click the *Scope* tab.
 endif::[]
