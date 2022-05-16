@@ -284,8 +284,8 @@ ifeval::[{project_community}==true]
 . Enter a name for the copy.
 . Click *Duplicate*.
 . Click the created flow.
-. Click on the *🗑️* (trash can icon) of the "Username Validation" and click *Delete*.
-. Click on the *🗑️* (trash can icon) of the "Password" and click *Delete*.
+. Click the trash can icon 🗑️ of the "Username Validation" and click *Delete*.
+. Click the trash can icon 🗑️ of the "Password" and click *Delete*.
 . Click *Add step*.
 . Click "X509/Validate Username".
 . Click *Add*.

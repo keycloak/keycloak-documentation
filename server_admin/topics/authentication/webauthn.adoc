@@ -29,8 +29,8 @@ Toggle the *Default Action* switch to *ON* if you want all new users to be requi
 . Select *Duplicate* from the "Action list" to make a copy of the built-in *Browser* flow.
 . Enter "WebAuthn Browser" as the name of the copy.
 . Click *Duplicate*.
-. Click on the name to go to the details
-. Click on the *🗑️* (trash can icon) of the "WebAuthn Browser Browser - Conditional OTP" and click *Delete*.
+. Click the name to go to the details
+. Click the trash can icon 🗑️ of the "WebAuthn Browser Browser - Conditional OTP" and click *Delete*.
 
 If you require WebAuthn for all users:
 
@@ -58,9 +58,9 @@ Users can log in with WebAuthn if they have a WebAuthn credential registered onl
 . Click *+* menu of the *WebAuthn Browser Forms* row.
 . Click *Add sub-flow*.
 . Enter "Conditional 2FA" for the _name_ field.
-. Click *Add*.
+. On the *WebAuthn Browser Forms* row, click the plus sign + and select *Add step*.
 . Select *Conditional* for the *Conditional 2FA* to set its requirement to conditional.
-. Click *+* menu of the *Conditional 2FA* row.
+. On the *Conditional 2FA* row, click the plus sign + and select *Add condition*.
 . Click *Add condition*.
 . Select *Condition - User Configured*.
 . Click *Add*.
@@ -73,7 +73,7 @@ image:{project_images}/webauthn-browser-flow-conditional.png[Webauthn browser fl
 The user can choose between using WebAuthn and OTP for the second factor:
 
 .Procedure
-. Click *+* menu of the *Conditional 2FA* row.
+. On the *Conditional 2FA* row, click the plus sign + and select *Add step*.
 . Click *Add step*.
 . Select *OTP Form* from the list.
 . Click *Add*.
