@@ -6,7 +6,7 @@ A logged-in user closing their browser destroys their session, and that user mus
 .Procedure
 . Click *Realm settings* in the menu.
 . Click the *Login* tab.
-. Toggle the *Remember Me* switch to *ON*.
+. Toggle the *Remember Me* switch to *On*.
 +
 .Login tab
 image:{project_images}/login-tab-remember-me.png[Login Tab Remember Me]
