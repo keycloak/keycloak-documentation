@@ -1,0 +1,15 @@
+[[_events]]
+= Events
+
+For a given realm, you can change the appearance of any UI in {project_name} by using themes.
+
+.Procedure
+
+. Click *Realm setting* in the menu.
+
+. Click the *Events* tab.
++
+.Events tab
+image:{project_images}/events-tab.png[Events tab]
+
+. Pick the event listeners to receive events for the realm and click *Save*.

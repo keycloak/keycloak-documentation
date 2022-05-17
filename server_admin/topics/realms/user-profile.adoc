@@ -8,6 +8,8 @@
 . Click the *General* tab.
 
 . Toggle the *User Profile Enabled* to *On*.
+
+. Click *Save*.
 +
 .User profile enablement
 image:{project_images}/user-profile-enablement.png[User Profile General tab]
@@ -17,7 +19,9 @@ image:{project_images}/user-profile-enablement.png[User Profile General tab]
 .User profile tab
 image:{project_images}/user-profile-tab.png[User Profile tab]
 
-Username, email, firstName and lastName are listed by default. Attributes can be added/edited and removed.
+Username, email, firstName and lastName are listed by default. 
+
+== Adding, editing and removing attributes
 
 . Creating new attribute
 
@@ -55,3 +59,23 @@ image:{project_images}/user-profile-create-attribute.png[Create attribute]
 image:{project_images}/user-profile-delete-attribute.png[Delete attribute]
 
 . Click *Delete*.
+
+Attributes can be added/edited and removed using *JSON editor* sub-tab in the *User profile* tab.
+
+== Configuring attributes group
+
+.Procedure
+. Click the *User profile* tab.
+
+. Click the *Attribute group* sub-tab.
++
+.Attributes group
+image:{project_images}/user-profile-attributes-group.png[Attributes group]
+
+. Click *Create attributes group*.
+
+. Complete the create attributes group form.
+.Create attributes group
+image:{project_images}/user-profile-create-attributes-group.png[Create attributes group]
+
+. Click *Save*.
