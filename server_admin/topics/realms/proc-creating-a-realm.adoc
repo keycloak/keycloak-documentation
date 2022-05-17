@@ -13,10 +13,10 @@ realm and only be able to interact with customer-facing apps.
 
 . Point to the top of the left pane.
 
-. Click *Add Realm*.
+. Click *Create Realm*.
 +
-.Add realm menu
-image:{project_images}/add-realm-menu.png[Add realm menu]
+.Create realm menu
+image:{project_images}/create-realm-menu.png[Create realm menu]
 
 . Enter a name for the realm.
 
@@ -25,4 +25,4 @@ image:{project_images}/add-realm-menu.png[Add realm menu]
 .Create realm
 image:{project_images}/create-realm.png[Create realm]
 
-The current realm is now set to the realm you just created.  You can switch between managing different realms by pointing to the top left corner to click *Select Realm*.
+The current realm is now set to the realm you just created. You can switch between managing different realms by pointing to the top left corner to click dropdown.
