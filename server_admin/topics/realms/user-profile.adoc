@@ -1,0 +1,57 @@
+[[_user_profile]]
+
+= Configuring User Profile
+
+.Procedure 
+. Click *Realm settings* in the menu.
+
+. Click the *General* tab.
+
+. Toggle the *User Profile Enabled* to *On*.
++
+.User profile enablement
+image:{project_images}/user-profile-enablement.png[User Profile General tab]
+
+. Click the *User profile* tab.
++
+.User profile tab
+image:{project_images}/user-profile-tab.png[User Profile tab]
+
+Username, email, firstName and lastName are listed by default. Attributes can be added/edited and removed.
+
+. Creating new attribute
+
+.Procedure 
+. Click the *User profile* tab.
+
+. Click the *Create attribute*.
++
+.Create attribute
+image:{project_images}/user-profile-create-attribute.png[Create attribute]
+
+. Complete the create attribute form.
+
+. Click *Create*.
+
+. Editing created attribute
+
+.Procedure 
+. Click the *User profile* tab.
+
+. Select created attribute.
+
+. Edit form as required.
+
+. Click *Save*.
+
+. Removing attribute
+
+.Procedure 
+. Click the *User profile* tab.
+
+. Select attribute for deletion.
++
+.Delete attribute
+image:{project_images}/user-profile-delete-attribute.png[Delete attribute]
+
+. Click *Delete*.
