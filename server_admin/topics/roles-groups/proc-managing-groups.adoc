@@ -57,7 +57,9 @@ endif::[]
 To remove a group from a user:
 
 ifeval::[{project_community}==true]
-. Click *Leave* button on the group table row.
+. Click *Users* in the menu.
+. Click the user to be removed from the group.
+. Click *Leave* on the group table row.
 endif::[]
 ifeval::[{project_product}==true]
 . Select the group from the *Group Membership* tree.
