@@ -1,0 +1,61 @@
+[[_sessions]]
+= Configuring tokens
+
+For a given realm, you can configure tokens in {project_name} by using tokens tab.
+
+.Procedure
+
+. Click *Realm setting* in the menu.
+
+. Click the *Tokens* tab.
++
+.Tokens tab
+image:{project_images}/tokens-tab.png[Tokens Tab]
+
+. Fill in the fields, toggle the switches as needed and click *Save*.
+
+|===
+|Configuration|Description
+
+|Default Signature Algorithm
+|The default algorithm used to assign tokens for the realm.
+
+[[_revoke-refresh-token]]
+|Revoke Refresh Token
+|When *Enabled*, {project_name} revokes refresh tokens and issues another token that the client must use. This action applies to OIDC clients performing the refresh token flow.
+
+|Access Token Lifespan
+|When {project_name} creates an OIDC access token, this value controls the lifetime of the token.
+
+|Access Token Lifespan For Implicit Flow
+|With the Implicit Flow, {project_name} does not provide a refresh token. A separate timeout exists for access tokens created by the Implicit Flow.
+
+|Client login timeout
+|The maximum time before clients must finish the Authorization Code Flow in OIDC.
+
+|User-Initiated Action Lifespan
+|The maximum time before a user's action permission expires. Keep this value short because users generally react to self-created actions quickly.
+
+|Default Admin-Initiated Action Lifespan
+|The maximum time before an action permission sent to a user by an administrator expires. Keep this value long to allow administrators to send e-mails to offline users. An administrator can override the default timeout before issuing the token.
+
+|Email Verification
+| Specifies independent timeout for email verification.
+
+|IdP account email verification
+| Specifies independent timeout for IdP account email verification.
+
+|Forgot password
+| Specifies independent timeout for forgot password.
+
+|Execute actions
+| Specifies independent timeout for execute actions.
+
+[[_idle_timeouts_note]]
+
+[NOTE]
+====
+For idle timeouts, a two-minute window of time exists that the session is active. For example, when you have the timeout set to 30 minutes, it will be 32 minutes before the session expires. 
+
+This action is necessary for some scenarios in cluster and cross-data center environments where the token refreshes on one cluster node a short time before the expiration and the other cluster nodes incorrectly consider the session as expired because they have not yet received the message about a successful refresh from the refreshing node.
+====
