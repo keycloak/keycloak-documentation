@@ -1,0 +1,15 @@
+[[_sessions]]
+= Configuring sessions
+
+For a given realm, you can configure sessions in {project_name} by using sessions.
+
+.Procedure
+
+. Click *Realm setting* in the menu.
+
+. Click the *Sessions* tab.
++
+.Sessions tab
+image:{project_images}/sessions-tab.png[Sessions Tab]
+
+. Fill in the fields, toggle the switches as needed and click *Save*.
