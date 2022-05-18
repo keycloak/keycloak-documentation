@@ -16,7 +16,7 @@ You can view the role mappings for a client.
 . Click *Clients* in the menu
 . Click the client to go to the details.
 . Click the *Client scopes* tab.
-. Click *<client-name>-dedicated* scope.
+. Click the link in the row with _Dedicated scope and mappers for this client_
 . Click the *Scope* tab.
 endif::[]
 ifeval::[{project_product}==true]

@@ -21,6 +21,7 @@ ifeval::[{project_community}==true]
 . Click *Create group*.
 . Enter a group name.
 . Click *Create*.
+. Click the group name.
 endif::[]
 ifeval::[{project_product}==true]
 . Click *New*.
