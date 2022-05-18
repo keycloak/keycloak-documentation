@@ -19,7 +19,7 @@ To add a group:
 . Click the group.
 ifeval::[{project_community}==true]
 . Click *Create group*.
-. Enter a group name in the *Create Group* dialog.
+. Enter a group name.
 . Click *Create*.
 endif::[]
 ifeval::[{project_product}==true]
