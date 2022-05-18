@@ -10,7 +10,9 @@ _Role Scope Mappings_ limit the roles declared inside an access token.  When a c
 
 By default, each client gets all the role mappings of the user.
 ifeval::[{project_community}==true]
-You can view the role mappings in the *Scope* tab of each client.
+You can view the role mappings for a client.
+
+.Procedure
 . Click *Clients* in the menu
 . Click the client to go to the details.
 . Click the *Client scopes* tab.
