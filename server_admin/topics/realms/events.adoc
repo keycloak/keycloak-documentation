@@ -1,7 +1,9 @@
 [[_events]]
-= Events
+= Configuring events
 
-For a given realm, you can change the appearance of any UI in {project_name} by using themes.
+For a given realm, you can configure what listeners receive events. If enabled, events are saved to the database, which makes events available to the admin console.
+
+== Event listeners
 
 .Procedure
 
@@ -10,6 +12,35 @@ For a given realm, you can change the appearance of any UI in {project_name} by 
 . Click the *Events* tab.
 +
 .Events tab
-image:{project_images}/events-tab.png[Events tab]
+image:{project_images}/events-tab.png[Events Tab]
 
 . Pick the event listeners to receive events for the realm and click *Save*.
+
+== User events settings
+
+.Procedure
+
+. Click *Realm setting* in the menu.
+
+. Click the *Events* tab.
+. Click the *User events settings* sub-tab.
++
+.User events settings sub-tab
+image:{project_images}/user-events-settings.png[User events settings Sub-tab]
+
+. Toggle the *Save events* to *On* and click *Save*.
+
+
+== Admin events settings
+
+.Procedure
+
+. Click *Realm setting* in the menu.
+
+. Click the *Events* tab.
+. Click the *Admin events settings* sub-tab.
++
+.Admin events settings sub-tab
+image:{project_images}/admins-events-settings.png[Admin events settings Sub-tab]
+
+. Toggle the *Save events* to *On* and click *Save*.

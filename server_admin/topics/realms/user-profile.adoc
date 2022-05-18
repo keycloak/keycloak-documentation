@@ -12,12 +12,12 @@
 . Click *Save*.
 +
 .User profile enablement
-image:{project_images}/user-profile-enablement.png[User Profile General tab]
+image:{project_images}/user-profile-enablement.png[User Profile Tab]
 
 . Click the *User profile* tab.
 +
 .User profile tab
-image:{project_images}/user-profile-tab.png[User Profile tab]
+image:{project_images}/user-profile-tab.png[User Profile Tab]
 
 Username, email, firstName and lastName are listed by default. 
 

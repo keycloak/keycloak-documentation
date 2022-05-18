@@ -13,7 +13,7 @@ will be.
 . Set *Internationalization* to *Enabled*.
 
 .Localization tab
-image:{project_images}/localization-tab.png[Localization tab]
+image:{project_images}/localization-tab.png[Localization Tab]
 
 The next time a user logs in, that user can choose a language on the login page to use for the login screens, Account Console, and Admin Console.
 
