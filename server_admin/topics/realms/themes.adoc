@@ -10,7 +10,7 @@ For a given realm, you can change the appearance of any UI in {project_name} by 
 . Click the *Themes* tab.
 +
 .Themes tab
-image:{project_images}/themes-tab.png[Themes tab]
+image:{project_images}/themes-tab.png[Themes Tab]
 
 . Pick the theme you want for each UI category and click *Save*.
 +

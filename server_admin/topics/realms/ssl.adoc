@@ -13,7 +13,7 @@ WARNING:  {project_name} generates a self-signed certificate the first time it r
 . Click the *General* tab.
 +
 .General tab
-image:{project_images}/general-tab.png[General tab]
+image:{project_images}/general-tab.png[General Tab]
 
 . Set *Require SSL* to one of the following SSL modes:
 

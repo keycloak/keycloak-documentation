@@ -1,0 +1,44 @@
+[[_security_defenses]]
+
+= Configuring security defenses
+
+{project_name} allows to configure headers and brute force detection as part of the security defenses configuration.
+
+.Procedure
+
+. Click *Realm settings* in the menu.
+
+. Click the *Security defenses* tab.
++
+.Security defenses
+image:{project_images}/security-defenses-tab.png[Security defenses Tab]
+
+. Fill in the fields and toggle the switches as needed.
++
+.Headers
+X-Frame-Options::
+  *X-Frame-Options* prevents pages from being included by non-origin iframes. https://datatracker.ietf.org/doc/html/rfc7034[Learn more]. 
+
+Content-Security-Policy::
+  *Content-Security-Policy* prevents pages from being included by non-origin iframes. https://www.w3.org/TR/CSP/[Learn more].
+
+Content-Security-Policy-Report-Only::
+  *Content-Security-Policy-Report-Only* is for testing Content Security Policies. https://www.w3.org/TR/CSP/[Learn more].
+
+X-Content-Type-Options::
+  *X-Content-Type-Options* prevents Internet Explorer and Google Chrome from MIME-sniffing a response away from the declared content-type. https://owasp.org/index.php/List_of_useful_HTTP_headers[Learn more].
+
+X-Robots-Tag::
+  *X-Robots-Tag* prevents pages from appearing in search engines. https://developers.google.com/search/docs/advanced/robots/robots_meta_tag[Learn more].
+
+X-XSS-Protection::
+  *X-XSS-Protection* configures the Cross-site scripting (XSS) filter in your browser. Using the default behaviour, the browser will prevent rendering of the page when a XSS attack is detected. https://owasp.org/www-project-secure-headers/#xxxsp[Learn more].
+
+HTTP Strict Transport Security (HSTS)::
+  *HTTP Strict Transport Security (HSTS)* The Strict-Transport-Security HTTP header tells browsers to always use HTTPS. Once a browser sees this header, it will only visit the site over HTTPS for the time specified (1 year) at max-age, including the subdomains. https://owasp.org/www-project-secure-headers/#hsts[Learn more].
+
+.Brute force detection
+
+Toggling the *Enabled* switch to *On* allows to configure the brute force detection settings.
+.Brute force detection
+image:{project_images}/brute-force-detection.png[Brute force detection Sub-tab]
