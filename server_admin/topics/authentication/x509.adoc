@@ -165,7 +165,8 @@ endif::[]
 
 ifeval::[{project_community}==true]
 . Click *Authentication* in the menu.
-. Select *Duplicate* from the "Action list" to make a copy of the built-in "Browser" flow.
+. Click the *Browser* flow.
+. From the *Action* list, select *Duplicate*. 
 . Enter a name for the copy.
 . Click *Duplicate*.
 . Click *Add step*.
