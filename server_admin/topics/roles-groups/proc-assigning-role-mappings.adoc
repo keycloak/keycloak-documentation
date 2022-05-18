@@ -5,17 +5,20 @@
 You can assign role mappings to a user through the *Role Mappings* tab for that user.
 
 .Procedure
+ifeval::[{project_product}==true]
 . Click *Users* in the menu.
 . Click the user that you want to perform a role mapping on. If the user is not displayed, click *View all users*.
 . Click the *Role Mappings* tab.
-ifeval::[{project_community}==true]
-. Click the *Assign Role* button.
-. Select the role you want to assign to the user from the dialog.
-. Click *Assign*.
-endif::[]
-ifeval::[{project_product}==true]
 . Click the role you want to assign to the user in the *Available Roles* box.
 . Click *Add selected*.
+endif::[]
+ifeval::[{project_community}==true]
+. Click *Users* in the menu.
+. Click the user that you want to perform a role mapping on.
+. Click the *Role mappings* tab.
+. Click *Assign role*.
+. Select the role you want to assign to the user from the dialog.
+. Click *Assign*.
 endif::[]
 
 .Role mappings
