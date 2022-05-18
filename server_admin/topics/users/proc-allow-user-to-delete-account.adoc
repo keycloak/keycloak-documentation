@@ -25,8 +25,7 @@ You can give specific users a role that allows account deletion.
 . Click the *Role Mappings* tab.
 ifeval::[{project_community}==true]
 . Click the *Assign role* button.
-. Filter by origin select *account*
-. Select *delete-account*.
+. Click *account delete-account*.
 . Click *Assign*.
 endif::[]
 ifeval::[{project_product}==true]
