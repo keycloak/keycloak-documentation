@@ -28,7 +28,7 @@ Username, email, firstName and lastName are listed by default.
 .Procedure 
 . Click the *User profile* tab.
 
-. Click the *Create attribute*.
+. On *Attributes* sub-tab, click the *Create attribute*.
 +
 .Create attribute
 image:{project_images}/user-profile-create-attribute.png[Create attribute]
