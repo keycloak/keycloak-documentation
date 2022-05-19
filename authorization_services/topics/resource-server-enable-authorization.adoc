@@ -1,7 +1,12 @@
 [[_resource_server_enable_authorization]]
 = Enabling authorization services
 
+ifeval::[{project_community}==true]
+To turn your OIDC Client Application into a resource server and enable fine-grained authorization, click the *Authorization Enabled* switch to *ON* then click *Save*.
+endif::[]
+ifeval::[{project_product}==true]
 To turn your OIDC Client Application into a resource server and enable fine-grained authorization, select *Access type* *confidential* and click the *Authorization Enabled* switch to *ON* then click *Save*.
+endif::[]
 
 .Enabling authorization services
 image:{project_images}/resource-server/client-enable-authz.png[alt="Enabling authorization services"]

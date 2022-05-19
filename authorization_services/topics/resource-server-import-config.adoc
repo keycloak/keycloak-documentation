@@ -12,8 +12,12 @@ The configuration settings for a resource server (or client) can be exported and
 .Procedure
 
 . Navigate to the *Resource Server Settings* page.
+ifeval::[{project_community}==true]
+. Click the *Export* tab.
+endif::[]
+ifeval::[{project_product}==true]
 . Click the *Export Settings* tab.
-. On this page, click *Export*.
+endif::[]
 +
 .Export Settings
 image:{project_images}/resource-server/authz-export.png[alt="Export Settings"]
@@ -31,4 +35,9 @@ You can import a configuration file for a resource server.
 .Import Settings
 image:{project_images}/resource-server/authz-settings.png[alt="Import Settings"]
 
+ifeval::[{project_community}==true]
+. Click *Import* and choose a file containing the configuration that you want to import.
+endif::[]
+ifeval::[{project_product}==true]
 . Click *Select file* and choose a file containing the configuration that you want to import.
+endif::[]
