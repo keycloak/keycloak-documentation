@@ -34,7 +34,7 @@ endif::[]
 . Set the *reCAPTCHA* requirement to *Required*. This enables
 reCAPTCHA.  
 ifeval::[{project_community}==true]
-. Click the *gear icon* ⚙️ on the *reCAPTCHA* row
+. Click the *gear icon* ⚙️ on the *reCAPTCHA* row.
 endif::[]
 ifeval::[{project_product}==true]
 . Click *Actions* to the right of the reCAPTCHA flow entry.
