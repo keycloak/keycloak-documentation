@@ -14,7 +14,7 @@ For a given realm, you can configure what listeners receive events. If enabled, 
 .Events tab
 image:{project_images}/events-tab.png[Events Tab]
 
-. Pick the event listeners to receive events for the realm and click *Save*.
+. On *Event listeners* sub-tab, click the event listeners to receive events for the realm and click *Save*.
 
 == User events settings
 
@@ -23,6 +23,7 @@ image:{project_images}/events-tab.png[Events Tab]
 . Click *Realm setting* in the menu.
 
 . Click the *Events* tab.
+
 . Click the *User events settings* sub-tab.
 +
 .User events settings sub-tab
@@ -38,6 +39,7 @@ image:{project_images}/user-events-settings.png[User events settings Sub-tab]
 . Click *Realm setting* in the menu.
 
 . Click the *Events* tab.
+
 . Click the *Admin events settings* sub-tab.
 +
 .Admin events settings sub-tab
