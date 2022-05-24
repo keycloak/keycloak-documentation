@@ -9,7 +9,7 @@
 . Click *Authentication* in the menu.
 . Click the *Browser* flow.
 ifeval::[{project_community}==true]
-. Click *⚙️* (gear icon) of the *Identity Provider Redirector* row.
+. Click the gear icon  *⚙️* on the *Identity Provider Redirector* row.
 endif::[]
 ifeval::[{project_product}==true]
 . Select *Identity Provider Redirector* from the drop-down list.
