@@ -13,7 +13,6 @@ ifeval::[{project_community}==true]
 endif::[]
 ifeval::[{project_product}==true]
 . Select *Identity Provider Redirector* from the drop-down list.
-. Set *Default Identity Provider* to the identity provider you want to redirect users to.
 endif::[]
 . Set *Default Identity Provider* to the identity provider you want to redirect users to.
 
