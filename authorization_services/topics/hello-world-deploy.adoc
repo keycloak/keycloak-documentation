@@ -49,8 +49,7 @@ You must first obtain the adapter configuration before building and deploying th
 image:{project_images}/getting-started/hello-world/enable-authz.png[alt="Client Settings"]
 
 ifeval::[{project_community}==true]
-. Click the *Action* menu on the top of the screen.
-. Select *Download adapter config* from the drop-down list.
+. From the *Action* list, select *Download adapter config*.
 endif::[]
 ifeval::[{project_product}==true]
 . Click the *Installation* tab.
