@@ -17,7 +17,8 @@ ifeval::[{project_community}==true]
 . Click the *Export* tab.
 endif::[]
 ifeval::[{project_product}==true]
-. Click the *Export Settings* tab.
+. Click *Clients* in the menu.
+. Click the client you created as a resource server.
 endif::[]
 +
 .Export Settings
