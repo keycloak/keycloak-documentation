@@ -11,7 +11,8 @@ The configuration settings for a resource server (or client) can be exported and
 
 .Procedure
 
-. Navigate to the *Resource Server Settings* page.
+. Click *Clients* in the menu.
+. Click the client you created as a resource server.
 ifeval::[{project_community}==true]
 . Click the *Export* tab.
 endif::[]
