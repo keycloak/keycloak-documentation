@@ -2,7 +2,11 @@
 = Enabling authorization services
 
 ifeval::[{project_community}==true]
-To turn your OIDC Client Application into a resource server and enable fine-grained authorization, click the *Authorization Enabled* switch to *ON* then click *Save*.
+You can turn your OIDC client into a resource server and enable fine-grained authorization.
+
+ .Procedure
+  . Toggle *Authorization Enabled* to *ON*.
+  . Click *Save*.
 endif::[]
 ifeval::[{project_product}==true]
 To turn your OIDC Client Application into a resource server and enable fine-grained authorization, select *Access type* *confidential* and click the *Authorization Enabled* switch to *ON* then click *Save*.
