@@ -22,7 +22,7 @@ ifeval::[{project_product}==true]
 endif::[]
 +
 .Export Settings
-image:{project_images}/resource-server/authz-export.png[alt="Export Settings"]
+image:{project_images}/resource-server/authz-export.png[Export Settings]
 
 The configuration file is exported in JSON format and displayed in a text area, from which you can copy and paste. You can also click *Download* to download the configuration file and save it.
 
