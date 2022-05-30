@@ -16,8 +16,8 @@ endif::[]
 
 ifeval::[{project_community}==true]
 . Click *Next*.
-. Toggle *Client authentication* to ON.
-. Toggle *Authorization* to ON.
+. Toggle *Client authentication* to *ON*.
+. Toggle *Authorization* to *ON*.
 . Click *Save*.
 . Fill in the *Root URL* field.
 . Click *Save*.
