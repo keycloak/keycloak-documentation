@@ -23,7 +23,7 @@ endif::[]
 
 . Complete the *Username*, *Email*, *First Name*, and *Last Name* fields.
 
-. Toggle *User Enabled* to *ON*
+. Toggle *User Enabled* to *ON*.
 
 ifeval::[{project_community}==true]
 . Click *Create*.
