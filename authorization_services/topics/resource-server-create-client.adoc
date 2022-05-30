@@ -8,7 +8,7 @@ The first step to enable {project_name} Authorization Services is to create the 
 . Click *Clients*.
 +
 .Clients
-image:{project_images}/resource-server/client-list.png[alt="Clients"]
+image:{project_images}/resource-server/client-list.png[Clients]
 
 ifeval::[{project_community}==true]
 . On this page, click *Create client*.
