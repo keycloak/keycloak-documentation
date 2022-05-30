@@ -15,7 +15,7 @@ You can now turn your OIDC client into a resource server and enable fine-grained
   . Toggle *Authorization Enabled* to *ON*.
   . Click *Save*.
 endif::[]
-
++
 .Enabling authorization services
 image:{project_images}/resource-server/client-enable-authz.png[alt="Enabling authorization services"]
 
