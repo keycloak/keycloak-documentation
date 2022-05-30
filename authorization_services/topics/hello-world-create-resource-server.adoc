@@ -5,7 +5,7 @@ You can enable authorization services in an existing client application configur
 
 .Procedure
 
-. Click *Clients* to start creating a client application.
+. Click *Clients* in the menu.
 
 ifeval::[{project_community}==true]
 . Fill in the *Client type*.
