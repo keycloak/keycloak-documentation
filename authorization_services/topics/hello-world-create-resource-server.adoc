@@ -8,7 +8,7 @@ You can enable authorization services in an existing client application configur
 . Click *Clients* to start creating a client application.
 
 ifeval::[{project_community}==true]
-. Fill in the *Client ID* and *Client Protocol*.
+. Fill in the *Client type*.
 endif::[]
 ifeval::[{project_product}==true]
 . Fill in the *Client ID*, *Client Protocol*, and *Root URL* fields.
