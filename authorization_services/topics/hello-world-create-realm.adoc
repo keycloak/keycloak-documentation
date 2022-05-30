@@ -41,7 +41,7 @@ image:{project_images}/getting-started/hello-world/create-user.png[alt="Add User
 .Set user password
 image:{project_images}/getting-started/hello-world/reset-user-pwd.png[alt="Set user password"]
 
-. Complete the *New Password* and *Password Confirmation* fields with a password and click the *Temporary* switch to *OFF*.
+. Complete the *New Password* and *Password Confirmation* fields and toggle *Temporary* to *OFF*.
 
 ifeval::[{project_community}==true]
 . Click *Save*.
