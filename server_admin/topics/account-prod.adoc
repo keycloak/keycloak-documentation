@@ -2,24 +2,12 @@
 
 == Account Console
 
-ifeval::[{project_product}==true]
-{project_name} users can manage their accounts through the Account Console. Users can manage their profiles, add two-factor authentication, include identity provider accounts, and manage device activity.
-endif::[]
-
-ifeval::[{project_community}==true]
-{project_name} users can manage their accounts through the Account Console. Users can configure their profiles, add two-factor authentication, include identity provider accounts, and oversee device activity.
-endif::[]
+{project_name} users can manage their accounts through the Account Console. Users can manage their profiles, add two-factor authentication, include identity provider acounts, and manage device activity.
 
 [role="_additional-resources"]
 .Additional resources
 
-ifeval::[{project_product}==true]
 * The Account Console is completely themeable and internationalizable as is the case with all {project_name} user interfaces. For example, you can add attributes to the *Personal Info* page. For more details, see the link:{developerguide_link}[{developerguide_name}].
-endif::[]
-
-ifeval::[{project_community}==true]
-* The Account Console can be configured in terms of appearance and language preferences. An example is adding attributes to the *Personal Information* page. For more information, see reference:{developerguide_link}[{developerguide_name}].
-endif::[]
 
 === Accessing the Account Console
 
