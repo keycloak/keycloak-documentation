@@ -18,7 +18,7 @@ ifeval::[{project_product}==true]
 endif::[]
 
 ifeval::[{project_community}==true]
-* The Account Console can be configured in terms of appearance and language preferences. An example is adding attributes to the *Personal Information* page. For more information, see reference:{developerguide_link}[{developerguide_name}].
+* The Account Console can be configured in terms of appearance and language preferences. An example is adding attributes to the *Personal info* page by clicking *Personal info* link and completing and saving details. For more information, see reference:{developerguide_link}[{developerguide_name}].
 endif::[]
 
 === Accessing the Account Console
@@ -34,7 +34,13 @@ Any user can access the Account Console.
 . Enter your login name and password.
 
 .Account Console
+ifeval::[{project_product}==true]
 image:images/account-console-intro.png[Account Console]
+endif::[]
+
+ifeval::[{project_community}==true]
+image:{project_images}/account-console-intro.png[Account Console]
+endif::[]
 
 === Configuring ways to sign in
 
@@ -48,6 +54,7 @@ You can sign in to this console using basic authentication (a login name and pas
 
 .Procedure
 
+ifeval::[{project_product}==true]
 . Click *Account Security* in the menu.
 
 . Click *Signing In*.
@@ -56,6 +63,18 @@ You can sign in to this console using basic authentication (a login name and pas
 +
 .Signing In
 image:images/account-console-signing-in.png[Signing In]
+endif::[]
+
+ifeval::[{project_community}==true]
+. Click *Account security* in the menu.
+
+. Click *Signing in*.
+
+. Click *Set up authenticator application*.
++
+.Signing in
+image:{project_images}/account-console-signing-in.png[Signing in]
+endif::[]
 
 . Follow the directions that appear on the screen to use either
  https://freeotp.github.io/[FreeOTP] or https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2[Google Authenticator] on your mobile device as your OTP generator.
@@ -122,19 +141,31 @@ You can view the devices that are logged in to your account.
 
 .Procedure
 
+ifeval::[{project_product}==true]
 . Click *Account Security* in the menu.
 . Click *Device Activity*.
 . Log out a device if it looks suspicious.
 
 .Devices
 image:images/account-console-device.png[Devices]
+endif::[]
 
-=== Adding an identity provider acccount
+ifeval::[{project_community}==true]
+. Click *Account security* in the menu.
+. Click *Device activity*.
+. Log out a device if it looks suspicious.
+
+.Devices
+image:{project_images}/account-console-device.png[Devices]
+endif::[]
+
+=== Adding an identity provider account
 
 You can link your account with an <<_identity_broker, identity broker>>. This option is often used to link social provider accounts.
 
 .Procedure
 
+ifeval::[{project_product}==true]
 . Log into the Admin Console.
 
 . Click *Identity Providers* in the menu.
@@ -153,10 +184,36 @@ The identity provider you added appears in this page.
 
 .Linked Accounts
 image:images/account-console-linked.png[Linked Accounts]
+endif::[]
+
+ifeval::[{project_community}==true]
+. Log into the Admin Console.
+
+. Click *Identity providers* in the menu.
+
+. Select a provider and complete the fields.
+
+. Return to the Account Console.
+
+. Click *Account security* in the menu.
+
+. Click *Linked accounts*.
+
+The identity provider you added appears in this page.
+
+.Linked Accounts
+image:{project_images}/account-console-linked.png[Linked Accounts]
+endif::[]
 
 === Accessing other applications
 
 The *Applications* menu item shows users which applications you can access. In this case, only the Account Console is available.
 
 .Applications
+ifeval::[{project_product}==true]
 image:images/account-console-applications.png[Applications]
+endif::[]
+
+ifeval::[{project_community}==true]
+image:{project_images}/account-console-applications.png[Applications]
+endif::[]
