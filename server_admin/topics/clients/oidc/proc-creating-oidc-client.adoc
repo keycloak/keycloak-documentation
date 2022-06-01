@@ -15,9 +15,13 @@ image:{project_images}/add-client-oidc.png[Add Client]
 
 . Select *openid-connect* in the *Client Protocol* drop down box.
 
-. Enter the base URL of your application in the *Root URL* field.
-
+ifeval::[{project_community}==true]
+. Click *Next*.
 . Click *Save*.
+endif::[]
+. Enter the base URL of your application in the *Root URL* field.
+. Click *Save*.
+
 ifdef::api-management[]
 . Configure the client permissions
 .. Set *Access Type* to *confidential*.                                     

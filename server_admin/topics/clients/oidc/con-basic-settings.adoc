@@ -16,8 +16,17 @@ the name, set up a replacement string value. For example, a string value such as
 *Consent Required*:: When turned on, users see a consent page that they can use to grant access to that application.  It will also display metadata so the user knows the exact information that the client can access.
 
 [[_access-type]]
-*Access Type*:: The type of OIDC client.
+ifeval::[{project_community}==true]
+*Client authentication*:: The type of OIDC client.
+_ON_::
+  For server-side clients that perform browser logins and require client secrets when making an Access Token Request. This setting should be used for server-side applications.
 
+_OFF_::
+  For client-side clients that perform browser logins. As it is not possible to ensure that secrets can be kept safe with client-side clients, it is important to restrict access by configuring correct redirect URIs.
+
+endif::[]
+ifeval::[{project_product}==true]
+*Access Type*:: The type of OIDC client.
 _Confidential_::
   For server-side clients that perform browser logins and require client secrets when making an Access Token Request. This setting should be used for server-side applications.
 
@@ -26,6 +35,7 @@ _Public_::
 
 _Bearer-only_::
   The application allows only bearer token requests. When turned on, this application cannot participate in browser logins.
+endif::[]
 
 *Standard Flow Enabled*:: When enabled, clients can use the OIDC xref:_oidc-auth-flows-authorization[Authorization Code Flow].
 
@@ -50,18 +60,6 @@ Exclusive redirect URL patterns are typically more secure.  See xref:unspecific-
 *Admin URL*:: Callback endpoint for a client.  The server uses this URL to make callbacks like pushing revocation policies, performing backchannel logout, and other administrative operations.  For {project_name} servlet adapters, this URL can be the root URL of the servlet application.
 For more information, see link:{adapterguide_link}[{adapterguide_name}].
 
-*Logo URL*
-
-URL that references a logo for the Client application.
-
-*Policy URL*
-
-URL that the Relying Party Client provides to the End-User to read about how the profile data will be used.
-
-*Terms of Service URL*
-
-URL that the Relying Party Client provides to the End-User to read about the Relying Party's terms of service.
-
 *Web Origins*:: Enter a URL pattern and click *+* to add and *-* to remove existing URLs. Click *Save*.
 +
 This option handles link:https://fetch.spec.whatwg.org/[Cross-Origin Resource Sharing (CORS)].
@@ -77,3 +75,19 @@ Domain URLs listed here are embedded within the access token sent to the client 
 
 [[_back-channel-logout-url]]
 *Backchannel Logout URL*:: URL that will cause the client to log itself out when a logout request is sent to this realm (via end_session_endpoint). If omitted, no logout requests are sent to the client.
+
+ifeval::[{project_community}==true]
+On the *Advanced* tab you'll find the following url settings
+endif::[]
+
+*Logo URL*
+
+URL that references a logo for the Client application.
+
+*Policy URL*
+
+URL that the Relying Party Client provides to the End-User to read about how the profile data will be used.
+
+*Terms of Service URL*
+
+URL that the Relying Party Client provides to the End-User to read about the Relying Party's terms of service.
