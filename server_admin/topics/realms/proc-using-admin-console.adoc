@@ -27,4 +27,4 @@ image:{project_images}/admin-console.png[Admin Console]
 +
 * Click the top right list to view your account or log out.
 +
-* Hover over a question mark *?* icon to show a tooltip text that describes that field. The image above shows the tooltip in action.
+* Click over a question mark *?* icon to show a tooltip text that describes that field. The image above shows the tooltip in action.

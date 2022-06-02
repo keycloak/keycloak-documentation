@@ -12,6 +12,7 @@ WARNING:  {project_name} generates a self-signed certificate the first time it r
 ifeval::[{project_product}==true]
 . Click *Realm Settings* in the menu.
 . Click the *Login* tab.
++
 .Login tab
 image:{project_images}/login-tab.png[Login tab]
 endif::[]
@@ -27,26 +28,26 @@ endif::[]
 . Set *Require SSL* to one of the following SSL modes:
 
 ifeval::[{project_product}==true]
-* external requests::
+* *external requests*
 endif::[]
 ifeval::[{project_community}==true]
-* External requests::
+* *External requests*
 endif::[]
   Users can interact with {project_name} without SSL so long as they stick to private IP addresses such as `localhost`, `127.0.0.1`, `10.x.x.x`, `192.168.x.x`, and `172.16.x.x`.
   If you try to access {project_name} without SSL from a non-private IP address, you will get an error.
 
 ifeval::[{project_product}==true]
-* none::
+* *none*
 endif::[]
 ifeval::[{project_community}==true]
-* None::
+* *None*
 endif::[]
   {project_name} does not require SSL.  This choice applies only in development when you are experimenting and do not plan to support this deployment.
 
 ifeval::[{project_product}==true]
-* all requests::
+* *all requests*
 endif::[]
 ifeval::[{project_community}==true]
-* All requests::
+* *All requests*
 endif::[]  
   {project_name} requires SSL for all IP addresses.

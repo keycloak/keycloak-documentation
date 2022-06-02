@@ -31,7 +31,7 @@ ifeval::[{project_product}==true]
 Login Theme::
 endif::[]
 
-ifeval::[{project_product}==true]
+ifeval::[{project_community}==true]
 Login theme::
 endif::[]
   Username password entry, OTP entry, new user registration, and other similar screens related to login.
@@ -40,7 +40,7 @@ ifeval::[{project_product}==true]
 Account Theme::
 endif::[]
 
-ifeval::[{project_product}==true]
+ifeval::[{project_community}==true]
 Account theme::
 endif::[]
   Each user has an User Account Management UI.
@@ -49,7 +49,7 @@ ifeval::[{project_product}==true]
 Admin Console Theme::
 endif::[]
 
-ifeval::[{project_product}==true]
+ifeval::[{project_community}==true]
 Admin console theme::
 endif::[]
   The skin of the {project_name} Admin Console.
@@ -58,7 +58,7 @@ ifeval::[{project_product}==true]
 Email Theme::
 endif::[]
 
-ifeval::[{project_product}==true]
+ifeval::[{project_community}==true]
 Email theme::
 endif::[]
   Whenever {project_name} has to send out an email, it uses templates defined in this theme to craft the email.
