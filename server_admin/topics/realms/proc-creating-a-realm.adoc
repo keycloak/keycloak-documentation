@@ -34,5 +34,5 @@ ifeval::[{project_product}==true]
 The current realm is now set to the realm you just created.  You can switch between managing different realms by pointing to the top left corner to click *Select Realm*.
 endif::[]
 ifeval::[{project_community}==true]
-The current realm is now set to the realm you just created. You can switch between managing different realms by pointing to the top left corner to select from dropdown.
+The current realm is now set to the realm you just created. You can switch between realms by clicking the realm name in the menu.
 endif::[]

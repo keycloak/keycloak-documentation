@@ -135,7 +135,7 @@ ifeval::[{project_product}==true]
 . Click the *Active* tab.
 endif::[]
 ifeval::[{project_community}==true]
-. Select *Active keys* from the filter dropdown.
+. Click the *Providers* tab.
 endif::[]
 . Click the provider of the key you want to make passive.
 ifeval::[{project_product}==true]
@@ -156,7 +156,7 @@ ifeval::[{project_product}==true]
 . Click the *Active* tab.
 endif::[]
 ifeval::[{project_community}==true]
-. Select *Active keys* from the filter dropdown.
+. Click the *Providers* tab.
 endif::[]
 . Click the provider of the key you want to make passive.
 ifeval::[{project_product}==true]
@@ -179,10 +179,13 @@ Alternatively, you can delete the provider from the `Providers` table.
 . Click *Clients* in the menu.
 . Click *security-admin-console*.
 ifeval::[{project_product}==true]
+. Fill in the *Admin URL* field.
 . Click the *Revocation* tab.
 . Click *Set to now*.
 endif::[]
 ifeval::[{project_community}==true]
+. Scroll down to the *Capability config* section.
+. Fill in the *Admin URL* field.
 . Click the *Advanced* tab.
 . Click *Set to now* in the *Revocation* section.
 endif::[]
