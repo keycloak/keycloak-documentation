@@ -3,7 +3,7 @@
 // server_admin/topics/users.adoc
 
 [id="con-user-impersonation_{context}"]
-= User impersonation
+= Impersonating a user
 
 An administrator with the appropriate permissions can impersonate a user. For example, if a user experiences a bug in an application, an administrator can impersonate the user to investigate or duplicate the issue. 
 
