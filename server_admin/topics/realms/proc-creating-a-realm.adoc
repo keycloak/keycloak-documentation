@@ -20,8 +20,8 @@ ifeval::[{project_community}==true]
 . Click *Create Realm*.
 endif::[]
 +
-.Create realm menu
-image:{project_images}/create-realm-menu.png[Create realm menu]
+.Add realm menu
+image:{project_images}/add-realm-menu.png[Add realm menu]
 
 . Enter a name for the realm.
 

@@ -11,8 +11,7 @@ possible to regularly rotate the keys without any downtime or interruption to us
 When a realm is created a key pair and a self-signed certificate is automatically generated.
 
 .Procedure
-. Select the realm in the Admin Console.
-. Click *Realm settings*.
+. Click *Realm settings* in the menu.
 . Click *Keys*.
 ifeval::[{project_product}==true]
 . Click *Passive* to view passive keys.
@@ -45,7 +44,7 @@ Rotating keys also applies to offline tokens. To make sure they are updated, the
 
 .Procedure
 . Select the realm in the Admin Console.
-. Click *Realm settings*.
+. Click *Realm settings* in the menu.
 . Click the *Keys* tab.
 . Click the *Providers* tab.
 ifeval::[{project_product}==true]
@@ -109,7 +108,7 @@ For the associated certificate chain to be loaded it must be imported to the Jav
 
 .Procedure
 . Select the realm in the Admin Console.
-. Click *Realm settings*.
+. Click *Realm settings* in the menu.
 . Click the *Keys* tab.
 . Click the *Providers* tab.
 ifeval::[{project_product}==true]
@@ -129,7 +128,7 @@ endif::[]
 
 .Procedure
 . Select the realm in the Admin Console.
-. Click Realm settings.
+. Click *Realm settings* in the menu.
 . Click the *Keys* tab.
 ifeval::[{project_product}==true]
 . Click the *Active* tab.
@@ -150,7 +149,7 @@ endif::[]
 
 .Procedure
 . Select the realm in the Admin Console.
-. Click Realm settings.
+. Click *Realm settings* in the menu.
 . Click the *Keys* tab.
 ifeval::[{project_product}==true]
 . Click the *Active* tab.

@@ -23,7 +23,7 @@ image:images/admin-login.png[Admin console login screen]
 The initial screen for the admin console appears.
 +
 .Admin console
-image:{project_images}/admin-console.png[Admin Console]
+image:images/admin-console.png[Admin console]
 
 .Next steps
 
