@@ -11,7 +11,7 @@ To create a new client-based policy, select *Client* in the item list in the upp
 endif::[]
 
 .Add a Client Policy
-image:images/policy/create-client.png[alt="Add a Client Policy"]
+image:{project_images}/policy/create-client.png[alt="Add a Client Policy"]
 
 == Configuration
 
