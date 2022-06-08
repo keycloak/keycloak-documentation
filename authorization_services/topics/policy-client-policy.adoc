@@ -26,7 +26,7 @@ A string containing details about this policy.
 +
 * *Clients*
 +
-Specifies which clients are givenGroup-based policy access by this policy.
+Specifies which clients have givenGroup-based policy access by this policy.
 +
 * *Logic*
 +
