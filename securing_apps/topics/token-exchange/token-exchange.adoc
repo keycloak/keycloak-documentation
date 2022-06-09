@@ -164,10 +164,12 @@ This setup page displays.
 image:{project_images}/exchange-target-client-permission-setup.png[Target Client Exchange Permission Setup]
 
 ifeval::[{project_community}==true]
-. Define a policy for this permission by clicking the *Authorization* link
+. Click *Authorization* in the breadcrumbs at the top of the screen.
+. Define a policy for this permission.
 endif::[]
 ifeval::[{project_product}==true]
-. Define a policy for this permission by clicking the *Client details* link
+. Click *Client details* in the breadcrumbs at the top of the screen.
+. Define a policy for this permission.
 endif::[]
 
 . Click the *Policies* tab.
@@ -273,7 +275,9 @@ This setup page appears.
 .Identity Provider Exchange Permission Setup
 image:{project_images}/exchange-idp-permission-setup.png[Identity Provider Exchange Permission Setup]
 
-. Click the *Authorization* link and go to the *Policies* tab to create a client policy.
+. Click *Authorization* in the breadcrumbs at the top of the screen.
+
+. Click *Policies* tab to create a client policy.
 +
 .Client Policy Creation
 image:{project_images}/exchange-idp-client-policy.png[Client Policy Creation]
@@ -486,10 +490,12 @@ This setup page displays.
 image:{project_images}/exchange-users-permission-setup.png[Users Impersonation Permission Setup]
 
 ifeval::[{project_community}==true]
-. Click the *Authorization* link
+. Click *Authorization* in the breadcrumbs at the top of the screen.
+. Define a policy for this permission.
 endif::[]
 ifeval::[{project_product}==true]
-. Click the *Client details* link
+. Click *Client details* in the breadcrumbs at the top of the screen.
+. Define a policy for this permission.
 endif::[]
 
 . Go to the *Policies* tab and create a client policy.
