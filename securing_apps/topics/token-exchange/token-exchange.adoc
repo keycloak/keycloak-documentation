@@ -144,7 +144,12 @@ image:{project_images}/exchange-target-client-permission-unset.png[Target Client
 
 .Procedure
 
+ifeval::[{project_community}==true]
 . Toggle *Permissions Enabled* to *ON*.
+endif::[]
+ifeval::[{project_product}==true]
+. Toggle *Permissions Enabled* to *On*.
+endif::[]
 +
 .Target Client Permission
 image:{project_images}/exchange-target-client-permission-set.png[]
@@ -158,14 +163,32 @@ This setup page displays.
 .Target Client Exchange Permission Setup
 image:{project_images}/exchange-target-client-permission-setup.png[Target Client Exchange Permission Setup]
 
+ifeval::[{project_community}==true]
 . Define a policy for this permission by clicking the *Authorization* link
+endif::[]
+ifeval::[{project_product}==true]
+. Define a policy for this permission by clicking the *Client details* link
+endif::[]
 
 . Click the *Policies* tab.
 
+ifeval::[{project_community}==true]
 . Create a *Client* Policy.
+endif::[]
+ifeval::[{project_product}==true]
+. Create a *Client* Policy by clicking *Create policy* button.
+endif::[]
 +
+ifeval::[{project_community}==true]
 .Client Policy Creation
 image:{project_images}/exchange-target-client-policy.png[]
+endif::[]
+ifeval::[{project_product}==true]
+.Select Policy Type
+image:{project_images}/exchange-target-client-policy-type-selection.png[Client Policy Type Selection]
+.Client Policy Creation
+image:{project_images}/exchange-target-client-policy.png[Client Policy Creation]
+endif::[]
 
 . Enter in the starting client that is the authenticated client that is requesting a token exchange.
 
@@ -447,7 +470,13 @@ image:{project_images}/exchange-users-permission-unset.png[User Permissions]
 .Identity Provider Permission
 image:{project_images}/exchange-users-permission-set.png[]
 +
+
+ifeval::[{project_community}==true]
 The page displays an *impersonation* link.
+endif::[]
+ifeval::[{project_product}==true]
+The page displays an *impersonate* link.
+endif::[]
 
 . Click that link to start defining the permission.
 +
@@ -456,12 +485,25 @@ This setup page displays.
 .Users Impersonation Permission Setup
 image:{project_images}/exchange-users-permission-setup.png[Users Impersonation Permission Setup]
 
+ifeval::[{project_community}==true]
 . Click the *Authorization* link
+endif::[]
+ifeval::[{project_product}==true]
+. Click the *Client details* link
+endif::[]
 
 . Go to the *Policies* tab and create a client policy.
 +
+ifeval::[{project_community}==true]
 .Client Policy Creation
 image:{project_images}/exchange-users-client-policy.png[Client Policy Creation]
+endif::[]
+ifeval::[{project_product}==true]
+.Select Policy Type
+image:{project_images}/exchange-users-client-policy-selection.png[Client Policy Type Selection]
+.Client Policy Creation
+image:{project_images}/exchange-users-client-policy.png[Client Policy Creation]
+endif::[]
 
 . Enter the starting client that is the authenticated client that is requesting a token exchange.
 
