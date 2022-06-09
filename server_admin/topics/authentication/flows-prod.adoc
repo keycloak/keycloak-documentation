@@ -169,7 +169,7 @@ To illustrate the creation of flows, this section describes creating an advanced
 . Click *Alternative* for the *Forms* authentication type to set its requirement to alternative.
 +
 .The common part with the browser flow
-image:images/Passwordless-browser-login-common.png[]
+image:{project_images}/Passwordless-browser-login-common.png[]
 +
 . Click *Actions* for the *Forms* execution.
 . Select *Add execution*.
@@ -213,7 +213,7 @@ Finally, change the bindings.
 . Click *Save*.
 
 .A password-less browser login
-image:images/Passwordless-browser-login.png[]
+image:{project_images}/Passwordless-browser-login.png[]
 
 After entering the username, the flow works as follows:
 
@@ -277,7 +277,7 @@ Now you configure the flow for the first authentication level.
 . Click *Save*
 +
 .Configure the condition for the first authentication level
-image:images/authentication-step-up-condition-1.png[]
+image:{project_images}/authentication-step-up-condition-1.png[]
 
 . Click *Actions* for the *1st Condition Flow*.
 . Click *Add execution*.
@@ -306,7 +306,7 @@ Now you configure the flow for the second authentication level.
 . Click *Save*
 +
 .Configure the condition for the second authentication level
-image:images/authentication-step-up-condition-2.png[]
+image:{project_images}/authentication-step-up-condition-2.png[]
 
 . Click *Actions* for the *2nd Condition Flow*.
 . Click *Add execution*.
@@ -322,7 +322,7 @@ Finally, change the bindings.
 . Click *Save*.
 
 .Browser login with step-up mechanism
-image:images/authentication-step-up-flow.png[]
+image:{project_images}/authentication-step-up-flow.png[]
 
 .Request a certain authentication level
 To use the step-up mechanism, you specify a requested level of authentication (LoA) in your authentication request. The `claims` parameter is used for this purpose:

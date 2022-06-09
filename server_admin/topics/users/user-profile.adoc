@@ -646,10 +646,10 @@ You have to use User Profile `JSON Editor` to enter map as `inputOptionLabels` a
 
 
 Example of directly entered labels for individual options without internationalization:
-[source:json]
+[source,json]
 ----
 "attributes": [
-...
+<...
 {
   "name": "jobTitle",
   "validations": {
@@ -673,7 +673,7 @@ Example of directly entered labels for individual options without internationali
 ----
 
 Example of the internationalized labels for individual options:
-[source:json]
+[source,json]
 ----
 "attributes": [
 ...
