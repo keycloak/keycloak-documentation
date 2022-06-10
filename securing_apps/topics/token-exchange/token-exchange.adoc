@@ -471,7 +471,7 @@ Additionally, the calling client must be granted permission to impersonate users
 .User Permissions
 image:{project_images}/exchange-users-permission-unset.png[User Permissions]
 
-. Toggle *Permissions Enabled* to true.
+. Toggle *Permissions Enabled* to *On*.
 +
 .Identity Provider Permission
 image:{project_images}/exchange-users-permission-set.png[Users Impersonation Permission Set]
