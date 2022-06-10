@@ -164,11 +164,11 @@ This setup page displays.
 image:{project_images}/exchange-target-client-permission-setup.png[Target Client Exchange Permission Setup]
 
 ifeval::[{project_community}==true]
-. Click *Authorization* in the breadcrumbs at the top of the screen.
+. Click *Client details* in the breadcrumbs at the top of the screen.
 . Define a policy for this permission.
 endif::[]
 ifeval::[{project_product}==true]
-. Click *Client details* in the breadcrumbs at the top of the screen.
+. Click *Authorization* in the breadcrumbs at the top of the screen.
 . Define a policy for this permission.
 endif::[]
 
@@ -186,8 +186,6 @@ ifeval::[{project_community}==true]
 image:{project_images}/exchange-target-client-policy.png[]
 endif::[]
 ifeval::[{project_product}==true]
-.Select Policy Type
-image:{project_images}/exchange-target-client-policy-type-selection.png[Client Policy Type Selection]
 .Client Policy Creation
 image:{project_images}/exchange-target-client-policy.png[Client Policy Creation]
 endif::[]
@@ -458,7 +456,7 @@ WARNING: It is very risky to enable direct naked impersonation for a client.  If
 If the `audience` parameter is provided, then the calling client must have permission to exchange to the client.  How
 to set this up is discussed earlier in this chapter.
 
-Additionally, the calling client must be granted permission to impersonate users.  In the Admin Console.
+Additionally, the calling client must be granted permission to impersonate users.
 
 .Procedure
 
@@ -490,11 +488,11 @@ This setup page displays.
 image:{project_images}/exchange-users-permission-setup.png[Users Impersonation Permission Setup]
 
 ifeval::[{project_community}==true]
-. Click *Authorization* in the breadcrumbs at the top of the screen.
+. Click *Client details* in the breadcrumbs at the top of the screen.
 . Define a policy for this permission.
 endif::[]
 ifeval::[{project_product}==true]
-. Click *Client details* in the breadcrumbs at the top of the screen.
+. Click *Authorization* in the breadcrumbs at the top of the screen.
 . Define a policy for this permission.
 endif::[]
 
@@ -505,8 +503,6 @@ ifeval::[{project_community}==true]
 image:{project_images}/exchange-users-client-policy.png[Client Policy Creation]
 endif::[]
 ifeval::[{project_product}==true]
-.Select Policy Type
-image:{project_images}/exchange-users-client-policy-selection.png[Client Policy Type Selection]
 .Client Policy Creation
 image:{project_images}/exchange-users-client-policy.png[Client Policy Creation]
 endif::[]
