@@ -145,10 +145,10 @@ image:{project_images}/exchange-target-client-permission-unset.png[Target Client
 .Procedure
 
 ifeval::[{project_community}==true]
-. Toggle *Permissions Enabled* to *ON*.
+. Toggle *Permissions Enabled* to *On*.
 endif::[]
 ifeval::[{project_product}==true]
-. Toggle *Permissions Enabled* to *On*.
+. Toggle *Permissions Enabled* to *ON*.
 endif::[]
 +
 .Target Client Permission
@@ -175,20 +175,14 @@ endif::[]
 . Click the *Policies* tab.
 
 ifeval::[{project_community}==true]
-. Create a *Client* Policy.
-endif::[]
-ifeval::[{project_product}==true]
 . Create a *Client* Policy by clicking *Create policy* button.
 endif::[]
-+
-ifeval::[{project_community}==true]
-.Client Policy Creation
-image:{project_images}/exchange-target-client-policy.png[]
-endif::[]
 ifeval::[{project_product}==true]
+. Create a *Client* Policy.
+endif::[]
++
 .Client Policy Creation
 image:{project_images}/exchange-target-client-policy.png[Client Policy Creation]
-endif::[]
 
 . Enter in the starting client that is the authenticated client that is requesting a token exchange.
 
@@ -474,10 +468,10 @@ image:{project_images}/exchange-users-permission-set.png[]
 +
 
 ifeval::[{project_community}==true]
-The page displays an *impersonation* link.
+The page displays an *impersonate* link.
 endif::[]
 ifeval::[{project_product}==true]
-The page displays an *impersonate* link.
+The page displays an *impersonation* link.
 endif::[]
 
 . Click that link to start defining the permission.
@@ -498,14 +492,8 @@ endif::[]
 
 . Go to the *Policies* tab and create a client policy.
 +
-ifeval::[{project_community}==true]
 .Client Policy Creation
 image:{project_images}/exchange-users-client-policy.png[Client Policy Creation]
-endif::[]
-ifeval::[{project_product}==true]
-.Client Policy Creation
-image:{project_images}/exchange-users-client-policy.png[Client Policy Creation]
-endif::[]
 
 . Enter the starting client that is the authenticated client that is requesting a token exchange.
 
