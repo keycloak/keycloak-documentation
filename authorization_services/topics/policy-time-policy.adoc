@@ -41,6 +41,7 @@ endif::[]
 ifeval::[{project_community}==true]
 Select *Repeat* to repeat access being granted on a specific *Day of Month*, *Month*, *Year*, *Hour* or *Minute*.
 endif::[]
+
 * *Day of Month*
 +
 Defines the day of month that access must be granted. You can also specify a range of dates. In this case, permission is granted only if the current day of the month is between or equal to the two values specified.
