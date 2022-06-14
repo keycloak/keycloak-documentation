@@ -12,7 +12,7 @@ endif::[]
 
 ifeval::[{project_product}==true]
 .Tokens tab
-image:{project_images}/tokens-tab.png[]
+image:{project_images}/tokens-tab.png[Tokens tab]
 
 |===
 |Configuration|Description
@@ -24,6 +24,7 @@ image:{project_images}/tokens-tab.png[]
 |Revoke Refresh Token
 |When *ON*, {project_name} revokes refresh tokens and issues another token that the client must use. This action applies to OIDC clients performing the refresh token flow.
 
+ifeval::[{project_product}==true]
 |SSO Session Idle
 |This setting is for OIDC clients only. If a user is inactive for longer than this timeout, the user session is invalidated. This timeout value resets when clients request authentication or send a refresh token request. {project_name} adds a window of time to the idle timeout before the session invalidation takes effect. See the <<_idle_timeouts_note, note>> later in this section.
 
@@ -59,6 +60,7 @@ image:{project_images}/tokens-tab.png[]
 
 |Client Session Max
 |The maximum time before a refresh token expires and invalidates. This setting specifies a shorter timeout of refresh tokens than the session timeout, but users can override it for individual clients. This setting is an optional configuration and, when set to zero, uses the same idle timeout in the SSO Session Max configuration.
+endif::[]
 
 |Access Token Lifespan
 |When {project_name} creates an OIDC access token, this value controls the lifetime of the token.
@@ -69,11 +71,13 @@ image:{project_images}/tokens-tab.png[]
 |Client login timeout
 |The maximum time before clients must finish the Authorization Code Flow in OIDC.
 
+ifeval::[{project_product}==true]
 |Login timeout
 |The total time a logging in must take. If authentication takes longer than this time, the user must start the authentication process again.
 
 |Login action timeout
 |The Maximum time users can spend on any one page during the authentication process.
+endif::[]
 
 |User-Initiated Action Lifespan
 |The maximum time before a user's action permission expires. Keep this value short because users generally react to self-created actions quickly.
@@ -81,8 +85,10 @@ image:{project_images}/tokens-tab.png[]
 |Default Admin-Initiated Action Lifespan
 |The maximum time before an action permission sent to a user by an administrator expires. Keep this value long to allow administrators to send e-mails to offline users. An administrator can override the default timeout before issuing the token.
 
+ifeval::[{project_product}==true]
 |Override User-Initiated Action Lifespan
 |Specifies independent timeouts per individual operation (for example, e-mail verification, forgot password, user actions, and Identity Provider E-mail Verification). This value defaults to the value configured at _User-Initiated Action Lifespan_.
+endif::[]
 |===
 endif::[]
 
