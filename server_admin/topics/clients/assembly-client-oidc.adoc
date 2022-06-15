@@ -8,7 +8,12 @@ include::oidc/proc-creating-oidc-client.adoc[leveloffset=+1]
 
 include::oidc/con-basic-settings.adoc[leveloffset=+1]
 
+ifeval::[{project_community}==true]
+include::oidc/con-advanced-settings-ui.adoc[leveloffset=+1]
+endif::[]
+ifeval::[{project_product}==true]
 include::oidc/con-advanced-settings.adoc[leveloffset=+1]
+endif::[]
 
 include::oidc/con-confidential-client-credentials.adoc[leveloffset=+1]
 
