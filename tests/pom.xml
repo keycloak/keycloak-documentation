@@ -41,7 +41,7 @@
     <parent>
         <groupId>org.keycloak.documentation</groupId>
         <artifactId>documentation-parent</artifactId>
-        <version>18.0.0</version>
+        <version>18.0.1</version>
         <relativePath>../</relativePath>
     </parent>
 
