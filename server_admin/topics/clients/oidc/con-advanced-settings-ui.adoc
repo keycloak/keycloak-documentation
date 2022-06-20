@@ -3,7 +3,6 @@
 [role="_abstract"]
 When you click the *Advanced* tab, additional fields are displayed.
 
-*Revocation* and *Clustering* are topics described in the link:{installguide_link}#_clustering[{installguide_name}]
 
 *Logo URL*
 
