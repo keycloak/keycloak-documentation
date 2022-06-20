@@ -18,10 +18,12 @@ the name, set up a replacement string value. For example, a string value such as
 [[_access-type]]
 ifeval::[{project_community}==true]
 *Client authentication*:: The type of OIDC client.
-_ON_::
-  For server-side clients that perform browser logins and require client secrets when making an Access Token Request. This setting should be used for server-side applications.
+* _ON_
++
+For server-side clients that perform browser logins and require client secrets when making an Access Token Request. This setting should be used for server-side applications.
 
-_OFF_::
+* _OFF_
++
   For client-side clients that perform browser logins. As it is not possible to ensure that secrets can be kept safe with client-side clients, it is important to restrict access by configuring correct redirect URIs.
 
 endif::[]
