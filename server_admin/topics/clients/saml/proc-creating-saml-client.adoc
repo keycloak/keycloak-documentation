@@ -8,7 +8,12 @@ POST and Redirect bindings are supported. You can choose to require client signa
 .Procedure
 . Click *Clients* in the menu.
 
+ifeval::[{project_community}==true]
+. Click *Create client* to go to the *Create client* page.
+endif::[]
+ifeval::[{project_product}==true]
 . Click *Create* to go to the *Add Client* page.
+endif::[]
 +
 .Add client
 image:{project_images}/add-client-saml.png[]
