@@ -6,6 +6,7 @@
 . This document
 
 Writers will also refer to these:
+
 . link:https://www.ibm.com/developerworks/library/styleguidelines/[IBM DeveloperWorks Editorial Style Guide]
 . link:http://brand.redhat.com/elements/[RH Corporate]
 

@@ -1,0 +1,27 @@
+# The "en" in the file name specifies the natural language to be checked, so users can use other ISO codes, for example, "ru" or "de"
+
+# A subset of "vale" linter syntax is supported, see https://plugins.jetbrains.com/plugin/16136-grazie-professional/docs/project-style-guides.html.
+#
+# See https://docs.errata.ai/vale/styles#extension-points for more details on each rule.
+
+extends: existence                # check for unwanted words or phrases
+message: Do not use '%s'           # a message to display in the inspection tooltip when a matching fragment is found
+ignorecase: true
+tokens:
+  - just
+
+---
+extends: substitution             # check for unwanted fragments and suggest replacements
+message: Use '%s'
+ignorecase: true
+swap:
+  via: using|through
+  e.g.: for example|such as
+  i.e.: that is
+  don't: do not
+  doesn't: does not
+  won't: will not
+  you'll: you will
+  vs.: versus
+  like: such as
+
