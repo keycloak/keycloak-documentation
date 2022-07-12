@@ -397,6 +397,7 @@ endif::[]
 * Authenticator
 * JavaScript Policy
 * OpenID Connect Protocol Mapper
+* SAML Protocol Mapper
 
 ==== Authenticator
 
@@ -484,6 +485,13 @@ The `META-INF/keycloak-scripts.json` is a file descriptor that provides metadata
             "fileName": "my-script-mapper.js",
             "description": "My Mapper from a JS file"
         }
+    ],
+    "saml-mappers": [
+        {
+            "name": "My Mapper",
+            "fileName": "my-script-mapper.js",
+            "description": "My Mapper from a JS file"
+        }
     ]
 }
 ```
@@ -501,6 +509,10 @@ For JavaScript Policies when using {project_name} Authorization Services. You ca
 * `mappers`
 +
 For OpenID Connect Script Protocol Mappers. You can have one or multiple mappers in the same JAR file
++
+* `saml-mappers`
++
+For SAML Script Protocol Mappers. You can have one or multiple mappers in the same JAR file
 
 For each script file in your `JAR` file, you need a corresponding entry in `META-INF/keycloak-scripts.json` that maps your scripts files to a specific provider type. For that you should provide the following properties for each entry:
 
@@ -598,19 +610,6 @@ For example, you can use something such as this in your `KEYCLOAK_HOME/standalon
 ```
 
 endif::[]
-
-==== Using the {project_name} Admin Console to upload scripts
-
-NOTE: Ability to upload scripts through the Admin Console is deprecated and will be removed in a future version of {project_name}.
-
-Administrators cannot upload scripts to the server. This behavior prevents potential harm to the system in case
-malicious scripts are accidentally executed. Administrators should always deploy scripts directly to the server using a
-JAR file to prevent attacks when you run scripts at runtime.
-
-Ability to upload scripts can be explicitly enabled. This should be used with great care and plans should be created to
-deploy all scripts directly to the server as soon as possible.
-
-For more details about how to enable the `upload_scripts` feature, see link:{installguide_profile_link}[{installguide_profile_name}].
 
 === Available SPIs
 
