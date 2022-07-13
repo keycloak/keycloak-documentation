@@ -169,3 +169,11 @@ spec:
 ```
 See also the https://kubernetes.io/docs/tasks/run-application/configure-pdb/[Kubernetes Documentation].
 
+=== Critical bug fix in the {project_operator}
+
+Due to a https://issues.redhat.com/browse/RHSSO-2091[critical bug] introduced in the previous versions of the Operator, `Selector` field on the RH-SSO StatefulSet
+was misconfigured. The misconfiguration may break the upgrade process from 7.5 to 7.6, preventing a successful RH-SSO deployment.
+
+With an Operator patch release we introduced a fix. Please note that as part of the fix the Operator may **delete and recreate the
+RH-SSO StatefulSet** during the upgrade from 7.5 to 7.6. For the fix to work properly, make sure you use the `recreate`
+upgrade strategy. Refer to the related chapter of link:{installguide_link}#_operator-upgrade-strategy[{installguide_name}].

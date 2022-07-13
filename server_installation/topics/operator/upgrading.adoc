@@ -36,6 +36,17 @@ spec:
     enabled: True
 ```
 
+[NOTE]
+====
+Due to a https://github.com/keycloak/keycloak-operator/issues/566[bug] introduced in a previous version of the Operator, `Selector` field on the {project_name} StatefulSet might
+be misconfigured depending on your configuration. If such state is detected by the Operator and you are using the `recreate`
+strategy, it will **delete and recreate the StatefulSet** with the correct `Selector` field. This is required as the
+`Selector` field is immutable.
+
+As a "delete" operation can have potentially dangerous side effects in very rare cases, for example when you have added custom
+functionality unknown to the Operator to the StatefulSet definition, you can instead delete the StatefulSet manually.
+====
+
 ifeval::[{project_community}==true]
 .Additional Resources
 

@@ -88,13 +88,14 @@ For more details on this change, see link:https://access.redhat.com/articles/674
 
 For details on the issues fixed between RH-SSO 7.5 and 7.6.0, see link:https://issues.redhat.com/browse/KEYCLOAK-14085?filter=12396918[RHSSO 7.6.0 Fixed Issues].
 
+After 7.6.0 release we also introduced a patch release for the {project_operator} to fix a
+https://issues.redhat.com/browse/RHSSO-2091[critical issue] that prevented the upgrade from 7.5.2 to 7.6.0 using the Operator.
+See the link:{upgradingguide_link}#rh_sso_7_6[{upgradingguide_name}] for more details and caveats.
+
 = Known issues
 
 This release includes the following known issues:
 
-* link:https://issues.redhat.com/browse/RHSSO-2091[RHSSO-2091] - Operator fails to upgrade to 7.6.0 GA with the error "FAILED Update RHSSO Deployment (StatefulSet)"
-+
-See this link:https://access.redhat.com/solutions/6966958[KCS solution].
 * link:https://issues.redhat.com/browse/KEYCLOAK-18115[KEYCLOAK-18115] - Attempt to edit attribute denied in RHSSO 7.4.6
 
 = Supported configurations
