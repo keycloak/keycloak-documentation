@@ -24,7 +24,7 @@ and share the resource with others.
 When there is a permission requests awaiting approval an icon is put next to the name of the resource.
 These requests are connected to the parties (users) requesting access to a particular resource.
 Users are allowed to approve or deny these requests. You can do so by clicking the icon
-
++
 image:{project_images}/service/account-my-resource-detail.png[alt="Resource Detail"]
 +
 * Manage *Resources shared with me*
