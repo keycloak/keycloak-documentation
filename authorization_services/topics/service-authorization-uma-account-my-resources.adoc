@@ -17,7 +17,6 @@ this functionality, you must first enable User-Managed Access for your realm.
 image:{project_images}/service/account-my-resource.png[alt="My Resources"]
 
 . Click *My Resources* in the menu option. A page displays with the following options.
-+
 * Manage *My resources*
 +
 This section contains a list of all resources owned by the user. Users can click on a resource for more details
