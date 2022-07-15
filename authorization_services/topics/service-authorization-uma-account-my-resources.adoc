@@ -12,7 +12,7 @@ this functionality, you must first enable User-Managed Access for your realm.
 
 . Toggle *User-Managed Access* to *ON*.
 
-. Click the user name a the top right of the Admin Console and select Manage Account.
+. Click the user name at the top right of the Admin Console and select *Manage Account*.
 +
 image:{project_images}/service/account-my-resource.png[alt="My Resources"]
 
