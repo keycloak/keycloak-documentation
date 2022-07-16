@@ -19,7 +19,7 @@ image:{project_images}/browser-flow.png[Browser Flow]
 Two sections exist.
 
 ===== Auth type
-The name of the authentication or the action to execute. If an authentication is indented, it is in a sub-flow. It may or may not be executed, depending on the behavior of its parent. 
+The name of the authentication or the action to execute. If an authentication is indented, it is in a sub-flow. It may or may not be executed, depending on the behavior of its parent.
 
 . Cookie
 +
@@ -63,12 +63,12 @@ The element does not count to mark a flow as successful.
 
 ====== Conditional
 
-This requirement type is only set on sub-flows. 
+This requirement type is only set on sub-flows.
 
-* A _Conditional_ sub-flow contains executions. These executions must evaluate to logical statements. 
-* If all executions evaluate as _true_, the _Conditional_ sub-flow acts as _Required_. 
+* A _Conditional_ sub-flow contains executions. These executions must evaluate to logical statements.
+* If all executions evaluate as _true_, the _Conditional_ sub-flow acts as _Required_.
 * If all executions evaluate as _false_, the _Conditional_ sub-flow acts as _Disabled_.
-* If you do not set an execution, the _Conditional_ sub-flow acts as _Disabled_. 
+* If you do not set an execution, the _Conditional_ sub-flow acts as _Disabled_.
 * If a flow contains executions and the flow is not set to _Conditional_, {project_name} does not evaluate the executions, and the executions are considered functionally _Disabled_.
 
 ==== Creating flows
@@ -115,7 +115,7 @@ Executions have a wide variety of actions, from sending a reset email to validat
 image:{project_images}/Create-authentication-execution.png[Adding an Authentication Execution]
 
 Two types of executions exist, _automatic executions_ and _interactive executions_. _Automatic executions_ are similar to the *Cookie* execution and will automatically
-perform their action in the flow. _Interactive executions_ halt the flow to get input. Executions executing successfully set their status to _success_.  For a flow to complete, it needs at least one execution with a status of _success_. 
+perform their action in the flow. _Interactive executions_ halt the flow to get input. Executions executing successfully set their status to _success_.  For a flow to complete, it needs at least one execution with a status of _success_.
 
 You can add sub-flows to top-level flows with the *Add flow* button. The *Add flow* button displays the *Create Execution Flow* page. This page is similar to the *Create Top Level Form* page. The difference is that the *Flow Type* can be *generic* (default) or *form*. The *form* type constructs a sub-flow that generates a form for the user, similar to the built-in *Registration* flow.
 Sub-flows success depends on how their executions evaluate, including their contained sub-flows. See the <<_execution-requirements, execution requirements section>> for an in-depth explanation of how sub-flows work.
@@ -427,8 +427,8 @@ If both session limits and client session limits are enabled, it makes sense to 
 
 Note that the user session limits should be added to your bound *Browser flow*, *Direct grant flow*, *Reset credentials* and also to any *Post broker login flow*.
 The authenticator should be added at the point when the user is already known during authentication (usually at the end of the authentication flow) and should be typically REQUIRED. Note that it is not possible to have
-ALTERNATIVE and REQUIRED executions at the same level. For example for the default browser flow, it may be necessary to wrap the existing flow as a REQUIRED level-1 subflow and 
-add `User Session Count Limiter` to the same level as this new subflow. Example of such flow is below.
+ALTERNATIVE and REQUIRED executions at the same level. For example for the default browser flow, it may be necessary to wrap the existing flow as a REQUIRED level-1 subflow and
+add `User Session Count Limiter` to the same level as this new subflow. To add the user session limits execution to *Browser Flow*, you should add this execution to *Forms Auth Type* by using *Actions* button. Example of such flow is below.
 
 image:{project_images}/authentication-user-session-limits.png[Authentication User Session Limits Flow]
 
