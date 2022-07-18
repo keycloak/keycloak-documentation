@@ -1,3 +1,25 @@
+= Changes to the server configuration and how it starts
+
+Before this release, you would use the `--auto-build` when running the `start` command to indicate to the server to conditionally run
+a `build` if any build option has changed prior to starting the server.
+
+In this release, the `--auto-build` is *deprecated* and you no longer need to use it to indicate that you want to set build options when
+starting the server. Instead, the server is always going to run a `build` prior to starting the server if any build option has changed.
+The new behavior improves the overall experience when configuring and starting the server by making it optional, although highly recommended,
+running the `build` command beforehand in order to achieve the best startup time and memory footprint.
+
+Now, in order to achieve the best startup time and memory footprint, you should set the `--optimised` option to disable the default behavior
+and indicate to the server that you don't want to run a `build` prior to starting the server:
+
+```
+kc.sh start --optimised
+```
+
+If you are already using a custom image to set build options and run a optimized container, make sure you use the `--optimised` option when invoking the
+`start` command.
+
+For more details, please take a look at the https://www.keycloak.org/server/configuration[Configuration Guide].
+
 = Changes affecting developers
 
 {project_name} undergoes large refactoring, which impacts existing code.
