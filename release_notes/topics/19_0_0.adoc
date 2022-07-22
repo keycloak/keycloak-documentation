@@ -47,7 +47,7 @@ See link:{upgradingguide_link}[{upgradingguide_name}] for details.
 
 = OIDC Logout changes
 
-In the previous release, we added support for OIDC logout. This release contains few other fixes and polishing. Few highlights of them are:
+In the previous release, we added support for OIDC logout. This release contains a few other fixes and polishing. The  highlights include:
 
 - Support for `client_id` parameter, which was added in recent draft of OIDC RP-Initiated Logout specification. Due adding this, it is not needed anymore to use `Consent Required` flag of the
 client to show logout confirmation screen.
