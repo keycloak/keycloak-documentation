@@ -45,6 +45,18 @@ Hence, custom extensions that access objects in local storage or cache through `
 methods must be reviewed.
 See link:{upgradingguide_link}[{upgradingguide_name}] for details.
 
+= OIDC Logout changes
+
+In the previous release, we added support for OIDC logout. This release contains few other fixes and polishing. Few highlights of them are:
+
+- Support for `client_id` parameter, which was added in recent draft of OIDC RP-Initiated Logout specification. Due adding this, it is not needed anymore to use `Consent Required` flag of the
+client to show logout confirmation screen.
+- Configuration option `Valid Post Logout Redirect URIs` added to the OIDC client. This is aligned with the OIDC specification and it allows to use different set of redirect URIs for redirect after login and logout.
+Value `+` used for `Valid Post Logout Redirect URIs` means that logout will use same set of redirect URIs as specified by the option of `Valid Redirect URIs`. This is also default behaviour when migrating
+from previous version due the backwards compatibility.
+
+For more details, see link:{adminguide_link}#_oidc-logout[{adminguide_name}].
+
 = Deprecated `podDisruptionBudget` in the legacy {project_operator}
 
 With this release, we have deprecated `podDisruptionBudget` field in the Keycloak CR of the https://github.com/keycloak/keycloak-operator[legacy {project_operator}].
