@@ -12,7 +12,7 @@ default connections-jpa provider:
 
 [source,bash]
 ----
-kc.[sh|bat] start --spi-connections-jpa-default-migration-strategy=update
+kc.[sh|bat] start --spi-connections-jpa-legacy-migration-strategy=update
 ----
 
 When you start the server with this setting your database is automatically migrated if the database schema has changed
@@ -39,7 +39,7 @@ connections-jpa provider:
 
 [source,bash]
 ----
-kc.[sh|bat] start --spi-connections-jpa-default-migration-strategy=manual
+kc.[sh|bat] start --spi-connections-jpa-legacy-migration-strategy=manual
 ----
 
 When you start the server with this configuration it checks if the database needs to be migrated. The required changes
