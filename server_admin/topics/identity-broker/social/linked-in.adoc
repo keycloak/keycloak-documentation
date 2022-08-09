@@ -23,3 +23,11 @@ endif::[]
 ifeval::[{project_product}==true]
 . Click *Save*.
 endif::[]
+
+.Configuration
+* With `Profile Projection` you can configure the `projection` parameter for profile requests.
+* For example, `(id,firstName,lastName,profilePicture(displayImage~:playableStreams))` produces the following profile request URL:
+[source,txt]
+----
+https://api.linkedin.com/v2/me?projection=(id,firstName,lastName,profilePicture(displayImage~:playableStreams))
+----
