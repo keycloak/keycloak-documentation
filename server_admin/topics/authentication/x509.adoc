@@ -72,94 +72,6 @@ The certificate identity mapping can map the extracted user identity to an exist
 * Certificate KeyUsage validation.
 * Certificate ExtendedKeyUsage validation.
 
-ifeval::["{kc_dist}" == "wildfly"]
-==== Enable X.509 client certificate user authentication
-
-The following sections describe how to configure {appserver_name}/Undertow and the {project_name} Server to enable X.509 client certificate authentication.
-
-[[_enable-mtls-wildfly]]
-===== Enable mutual SSL in {appserver_name}
-
-See link:https://docs.wildfly.org/24/Admin_Guide.html#enable-ssl[Enable SSL] for the instructions to enable SSL in {appserver_name}.
-
-* Open {project_dirref}/standalone/configuration/standalone.xml and add a new realm:
-```xml
-<security-realms>
-    <security-realm name="ssl-realm">
-        <server-identities>
-            <ssl>
-                <keystore path="servercert.jks"
-                          relative-to="jboss.server.config.dir"
-                          keystore-password="servercert password"/>
-            </ssl>
-        </server-identities>
-        <authentication>
-            <truststore path="truststore.jks"
-                        relative-to="jboss.server.config.dir"
-                        keystore-password="truststore password"/>
-        </authentication>
-    </security-realm>
-</security-realms>
-```
-
-`ssl/keystore`::
-The `ssl` element contains the `keystore` element that contains the details to load the server public key pair from a JKS keystore.
-
-`ssl/keystore/path`::
-The path to the JKS keystore.
-
-`ssl/keystore/relative-to`::
-The path that the keystore path is relative to.
-
-`ssl/keystore/keystore-password`::
-The password to open the keystore.
-
-`ssl/keystore/alias` (optional)::
-The alias of the entry in the keystore. Set if the keystore contains multiple entries.
-
-`ssl/keystore/key-password` (optional)::
-The private key password, if different from the keystore password.
-
-`authentication/truststore`::
-Defines how to load a trust store to verify the certificate presented by the remote side of the inbound/outgoing connection. Typically, the truststore contains a collection of trusted CA certificates.
-
-`authentication/truststore/path`::
-The path to the JKS keystore containing the certificates of the trusted certificate authorities.
-
-`authentication/truststore/relative-to`::
-The path that the truststore path is relative to.
-
-`authentication/truststore/keystore-password`::
-The password to open the truststore.
-
-
-===== Enable HTTPS listener
-
-See link:https://docs.wildfly.org/24/Admin_Guide.html#https-listener[HTTPS Listener] for the instructions to enable HTTPS in WildFly.
-
-* Add the <https-listener> element.
-
-[source,xml,subs="attributes+"]
-----
-<subsystem xmlns="{subsystem_undertow_xml_urn}">
-	....
-    <server name="default-server">
-	    <https-listener name="default"
-                        socket-binding="https"
-                        security-realm="ssl-realm"
-                        verify-client="REQUESTED"/>
-    </server>
-</subsystem>
-----
-
-`https-listener/security-realm`::
-This value must match the name of the realm from the previous section.
-
-`https-listener/verify-client`::
-If set to *REQUESTED*, the server optionally asks for a client certificate.
-If set to *REQUIRED*, the server refuses inbound connections if no client certificate has been provided.
-endif::[]
-
 [[_browser_flow]]
 ==== Adding X.509 client certificate authentication to browser flows
 
@@ -388,7 +300,7 @@ You can use this provider when your {project_name} server is behind an NGINX rev
 
 [NOTE]
 ====
-The NGINX link:http://nginx.org/en/docs/http/ngx_http_ssl_module.html#variables[SSL/TLS module] does not expose the client certificate chain. {project_name}'s NGINX certificate lookup provider rebuilds it by using the link:{installguide_truststore_link}[{installguide_truststore_name}]. Populate the {project_name} truststore by using the keytool CLI with all root and intermediate CA's for rebuilding client certificate chain.
+The NGINX link:http://nginx.org/en/docs/http/ngx_http_ssl_module.html#variables[SSL/TLS module] does not expose the client certificate chain. {project_name}'s NGINX certificate lookup provider rebuilds it by using the truststore. Populate the {project_name} truststore by using the keytool CLI with all root and intermediate CA's for rebuilding client certificate chain.
 ====
 
 Consult the NGINX documentation for the details of configuring the HTTP Headers for the client certificate.
@@ -414,61 +326,9 @@ Example of NGINX configuration file :
 
 [NOTE]
 ====
-All certificates in trusted-ca-list-for-client-auth.pem must be added to link:{installguide_truststore_link}[{installguide_truststore_name}].
+All certificates in trusted-ca-list-for-client-auth.pem must be added to the truststore.
 ====
 
 ===== Other reverse proxy implementations
 
 {project_name} does not have built-in support for other reverse proxy implementations. However, you can make other reverse proxies behave in a similar way to `apache` or `haproxy`. If none of these work, create your implementation of the `org.keycloak.services.x509.X509ClientCertificateLookupFactory` and `org.keycloak.services.x509.X509ClientCertificateLookup` providers. See the link:{developerguide_link}[{developerguide_name}] for details on how to add your provider.
-
-ifeval::["{kc_dist}" == "wildfly"]
-==== Troubleshooting
-
-Dumping HTTP headers::
-To view what the reverse proxy sends to Keycloak, enable the `RequestDumpingHandler` Undertow filter and consult the `server.log` file.
-
-Enable TRACE logging under the logging subsystem::
-[source,xml]
-----
-...
-    <profile>
-        <subsystem xmlns="urn:jboss:domain:logging:8.0">
-...
-            <logger category="org.keycloak.authentication.authenticators.x509">
-                <level name="TRACE"/>
-            </logger>
-            <logger category="org.keycloak.services.x509">
-                <level name="TRACE"/>
-            </logger>
-----
-[WARNING]
-====
-Do not use RequestDumpingHandler or TRACE logging in production.
-====
-
-Direct Grant authentication with X.509::
-You can use the following template to request a token by using the Resource Owner Password Credentials Grant:
-
-[source,subs=+attributes]
-$ curl https://[host][:port]{kc_realms_path}/master/protocol/openid-connect/token \
-       --insecure \
-       --data "grant_type=password&scope=openid profile&username=&password=&client_id=CLIENT_ID&client_secret=CLIENT_SECRET" \
-       -E /path/to/client_cert.crt \
-       --key /path/to/client_cert.key
-[source]
-
-`[host][:port]`::
-The host and the port number of the remote {project_name} server.
-
-`CLIENT_ID`::
-The client id.
-
-`CLIENT_SECRET`::
-For confidential clients, a client secret.
-
-`client_cert.crt`::
-A public key certificate to verify the identity of the client in mutual SSL authentication. The certificate must be in PEM format.
-
-`client_cert.key`::
-A private key in the public key pair. This key must be in PEM format.
-endif::[]
