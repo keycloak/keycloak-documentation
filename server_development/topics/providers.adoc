@@ -84,7 +84,7 @@ org.acme.provider.MyThemeSelectorProviderFactory
 
 To configure your provider, see the (https://www.keycloak.org/server/configuration-provider)[Configuring Providers] guide.
 
-For example by adding starting the server with the following arguments:
+For example, to configure a provider you can set options as follows:
 
 [source,bash]
 ----
