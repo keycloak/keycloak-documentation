@@ -12,4 +12,3 @@ It is important that you upgrade {project_name} server before upgrading the adap
 . Move the downloaded archive to the desired location.
 . Extract the archive. This step installs a clean instance of the latest {project_name} release.
 . Copy `conf/`, `providers/` and `themes/` from the previous installation to the new installation.
-. Re-build the server with `bin/kc.[sh|bat] build` unless you are using auto-build
