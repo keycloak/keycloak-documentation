@@ -82,7 +82,7 @@ Example service configuration file (`META-INF/services/org.keycloak.theme.ThemeS
 org.acme.provider.MyThemeSelectorProviderFactory
 ----
 
-You can configure your provider through server configuring.
+To configure your provider, see the (https://www.keycloak.org/server/configuration-provider)[Configuring Providers] guide.
 
 For example by adding starting the server with the following arguments:
 
