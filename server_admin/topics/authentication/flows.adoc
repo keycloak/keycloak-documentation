@@ -415,11 +415,8 @@ To add session limits to a flow, perform the following steps.
 . Click *Required* for the *User Session Count Limiter* authentication type to set its requirement to required.
 . Click *⚙️* (gear icon) for the *User Session Count Limiter*.
 . Enter an alias for this config.
-. Enter the required maximum number of sessions a user can have in this realm. For example if configured to 2, then each user can have at
-maximum 2 SSO sessions in this realm. If a value of 0 is used, this check is disabled.
-. Enter the required maximum number of sessions a user can have for the client. For example if configured to 2, then each user can have at
-maximum 2 SSO sessions in this realm for each client. So when user is trying to authenticate to client `foo`, but he already has 2 SSO sessions where he is authenticated
-to client `foo`, then the authentication won't be permitted (or one of the existing sessions will be killed based on the behaviour configured). If a value of 0 is used, this check is disabled.
+. Enter the required maximum number of sessions that a user can have in this realm. For example, if 2 is the value, 2 SSO sessions is the maximum that each user can have in this realm. If 0 is the value, this check is disabled.
+. Enter the required maximum number of sessions a user can have for the client. For example, if 2 is the value, then 2 SSO sessions is the maximum in this realm for each client. So when a user is trying to authenticate to client `foo`, but that user has already authenticated in 2 SSO sessions to client `foo`, either the authentication will be denied or an existing sessions will be killed based on the behavior configured. If a value of 0 is used, this check is disabled.
 If both session limits and client session limits are enabled, it makes sense to have client session limits to be always lower than session limits as limit per client can never be bigger than limit of all SSO sessions of this user.
 . Select the behavior that is required when the user tries to create a session after the limit is reached. Available bahaviors are:
 
