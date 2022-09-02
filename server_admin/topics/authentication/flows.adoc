@@ -427,7 +427,7 @@ If both session limits and client session limits are enabled, it makes sense to 
 
 Note that the user session limits should be added to your bound *Browser flow*, *Direct grant flow*, *Reset credentials* and also to any *Post broker login flow*.
 The authenticator should be added at the point when the user is already known during authentication (usually at the end of the authentication flow) and should be typically REQUIRED. Note that it is not possible to have
-ALTERNATIVE and REQUIRED executions at the same level and hence for example for the default browser flow, it may be needed to wrap existing flow as a REQUIRED level-1 subflow and then
+ALTERNATIVE and REQUIRED executions at the same level. For example for the default browser flow, it may be necessary to wrap the existing flow as a REQUIRED level-1 subflow and 
 add `User Session Count Limiter` to the same level as this new subflow. Example of such flow is below.
 
 image:{project_images}/authentication-user-session-limits.png[Authentication User Session Limits Flow]
