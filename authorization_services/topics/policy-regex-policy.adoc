@@ -23,7 +23,7 @@ A string containing details about this policy.
 * *Target Claim*
 +
 Specifies the name of the target claim in the token. For JSON-based claims, you can use dot notation for nesting and square brackets to access array fields by index. For example, contact.address[0].country. If the target claim references a JSON
-object, the first path (e.g.: `contact`) should map to the attribute name holding the JSON object.
+object, the first path (for example, `contact`) should map to the attribute name holding the JSON object.
 +
 * *Regex Pattern*
 +
