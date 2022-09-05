@@ -1,6 +1,6 @@
 = Allow setting a base URL when configuring the hostname
 
-In this release, we are introducing two additional server options to set a base URL for frontend and administration console URLs.
+In this release, we are introducing two additional server options to set a base URL for front end and Admin Console URLs.
 
 * `hostname-url`
 * `hostname-admin-url`
