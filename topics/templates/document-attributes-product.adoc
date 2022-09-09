@@ -1,20 +1,22 @@
 :project_community: false
 :project_product: true
 :project_name: Red Hat Single Sign-On
-:project_versionMvn: 15.0.2.redhat-00001
-:project_versionNpm: 15.0.2.redhat-00001
+:project_versionMvn: 18.0.0.redhat-00001
+:project_versionNpm: 18.0.0.redhat-00001
 :project_images: rhsso-images
+:cdate: 2022
 
 :standalone:
 :api-management!:
 :on-prem:
 
 :project_name_full: Red Hat Single Sign-On
-:project_version_base: 7.5
-:project_version: 7.5.0
-:keycloak_upgrade_version: 15.0.2
-:project_versionDoc: 7.5
-:project_templates_base_url: https://raw.githubusercontent.com/jboss-container-images/redhat-sso-7-openshift-image/sso75-dev/templates
+:project_version_base: 7.6
+:project_version: 7.6.0
+:keycloak_upgrade_version: 18.0.0
+:project_versionDoc: 7.6
+
+:project_templates_base_url: https://raw.githubusercontent.com/jboss-container-images/redhat-sso-7-openshift-image/sso76-dev/templates
 :project_latest_image_tag: {project_versionDoc}
 :project_doc_base_url: https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/{project_versionDoc}/html-single
 :project_doc_base_url_latest: https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/{project_versionDoc}/html-single
@@ -29,11 +31,10 @@
 :create_cmd: oc create
 :create_cmd_brief: oc
 
-:kc_dist: wildfly
-:kc_realms_path: /auth/realms
-:kc_admins_path: /auth/admin
-:kc_js_path: /auth/js
-:kc_base_path: /auth
+:kc_realms_path: /realms
+:kc_admins_path: /admin
+:kc_js_path: /js
+:kc_base_path:
 
 :project_dirref: RHSSO_HOME
 
@@ -79,15 +80,15 @@
 :openshift_openjdk_name: Red Hat Single Sign-On for OpenShift
 :openshift_openjdk_link: {project_doc_base_url}/red_hat_single_sign-on_for_openshift/
 :openshift_openjdk_platforms: x86_64
-:openshift_openjdk_image_stream: sso75-openshift-rhel8
+:openshift_openjdk_image_stream: sso76-openshift-rhel8
 :openshift_openjdk_image_repository: {openshift_image_repository_productline}/{openshift_openjdk_image_stream}
-:openshift_openjdk_project_templates_version: sso75
-:openshift_openj9_name: Red Hat Single Sign-On for OpenShift
-:openshift_openj9_link: {project_doc_base_url}/red_hat_single_sign-on_for_openshift/
+:openshift_openjdk_project_templates_version: sso76
+:openshift_openj9_name: Red Hat Single Sign-On for OpenShift on Eclipse OpenJ9
+:openshift_openj9_link: {project_doc_base_url}/red_hat_single_sign-on_for_openshift_on_eclipse_openj9/
 :openshift_openj9_platforms: IBM Z/IBM Power Systems
-:openshift_openj9_image_stream: sso75-openj9-openshift-rhel8
+:openshift_openj9_image_stream: sso76-openj9-openshift-rhel8
 :openshift_openj9_image_repository: {openshift_image_repository_productline}/{openshift_openj9_image_stream}
-:openshift_openj9_project_templates_version: sso75-openj9
+:openshift_openj9_project_templates_version: sso76-openj9
 
 // Aggregate various frequently referred links to the official OCP documentation
 :official_ocp_docs_link: https://docs.openshift.com/container-platform
@@ -104,25 +105,6 @@
 :ocpdocs_cluster_local_registry_access_link: {official_ocp_docs_link}/latest/registry/accessing-the-registry.html#registry-accessing-directly_accessing-the-registry
 :ocp311docs_passthrough_route_link: {official_ocp_docs_link}/3.11/architecture/networking/routes.html#passthrough-termination
 :ocp311docs_reencrypt_route_link: {official_ocp_docs_link}/3.11/architecture/networking/routes.html#re-encryption-termination
-
-:installguide_name: Server Installation and Configuration Guide
-:installguide_link: {project_doc_base_url}/server_installation_and_configuration_guide/
-:installguide_clustering_name: Clustering
-:installguide_clustering_link: {installguide_link}#_clustering
-:installguide_database_name: Database
-:installguide_database_link: {installguide_link}#_database
-:installguide_disablingcaching_name: Disabling caching
-:installguide_disablingcaching_link: {installguide_link}#disabling-caching
-:installguide_loadbalancer_name: Setting Up a Load Balancer or Proxy
-:installguide_loadbalancer_link: {installguide_link}#_setting-up-a-load-balancer-or-proxy
-:installguide_truststore_name: Keycloak truststore
-:installguide_truststore_link: {installguide_link}#_truststore
-:installguide_profile_name: Profiles
-:installguide_profile_link: {installguide_link}#profiles
-:installguide_stickysessions_name: Sticky sessions
-:installguide_stickysessions_link: {installguide_link}#sticky-sessions
-:installguide_troubleshooting_name: Troubleshooting
-:installguide_troubleshooting_link: {installguide_link}#troubleshooting
 
 :apidocs_javadocs_name: JavaDocs Documentation
 :apidocs_javadocs_link: https://access.redhat.com/webassets/avalon/d/red-hat-single-sign-on/version-{project_versionDoc}/javadocs/
@@ -156,14 +138,8 @@
 
 :jdgserver_name: RHDG
 :jdgserver_version: 7.3
-:jdgserver_version_latest: 8.1
+:jdgserver_version_latest: 8.x
 :jdgserver_crossdcdocs_link: https://access.redhat.com/documentation/en-us/red_hat_data_grid/8.1/html/data_grid_guide_to_cross-site_replication/index
-
-:fuseVersion: JBoss Fuse 6.3.0 Rollup 12
-:fuseHawtioEAPVersion: JBoss EAP 6.4
-:fuseHawtioWARVersion: hawtio-wildfly-1.4.0.redhat-630396.war
-
-:fuse7Version: JBoss Fuse 7.4.0
 
 :subsystem_undertow_xml_urn: urn:jboss:domain:undertow:12.0
 :subsystem_infinispan_xml_urn: urn:jboss:domain:infinispan:12.0
