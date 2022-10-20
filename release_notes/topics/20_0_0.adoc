@@ -17,3 +17,15 @@ In this release, we are making important changes to `kc.bat` to give the same ex
 
 In this release, the H2 driver has been upgraded from version 1.x to version 2.x.
 See link:{upgradingguide_link}[{upgradingguide_name}] for details on how to migrate.
+
+= New Keycloak Operator is Production ready now
+
+After being available as a Preview distribution in the last [N] releases, the new Keycloak Operator has faced some improvements and fixes, therefore it is ready for Production.
+However, the following breaking changes were introduced:
+
+* link:https://github.com/keycloak/keycloak/issues/14410[#14410] - Rename free-form field for server configuration in Keycloak CR;
+* link:https://github.com/keycloak/keycloak/issues/14407[#14407] - Refine Ingress settings in Keycloak CR;
+* link:https://github.com/keycloak/keycloak/issues/14396[#14396] - Add HTTP options to Keycloak CR;
+* link:https://github.com/keycloak/keycloak/issues/14395[#14395] - Add hostname options to Keycloak CR;
+
+Please, see link:{upgradingguide_link}[{upgradingguide_name}] for details on how to migrate it.

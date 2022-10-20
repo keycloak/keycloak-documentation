@@ -28,3 +28,16 @@ See the H2 documentation http://www.h2database.com/html/commands.html#set_non_ke
 H2 database base files created with H2 version 1.x should not be used with version 2.x.
 
 Purge existing H2 database files to start with an empty database, export and import the realms using Keycloak's export and import functionality, or refer to the http://www.h2database.com/html/migration-to-v2.html[migration notes on the H2 database project's website] for details on how to migrate H2 database contents.
+
+== Upgrade of new Keycloak Operator
+
+The following breaking changes were introduced:
+
+* link:https://github.com/keycloak/keycloak/issues/14410[#14410] - Rename free-form field for server configuration in Keycloak CR;
+* link:https://github.com/keycloak/keycloak/issues/14407[#14407] - Refine Ingress settings in Keycloak CR;
+* link:https://github.com/keycloak/keycloak/issues/14396[#14396] - Add HTTP options to Keycloak CR;
+* link:https://github.com/keycloak/keycloak/issues/14395[#14395] - Add hostname options to Keycloak CR;
+
+Unfortunately, there's no automated migration. You need to reinstall the new Keycloak Operator and manually upgrade your Kubernetes CRs.
+
+Besides that, the new Keycloak Operator OLM channel has changed to `fast`. See the details at: `link:https://github.com/keycloak/keycloak/issues/14883[#14883] - Mark Operator as stable in the OLM bundle`.
