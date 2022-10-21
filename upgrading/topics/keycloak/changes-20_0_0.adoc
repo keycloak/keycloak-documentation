@@ -29,15 +29,59 @@ H2 database base files created with H2 version 1.x should not be used with versi
 
 Purge existing H2 database files to start with an empty database, export and import the realms using Keycloak's export and import functionality, or refer to the http://www.h2database.com/html/migration-to-v2.html[migration notes on the H2 database project's website] for details on how to migrate H2 database contents.
 
-== Upgrade of new Keycloak Operator
+= Breaking changes in the new version of Keycloak Operator
 
-The following breaking changes were introduced:
+NOTE: In order to use the newest version of the Keycloak Operator, the manual reinstallation and upgrade of your CRs is required. There’s no automated migration.
 
-* link:https://github.com/keycloak/keycloak/issues/14410[#14410] - Rename free-form field for server configuration in Keycloak CR;
-* link:https://github.com/keycloak/keycloak/issues/14407[#14407] - Refine Ingress settings in Keycloak CR;
-* link:https://github.com/keycloak/keycloak/issues/14396[#14396] - Add HTTP options to Keycloak CR;
-* link:https://github.com/keycloak/keycloak/issues/14395[#14395] - Add hostname options to Keycloak CR;
+This release contains following breaking changes in Keycloak CRs:
 
-Unfortunately, there's no automated migration. You need to reinstall the new Keycloak Operator and manually upgrade your Kubernetes CRs.
+== serverConfiguration free-form field was renamed
 
-Besides that, the new Keycloak Operator OLM channel has changed to `fast`. See the details at: `link:https://github.com/keycloak/keycloak/issues/14883[#14883] - Mark Operator as stable in the OLM bundle`.
+From now on it’s called `additionalOptions`. The idea behind this decision is to align it more with the Keycloak Quarkus distribution and achieve/preserve a naming consistency.
+`serverConfiguration` can be still used for configuring options that haven’t got a declared alternative in Keycloak custom resources (CRs). A good example of such use can be service providers.
+
+== Ingress options were refined
+
+In the past it used to be defined via `disableDefaultIngress` boolean property. We decided to clarify it a bit, thus from now on you can use the following structure to control your ingress settings:
+
+```yaml
+spec:
+    ...
+    ingress:
+      enabled: false
+```
+
+== HTTP options were added
+
+Similarly, like with ingress, you can define multiple HTTP option in a structuralized manner:
+
+```yaml
+spec:
+    ...
+  http:
+    httpEnabled: true
+    httpPort: 80
+    httpsPort: 443
+    tlsSecret: my-tls-secret
+```
+
+== Hostname options were added
+
+Last but not least, the hostname options were also changed:
+
+```yaml
+spec:
+    ...
+  hostname:
+    hostname: keycloak-server-hostname
+    hostnameUrl: url
+    admin: admin-console-hostname
+    adminUrl: admin-console-base-url
+    port: 80
+    strict: false
+    strictBackchannel: false
+```
+
+= OLM channel was changed to fast
+
+The default channel of Keycloak Operator Lifecycle Manager changed to `fast`.
