@@ -31,9 +31,9 @@ Purge existing H2 database files to start with an empty database, export and imp
 
 = Breaking changes in the new version of Keycloak Operator
 
-NOTE: In order to use the newest version of the Keycloak Operator, the manual reinstallation and upgrade of your CRs is required. There’s no automated migration.
+NOTE: In order to use the newest version of the Keycloak Operator, the manual reinstallation and upgrade of your CRs are required. There’s no automated migration.
 
-This release contains following breaking changes in Keycloak CRs:
+This release contains the following breaking changes in Keycloak CRs:
 
 == serverConfiguration free-form field was renamed
 
@@ -42,7 +42,7 @@ From now on it’s called `additionalOptions`. The idea behind this decision is 
 
 == Ingress options were refined
 
-In the past it used to be defined via `disableDefaultIngress` boolean property. We decided to clarify it a bit, thus from now on you can use the following structure to control your ingress settings:
+In the past, it used to be defined via the `disableDefaultIngress` property. We decided to clarify it a bit, thus from now on you can use the following structure to control your ingress settings:
 
 ```yaml
 spec:
@@ -53,7 +53,7 @@ spec:
 
 == HTTP options were added
 
-Similarly, like with ingress, you can define multiple HTTP option in a structuralized manner:
+Similarly, like with ingress, you can define multiple HTTP options in a better structural manner:
 
 ```yaml
 spec:
@@ -73,14 +73,16 @@ Last but not least, the hostname options were also changed:
 spec:
     ...
   hostname:
-    hostname: keycloak-server-hostname
-    hostnameUrl: url
-    admin: admin-console-hostname
-    adminUrl: admin-console-base-url
-    port: 80
-    strict: false
-    strictBackchannel: false
+    hostname: [keycloak-server-hostname]
+    hostnameUrl: [url]
+    admin: [admin-console-hostname]
+    adminUrl: [admin-console-base-url]
+    port: [port number]
+    strict: [true|false]
+    strictBackchannel: [true|false]
 ```
+
+NOTE: There was removed the possibility to set `INSECURE-DISABLE` special value to `hostname` and `tlsSecret` fields.
 
 = OLM channel was changed to fast
 
