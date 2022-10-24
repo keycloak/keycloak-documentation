@@ -74,15 +74,16 @@ spec:
     ...
   hostname:
     hostname: [keycloak-server-hostname]
-    hostnameUrl: [url]
     admin: [admin-console-hostname]
     adminUrl: [admin-console-base-url]
-    port: [port number]
     strict: [true|false]
     strictBackchannel: [true|false]
 ```
 
-NOTE: There was removed the possibility to set `INSECURE-DISABLE` special value to `hostname` and `tlsSecret` fields.
+== Some fields are no longer required
+
+The `hostname` and `tlsSecret` fields are now optional to align with the Quarkus distribution configuration. With that we also removed the possibility to set `INSECURE-DISABLE` special value to those fields. In order to disable hostname checks and enable HTTP, please follow the same approach as with the Quarkus distribution, i.e. set `strict: false`, `strictBackchannel: false` and `httpEnabled: true` fields.
+
 
 = OLM channel was changed to fast
 
