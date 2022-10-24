@@ -87,4 +87,4 @@ The `hostname` and `tlsSecret` fields are now optional to align with the Quarkus
 
 = OLM channel was changed to fast
 
-The default channel of Keycloak Operator Lifecycle Manager changed to `fast`.
+The default channel of Keycloak Operator Lifecycle Manager was changed to `fast`.
