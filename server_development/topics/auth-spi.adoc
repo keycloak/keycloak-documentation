@@ -776,7 +776,7 @@ This file should be added to the `theme-resources/templates` in your JAR, see <<
 
 Let's take a bigger look at secret-question.ftl  Here's a small code snippet:
 
-[source,ftl]
+[source,xml]
 ----
 
         <form id="kc-totp-login-form" class="${properties.kcFormClass!}" action="${url.loginAction}" method="post">
