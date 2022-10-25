@@ -809,7 +809,7 @@ The value of an attribute can be any Java bean as well.
 
 If you look at the top of the file, you'll see that we are importing a template:
 
-[source,ftl]
+[source,xml]
 ----
 <#import "select.ftl" as layout>
 ----
