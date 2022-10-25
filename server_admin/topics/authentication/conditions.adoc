@@ -62,20 +62,20 @@ Describes a name of the execution, which will be shown in the authentication flo
 Error message:::
 Error message which will be shown to the user.
 The error message could be provided as a particular message or as a property in order to use it with localization.
-(i.e "_You do not have the role 'admin'._", _my-property-deny_ in messages properties)
+(i.e. "_You do not have the role 'admin'._", _my-property-deny_ in messages properties)
 Leave blank for the default message defined as property `access-denied`.
 
 Here is an example how to deny access to all users who do not have the role `role1` and show an error message defined by a property `deny-role1`.
 This example includes `Condition - User Role` and `Deny Access` executions.
 
 .Browser flow
-image:images/deny-access-flow.png[]
+image:images/deny-access-flow.png[Deny access flow]
 
 .Condition - user role configuration
-image:images/deny-access-role-condition.png[]
+image:images/deny-access-role-condition.png[Deny access role settings]
 
 .Configuration of the `Deny Access` is really easy. You can specify an arbitrary Alias and required message like this:
-image:images/deny-access-execution-cond.png[]
+image:images/deny-access-execution-cond.png[Deny access execution settings]
 
 The last thing is defining the property with an error message in the login theme `messages_en.properties` (for English):
 

@@ -94,7 +94,7 @@ Now we are ready to obtain the `keycloak.json` file by visiting the {project_nam
 
 Paste the downloaded file on the root folder of our project.
 
-Instantiation with this method results in all of the reasonable defaults
+Instantiation with this method results in all the reasonable defaults
 being used. As alternative, it's also possible to provide a configuration
 object, rather than the `keycloak.json` file:
 
@@ -196,16 +196,6 @@ Example configuration:
     app.set( 'trust proxy', true );
 
     app.use( keycloak.middleware() );
-----
-
-==== Checking authentication
-
-To check that a user is authenticated before accessing a resource,
-simply use `keycloak.checkSso()`. It will only authenticate if the user is already logged-in. If the user is not logged-in, the browser will be redirected back to the originally-requested URL and remain unauthenticated:
-
-[source,javascript]
-----
-    app.get( '/check-sso', keycloak.checkSso(), checkSsoHandler );
 ----
 
 ==== Protecting resources

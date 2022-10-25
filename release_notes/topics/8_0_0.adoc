@@ -27,7 +27,7 @@ Message bundles in theme resources enables internationalization of custom provid
 We have added a new SPI that allows for the configuration of custom role mappers that are used by the SAML adapters to map
 the roles extracted from the SAML assertion into roles that exist in the SP application environment. This is particularly useful
 when the adapters need to communicate with third party IDPs and the roles set by the IDP in the assertion do not correspond to
-the roles that were defined for the SP application. The provider to be used can configured in the `keycloak-saml.xml`
+the roles that were defined for the SP application. The provider to be used can be configured in the `keycloak-saml.xml`
 file or in the `keycloak-saml` subsystem. An implementation that performs the role mappings based on the contents of a properties
 file was also provided.
 
@@ -42,8 +42,9 @@ Keycloak server was upgraded to use WildFly 18 under the covers.
 == W3C Web Authentication support
 
 In this release, we added initial support for W3C Web Authentication (WebAuthn). There are a few limitations in current implementation,
-however we are working on further improvements in this area. Thanks to https://github.com/tnorimat[tnorimat] for the contribution. Also thanks to
-https://github.com/ynojima[ynojima] for the help and feedback.
+however we are working on further improvements in this area. Thanks to https://github.com/tnorimat[tnorimat] for the contribution. Also thanks to 
+// https://github.com/ynojima[ynojima] <-- Broken URL
+ynojima for the help and feedback.
 
 == Support for password-less authentication, multi-factor authentication and multiple credentials per user
 

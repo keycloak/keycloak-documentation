@@ -15,7 +15,7 @@ One important thing to note about using client-side applications is that the cli
 credentials in a client-side application. This makes it very important to make sure the redirect URIs you have configured for the client are correct and as specific as possible.
 
 To use the JavaScript adapter you must first create a client for your application in the {project_name} Admin Console. Make sure `public`
-is selected for `Access Type`.
+is selected for `Access Type`.  You achieve this in Capability config by turning OFF client authentication toggle.
 
 You also need to configure `Valid Redirect URIs` and `Web Origins`. Be as specific as possible as failing to do so may result in a security vulnerability.
 
@@ -221,7 +221,7 @@ Keycloak support hybrid mobile apps developed with https://cordova.apache.org/[A
 The default is cordova, which the adapter will automatically select if no adapter type has been configured and window.cordova is present.
 When logging in, it will open an https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-inappbrowser/[InApp Browser] that lets the user interact with {project_name} and afterwards returns to the app by redirecting to `http://localhost`. Because of this, you must whitelist this URL as a valid redirect-uri in the client configuration section of the Admin Console.
 
-While this mode is easy to setup, it also has some disadvantages:
+While this mode is easy to set up, it also has some disadvantages:
 
 * The InApp-Browser is a browser embedded in the app and is not the phone's default browser. Therefore it will have different settings and stored credentials will not be available.
 * The InApp-Browser might also be slower, especially when rendering more complex themes.
@@ -252,7 +252,7 @@ The technical details for linking to an app differ on each platform and special 
 Please refer to the Android and iOS sections of the https://github.com/e-imaxina/cordova-plugin-deeplinks/blob/master/README.md[deeplinks plugin documentation] for further instructions.
 
 There are different kinds of links for opening apps: custom schemes (i.e. `myapp://login` or `android-app://com.example.myapp/https/example.com/login`) and https://developer.apple.com/ios/universal-links/[Universal Links (iOS)]) / https://developer.android.com/training/app-links/deep-linking[Deep Links (Android)].
-While the former are easier to setup and tend to work more reliably, the later offer extra security as they are unique and only the owner of a domain can register them.
+While the former are easier to set up and tend to work more reliably, the later offer extra security as they are unique and only the owner of a domain can register them.
 Custom-URLs are deprecated on iOS.
 We recommend that you use universal links, combined with a fallback site with a custom-url link on it for best reliability.
 
@@ -287,7 +287,7 @@ keycloak.init({
 
 This specific package does not exist, but it gives a pretty good example of how such an adapter could be passed into the client.
 
-It's also possible to make your own adapter, to do so you will have to implement the methods described in the `KeycloakAdapter` interface. For example the following TypeScript code ensures that all of the methods are properly implemented:
+It's also possible to make your own adapter, to do so you will have to implement the methods described in the `KeycloakAdapter` interface. For example the following TypeScript code ensures that all the methods are properly implemented:
 
 [source,typescript]
 ----
@@ -336,7 +336,7 @@ the browser is restrictive regarding cookies. The adapter tries to detect this s
 
 ===== Browsers with "SameSite=Lax by Default" Policy
 All features are supported if SSL / TLS connection is configured on the {project_name} side as well as on the application
-side. See link:{installguide_link}#_setting_up_ssl[configuring the SSL / TLS]. Affected is for example Chrome starting with
+side. Affected is for example Chrome starting with
 version 84.
 
 ===== Browsers with Blocked Third-Party Cookies
@@ -415,14 +415,14 @@ adapter::
     * "default" - the library uses the browser api for redirects (this is the default)
     * "cordova" - the library will try to use the InAppBrowser cordova plugin to load keycloak login/registration pages (this is used automatically when the library is working in a cordova ecosystem)
     * "cordova-native" - the library tries to open the login and registration page using the phone's system browser using the BrowserTabs cordova plugin. This requires extra setup for redirecting back to the app (see <<hybrid-apps-with-cordova>>).
-    * custom - allows you to implement a custom adapter (only for advanced use cases)
+    * "custom" - allows you to implement a custom adapter (only for advanced use cases)
 
 responseType::
     Response type sent to {project_name} with login requests. This is determined based on the flow value used during initialization, but can be overridden by setting this value.
 
 ===== Methods
 
-====== init(options)
+*init(options)*
 
 Called to initialize the adapter.
 
@@ -447,7 +447,7 @@ Options is an Object, where:
 
 Returns a promise that resolves when initialization completes.
 
-====== login(options)
+*login(options)*
 
 Redirects to login form.
 
@@ -468,17 +468,17 @@ provider instead. More info in the link:{adminguide_link}#_client_suggested_idp[
 * acr - Contains the information about `acr` claim, which will be sent inside `claims` parameter to the {project_name} server. Typical usage
 is for step-up authentication. Example of use `{ values: ["silver", "gold"], essential: true }`. See OpenID Connect specification
 and link:{adminguide_link}#_step-up-flow[Step-up authentication documentation] for more details.
-* action - If value is `register` then user is redirected to registration page, if the value is `UPDATE_PASSWORD` then the user will redirected to the reset password page (if not authenticated will send user to login page first and redirect after authenticated), otherwise to login page.
+* action - If value is `register` then user is redirected to registration page, if the value is `UPDATE_PASSWORD` then the user will be redirected to the reset password page (if not authenticated will send user to login page first and redirect after authenticated), otherwise to login page.
 * locale - Sets the 'ui_locales' query param in compliance with https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest[section 3.1.2.1 of the OIDC 1.0 specification].
 * cordovaOptions - Specifies the arguments that are passed to the Cordova in-app-browser (if applicable). Options `hidden` and `location` are not affected by these arguments. All available options are defined at https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-inappbrowser/. Example of use: `{ zoom: "no", hardwareback: "yes" }`;
 
-====== createLoginUrl(options)
+*createLoginUrl(options)*
 
 Returns the URL to login form.
 
 Options is an optional Object, which supports same options as the function `login` .
 
-====== logout(options)
+*logout(options)*
 
 Redirects to logout.
 
@@ -486,31 +486,31 @@ Options is an Object, where:
 
 * redirectUri - Specifies the uri to redirect to after logout.
 
-====== createLogoutUrl(options)
+*createLogoutUrl(options)*
 
-Returns the URL to logout the user.
+Returns the URL to log out the user.
 
 Options is an Object, where:
 
 * redirectUri - Specifies the uri to redirect to after logout.
 
-====== register(options)
+*register(options)*
 
 Redirects to registration form. Shortcut for login with option action = 'register'
 
 Options are same as for the login method but 'action' is set to 'register'
 
-====== createRegisterUrl(options)
+*createRegisterUrl(options)*
 
 Returns the url to registration page. Shortcut for createLoginUrl with option action = 'register'
 
 Options are same as for the createLoginUrl method but 'action' is set to 'register'
 
-====== accountManagement()
+*accountManagement()*
 
 Redirects to the Account Management Console.
 
-====== createAccountUrl(options)
+*createAccountUrl(options)*
 
 Returns the URL to the Account Management Console.
 
@@ -518,15 +518,15 @@ Options is an Object, where:
 
 * redirectUri - Specifies the uri to redirect to when redirecting back to the application.
 
-====== hasRealmRole(role)
+*hasRealmRole(role)*
 
 Returns true if the token has the given realm role.
 
-====== hasResourceRole(role, resource)
+*hasResourceRole(role, resource)*
 
 Returns true if the token has the given role for the resource (resource is optional, if not specified clientId is used).
 
-====== loadUserProfile()
+*loadUserProfile()*
 
 Loads the users profile.
 
@@ -544,11 +544,11 @@ keycloak.loadUserProfile()
     });
 ----
 
-====== isTokenExpired(minValidity)
+*isTokenExpired(minValidity)*
 
 Returns true if the token has less than minValidity seconds left before it expires (minValidity is optional, if not specified 0 is used).
 
-====== updateToken(minValidity)
+*updateToken(minValidity)*
 
 If the token expires within minValidity seconds (minValidity is optional, if not specified 5 is used) the token is refreshed.
 If the session status iframe is enabled, the session status is also checked.
@@ -571,7 +571,7 @@ keycloak.updateToken(5)
     });
 ----
 
-====== clearToken()
+*clearToken()*
 
 Clear authentication state, including tokens.
 This can be useful if application has detected the session was expired, for example if updating token fails.
@@ -580,7 +580,7 @@ Invoking this results in onAuthLogout callback listener being invoked.
 
 ===== Callback Events
 
-The adapter supports setting callback listeners for certain events.
+The adapter supports setting callback listeners for certain events. Keep in mind that these have to be set before the call to the `init` function.
 
 For example:
 [source,javascript]
@@ -590,10 +590,10 @@ keycloak.onAuthSuccess = function() { alert('authenticated'); }
 
 The available events are:
 
-* onReady(authenticated) - Called when the adapter is initialized.
-* onAuthSuccess - Called when a user is successfully authenticated.
-* onAuthError - Called if there was an error during authentication.
-* onAuthRefreshSuccess - Called when the token is refreshed.
-* onAuthRefreshError - Called if there was an error while trying to refresh the token.
-* onAuthLogout - Called if the user is logged out (will only be called if the session status iframe is enabled, or in Cordova mode).
-* onTokenExpired - Called when the access token is expired. If a refresh token is available the token can be refreshed with updateToken, or in cases where it is not (that is, with implicit flow) you can redirect to login screen to obtain a new access token.
+* *onReady(authenticated)* - Called when the adapter is initialized.
+* *onAuthSuccess* - Called when a user is successfully authenticated.
+* *onAuthError* - Called if there was an error during authentication.
+* *onAuthRefreshSuccess* - Called when the token is refreshed.
+* *onAuthRefreshError* - Called if there was an error while trying to refresh the token.
+* *onAuthLogout* - Called if the user is logged out (will only be called if the session status iframe is enabled, or in Cordova mode).
+* *onTokenExpired* - Called when the access token is expired. If a refresh token is available the token can be refreshed with updateToken, or in cases where it is not (that is, with implicit flow) you can redirect to the login screen to obtain a new access token.

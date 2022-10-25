@@ -8,18 +8,16 @@
 . From the `Add provider` list, select `SAML v2.0`.
 +
 .Add identity provider
-image:{project_images}/saml-add-identity-provider.png[Add Identity Provider]
+image:images/saml-add-identity-provider.png[Add Identity Provider]
 +
 . Enter your initial configuration options. See <<_general-idp-config, General IDP Configuration>> for more information about configuration options.
+
 .SAML Config
 |===
 |Configuration|Description
 
 |Service Provider Entity ID
 |The SAML Entity ID that the remote Identity Provider uses to identify requests from this Service Provider. By default, this setting is set to the realms base URL `<root>{kc_realms_path}/{realm-name}`.
-
-|Identity Provider Entity ID
-|The SAML Entity ID used to validate the Issuer element in received SAML assertions. If empty, no Issuer validation is performed. If your SAML IDP publishes an IDP entity descriptor, the value of this field is specified there.
 
 |Single Sign-On Service URL
 |The SAML endpoint that starts the authentication process.  If your SAML IDP publishes an IDP entity descriptor, the value of this field is specified there.
