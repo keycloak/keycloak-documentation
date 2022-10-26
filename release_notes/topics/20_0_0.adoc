@@ -69,7 +69,7 @@ https://github.com/klausbetz/apple-identity-provider-keycloak[an extension to Ke
 
 = Open Banking UK support
 
-Keycloak is now compliant with Open Banking UK. Details in the link:{adapterguide_link}#_open-banking-uk[{adapterguide_name}].
+Keycloak is now compliant with Open Banking UK.
 Thanks to https://github.com/tnorimat[Takashi Norimatsu] for this contribution.
 
 = FIPS 140-2 experimental support
