@@ -7,7 +7,7 @@ To obtain a secret from a vault rather than entering it directly, enter the foll
 
 [source]
 ----
-**${vault.**_key_**}**
+${vault.key}
 ----
 where the `_key_` is the name of the secret recognized by the vault.
 
