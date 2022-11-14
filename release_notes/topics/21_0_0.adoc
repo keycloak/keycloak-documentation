@@ -1,0 +1,15 @@
+= Known issues
+
+This release includes the following known issues:
+
+* After upgrading H2 database from the version `1.4.199` to the version
+`1.4.200`, we encountered intermittent failures when the configured isolation
+level is lower than `REPEATABLE_READ`. In Keycloak distribution, the
+`REPEATABLE_READ` isolation level is used by default when H2 is configured
+as the database. This does not change support level for H2 which is still
+only packed for development purposes and not supported in production.
+Refer to the following
+https://github.com/keycloak/keycloak/issues/14917#issuecomment-1311763163[comment]
+for more details.
+
+
