@@ -1,0 +1,16 @@
+= Context and dependency injection no longer enabled to JAX-RS Resources
+
+In order to provide a better runtime and leverage as much as possible the underlying stack,
+all injection points for contextual data using the `javax.ws.rs.core.Context` annotation were removed. The expected improvement
+in performance involves no longer creating proxies instances multiple times during the request lifecycle, and drastically reducing the amount of reflection calls at runtime.
+
+This change is also about changing our underlying JAX-RS implementation from Resteasy Classic to Resteasy Reactive.
+
+If you are extending one of the following SPIs:
+
+* `PolicySpi`
+* `AdminRealmResourceSpi`
+* `IdentityProviderSpi`
+
+Please, take a look at the link:{upgradingguide_link}[{upgradingguide_name}] for more details about how to
+update your custom providers.
