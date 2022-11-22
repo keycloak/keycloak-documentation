@@ -1,10 +1,10 @@
 
-===== RoleMappingsProvider Element
+===== RoleMappingsProvider element
 
 The `RoleMappingsProvider` is an optional element that allows for the specification of the id and configuration of the
 `org.keycloak.adapters.saml.RoleMappingsProvider` SPI implementation that is to be used by the SAML adapter.
 
-When {project_name} is used as the IDP, it is possible to use the built in role mappers to map any roles before adding them to the
+When {project_name} is used as the IDP, it is possible to use the built-in role mappers to map any roles before adding them to the
 SAML assertion. However, the SAML adapters can be used to send SAML requests to third party IDPs and in this case it might be
 necessary to map the roles extracted from the assertion into a different set of roles as required by the SP. The
 `RoleMappingsProvider` SPI allows for the configuration of pluggable role mappers that can be used to perform the necessary
@@ -29,7 +29,7 @@ The configuration of the provider looks as follows:
 The `id` attribute identifies which of the installed providers is to be used. The `Property` sub-element can be used multiple times
 to specify configuration properties for the provider.
 
-====== Properties Based Role Mappings Provider
+====== Properties Based role mappings provider
 
 {project_name} includes a `RoleMappingsProvider` implementation that performs the role mappings using a `properties` file. This
 provider is identified by the id `properties-based-role-mapper` and is implemented by the `org.keycloak.adapters.saml.PropertiesBasedRoleMapper`
@@ -92,7 +92,7 @@ Note: to use spaces in role names for mappings, use unicode replacements for spa
 role\u0020A=roleX,roleY
 ----
 
-====== Adding Your Own Role Mappings Provider
+====== Adding your own role mappings provider
 
 To add a custom role mappings provider one simply needs to implement the `org.keycloak.adapters.saml.RoleMappingsProvider` SPI.
 For more details see the `SAML Role Mappings SPI` section in link:{developerguide_link}[{developerguide_name}].

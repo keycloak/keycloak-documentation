@@ -1,25 +1,32 @@
 == Migration Changes
 
+=== Migrating to 20.0.0
+
+include::changes-20_0_0.adoc[leveloffset=3]
+
+=== Migrating to 19.0.2
+
+include::changes-19_0_2.adoc[leveloffset=3]
+
+=== Migrating to 19.0.0
+
+include::changes-19_0_0.adoc[leveloffset=3]
+
+=== Migrating to 18.0.0
+
+include::changes-18_0_0.adoc[leveloffset=3]
+
+=== Migrating to 17.0.0
+
+include::changes-17_0_0.adoc[leveloffset=3]
+
 === Migrating to 16.0.0
 
-==== Proxy environment variables
-
-{project_name} now respects the standard `HTTP_PROXY`, `HTTPS_PROXY` and `NO_PROXY` environment variables for outgoing
-HTTP requests. This change could lead to unexpected use of a proxy server if you have for example the `HTTP_PROXY` variable defined but have no
-explicit proxy mappings specified in your SPI configuration. To prevent {project_name} from using those environment variables,
-you can explicitly create a no proxy route for all requests as `.*;NO_PROXY`.
-
-For more details, see the link:{installguide_link}#_proxy_env_vars[related chapter in the {installguide_name}].
-
-==== Deprecated features in the {project_operator}
-
-With this release, we have deprecated and/or marked as unsupported some features in the {project_operator}. This
-concerns the Backup CRD and the operator managed Postgres Database. For more details, please see the
-link:{installguide_link}#_operator_production_usage[related chapter in the {installguide_name}].
+include::changes-16_0_0.adoc[leveloffset=3]
 
 === Migrating to 14.0.0
 
-==== Client Policies Migration
+==== Client policies migration
 
 The Client policies feature was a preview feature since Keycloak 12 and did not have proper support. If you tried this feature and configured some client policies or client profiles
 in Keycloak 12 or Keycloak 13, then you will need to configure your client policies and client profiles again in the new version. The format of the configuration changed significantly
@@ -92,10 +99,10 @@ use:
 
 * Custom user storage providers
 * Custom authenticators
-* Custom Javascript authorization policies, which establish authorization based on some user attribute
+* Custom JavaScript authorization policies, which establish authorization based on some user attribute
 * X.509 authenticator with custom attribute for mapping the X.509 certificate to the user identity
 * Any other custom functionality, where some of the user attributes are used as the metadata for storing authentication/authorization/identity context rather
-than simple user profile informations.
+than simple user profile information.
 
 See the details in the link:{adminguide_link}#_read_only_user_attributes[Threat model mitigation chapter].
 
@@ -158,7 +165,7 @@ No additional setup is required.
 ==== Client Credentials Grant without refresh token by default
 
 From this {project_name} version, the OAuth2 Client Credentials Grant endpoint does not issue refresh tokens by default. This behavior is aligned with the OAuth2 specification.
-As a side-effect of this change, no user session is created on the {project_name} server side after successful Client Credentials authentication, which results
+As a side effect of this change, no user session is created on the {project_name} server side after successful Client Credentials authentication, which results
 in improved performance and memory consumption. Clients that use Client Credentials Grant are encouraged to stop using
 refresh tokens and instead always authenticate at every request with `grant_type=client_credentials` instead of using `refresh_token` as grant type.
 In relation to this, {project_name} has support for revocation of access tokens in the OAuth2 Revocation Endpoint, hence clients are allowed
@@ -219,15 +226,15 @@ Instagram IdP now uses new API as the old legacy API was *deprecated*. This requ
 please refer to the link:{adminguide_link}#instagram[{adminguide_name}].
 
 Special attention is required for existing users that use Instagram IdP, specially the ones for whom it is the only authentication
-option. Such users have to login to Keycloak using Instagram IdP before September 30th, 2020. After that day they'll have
-to use a different authentication method (like password) to login to manually update their Instagram social link, or create
+option. Such users have to log in to Keycloak using Instagram IdP before September 30th, 2020. After that day they'll have
+to use a different authentication method (like password) to log in to manually update their Instagram social link, or create
 a new account in Keycloak. This is because Instagram user IDs are not compatible between the old and new API, however the
 new API temporarily returns both new and old user IDs to allow migration. Keycloak automatically migrates the ID once user
 logs in.
 
 ==== Non-standard token introspection endpoint removed
 
-In previous versions, Keycloak advertized two introspection endpoints: `token_introspection_endpoint` and `introspection_endpoint`.
+In previous versions, Keycloak advertised two introspection endpoints: `token_introspection_endpoint` and `introspection_endpoint`.
 The latter is the one defined by https://datatracker.ietf.org/doc/html/rfc8414#section-2[RFC-8414]. The former, previously deprecated,
 has now been removed.
 
@@ -243,7 +250,7 @@ recommended to update applications to use native promise API (`then` and `catch`
 
 Version 9.0.1 fixes a problem which could create duplicated top level groups in the realm. Nevertheless the existence
 of previous duplicated groups makes the upgrade process fail. The {project_name} server can be affected by this issue
-if it is using a H2, MariaDB, MySQL or PostgreSQL database. Before launching the upgrade, check if the server contains
+if it is using an H2, MariaDB, MySQL or PostgreSQL database. Before launching the upgrade, check if the server contains
 duplicated top level groups. For example the following SQL query can be executed at database level to list them:
 
 ----
@@ -273,7 +280,7 @@ See JavaDocs for further details on exact methods that have been deprecated and 
 
 === Migrating to 8.0.2
 
-==== More Authentication flows changes
+==== More authentication flows changes
 
 REQUIRED and ALTERNATIVE executions not supported at same flow::
     In previous version, it was possible to have REQUIRED and ALTERNATIVE executions in the same authentication flow at the same level.
@@ -282,12 +289,12 @@ REQUIRED and ALTERNATIVE executions not supported at same flow::
     So when migrating to the newest version, your existing authentication flows will be automatically migrated preserved the same behavior as existed in the previous version.
     If they contain ALTERNATIVE executions at the same level as some REQUIRED executions, then the ALTERNATIVE executions will be added to the separate REQUIRED subflow. This
     should ensure same/similar behavior of the particular authentication flow as in the previous version. We always recommend
-    to doublecheck the configuration of your authentication flow and test it to doublecheck that everything works as expected.
+    to double-check the configuration of your authentication flow and test it to double-check that everything works as expected.
     This recommendation is true in particular if you have some more customized authentication flows with custom authenticator implementations.
 
 === Migrating to 8.0.0
 
-==== New Default Hostname provider
+==== New default Hostname provider
 
 The old request and fixed hostname providers are replaced with a new default hostname provider. The request
 and fixed hostname providers are now deprecated and it is recommended to switch to the default hostname provider as
@@ -309,7 +316,7 @@ Cross-Datacenter Replication changes::
   * You will need to upgrade {jdgserver_name} server to version {jdgserver_version}. The older version may still work, but it is
   not guaranteed as we don't test it anymore.
 
-==== Deploying Scripts to the Server
+==== Deploying scripts to the server
 
 Until now, administrators were allowed to upload scripts to the server through the {project_name} Administration Console as well as
 through the RESTful Admin API.
@@ -317,7 +324,7 @@ through the RESTful Admin API.
 For now on, this capability is *disabled* by default and users should prefer to deploy scripts directly to the server. For more details,
 please take a look at link:{developerguide_jsproviders_link}[{developerguide_jsproviders_name}].
 
-==== Client Credentials in the JavaScript adapter
+==== Client credentials in the JavaScript adapter
 
 In the previous releases, developers were allowed to provide client credentials to the JavaScript adapter. For now on, this capability was *removed*, because client-side apps are not safe to keep secrets.
 
@@ -336,12 +343,12 @@ Changes in the Java SPI::
     Some changes exist in the Java Authentication SPI and Credential Provider SPI. The interface `Authenticator` is not changed,
     but you may be affected if you're developing more advanced authenticators, which introduce some new credential types (subclasses of `CredentialModel`).
     There are changes on the `CredentialProvider` interface and introduction of some new interfaces like `CredentialValidator`. Also you
-    may be affected if your authenticator supported the OPTIONAL execution requirement. It is recommended to double check the latest authentication
+    may be affected if your authenticator supported the OPTIONAL execution requirement. It is recommended to double-check the latest authentication
     examples in the server development guide for more details.
 
 Freemarker template changes::
    Some changes in the freemarker templates exist. You may be affected if you have your own theme with custom freemarker
-   templates for login forms or some account forms, especially for the forms related to OTP. It is recommended to double check changes in
+   templates for login forms or some account forms, especially for the forms related to OTP. It is recommended to double-check changes in
    the Freemarker templates in the latest {project_name} and align your templates according to it.
 
 ==== User credentials changes
@@ -430,18 +437,18 @@ Cross-Datacenter Replication changes::
 ==== Google Identity Provider updated to use Google Sign-in authentication system
 
 The Google Identity Provider implementation in {project_name} up to version 4.8.1 relies on the Google+ API endpoints
-endpoints for authorization and obtaining the user profile. From March 2019 onwards, Google is removing support
+for authorization and obtaining the user profile. From March 2019 onwards, Google is removing support
 for the Google+ API in favor of the new Google Sign-in authentication system. The {project_name} identity provider has been updated
 to use the new endpoints so if this integration is in use make sure you upgrade to {project_name} version 4.8.2 or later.
 
 If you run into an error saying that the application identifier was not found in the directory, you will have to register the client application again in the
-https://console.developers.google.com/apis/credentials[Google API Console] portal to obtain a new application id and secret.
+https://console.cloud.google.com/apis/credentials[Google API Console] portal to obtain a new application id and secret.
 
 It is possible that you will need to adjust custom mappers for non-standard claims that were provided by Google+ user
 information endpoint and are provided under different name by Google Sign-in API. Please consult Google documentation
 for the most up-to-date information on available claims.
 
-==== LinkedIn Social Broker Updated to Version 2 of LinkedIn APIs
+==== LinkedIn social broker updated to Version 2 of LinkedIn APIs
 
 Accordingly with LinkedIn, all developers need to migrate to version 2.0 of their APIs and OAuth 2.0. As such, we have updated
 our LinkedIn Social Broker.
@@ -479,7 +486,7 @@ Audiences of all the clients, for which authenticated user has at least one clie
 to the `aud` claim in the access token now. On the other hand, an access token may not automatically contain the audience of the
 frontend client, for which it was issued. Read the link:{adminguide_link}#audience-support[{adminguide_name}] for more details.
 
-==== JavaScript Adapter Promise
+==== JavaScript adapter promise
 
 To use native JavaScript promise with the JavaScript adapter it is now required to set `promiseType` to `native` in the
 init options.
@@ -598,7 +605,7 @@ We added support for UMA 2.0. This version of the UMA specification introduced s
 Here are the main changes introduced by UMA 2.0 support. See link:{authorizationguide_link}[{authorizationguide_name}] for details.
 
 Authorization API was removed::
-  Prior to UMA 2.0 (UMA 1.0), client applications were using the Authorization API to obtain permissions from the server in the format of a RPT. The new version
+  Prior to UMA 2.0 (UMA 1.0), client applications were using the Authorization API to obtain permissions from the server in the format of an RPT. The new version
   of UMA specification has removed the Authorization API which was also removed from {project_name}. In UMA 2.0, RPTs can now be obtained from the token endpoint by using a specific grant type.
   See link:{authorizationguide_link}#_service_obtaining_permissions[{authorizationguide_name}] for details.
 
@@ -611,8 +618,8 @@ Entitlement API was removed::
 Changes to UMA Discovery Endpoint::
   UMA Discovery document changed, see link:{authorizationguide_link}#_service_authorization_api[{authorizationguide_name}] for details.
 
-Changes to {project_name} Authorization JavaScript Adapter::
-  The {project_name} Authorization JavaScript Adapter (keycloak-authz.js) changed in order to comply with the changes introduced by UMA 2.0 while keeping
+Changes to {project_name} Authorization JavaScript adapter::
+  The {project_name} Authorization JavaScript adapter (keycloak-authz.js) changed in order to comply with the changes introduced by UMA 2.0 while keeping
   the same behavior as before. The main change is on how you invoke both `authorization` and `entitlement` methods which now
   expect a specific object type representing an authorization request. This new object type provides more flexibility on how
   permissions can be obtained from the server by supporting the different parameters supported by the UMA grant type.
@@ -649,7 +656,7 @@ to upgrade the server to 4.0.0.Beta1 or newer.
 
 === Migrating to 3.2.0
 
-==== New Password Hashing algorithms
+==== New password hashing algorithms
 
 We've added two new password hashing algorithms (pbkdf2-sha256 and pbkdf2-sha512). New realms will use the pbkdf2-sha256
 hashing algorithm with 27500 hashing iterations. Since pbkdf2-sha256 is slightly faster than pbkdf2 the iterations was
@@ -684,7 +691,7 @@ Second change is changing of some signatures in methods of authentication SPI. T
 `RequiredActionProvider`. Classes `AuthenticationFlowContext` and `RequiredActionContext` now allow to retrieve authentication session
 instead of client session.
 
-We also added some initial support for sticky sessions. You may want to change your loadbalancer/proxy server and configure it if you don't want to suffer from it and want to have better performance.
+We also added some initial support for sticky sessions. You may want to change your load balancer/proxy server and configure it if you don't want to suffer from it and want to have better performance.
 The route is added to the new `AUTH_SESSION_ID` cookie. More info in the clustering documentation.
 
 Another change is, that `token.getClientSession()` was removed. This may affect you for example if you're using Client Initiated Identity Broker Linking feature.
@@ -713,7 +720,7 @@ refreshed tokens will have KID in the header, so after all users exchange their 
 ==== Changes to the Infinispan caches
 
 The `realms` cache defined in the infinispan subsystem in `standalone.xml` or `standalone-ha.xml` configuration file, now has the eviction with the 10000 records by default.
-This is the same default like the `users` cache.
+This is the same default as the `users` cache.
 
 Also the `authorization` cache now doesn't have any eviction on it by default.
 
@@ -817,7 +824,7 @@ We've removed the option auth-server-url-for-backend-requests due to issues in s
 it was possible to access the Keycloak server from 2 different contexts (internal and external), which was causing issues in token validations etc.
 
 If you still want to use the optimization of network, which this option provided (avoid the application to send backchannel requests
-through loadbalancer but send them to local Keycloak server directly) you may need to handle it at hosts configuration (DNS) level.
+through load balancer but send them to local Keycloak server directly) you may need to handle it at hosts configuration (DNS) level.
 
 
 === Migrating to 1.9.0
@@ -828,7 +835,7 @@ We've moved the themes and providers directories from `standalone/configuration/
 If you have added custom themes and providers you need to move them to the new location.
 You also need to update `keycloak-server.json` as it's changed due to this.
 
-==== Adapter Subsystems only bring in dependencies if Keycloak is on
+==== Adapter subsystems only bring in dependencies if Keycloak is on
 
 Previously, if you had installed our SAML or OIDC Keycloak subsystem adapters into WildFly or JBoss EAP, we would automatically include Keycloak client jars into EVERY application irregardless if you were using Keycloak or not.
 These libraries are now only added to your deployment if you have Keycloak authentication turned on for that adapter (via the subsystem, or auth-method in web.xml)
@@ -850,7 +857,7 @@ This also applies to the validate token endpoint that is replaced with the new i
 
 Feedback in template.ftl has been moved and format has changed slightly.
 
-==== Module and Source Code Re-org
+==== Module and source code reorganization
 
 Most of our modules and source code have been consolidated into two maven modules:  keycloak-server-spi and keycloak-services.
 SPI interfaces are in server-spi, implementations are in keycloak-services.
@@ -862,9 +869,9 @@ Same goes with mongo and Infinispan under modules keycloak-model-mongo and keycl
 To plug a security attack vector, for platforms that support it (Tomcat 8, Undertow/WildFly, Jetty 9), the Keycloak OIDC and SAML adapters will change the session id after login.
 You can turn off this behavior check adapter config switches.
 
-==== SAML SP Client Adapter Changes
+==== SAML SP Client adapter changes
 
-Keycloak SAML SP Client Adapter now requires a specific endpoint, `/saml` to be registered with your IDP.
+Keycloak SAML SP Client adapter now requires a specific endpoint, `/saml` to be registered with your IDP.
 
 === Migrating to 1.8.0
 
@@ -873,7 +880,7 @@ Keycloak SAML SP Client Adapter now requires a specific endpoint, `/saml` to be 
 In previous releases we shipped with a default admin user with a default password, this has now been removed.
 If you are doing a new installation of 1.8 you will have to create an admin user as a first step.
 
-==== OAuth2 Token Introspection
+==== OAuth2 token introspection
 
 In order to add more compliance with OAuth2 specification, we added a new endpoint for token introspection.
 The new endpoint can reached at `/realms/{realm-name}/protocols/openid-connect/token/introspect` and it is solely based on `RFC-7662`.
@@ -989,7 +996,7 @@ The Direct Grant API is now always enabled and the option to enable/disable for 
 ==== Database changed
 
 There are again few database changes.
-Remember to backup your database prior to upgrading.
+Remember to back up your database prior to upgrading.
 
 ==== UserFederationProvider changed
 
@@ -1032,7 +1039,7 @@ It also contains all documentation and examples.
 
 This release contains again a number of changes to the database.
 The biggest one is Application and OAuth client merge.
-Remember to backup your database prior to upgrading.
+Remember to back up your database prior to upgrading.
 
 ==== Application and OAuth client merge
 
@@ -1046,7 +1053,7 @@ The previously set Applications will be converted into Clients with `Consent req
 ==== Database changed
 
 This release contains a number of changes to the database.
-Remember to backup your database prior to upgrading.
+Remember to back up your database prior to upgrading.
 
 ==== `iss` in access and id tokens
 
@@ -1078,7 +1085,7 @@ This was used to configure which attributes should go into access token for part
 This was removed and is replaced with protocol mappers which are more flexible.
 
 You don't need to care about migration of database from previous version.
-We did migration scripts for both RDBMS and Mongo, which should ensure that claims configured for particular application/client will be converted into corresponding protocol mappers (Still it's safer to backup DB before migrating to newer version though). Same applies for exported JSON representation from previous version.
+We did migration scripts for both RDBMS and Mongo, which should ensure that claims configured for particular application/client will be converted into corresponding protocol mappers (Still it's safer to back up DB before migrating to newer version though). Same applies for exported JSON representation from previous version.
 
 ==== Social migration to identity brokering
 
@@ -1095,7 +1102,7 @@ Facebook admin console).
 
 === Migrating from 1.1.0.Beta1 to 1.1.0.Beta2
 
-* Adapters are now a separate download.  They are not included in appliance and war distribution.  We have too many now and the distro
+* adapters are now a separate download.  They are not included in appliance and war distribution.  We have too many now and the distro
   is getting bloated.
 * `org.keycloak.adapters.tomcat7.KeycloakAuthenticatorValve`
 +`org.keycloak.adapters.tomcat.KeycloakAuthenticatorValve`
@@ -1162,7 +1169,7 @@ Facebook admin console).
   AccessToken, AccessScope, KeycloakPrincipal, and KeycloakAuthenticatedSession respectively.
 * ServletOAuthClient.getBearerToken() method signature has changed.  It now returns an AccessTokenResponse
   so that you can obtain a refresh token too.
-* Adapters now check the access token expiration with every request.  If the token is expired, they will
+* adapters now check the access token expiration with every request.  If the token is expired, they will
   attempt to invoke a refresh on the auth server using a saved refresh token.
 * Subject in AccessToken has been changed to the User ID.
 

@@ -1,5 +1,5 @@
 
-=== Stream-based Interfaces
+=== Stream-based interfaces
 
 Many of the user storage interfaces in {project_name} contain query methods that can return potentially large sets of objects,
 which might lead to significant impacts in terms of memory consumption and processing time. This is especially true when only
@@ -24,13 +24,13 @@ ifeval::[{project_community}==true]
 | `org.keycloak.models` | `GroupModel`, `RoleMapperModel`, `UserCredentialManager`, `UserModel`, `UserProvider`
 | `org.keycloak.models.cache` | `CachedUserModel`, `UserCache`
 | `org.keycloak.storage.federated` | All interfaces
-| `org.kecyloak.storage.user` | `UserQueryProvider`(*)
+| `org.keycloak.storage.user` | `UserQueryProvider`(*)
 endif::[]
 ifeval::[{project_product}==true]
 | `org.keycloak.credential` | `CredentialInputUpdater`(*)
 | `org.keycloak.models` | `GroupModel`, `RoleMapperModel`, `UserModel`
 | `org.keycloak.storage.federated` | All interfaces
-| `org.kecyloak.storage.user` | `UserQueryProvider`(*)
+| `org.keycloak.storage.user` | `UserQueryProvider`(*)
 endif::[]
 |===
 (*) indicates the interface is a _<<_provider_capability_interfaces,capability interface>>_

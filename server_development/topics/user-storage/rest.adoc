@@ -1,5 +1,5 @@
 
-=== REST Management API
+=== REST management API
 
 You can create, remove, and update your user storage provider deployments through the administrator REST API. The User Storage SPI
 is built on top of a generic component interface so you will be using that generic API to manage your providers.
@@ -58,14 +58,14 @@ public interface ComponentResource {
 To create a user storage provider, you must specify the provider id, a provider type of the string `org.keycloak.storage.UserStorageProvider`,
 as well as the configuration.
 
-[source,java]
+[source,java,subs="attributes+"]
 ----
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.representations.idm.RealmRepresentation;
 ...
 
 Keycloak keycloak = Keycloak.getInstance(
-    "http://localhost:8080/auth",
+    "http://localhost:8080{kc_base_path}",
     "master",
     "admin",
     "password",

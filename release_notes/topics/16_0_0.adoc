@@ -1,15 +1,13 @@
 = Highlights
 
-== OpenID Connect Front-Channel Logout Support
+== Upgrade to Wildfly 25.0.1
 
-{project_name} now supports https://openid.net/specs/openid-connect-frontchannel-1_0.html[OpenID Connect Front-Channel Logout 1.0].
+Keycloak server was upgraded to use Wildfly 25.0.1.Final as the underlying container.
 
-For more details, take a look at link:{adminguide_link}#_oidc-logout[{adminguide_name}].
+WildFly 25 drops support for the legacy security subsystem, which is being replaced fully by Elytron. This requires significant changes to how Keycloak is configured. Please, refer to the migration guide for more details.
 
-Thanks to https://github.com/rhyamada[Ronaldo Yamada] for the contribution.
+For more information on WildFly 25 refer to the https://www.wildfly.org/news/2021/10/05/WildFly25-Final-Released/[WildFly 25 release notes].
 
-== Deprecated features in the {project_operator}
+== Upgrade to Quarkus 2.5.3
 
-With this release, we have deprecated and/or marked as unsupported some features in the {project_operator}. This
-concerns the Backup CRD and the operator managed Postgres Database. For more details, please see the
-link:{installguide_link}#_operator_production_usage[related chapter in the {installguide_name}].
+Keycloak.X Quarkus preview distribution was upgraded to Quarkus 2.5.3.

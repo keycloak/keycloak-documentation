@@ -4,29 +4,34 @@
 To see a top-level view of the active clients and sessions in {project_name}, click *Sessions* from the menu.
 
 .Sessions
-image:{project_images}/sessions.png[Sessions]
+image:images/sessions.png[Sessions tab]
 
-==== The *Logout all* Operation
+==== Signing out all active sessions
 
-You can log out all users in the realm by clicking the *Logout all* button.
-
-When you click the *Logout all* button, all SSO cookies become invalid, and clients requesting authentication within active browser sessions must log in again. {project_name} notifies clients by using the {project_name} OIDC client adapter of the logout event. Client types such as SAML do not receive a back-channel logout request.
+You can sign out all users in the realm. From the *Action* list, select *Sign out all active sessions*. All SSO cookies become invalid. {project_name} notifies clients by using the {project_name} OIDC client adapter of the logout event. Clients requesting authentication within active browser sessions must log in again. Client types such as SAML do not receive a back-channel logout request.
 
 [NOTE]
 ====
-Clicking *Logout all* does not revoke outstanding access tokens. Outstanding tokens must expire naturally. For clients using the {project_name} OIDC client adapter, you can push a <<_revocation-policy, revocation policy>> to revoke the token, but this does not work for other adapters.
+Clicking *Sign out all active sessions* does not revoke outstanding access tokens. Outstanding tokens must expire naturally. For clients using the {project_name} OIDC client adapter, you can push a <<_revocation-policy, revocation policy>> to revoke the token, but this does not work for other adapters.
 ====
 
-==== Application navigation
+==== Viewing client sessions
 
-On the `Sessions` page, you can click on each client to go to that client's `Sessions` tab. Click the *Show Sessions* button there to see which users are in the application.
+.Procedure
+. Click *Clients* in the menu.
+. Click the *Sessions* tab.
+. Click a client to see that client's sessions.
++
+.Client sessions
+image:images/client-sessions.png[Client sessions]
 
-.Application sessions
-image:{project_images}/application-sessions.png[]
+==== Viewing user sessions
 
-==== User navigation
+.Procedure
+. Click *Users* in the menu.
+. Click the *Sessions* tab.
+. Click a user to see that user's sessions.
++
+.User sessions
+image:images/user-sessions.png[User sessions]
 
-If you go to the `Sessions` tab of an individual user, you can also view the user's session information.
-
-.User Sessions
-image:{project_images}/user-sessions.png[]

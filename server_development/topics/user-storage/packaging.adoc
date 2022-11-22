@@ -1,7 +1,5 @@
 
-=== Packaging and Deployment
-
-User Storage providers are packaged in a JAR and deployed or undeployed to the {project_name} runtime in the same way you would deploy something in the {appserver_name} application server. You can either copy the JAR directly to the `standalone/deployments/` directory of the server, or use the JBoss CLI to execute the deployment.
+=== Packaging and deployment
 
 In order for {project_name} to recognize the provider, you need to add a file to the JAR: `META-INF/services/org.keycloak.storage.UserStorageProviderFactory`. This file must contain a line-separated list of fully qualified classnames of the `UserStorageProviderFactory` implementations:
 
@@ -10,5 +8,5 @@ org.keycloak.examples.federation.properties.ClasspathPropertiesStorageFactory
 org.keycloak.examples.federation.properties.FilePropertiesStorageFactory
 ----
 
-{project_name} supports hot deployment of these provider JARs. You'll also see later in this chapter that you can package it within and as Jakarta EE components.
+To deploy this jar, copy it to the `providers/` directory, then run `bin/kc.[sh|bat] build`.
 

@@ -2,7 +2,7 @@
 ==== CLI / Desktop Applications
 
 {project_name} supports securing desktop 
-(e.g. Swing, JavaFX) or CLI applications via the 
+(for example Swing, JavaFX) or CLI applications via the 
 `KeycloakInstalled` adapter by performing the authentication step via the system browser.
 
 The `KeycloakInstalled` adapter supports a `desktop` and a `manual`
@@ -14,13 +14,13 @@ reads the user credentials from `STDIN`.
 
 To authenticate a user with the `desktop` variant the `KeycloakInstalled` 
 adapter opens a desktop browser window where a user uses the regular {project_name} 
-login pages to login when the `loginDesktop()` method is called on the `KeycloakInstalled` object.
+login pages to log in when the `loginDesktop()` method is called on the `KeycloakInstalled` object.
 
 The login page URL is opened with redirect parameter 
 that points to a local `ServerSocket` listening on a free ephemeral port 
 on `localhost` which is started by the adapter.
 
-After a succesful login the `KeycloakInstalled` receives the authorization code
+After a successful login the `KeycloakInstalled` receives the authorization code
 from the incoming HTTP request and performs the authorization code flow. 
 Once the code to token exchange is completed the `ServerSocket` is shutdown.
 
@@ -34,7 +34,7 @@ id_token) which can then be used to call backend services.
 The `KeycloakInstalled` adapter provides support for renewal of stale tokens.
 
 [[_installed_adapter_installation]]
-===== Adapter Installation
+===== Installing the adapter
 
 [source,xml,subs="attributes+"]
 ----
@@ -49,7 +49,7 @@ The `KeycloakInstalled` adapter provides support for renewal of stale tokens.
 ----
 
 
-===== Client Configuration
+===== Client configuration
 
 The application needs to be configured as a `public` OpenID Connect client with
 `Standard Flow Enabled` and pass:[http://localhost] as an allowed `Valid Redirect URI`.
@@ -60,7 +60,7 @@ in the adapter configuration. Enabling PKCE is highly recommended, to avoid code
 
 ===== Usage
 
-The `KeycloakInstalled` adapter reads it's configuration from
+The `KeycloakInstalled` adapter reads its configuration from
 `META-INF/keycloak.json` on the classpath. Custom configurations
 can be supplied with an `InputStream` or a `KeycloakDeployment`
 through the `KeycloakInstalled` constructor.
@@ -68,12 +68,12 @@ through the `KeycloakInstalled` constructor.
 In the example below, the client configuration for `desktop-app`
 uses the following `keycloak.json`:
 
-[source,json]
+[source,json,subs="attributes+"]
 ----
 
 {
   "realm": "desktop-app-auth",
-  "auth-server-url": "http://localhost:8081/auth",
+  "auth-server-url": "http://localhost:8081{kc_base_path}",
   "ssl-required": "external",
   "resource": "desktop-app",
   "public-client": true,

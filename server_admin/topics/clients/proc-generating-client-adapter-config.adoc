@@ -7,9 +7,9 @@
 
 {project_name} can generate configuration files that you can use to install a client adapter in your application's deployment environment. A number of adapter types are supported for OIDC and SAML.
 
-. Go to the *Installation* tab of the client you want to generate configuration for.
+. Click on the _Action_ menu and select the *Download adapter config* option
 +
-image:{project_images}/client-installation.png[]
+image:images/client-installation.png[]
 +
 . Select the *Format Option* you want configuration generated for.  
 

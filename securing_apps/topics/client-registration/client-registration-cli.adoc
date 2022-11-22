@@ -1,5 +1,5 @@
 [[_client_registration_cli]]
-== Client Registration CLI
+== Automating Client Registration with the CLI
 
 The Client Registration CLI is a command-line interface (CLI) tool for application developers to configure new clients in a self-service manner when integrating with {project_name}. It is specifically designed to interact with {project_name} Client Registration REST endpoints.
 
@@ -13,7 +13,9 @@ To allow a particular user to use `Client Registration CLI` the {project_name} a
 [[_configuring_a_user_for_client_registration_cli]]
 === Configuring a new regular user for use with Client Registration CLI
 
-. Log in to the Admin Console (for example, http://localhost:8080/auth/admin) as [command]`admin`.
+.Procedure
+
+. Log in to the Admin Console (for example, http://localhost:8080{kc_admins_path}) as [command]`admin`.
 . Select a realm to administer.
 . If you want to use an existing user, select that user to edit; otherwise, create a new user.
 . Select *Role Mappings > Client Roles > realm-management*. If you are in the master realm, select *NAME-realm*, where `NAME` is the name of the target realm. You can grant access to any other realm to users in the master realm.
@@ -34,7 +36,9 @@ The Administrator can issue Initial Access Tokens from the Admin Console through
 
 By default, the server recognizes the Client Registration CLI as the [filename]`admin-cli` client, which is configured automatically for every new realm. No additional client configuration is necessary when logging in with a user name.
 
-. Create a new client (for example, [filename]`reg-cli`) if you want to use a separate client configuration for the Client Registration CLI.
+.Procedure
+
+. Create a client (for example, [filename]`reg-cli`) if you want to use a separate client configuration for the Client Registration CLI.
 . Toggle the *Standard Flow Enabled* setting it to *Off*.
 . Strengthen the security by configuring the client [filename]`Access Type` as [filename]`Confidential` and selecting *Credentials > ClientId and Secret*.
 +
@@ -79,6 +83,8 @@ c:\> kcreg
 [[_using_client_registration_cli]]
 === Using the Client Registration CLI
 
+.Procedure
+
 . Start an authenticated session by logging in with your credentials.
 . Run commands on the [filename]`Client Registration REST` endpoint.
 +
@@ -86,17 +92,17 @@ For example, on:
 
 * Linux:
 +
-[options="npwrap"]
+[options="npwrap",subs="attributes+"]
 ----
-$ kcreg.sh config credentials --server http://localhost:8080/auth --realm demo --user user --client reg-cli
+$ kcreg.sh config credentials --server http://localhost:8080{kc_base_path} --realm demo --user user --client reg-cli
 $ kcreg.sh create -s clientId=my_client -s 'redirectUris=["http://localhost:8980/myapp/*"]'
 $ kcreg.sh get my_client
 ----
 * Windows:
 +
-[options="npwrap"]
+[options="npwrap",subs="attributes+"]
 ----
-c:\> kcreg config credentials --server http://localhost:8080/auth --realm demo --user user --client reg-cli
+c:\> kcreg config credentials --server http://localhost:8080{kc_base_path} --realm demo --user user --client reg-cli
 c:\> kcreg create -s clientId=my_client -s "redirectUris=[\"http://localhost:8980/myapp/*\"]"
 c:\> kcreg get my_client
 ----
@@ -125,6 +131,8 @@ c:\> kcreg config truststore --trustpass %PASSWORD% %HOMEPATH%\.keycloak\trustst
 
 [[_logging_in]]
 ==== Logging in
+
+.Procedure
 
 . Specify a server endpoint URL and a realm when you log in with the Client Registration CLI.
 . Specify a user name or a client id, which results in a special service account being used. When using a user name, you must use a password for the specified user. When using a client ID, you use a client secret or a [filename]`Signed JWT` instead of a password.

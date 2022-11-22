@@ -1,5 +1,5 @@
 [[_service_obtaining_permissions]]
-= Obtaining Permissions
+= Obtaining permissions
 
 To obtain permissions from {project_name} you send an authorization request to the token endpoint. As a result, {project_name} will
 evaluate all policies associated with the resource(s) and scope(s) being requested and issue an RPT with all permissions
@@ -92,38 +92,43 @@ Indicates that responses from the server should contain any permission granted b
 +
 If the authorization request does not map to any permission, a `403` HTTP status code is returned instead.
 
-Example of a authorization request when a client is seeking access to two resources protected by a resource server.
+Example of an authorization request when a client is seeking access to two resources protected by a resource server.
 
-```bash
+[source,bash,subs="attributes+"]
+----
 curl -X POST \
-  http://${host}:${port}/auth/realms/${realm}/protocol/openid-connect/token \
+  http://${host}:${port}{kc_realms_path}/${realm}/protocol/openid-connect/token \
   -H "Authorization: Bearer ${access_token}" \
   --data "grant_type=urn:ietf:params:oauth:grant-type:uma-ticket" \
   --data "audience={resource_server_client_id}" \
   --data "permission=Resource A#Scope A" \
   --data "permission=Resource B#Scope B"
-```
+----
 
-Example of a authorization request when a client is seeking access to any resource and scope protected by a resource server.
+Example of an authorization request when a client is seeking access to any resource and scope protected by a resource server.
+NOTE: This will not evaluate the permissions for all resources. Instead, the permissions for resources owned by the resource server, owned by the requesting user,
+and explicitly granted to the requesting user by other owners are evaluated.
 
-```bash
+[source,bash,subs="attributes+"]
+----
 curl -X POST \
-  http://${host}:${port}/auth/realms/${realm}/protocol/openid-connect/token \
+  http://${host}:${port}{kc_realms_path}/${realm}/protocol/openid-connect/token \
   -H "Authorization: Bearer ${access_token}" \
   --data "grant_type=urn:ietf:params:oauth:grant-type:uma-ticket" \
   --data "audience={resource_server_client_id}"
-```
+----
 
 Example of an authorization request when a client is seeking access to a UMA protected resource after receiving a permission ticket from
 the resource server as part of the authorization process:
 
-```bash
+[source,bash,subs="attributes+"]
+----
 curl -X POST \
-  http://${host}:${port}/auth/realms/${realm}/protocol/openid-connect/token \
+  http://${host}:${port}{kc_realms_path}/${realm}/protocol/openid-connect/token \
   -H "Authorization: Bearer ${access_token}" \
   --data "grant_type=urn:ietf:params:oauth:grant-type:uma-ticket" \
   --data "ticket=${permission_ticket}
-```
+----
 
 If {project_name} assessment process results in issuance of permissions, it issues the RPT with which it has associated
 the permissions:

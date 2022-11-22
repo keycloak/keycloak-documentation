@@ -2,63 +2,67 @@
 
 {project_name} comes with a fully functional Admin REST API with all features provided by the Admin Console.
 
-To invoke the API you need to obtain an access token with the appropriate permissions. The required permissions are described in
-{adminguide_link}[{adminguide_name}].
+To invoke the API you need to obtain an access token with the appropriate permissions. The required permissions are described in the Server Administration Guide.
 
-A token can be obtained by enabling authenticating to your application with {project_name}; see the
-{adapterguide_link}[{adapterguide_name}]. You can also use direct access grant to obtain an access token.
+You can obtain a token by enabling authentication for your application using {project_name}; see the Securing Applications and Services Guide. You can also use direct access grant to obtain an access token.
 
-For complete documentation see {apidocs_link}[{apidocs_name}].
+=== Examples of using CURL
 
-=== Examples using CURL
+==== Authenticating with a username and password
 
-==== Authenticate with username and password
+.Procedure
 
-Obtain access token for user in the realm `master` with username `admin` and password `password`:
-[source,bash]
+. Obtain an access token for the user in the realm `master` with username `admin` and password `password`:
++
+[source,bash,subs=+attributes]
 ----
 curl \
   -d "client_id=admin-cli" \
   -d "username=admin" \
   -d "password=password" \
   -d "grant_type=password" \
-  "http://localhost:8080/auth/realms/master/protocol/openid-connect/token"
+  "http://localhost:8080{kc_realms_path}/master/protocol/openid-connect/token"
 ----
-
++
 NOTE: By default this token expires in 1 minute
++
+The result will be a JSON document.
 
-The result will be a JSON document. To invoke the API you need to extract the value of the `access_token` property. You can then invoke the API by including
-the value in the `Authorization` header of requests to the API.
+. Invoke the API you need by extracting the value of the `access_token` property.
 
+. Invoke the API by including the value in the `Authorization` header of requests to the API.
++
 The following example shows how to get the details of the master realm:
-
-[source,bash]
++
+[source,bash,subs="attributes+"]
 ----
 curl \
   -H "Authorization: bearer eyJhbGciOiJSUz..." \
-  "http://localhost:8080/auth/admin/realms/master"
+  "http://localhost:8080{kc_admins_path}/realms/master"
 ----
 
-==== Authenticate with a service account
+==== Authenticating with a service account
 
-Before being able to authenticate against the Admin REST API using a `client_id` and a `client_secret` you need to make sure the client is configured as it follows:
+To authenticate against the Admin REST API using a `client_id` and a `client_secret`, perform this procedure.
+
+.Procedure
+
+. Make sure the client is configured as follows:
 
 * `client_id` is a **confidential** client that belongs to the realm *master*
 * `client_id` has `Service Accounts Enabled` option enabled
 * `client_id` has a custom "Audience" mapper
   ** Included Client Audience: `security-admin-console`
 
-Finally, check that `client_id` has the role 'admin' assigned in the "Service Account Roles" tab.
+. Check that `client_id` has the role 'admin' assigned in the "Service Account Roles" tab.
 
-After that, you will be able to obtain an access token for the Admin REST API using `client_id` and `client_secret`:
-
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
 curl \
   -d "client_id=<YOUR_CLIENT_ID>" \
   -d "client_secret=<YOUR_CLIENT_SECRET>" \
   -d "grant_type=client_credentials" \
-  "http://localhost:8080/auth/realms/master/protocol/openid-connect/token"
+  "http://localhost:8080{kc_realms_path}/master/protocol/openid-connect/token"
 ----
 
 ifeval::[{project_community}==true]
@@ -69,14 +73,15 @@ There's a Java client library for the Admin REST API that makes it easy to use f
 
 The following example shows how to use the Java client library to get the details of the master realm:
 
-[source,java]
+[source,java,subs="attributes+"]
 ----
+
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.representations.idm.RealmRepresentation;
 ...
 
 Keycloak keycloak = Keycloak.getInstance(
-    "http://localhost:8080/auth",
+    "http://localhost:8080{kc_base_path}",
     "master",
     "admin",
     "password",
@@ -86,3 +91,9 @@ RealmRepresentation realm = keycloak.realm("master").toRepresentation();
 
 Complete Javadoc for the admin client is available at {apidocs_link}[{apidocs_name}].
 endif::[]
+
+=== Additional resources
+[role="_additional-resources"]
+* {adminguide_link}[{adminguide_name}]
+* {adapterguide_link}[{adapterguide_name}]
+* {apidocs_link}[{apidocs_name}]
