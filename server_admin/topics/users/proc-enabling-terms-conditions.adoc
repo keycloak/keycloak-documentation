@@ -15,3 +15,6 @@ You can enable a required action that new users must accept the terms and condit
 
 .Additional resources
 * For more information on extending and creating themes, see the link:{developerguide_link}[{developerguide_name}]. 
+
+If *Terms and Conditions* action is enabled, you can additionally set a time interval that after it users must reaccept *Terms and Conditions*.
+This can be done from *Terms and Conditions* line in *Required Actions* tab.
