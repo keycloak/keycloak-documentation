@@ -47,7 +47,7 @@ KeycloakSession session = Jaxrs.getContextData(KeycloakSession.class);
 ----
 +
 
-You are still able to resolve contextual data from the JAX-RS runtime by:
+You can still resolve contextual data from the JAX-RS runtime by:
 
 +
 [source,java]
