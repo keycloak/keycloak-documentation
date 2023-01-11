@@ -13,7 +13,7 @@ If you are extending one of the following SPIs:
 * `IdentityProviderSpi`
 * `RealmResourceProvider`
 
-You should review your custom JAX-RS (sub)resources in order obtain any contextual data from a `org.keycloak.common.util.ResteasyProvider`
+You should review your custom JAX-RS (sub)resources in order to obtain any contextual data from a `org.keycloak.common.util.ResteasyProvider`
 instance as follows:
 
 [source,java]
