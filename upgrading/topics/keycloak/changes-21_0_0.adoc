@@ -67,7 +67,7 @@ If you are extending the server's REST APIs through the following SPIs:
 * `RealmResourceProvider`
 * `RealmResourceProvider`
 
-You need to add a `META-INF/beans.xml` to the JAR file where your custom providers are packaged. Otherwise, they won't be recognized by the server
+You need to add a `META-INF/beans.xml` to the JAR file where your custom providers are packaged. Otherwise, they are not recognized by the server
 at runtime.
 
 You should also remove any type-level `@Path` annotation declaration and mark your methods with this annotation instead.
