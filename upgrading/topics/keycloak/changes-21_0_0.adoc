@@ -37,7 +37,7 @@ HttpResponse response = context.getHttpResponse();
 ----
 +
 
-In case you don't have access to a `KeycloakSession` instance when invoking a JAX-RS resource method, it is also possible to obtain
+In case you have no access to a `KeycloakSession` instance when invoking a JAX-RS resource method, you can obtain
 contextual data from the JAX-RS runtime as follows:
 
 +
