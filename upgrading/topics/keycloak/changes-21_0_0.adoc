@@ -29,7 +29,7 @@ was replaced by
 +
 [source,java]
 ----
-KeycloakSession session = // obtain the session, usually available when creating a custom provider from a factory
+KeycloakSession session = // obtain the session, which is usually available when creating a custom provider from a factory
 KeycloakContext context = session.getContext();
 
 HttpRequest request = context.getHttpRequest();
