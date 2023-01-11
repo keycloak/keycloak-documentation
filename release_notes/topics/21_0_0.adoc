@@ -12,5 +12,5 @@ If you are extending one of the following SPIs:
 * `AdminRealmResourceSpi`
 * `IdentityProviderSpi`
 
-Please, take a look at the link:{upgradingguide_link}[{upgradingguide_name}] for more details about how to
+See the link:{upgradingguide_link}[{upgradingguide_name}] for more details about how to
 update your custom providers.
