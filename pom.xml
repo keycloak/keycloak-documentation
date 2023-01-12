@@ -5,7 +5,7 @@
     <name>Keycloak Documentation Parent</name>
     <groupId>org.keycloak.documentation</groupId>
     <artifactId>documentation-parent</artifactId>
-    <version>999-SNAPSHOT</version>
+    <version>20.0.3</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -133,7 +133,7 @@
                 <plugin>
                     <groupId>org.keycloak.documentation</groupId>
                     <artifactId>header-maven-plugin</artifactId>
-                    <version>999-SNAPSHOT</version>
+                    <version>20.0.3</version>
                     <executions>
                         <execution>
                             <id>add-file-headers</id>
