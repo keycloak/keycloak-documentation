@@ -11,3 +11,8 @@ See the migration guide for details.
 We removed the out-of-box support for Hashicorp vault in this release.
 
 See this https://github.com/keycloak/keycloak/discussions/16446[discussion] for more details.
+
+= Metrics for embedded Infinispan as preview
+
+When metrics are enabled and {project_name} uses the embedded {jdgserver_name}, the metrics endpoint exposes information about caches using the `/metrics` endpoint in the metrics with names starting with `vendor_cache_*`.
+Those metrics are currently a preview feature and might change in upcoming releases.
