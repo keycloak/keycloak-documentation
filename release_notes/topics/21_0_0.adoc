@@ -15,4 +15,5 @@ See this https://github.com/keycloak/keycloak/discussions/16446[discussion] for 
 = Metrics for embedded Infinispan as preview
 
 When metrics are enabled and {project_name} uses the embedded {jdgserver_name}, the metrics endpoint exposes information about caches using the `/metrics` endpoint in the metrics with names starting with `vendor_cache_*`.
-Those metrics are currently a preview feature and might change in upcoming releases.
+Those metrics use the original pattern as provided by {jdgserver_name}.
+They are currently a preview feature and might change in upcoming releases, especially when the {jdgserver_name} is updated in such a release.
