@@ -11,3 +11,10 @@ See the migration guide for details.
 We removed the out-of-box support for Hashicorp vault in this release.
 
 See this https://github.com/keycloak/keycloak/discussions/16446[discussion] for more details.
+
+= Browsers need to support SameSite=None
+
+The cookies from the login flow are now served with `SameSite=None` as default.
+
+Old browsers might not be compatible with this, see https://www.chromium.org/updates/same-site/incompatible-clients/[known incompatible clients] for details.
+See the migration guide for details.

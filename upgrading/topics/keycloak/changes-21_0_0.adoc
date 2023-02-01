@@ -34,3 +34,18 @@ algorithms do not work on Java 17 or higher. If you use this algorithm and the o
 
 The possible workaround is to remove algorithms such as `++http://www.w3.org/2000/09/xmldsig#rsa-sha1++` or `++http://www.w3.org/2000/09/xmldsig#dsa-sha1++` from the list
 of "disallowed algorithms" configured on property `jdk.xml.dsig.secureValidationPolicy` in the file `$JAVA_HOME/conf/security/java.security`.
+
+= Browsers need to support SameSite=None
+
+The cookies from the login flow are now served with `SameSite=None` as default.
+
+Old browsers might not be compatible with this, see https://www.chromium.org/updates/same-site/incompatible-clients/[known incompatible clients] and https://caniuse.com/?search=SameSite%3DNone[Can I use SameSite=None] for details.
+At this point, we believe the only thing affected is the OIDC session status iframe.
+
+There are two possible mitigations:
+
+* The OIDC session status iframe can be disabled in the client side configuration, see https://www.keycloak.org/docs/latest/securing_apps/index.html#session-status-iframe[Session Status iframe] in the {adapterguide_name}.
+
+* Serving cookies without `SameSite=None` is now a deprecated feature named `legacy-cookies`, which is disabled by default, and will be removed in a future version.
+To ease the migration path, it can be enabled to allow more time to upgrade any outdated browsers.
+To enable it, see the https://www.keycloak.org/server/features[Enabling and disabling features] guide.
