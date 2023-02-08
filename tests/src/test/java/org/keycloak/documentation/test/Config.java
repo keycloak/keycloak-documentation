@@ -147,7 +147,7 @@ public class Config {
         try {
             File f;
             if (community) {
-                f = new File(docsRootDir, "/topics/templates/document-attributes-community.adoc");
+                f = new File(docsRootDir, "/topics/templates/document-attributes.adoc");
             } else {
                 f = new File(docsRootDir, "/topics/templates/document-attributes-product.adoc");
             }
