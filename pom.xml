@@ -102,7 +102,7 @@
                             </goals>
                             <configuration>
                                 <target>
-<!--                                    <echo>OUTPUT: file://${project.build.directory}/generated-docs/${masterFile}.html ${projectLatestBuild}</echo>-->
+                                    <echo>OUTPUT: file://${project.build.directory}/generated-docs/${masterFile}.html ${projectLatestBuild}</echo>
                                 </target>
                             </configuration>
                         </execution>
@@ -129,7 +129,7 @@
                                 <goal>header</goal>
                             </goals>
                             <configuration>
-<!--                                <masterFile>${masterFile}</masterFile>-->
+                                <masterFile>${masterFile}</masterFile>
                             </configuration>
                         </execution>
                     </executions>
