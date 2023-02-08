@@ -4,4 +4,3 @@
 :project_buildType: latest
 ifndef::asciidoctorconfigdir[:asciidoctorconfigdir: .]
 include::{asciidoctorconfigdir}/topics/templates/document-attributes.adoc[]
-// include::{asciidoctorconfigdir}/topics/templates/document-attributes-product.adoc[]
