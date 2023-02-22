@@ -60,7 +60,7 @@ should be replaced with the `CLIENT_ID` searchable field used with the operators
 
 = FIPS 140-2 preview support
 
-FIPS 140-2 support in Keycloak, which was experimental in the previous release, is now promoted to preview. There was lots of fixes and polishing done.
+FIPS 140-2 support in Keycloak, which was experimental in the previous release, is now promoted to preview. There were many fixes and improvements to create this preview version.
 For the details, see the hhttps://www.keycloak.org/guides#server[FIPS documentation]. Feedback is welcome!
 
 Thanks again to https://github.com/david-rh[David Anderson], https://github.com/sudeepd[Sudeep Das] and https://github.com/isaacjensen[Isaac Jensen]
