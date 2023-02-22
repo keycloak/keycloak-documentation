@@ -49,8 +49,8 @@ The zip file installation mechanism provides a quickstart for developers who wan
 
 .Procedure
 
- 1. From the desired realm, create a client configuration. At this point you won't have a Docker registry - the quickstart will take care of that part.
- 2. Choose the "Docker Compose YAML" option from the from _Action_ menu and select the *Download adapter config* option and download the .zip file
+ 1. From the desired realm, create a client configuration. At this point you will not have a Docker registry - the quickstart will take care of that part.
+ 2. Choose the "Docker Compose YAML" option from the from _Action_ menu and select the *Download adapter config* option to download the ZIP file.
  3. Unzip the archive to the desired location, and open the directory.
  4. Start the Docker registry with `docker-compose up`
 
