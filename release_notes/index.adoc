@@ -3,7 +3,7 @@
 :sectanchors:
 :linkattrs:
 
-include::topics/templates/document-attributes-community.adoc[]
+include::topics/templates/document-attributes.adoc[]
 
 :release_notes:
 
@@ -12,6 +12,19 @@ include::topics/templates/document-attributes-community.adoc[]
 :release_header_guide: {releasenotes_name_short}
 :release_header_latest_link: {releasenotes_link_latest}
 include::topics/templates/release-header.adoc[]
+
+== {project_name_full} 21.0.0
+include::topics/21_0_0.adoc[leveloffset=2]
+
+
+== {project_name_full} 20.0.0
+include::topics/20_0_0.adoc[leveloffset=2]
+
+== {project_name_full} 19.0.0
+include::topics/19_0_0.adoc[leveloffset=2]
+
+== {project_name_full} 18.0.0
+include::topics/18_0_0.adoc[leveloffset=2]
 
 == {project_name_full} 17.0.0
 include::topics/17_0_0.adoc[leveloffset=2]

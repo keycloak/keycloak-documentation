@@ -1,39 +1,36 @@
 [[_service_authorization_my_resources]]
-= Managing Access to Users Resources
+= Managing access to users resources
 
-Users can manage access to their resources using the {project_name} User Account Service. To enable
-this functionality, you must first enable User-Managed Access for your realm. To do so,
-open the realm settings page in {project_name} Administration Console and enable the User-Managed Access switch.
+Users can manage access to their resources using the {project_name} Account Console. To enable
+this functionality, you must first enable User-Managed Access for your realm.
 
-image:{project_images}/service/account-my-resource.png[alt="My Resources"]
+.Procedure
 
-On the left side menu, the `My Resources` option leads to a page where users are able to:
+. Log into the Admin Console.
 
-* Manage Permission Requests that *Need my approval*
+. Click *Realm Settings* in the menu.
+
+. Toggle *User-Managed Access* to *ON*.
+
+. Click the user name at the top right of the Admin Console and select *Manage Account*.
 +
-This section contains a list of all permission requests awaiting approval. These requests are connected to the parties (users) requesting access to
-a particular resource. Users are allowed to approve or deny these requests.
-+
+image:images/service/account-my-resource.png[alt="My Resources"]
+
+. Click *My Resources* in the menu option. A page displays with the following options.
 * Manage *My resources*
 +
 This section contains a list of all resources owned by the user. Users can click on a resource for more details
 and share the resource with others.
+When there is a permission requests awaiting approval an icon is put next to the name of the resource.
+These requests are connected to the parties (users) requesting access to a particular resource.
+Users are allowed to approve or deny these requests. You can do so by clicking the icon
++
+image:images/service/account-my-resource-detail.png[alt="Resource Detail"]
 +
 * Manage *Resources shared with me*
 +
 This section contains a list of all resources shared with the user.
 +
-* Manage *Your requests waiting approval*
-+
-This section contains a list of permission requests sent by the user that are waiting for the approval of another user or
-resource owner.
-
-When the user choose to detail own of his resources by clicking on any resource in the "My resources" listing, he is redirected to a
-page as follows:
-
-image:{project_images}/service/account-my-resource-detail.png[alt="Resource Detail"]
-
-From this page the users are able to:
 
 * Manage *People with access to this resource*
 +

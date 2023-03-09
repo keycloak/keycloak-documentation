@@ -9,7 +9,7 @@ include::../templates/techpreview.adoc[]
 
 [NOTE]
 ====
-In order to use token exchange you should also enable the `token_exchange` feature. Please, take a look at link:{installguide_profile_link}[{installguide_profile_name}].
+In order to use token exchange you should also enable the `token_exchange` feature. Please, take a look at the https://www.keycloak.org/server/features[Enabling and disabling features] guide.
 ====
 
 === How token exchange works
@@ -98,7 +98,7 @@ a JSON document as described in the link:https://datatracker.ietf.org/doc/html/d
 
 Clients requesting a refresh token will get back both an access and refresh token in the response.  Clients requesting only
 access token type will only get an access token in the response.  Expiration information may or may not be included for
-clients requesting an external issuer through the `requested_issuer` paramater.
+clients requesting an external issuer through the `requested_issuer` parameter.
 
 Error responses generally fall under the 400 HTTP response code category, but other error status codes may be returned
 depending on the severity of the error.  Error responses may include content depending on the `requested_issuer`.
@@ -123,11 +123,10 @@ The rest of this chapter discusses the setup requirements and provides examples 
 For simplicity's sake, let's call a token minted by the current realm as an _internal_ token and a token minted by
 an external realm or identity provider as an _external_ token.
 
-
 === Internal token to internal token exchange
 
 With an internal token to token exchange you have an existing token minted to a specific client and you want to exchange
-this token for a new one minted for a different target client.  Why would you want to do this?  This generally happens+
+this token for a new one minted for a different target client.  Why would you want to do this?  This generally happens
 when a client has a token minted for itself, and needs to make additional requests to other applications that require different
 claims and permissions within the access token.  Other reasons this type of exchange might be required is if you
 need to perform a "permission downgrade" where your app needs to invoke on a less trusted app and you don't want
@@ -140,14 +139,14 @@ Clients that want to exchange tokens for a different client need to be authorize
 You need to define a `token-exchange` fine grain permission in the target client you want permission to exchange to.
 
 .Target Client Permission
-image:{project_images}/exchange-target-client-permission-unset.png[Target Client Permission]
+image:images/exchange-target-client-permission-unset.png[Target Client Permission]
 
 .Procedure
 
-. Toggle *Permissions Enabled* to *ON*.
+. Toggle *Permissions Enabled* to *On*.
 +
 .Target Client Permission
-image:{project_images}/exchange-target-client-permission-set.png[]
+image:images/exchange-target-client-permission-set.png[Target Client Exchange Permission Set]
 +
 That page displays a *token-exchange* link.
 
@@ -156,27 +155,29 @@ That page displays a *token-exchange* link.
 This setup page displays.
 +
 .Target Client Exchange Permission Setup
-image:{project_images}/exchange-target-client-permission-setup.png[Target Client Exchange Permission Setup]
+image:images/exchange-target-client-permission-setup.png[Target Client Exchange Permission Setup]
 
-. Define a policy for this permission by clicking the *Authorization* link
-
+. Click *Client details* in the breadcrumbs at the top of the screen.
+. Define a policy for this permission.
+. Click *Authorization* in the breadcrumbs at the top of the screen.
+. Define a policy for this permission.
 . Click the *Policies* tab.
-
-. Create a *Client* Policy.
+. Create a *Client* Policy by clicking *Create policy* button.
 +
 .Client Policy Creation
-image:{project_images}/exchange-target-client-policy.png[]
+image:images/exchange-target-client-policy.png[Client Policy Creation]
 
 . Enter in the starting client that is the authenticated client that is requesting a token exchange.
 
 . After you create this policy, go back to the target client's *token-exchange* permission and add the client policy you just defined.
 +
 .Apply Client Policy
-image:{project_images}/exchange-target-client-exchange-apply-policy.png[]
+image:images/exchange-target-client-exchange-apply-policy.png[Apply Client Policy]
 
 Your client now has permission to invoke.  If you do not do this correctly, you will get a 403 Forbidden response if you
 try to make an exchange.
 
+[[_internal_internal_making_request]]
 ==== Making the request
 
 When your client is exchanging an existing token for a token targeting another client, you use the `audience` parameter.
@@ -194,10 +195,18 @@ curl -X POST \
     http://localhost:8080{kc_realms_path}/myrealm/protocol/openid-connect/token
 ----
 
-
 The `subject_token` parameter must be an access token for the target realm.  If your `requested_token_type` parameter
 is a refresh token type, then the response will contain both an access token, refresh token, and expiration.  Here's
 an example JSON response you get back from this call.
+
+When the `audience` parameter is not set, the value of the parameter defaults to the client making the token exchange request.
+
+Unlike with confidential clients, public clients are not allowed to perform token exchanges using tokens from other clients.
+If you are passing a `subject_token`, the (confidential) client that was issued the token should either match the client making the request or, if issued to a different client,
+the client making the request should be among the audiences set to the token.
+
+If you are explicitly setting a target `audience` (with a client different from the client making the request), you should also make sure that the `token-exchange` scope permission is configured for the client set to the `audience` parameter to allow
+the client making the request to successfully complete the exchange.
 
 [source,json]
 ----
@@ -210,7 +219,7 @@ an example JSON response you get back from this call.
 
 === Internal token to external token exchange
 
-You can exchange a realm token for an externl token minted by an external identity provider.  This external identity provider
+You can exchange a realm token for an external token minted by an external identity provider.  This external identity provider
 must be configured within the `Identity Provider` section of the Admin Console.  Currently only OAuth/OpenID Connect based external
 identity providers are supported, this includes all social providers.  {project_name} does not perform a backchannel exchange to the external provider.  So if the account
 is not linked, you will not be able to get the external token.  To be able to obtain an external token one of
@@ -232,14 +241,14 @@ discussed more in the <<_internal_external_making_request, Making the Request>> 
 Internal to external token exchange requests will be denied with a 403, Forbidden response until you grant permission for the calling client to exchange tokens with the external identity provider.  To grant permission to the client, you go to the identity provider's configuration page to the *Permissions* tab.
 
 .Identity Provider Permission
-image:{project_images}/exchange-idp-permission-unset.png[]
+image:images/exchange-idp-permission-unset.png[Identity Provider Exchange Permission]
 
 .Procedure
 
-. Toggle *Permissions Enabled* to *ON*.
+. Toggle *Permissions Enabled* to *On*.
 +
 .Identity Provider Permission
-image:{project_images}/exchange-idp-permission-set.png[]
+image:images/exchange-idp-permission-set.png[Identity Provider Exchange Permission Set]
 +
 The page displays *token-exchange* link.
 
@@ -248,19 +257,21 @@ The page displays *token-exchange* link.
 This setup page appears.
 +
 .Identity Provider Exchange Permission Setup
-image:{project_images}/exchange-idp-permission-setup.png[Identity Provider Exchange Permission Setup]
+image:images/exchange-idp-permission-setup.png[Identity Provider Exchange Permission Setup]
 
-. Click the *Authorization* link and go to the *Policies* tab to create a client policy.
+. Click *Client details* in the breadcrumbs at the top of the screen.
+
+. Click *Policies* tab to create a client policy.
 +
 .Client Policy Creation
-image:{project_images}/exchange-idp-client-policy.png[Client Policy Creation]
+image:images/exchange-idp-client-policy.png[Client Policy Creation]
 
 . Enter the starting client that is the authenticated client that is requesting a token exchange.
 
 . Return to the identity provider's *token-exchange* permission and add the client policy you just defined.
 +
 .Apply Client Policy
-image:{project_images}/exchange-idp-apply-policy.png[Apply Client Policy]
+image:images/exchange-idp-apply-policy.png[Apply Client Policy]
 
 Your client now has permission to invoke.  If you do not do this correctly, you will get a 403 Forbidden response if you try to make an exchange.
 
@@ -431,7 +442,7 @@ WARNING: It is very risky to enable direct naked impersonation for a client.  If
 If the `audience` parameter is provided, then the calling client must have permission to exchange to the client.  How
 to set this up is discussed earlier in this chapter.
 
-Additionally, the calling client must be granted permission to impersonate users.  In the Admin Console.
+Additionally, the calling client must be granted permission to impersonate users.
 
 .Procedure
 
@@ -440,28 +451,27 @@ Additionally, the calling client must be granted permission to impersonate users
 . Click the *Permissions* tab.
 +
 .User Permissions
-image:{project_images}/exchange-users-permission-unset.png[User Permissions]
+image:images/exchange-users-permission-unset.png[User Permissions]
 
-. Toggle *Permissions Enabled* to true.
+. Toggle *Permissions Enabled* to *On*.
 +
 .Identity Provider Permission
-image:{project_images}/exchange-users-permission-set.png[]
+image:images/exchange-users-permission-set.png[Users Impersonation Permission Set]
 +
-The page displays an *impersonation* link.
-
+The page displays an *impersonate* link.
 . Click that link to start defining the permission.
 +
 This setup page displays.
 +
 .Users Impersonation Permission Setup
-image:{project_images}/exchange-users-permission-setup.png[Users Impersonation Permission Setup]
+image:images/exchange-users-permission-setup.png[Users Impersonation Permission Setup]
 
-. Click the *Authorization* link
-
+. Click *Client details* in the breadcrumbs at the top of the screen.
+. Define a policy for this permission.
 . Go to the *Policies* tab and create a client policy.
 +
 .Client Policy Creation
-image:{project_images}/exchange-users-client-policy.png[Client Policy Creation]
+image:images/exchange-users-client-policy.png[Client Policy Creation]
 
 . Enter the starting client that is the authenticated client that is requesting a token exchange.
 
@@ -469,7 +479,7 @@ image:{project_images}/exchange-users-client-policy.png[Client Policy Creation]
 defined.
 +
 .Apply Client Policy
-image:{project_images}/exchange-users-apply-policy.png[Apply Client Policy]
+image:images/exchange-users-apply-policy.png[Apply Client Policy]
 
 Your client now has permission to impersonate users.  If you do not do this correctly, you will get a 403 Forbidden response if you
 try to make this type of exchange.
@@ -509,7 +519,7 @@ are any untrustworthy clients that are managed by your realm, public clients may
 This is why direct naked exchanges do not allow public clients and will abort with an error if the calling client is public.
 
 It is possible to exchange social tokens provided by Facebook, Google, etc. for a realm token.  Be careful and vigilante on what
-the exchange token is allowed to do as its not hard to create fake accounts on these social websites.  Use default roles, groups, and identity provider mappers to control what attributes and roles
+the exchange token is allowed to do as it's not hard to create fake accounts on these social websites.  Use default roles, groups, and identity provider mappers to control what attributes and roles
 are assigned to the external social user.
 
 Direct naked exchanges are quite dangerous.  You are putting a lot of trust in the calling client that it will never leak out
