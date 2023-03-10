@@ -12,7 +12,7 @@ The most important endpoint to understand is the `well-known` configuration endp
 
 To obtain the full URL, add the base URL for {project_name} and replace `{realm-name}` with the name of your realm. For example:
 
-$$http://localhost:8080/auth/realms/master/.well-known/openid-configuration$$
+\http://localhost:8080{kc_realms_path}/master/.well-known/openid-configuration
 
 Some RP libraries retrieve all required endpoints from this endpoint, but for others you might need to list the endpoints individually.
 
@@ -90,7 +90,7 @@ https://openid.net/specs/openid-connect-registration-1_0.html[OpenID Connect Dyn
 /realms/{realm-name}/protocol/openid-connect/revoke
 ....
 
-The token revocation endpoint is used to revoke tokens. Both refresh tokens and access tokens are supported by this endpoint.
+The token revocation endpoint is used to revoke tokens. Both refresh tokens and access tokens are supported by this endpoint. When revoking a refresh token the user consent for the corresponding client is also revoked.
 
 For more details on how to invoke on this endpoint, see https://datatracker.ietf.org/doc/html/rfc7009[OAuth 2.0 Token Revocation specification].
 
@@ -122,7 +122,7 @@ The downside to this approach is that you have to make a network invocation to t
 server if you have too many validation requests going on at the same time.  {project_name} issued access tokens are https://datatracker.ietf.org/doc/html/rfc7519[JSON Web Tokens (JWT)] digitally signed and encoded using https://datatracker.ietf.org/doc/html/rfc7515[JSON Web Signature (JWS)].
 Because they are encoded in this way, this allows you to locally validate access tokens using the public key of the issuing realm.  You can either hard code the
 realm's public key in your validation code, or lookup and cache the public key using the <<_certificate_endpoint, certificate endpoint>> with the Key ID (KID) embedded within the
-JWS.  Depending what language you code in, there are a multitude of third party libraries out there that can help you with JWS validation.
+JWS.  Depending on what language you code in, there are a multitude of third party libraries out there that can help you with JWS validation.
 
 
 ==== Flows
@@ -179,7 +179,7 @@ For more details refer to the https://datatracker.ietf.org/doc/html/rfc6749#sect
 The following example shows how to obtain an access token for a user in the realm `master` with username `user` and password `password`. The example is using
 the confidential client `myclient`:
 
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
 curl \
   -d "client_id=myclient" \
@@ -187,7 +187,7 @@ curl \
   -d "username=user" \
   -d "password=password" \
   -d "grant_type=password" \
-  "http://localhost:8080/auth/realms/master/protocol/openid-connect/token"
+  "http://localhost:8080{kc_realms_path}/master/protocol/openid-connect/token"
 ----
 
 ===== Client credentials

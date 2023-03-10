@@ -1,20 +1,21 @@
 [[_service_protection_whatis_obtain_pat]]
-= What is a PAT and How to Obtain It
+= What is a PAT and how to obtain it
 
 A *protection API token* (PAT) is a special OAuth2 access token with a scope defined as  *uma_protection*. When you create a resource server, {project_name} automatically
 creates a role, _uma_protection_, for the corresponding client application and associates it with the client's service account.
 
 .Service Account granted with *uma_protection* role
-image:{project_images}/service/rs-uma-protection-role.png[alt="Service Account granted with uma_protection role"]
+image:images/service/rs-uma-protection-role.png[alt="Service Account granted with uma_protection role"]
 
 Resource servers can obtain a PAT from {project_name} like any other OAuth2 access token. For example, using curl:
 
-```bash
+[source,bash,subs="attributes+"]
+----
 curl -X POST \
     -H "Content-Type: application/x-www-form-urlencoded" \
     -d 'grant_type=client_credentials&client_id=${client_id}&client_secret=${client_secret}' \
-    "http://localhost:8080/auth/realms/${realm_name}/protocol/openid-connect/token"
-```
+    "http://localhost:8080{kc_realms_path}/${realm_name}/protocol/openid-connect/token"
+----
 
 The example above is using the *client_credentials* grant type to obtain a PAT from the server. As a result, the server returns a response similar to the following:
 

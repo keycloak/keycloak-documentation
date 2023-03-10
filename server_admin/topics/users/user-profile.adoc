@@ -1,9 +1,9 @@
-
-= User Profile
+[[user-profile]]
+= Defining a user profile
 
 In {project_name} a user is associated with a set of attributes. These attributes are used to better describe and identify users within {project_name} as well as to pass over additional information about them to applications.
 
-A user profile defines a well-defined schema for representing user attributes and how they are managed within a realm. By providing a consistent view over user information, it allows administrators to control the different aspects on how attributes are managed as well as to make a lot easier to extend {project_name} to support additional attributes.
+A user profile defines a well-defined schema for representing user attributes and how they are managed within a realm. By providing a consistent view over user information, it allows administrators to control the different aspects on how attributes are managed as well as to make it much easier to extend {project_name} to support additional attributes.
 
 Among other capabilities, user profile enables administrators to:
 
@@ -36,6 +36,7 @@ In the future, the legacy behavior will no longer be supported in {project_name}
 
 :tech_feature_name: Declarative User Profile
 :tech_feature_setting: -Dkeycloak.profile.feature.declarative_user_profile=enabled
+:tech_feature_id: declarative-user-profile
 include::../templates/techpreview.adoc[]
 
 In addition to enabling the `declarative_user_profile` feature, you should enable User Profile for a realm. To do that, click on the `Realm Settings` link on
@@ -78,7 +79,7 @@ In the next section, you are going to learn how to manage the configuration from
 
 At the `Attributes` sub-tab you can create, edit, and delete the attributes associated with the user profile.
 
-To define a new attribute and associate it with the user profile, click on the `Create` button in the top-right corner of the attribute listing.
+To define a new attribute and associate it with the user profile, click on the *Create attribute* button at the top the attribute listing.
 
 .Attribute Configuration
 image:images/user-profile-create-attribute.png[]
@@ -230,9 +231,9 @@ image:images/user-profile-validation.png[]
 ==== Managing annotations
 
 In order to pass additional information to frontends, attributes can be decorated with
-annotations to dictate how attributes are rendered. This capability is mainly useful when extending {project_name} themes 
-to render pages dynamically based on the annotations associated with attributes. 
-This mechanism is used for example to link:#_configurin_form_input_field_for_attribute[configure Form input filed for attribute].
+annotations to dictate how attributes are rendered. This capability is mainly useful when extending {project_name} themes
+to render pages dynamically based on the annotations associated with attributes.
+This mechanism is used for example to link:#_configuring_form_input_field_for_attribute[configure Form input filed for attribute].
 
 .Attribute Annotation
 image:images/user-profile-annotation.png[]
@@ -249,7 +250,7 @@ image:images/user-profile-attribute-group-list.png[]
 You can't delete attribute groups that are bound to attributes. For that, you should first update the attributes to remove the binding.
 ====
 
-To create a new group, click on the `Create` button in the top-right corner of the attribute groups listing.
+To create a new group, click on the *Create attributes group* button on the top of the attribute groups listing.
 
 .Attribute Group Configuration
 image:images/user-profile-create-attribute-group.png[]
@@ -444,7 +445,7 @@ The default rendering mechanism provides the following capabilities:
 
 === Ordering attributes
 
-The attributes order is set by clicking on the up and down arrows when at the attribute listing page.
+The attributes order is set by dragging and dropping the attribute rows on the attribute listing page.
 
 .Ordering Attributes
 image:images/user-profile-attribute-list-order.png[]
@@ -463,7 +464,7 @@ image:images/user-profile-update-profile.png[]
 When attributes are linked to an attribute group, the attribute order is also important to make sure attributes within the same group are close together, within a same group header. Otherwise, if attributes within a group do not have a sequential order you might have the same group header rendered multiple times in the dynamic form.
 ====
 
-[[_configurin_form_input_field_for_attribute]]
+[[_configuring_form_input_field_for_attribute]]
 === Configuring Form input filed for Attributes
 
 {project_name} provides built-in annotations to configure which input type will be used for the attribute in dynamic forms and other aspects of it's visualization.
@@ -478,11 +479,11 @@ Available annotations are:
 |Type of the form input field. Available types are described in a table below.
 
 |inputHelperTextBefore
-|Helper text rendered before (above) the input field. Direct text or internationalization pattern (like `${i18n.key}`) can be used here. 
-Text is NOT html escaped when rendered into the page, so you can use html tags here to format the text, but you also have to correctly escape html control characters.  
+|Helper text rendered before (above) the input field. Direct text or internationalization pattern (like `${i18n.key}`) can be used here.
+Text is NOT html escaped when rendered into the page, so you can use html tags here to format the text, but you also have to correctly escape html control characters.
 
 |inputHelperTextAfter
-|Helper text rendered after (under) the input field. Direct text or internationalization pattern (like `${i18n.key}`) can be used here. 
+|Helper text rendered after (under) the input field. Direct text or internationalization pattern (like `${i18n.key}`) can be used here.
 Text is NOT html escaped when rendered into the page, so you can use html tags here to format the text, but you also have to correctly escape html control characters.
 
 |inputOptionsFromValidation
@@ -495,38 +496,38 @@ Text is NOT html escaped when rendered into the page, so you can use html tags h
 |Annotation for select and multiselect types. Optional map to define UI labels for options (directly or using internationalization). See link:#_managing_options_for_select_fields[detailed description] below.
 
 |inputTypePlaceholder
-|HTML input `placeholder` attribute applied to the field - specifies a short hint that describes the expected value of an input field (e.g. a sample value 
+|HTML input `placeholder` attribute applied to the field - specifies a short hint that describes the expected value of an input field (e.g. a sample value
 or a short description of the expected format). The short hint is displayed in the input field before the user enters a value.
 
 |inputTypeSize
-|HTML input `size` attribute applied to the field - specifies the width, in characters, of an single line input field. For fields based on HTML `select` type 
+|HTML input `size` attribute applied to the field - specifies the width, in characters, of a single line input field. For fields based on HTML `select` type
 it specifies number of rows with options shown. May not work, depending on css in used theme!
 
 |inputTypeCols
 |HTML input `cols` attribute applied to the field - specifies the width, in characters, for `textarea` type. May not work, depending on css in used theme!
 
 |inputTypeRows
-|HTML input `rows` attribute applied to the field - specifies the height, in characters, for `textarea` type. For select fields it specifies number 
+|HTML input `rows` attribute applied to the field - specifies the height, in characters, for `textarea` type. For select fields it specifies number
 of rows with options shown. May not work, depending on css in used theme!
 
 |inputTypePattern
-|HTML input `pattern` attribute applied to the field providing client side validation - specifies a regular expression that an input field's value 
+|HTML input `pattern` attribute applied to the field providing client side validation - specifies a regular expression that an input field's value
 is checked against. Useful for single line inputs.
 
 |inputTypeMaxLength
-|HTML input `maxlength` attribute applied to the field providing client side validation - maximal length of the text which can be entered into the input 
+|HTML input `maxlength` attribute applied to the field providing client side validation - maximal length of the text which can be entered into the input
 field. Useful for text fields.
 
 |inputTypeMinLength
-|HTML input `minlength` attribute applied to the field providing client side validation - minimal length of the text which can be entered into the input 
+|HTML input `minlength` attribute applied to the field providing client side validation - minimal length of the text which can be entered into the input
 field. Useful for text fields.
 
 |inputTypeMax
-|HTML input `max` attribute applied to the field providing client side validation - maximal value which can be entered into the input field. 
+|HTML input `max` attribute applied to the field providing client side validation - maximal value which can be entered into the input field.
 Useful for numeric fields.
 
 |inputTypeMin
-|HTML input `min` attribute applied to the field providing client side validation - minimal value which can be entered into the input field. 
+|HTML input `min` attribute applied to the field providing client side validation - minimal value which can be entered into the input field.
 Useful for numeric fields.
 
 |inputTypeStep
@@ -536,9 +537,9 @@ Useful for numeric fields.
 
 [NOTE]
 ====
-Field types use HTML form field tags and attributes applied to them - they behave based on the HTML specifications and browser support for them. 
+Field types use HTML form field tags and attributes applied to them - they behave based on the HTML specifications and browser support for them.
 
-Visual rendering also depends on css styles applied in the used theme.  
+Visual rendering also depends on css styles applied in the used theme.
 ====
 
 Available `inputType` annotation values:
@@ -617,42 +618,42 @@ Available `inputType` annotation values:
 [[_managing_options_for_select_fields]]
 ==== Defining options for select and multiselect fields
 
-Options for select and multiselect fields are taken from validation applied to the attribute to be 
+Options for select and multiselect fields are taken from validation applied to the attribute to be
 sure validation and field options presented in UI are always consistent. By default, options are taken from built-in `options` validation.
 
-You can use various ways to provide nice human readable labels for select and multiselect options. The simplest 
-case is when attribute values are same as UI labels. No any extra configuration is necessary in this case.
+You can use various ways to provide nice human-readable labels for select and multiselect options. The simplest
+case is when attribute values are same as UI labels. No extra configuration is necessary in this case.
 
-.Option values same as UI labels 
+.Option values same as UI labels
 image:images/user-profile-select-options-simple.png[]
 
-When attribute value is kind of ID not suitable for UI, you can use simple internationalization support provided 
+When attribute value is kind of ID not suitable for UI, you can use simple internationalization support provided
 by `inputOptionLabelsI18nPrefix` annotation. It defines prefix for internationalization keys, option value is dot appended to this prefix.
 
-.Simple internationalization for UI labels using i18n key prefix 
+.Simple internationalization for UI labels using i18n key prefix
 image:images/user-profile-select-options-simple-i18n.png[]
 
-Localized UI label texts for option value have to be provided by `userprofile.jobtitle.sweng` and `userprofile.jobtitle.swarch` 
+Localized UI label texts for option value have to be provided by `userprofile.jobtitle.sweng` and `userprofile.jobtitle.swarch`
 keys then, using common localization mechanism.
 
-You can also use `inputOptionLabels` annotation to provide labels for individual options. It contains map of labels for option - key in the map is 
-option value (defined in validation), and value in the map is UI label text itself or its internationalization pattern (like `${i18n.key}`) for that option. 
+You can also use `inputOptionLabels` annotation to provide labels for individual options. It contains map of labels for option - key in the map is
+option value (defined in validation), and value in the map is UI label text itself or its internationalization pattern (like `${i18n.key}`) for that option.
 
 [NOTE]
 ====
-You have to use User Profile `JSON Editor` to enter map as `inputOptionLabels` annotation value.  
+You have to use User Profile `JSON Editor` to enter map as `inputOptionLabels` annotation value.
 ====
 
 
 Example of directly entered labels for individual options without internationalization:
-[source:json]
+[source,json]
 ----
 "attributes": [
-...
+<...
 {
   "name": "jobTitle",
   "validations": {
-    "options": { 
+    "options": {
       "options":[
         "sweng",
         "swarch"
@@ -672,14 +673,14 @@ Example of directly entered labels for individual options without internationali
 ----
 
 Example of the internationalized labels for individual options:
-[source:json]
+[source,json]
 ----
 "attributes": [
 ...
 {
   "name": "jobTitle",
   "validations": {
-    "options": { 
+    "options": {
       "options":[
         "sweng",
         "swarch"
@@ -699,8 +700,8 @@ Example of the internationalized labels for individual options:
 ----
 Localized texts have to be provided by `jobtitle.swengineer` and `jobtitle.swarchitect` keys then, using common localization mechanism.
 
-Custom validator can be used to provide options thanks to `inputOptionsFromValidation` attribute annotation. 
-This validation have to have `options` config providing array of options. Internationalization works the same way as for options 
+Custom validator can be used to provide options thanks to `inputOptionsFromValidation` attribute annotation.
+This validation have to have `options` config providing array of options. Internationalization works the same way as for options
 provided by built-in `options` validation.
 
 .Options provided by custom validator
@@ -723,9 +724,9 @@ When enabled, the `VerifyProfile` action is going to perform the following steps
 * If the user profile is compliant with the configuration, no additional step is performed, and the user continues with the authentication process.
 
 By default, the `VerifyProfile` action is disabled. To enabled it, click on the
-`Authentication` link on the left side menu and then click on the `Required Actions` tab. At this tab, click on the `Register` button and select the `VerifyProfile` action.
+`Authentication` link on the left side menu and then click on the `Required Actions` tab. At this tab, select the *Enabled* switch of the `VerifyProfile` action.
 
-.Registring the VerifyProfile Required Action
+.Registering the VerifyProfile Required Action
 image:images/user-profile-register-verify-profile-action.png[]
 
 == Migrating to User Profile

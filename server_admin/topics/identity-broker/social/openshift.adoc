@@ -32,7 +32,8 @@ grantMethod: prompt <4>
 +
 . In {project_name}, paste the value of the *Client ID* into the *Client ID* field.
 . In {project_name}, paste the value of the *Client Secret* into the *Client Secret* field.
-. Click *Save*.
+
+. Click *Add*.
 
 ==== OpenShift 4
 
@@ -78,6 +79,7 @@ grantMethod: prompt <4>
 +
 . In {project_name}, paste the value of the *Client ID* into the *Client ID* field.
 . In {project_name}, paste the value of the *Client Secret* into the *Client Secret* field.
-. Click *Save*.
+
+. Click *Add*.
 
 See https://docs.okd.io/latest/authentication/configuring-oauth-clients.html#oauth-register-additional-client_configuring-oauth-clients[official OpenShift documentation] for more information.

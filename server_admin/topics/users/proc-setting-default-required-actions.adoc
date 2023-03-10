@@ -8,4 +8,5 @@ You can specify what actions are required before the first login of all new user
 
 . Click *Authentication* in the menu.
 . Click the *Required Actions* tab.
-. Click the checkbox in the *Default Action* column for one or more required actions. When a new user logs in for the first time, the selected actions must be executed.
+. Click the checkbox in the *Set as default action* column for one or more required actions. When a new user logs in for the first time, the selected actions must be executed.
+

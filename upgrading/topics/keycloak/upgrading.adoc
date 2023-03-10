@@ -1,6 +1,6 @@
 [[_upgrading]]
 
-== Upgrading {project_name} Server
+== Upgrading the {project_name} server
 
 include::../prep_migration.adoc[leveloffset=1]
 
@@ -10,12 +10,6 @@ include::../migrate_db.adoc[leveloffset=1]
 
 include::../migrate_themes.adoc[leveloffset=1]
 
-
-== Upgrading {project_name} adapters
-
 include::../upgrade_adapters.adoc[leveloffset=1]
-
-
-== Upgrading {project_name} Admin Client
 
 include::../upgrade_admin_client.adoc[leveloffset=1]

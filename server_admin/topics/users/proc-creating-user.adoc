@@ -3,7 +3,7 @@
 // server_admin/topics/users.adoc
 
 [id="proc-creating-user_{context}"]
-= Creating a user
+= Creating users
 
 [role="_abstract"]
 You create users in the realm where you intend to have applications needed by those users. Avoid creating users in the master realm, which is only intended for creating other realms.
@@ -27,7 +27,7 @@ ifdef::api-management[]
 . Toggle *Email Verified* to *ON*.
 . Click *Save*.
 . In the *Credentials* tab, set the password in both fields.
-.. Toggle *Temporary* to *OFF* to avoid resetting the password during the next log in.
+.. Toggle *Temporary* to *OFF* to avoid resetting the password during the next login.
 .. Click *Reset Password*.
 .. Click *Change Password*.
 .. Click *Save*.

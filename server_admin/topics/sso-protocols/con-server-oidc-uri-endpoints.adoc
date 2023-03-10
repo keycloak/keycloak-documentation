@@ -2,11 +2,11 @@
 
 ====  {project_name} server OIDC URI endpoints
 [role="_abstract"]
-The following is a list of OIDC endpoints that {project_name} publishes. These endpoints can be used when a non-{project_name} client adapter uses OIDC to communicate with the authentication server. They are all relative URLs. The root of the URL consists of the HTTP(S) protocol, hostname, and the path, which is usually prefixed with _/auth_:  For example
+The following is a list of OIDC endpoints that {project_name} publishes. These endpoints can be used when a non-{project_name} client adapter uses OIDC to communicate with the authentication server. They are all relative URLs. The root of the URL consists of the HTTP(S) protocol, hostname, and optionally the path:  For example
 
 [source, subs="attributes"]
 ----
-https://localhost:8080/auth
+https://localhost:8080{kc_base_path}
 ----
 
 /realms/{realm-name}/protocol/openid-connect/auth::
@@ -29,5 +29,11 @@ https://localhost:8080/auth
 
 /realms/{realm-name}/protocol/openid-connect/auth/device::
   Used for Device Authorization Grant to obtain a device code and a user code.
+
+/realms/{realm-name}/protocol/openid-connect/ext/ciba/auth::
+  This is the URL endpoint for Client Initiated Backchannel Authentication Grant to obtain an auth_req_id that identifies the authentication request made by the client.
+
+/realms/{realm-name}/protocol/openid-connect/logout/backchannel-logout::
+  This is the URL endpoint for performing backchannel logouts described in the OIDC specification.
 
 In all of these, replace {realm-name} with the name of the realm.
