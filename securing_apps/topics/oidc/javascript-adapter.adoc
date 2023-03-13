@@ -461,7 +461,7 @@ For example enforce displaying the login screen in case of value `login`. See li
 for the details and all the possible values of the `prompt` parameter.
 * maxAge - Used just if user is already authenticated. Specifies maximum time since the authentication of user happened. If user is already authenticated for longer time than `maxAge`, the SSO is ignored and he will need to re-authenticate again.
 * loginHint - Used to pre-fill the username/email field on the login form.
-* scope - Override the scope configured in `init` with a different value for this specific login
+* scope - Override the scope configured in `init` with a different value for this specific login.
 * idpHint - Used to tell {project_name} to skip showing the login page and automatically redirect to the specified identity
 provider instead. More info in the link:{adminguide_link}#_client_suggested_idp[Identity Provider documentation].
 * acr - Contains the information about `acr` claim, which will be sent inside `claims` parameter to the {project_name} server. Typical usage
