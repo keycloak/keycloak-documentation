@@ -63,7 +63,7 @@ return a `ReadOnlyException`.
 
 The `UserFederationProvider` query methods such as `searchByAttributes()` and `getGroupMembers()` are now encapsulated
 in an optional interface `UserQueryProvider`. If you do not implement this interface, then users will not be viewable
-in the admin console.  You'll still be able to login though.
+in the admin console.  You'll still be able to log in though.
 
 ==== UserFederationProviderFactory versus UserStorageProviderFactory
 
@@ -83,7 +83,7 @@ So, knowing this there are different approaches you can take.
 . You can remove the earlier provider in your earlier {project_name} deployment. This will remove the local linked copies
   of all users you imported.  Then, when you upgrade {project_name}, just deploy and configure your new provider for your realm.
 . The second option is to write your new provider making sure it has the same provider ID: `UserStorageProviderFactory.getId()`.
-  Make sure this provider is in the `standalone/deployments/` directory of the new {project_name} installation.  Boot the server, and have
+  Make sure this provider is deployed to the server.  Boot the server, and have
   the built-in migration script convert from the earlier data model to the later data model. In this case all your earlier linked imported
   users will work and be the same.
 

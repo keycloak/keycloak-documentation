@@ -4,13 +4,13 @@
 [role="_abstract"]
 Instead of registering a SAML 2.0 client manually, you can import the client using a standard SAML Entity Descriptor XML file.
 
-The Add Client page includes an *Import* option.
+The Client page includes an *Import client* option.
 
 .Add client
-image:{project_images}/add-client-saml.png[]
+image:images/import-client-saml.png[Import SAML client]
 
 .Procedure
-. Click *Select File*.
+. Click *Browse*.
 . Load the file that contains the XML entity descriptor information.  
 . Review the information to ensure everything is set up correctly.
 
@@ -18,6 +18,6 @@ Some SAML client adapters, such as _mod-auth-mellon_, need the XML Entity Descri
 
 [source, subs="attributes"]
 ----
-root/auth/realms/{realm}/protocol/saml/descriptor
+root{kc_realms_path}/{realm}/protocol/saml/descriptor
 ----
 where _realm_ is the realm of your client.

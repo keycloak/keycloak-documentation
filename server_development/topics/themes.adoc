@@ -1,3 +1,4 @@
+
 [[_themes]]
 == Themes
 
@@ -31,19 +32,14 @@ NOTE: To set the theme for the `master` Admin Console you need to set the Admin 
 +
 . To see the changes to the Admin Console refresh the page.
 
-. Change the welcome theme by editing `standalone.xml`, `standalone-ha.xml`, or `domain.xml`.
+. Change the welcome theme by using the `spi-theme-welcome-theme` option.
 
-. Add `welcomeTheme` to the theme element, for example:
+. For example:
 +
-[source,xml]
+[source,bash]
 ----
-<theme>
-    ...
-    <welcomeTheme>custom-theme</welcomeTheme>
-    ...
-</theme>
+bin/kc.[sh|bat] start --spi-theme-welcome-theme=custom-theme
 ----
-. Restart the server for the changes to the welcome theme to take effect.
 
 === Default themes
 
@@ -73,19 +69,11 @@ restarting {project_name}.
 
 .Procedure
 
-. Edit `standalone.xml`.
-
-. For `theme` set `staticMaxAge` to `-1` and both
-`cacheTemplates` and `cacheThemes` to `false`:
+. Run Keycloak with the following options:
 +
-[source,xml]
+[source,bash]
 ----
-<theme>
-    <staticMaxAge>-1</staticMaxAge>
-    <cacheThemes>false</cacheThemes>
-    <cacheTemplates>false</cacheTemplates>
-    ...
-</theme>
+bin/kc.[sh|bat] start --spi-theme-static-max-age=-1 --spi-theme-cache-themes=false --spi-theme-cache-templates=false
 ----
 
 . Create a directory in the `themes` directory.
@@ -109,7 +97,7 @@ import=common/keycloak
 +
 You have now created a theme with support for the login type.
 
-. Log into the Admin Console to checkout your new theme
+. Log into the Admin Console to check out your new theme
 . Select your realm
 . Click *Realm Settings* from the menu.
 . Click on the *Themes* tab.
@@ -215,7 +203,7 @@ alert('Hello');
 ----
 +
 Then edit `themes/mytheme/login/theme.properties` and add:
-
++
 [source]
 ----
 scripts=js/script.js
@@ -267,7 +255,7 @@ Texts of these message bundles can be overwritten by realm-specific values. The 
 
 .Prerequisites
 
-* To enable internationalization for a realm, see {adminguide_link}[{adminguide_name}].
+* To enable internationalization for a realm, see the {adminguide_link}[{adminguide_name}].
 
 .Procedure
 
@@ -317,7 +305,7 @@ usernameOrEmail=....
 
 [role="_additional-resources"]
 .Additional resources
-* See <<_locale_selector,Locale Selector>> on details on how the current locale is selected.
+* See <<_locale_selector,Locale Selector>> for details on how the current locale is selected.
 
 [[custom-identity-providers-icons]]
 ==== Adding custom Identity Providers icons
@@ -340,7 +328,7 @@ Icons for social providers are already defined in base login theme properties (`
 
 ==== Creating a custom HTML template
 
-{project_name} uses Freemarker Templates to generate HTML. You can override individual templates in your own theme by
+{project_name} uses https://freemarker.apache.org/[Apache Freemarker] templates to generate HTML. You can override individual templates in your own theme by
 creating `<THEME TYPE>/<TEMPLATE>.ftl`. For a list of templates used see `themes/base/<THEME TYPE>`.
 
 .Procedure
@@ -350,7 +338,8 @@ creating `<THEME TYPE>/<TEMPLATE>.ftl`. For a list of templates used see `themes
 . Apply the modifications you need.
 +
 For example, to create a custom login form for the `mytheme` theme, copy `themes/base/login/login.ftl` to `themes/mytheme/login` and open it in an editor.
-After the first line (<#import ...>) add `<h1>HELLO WORLD!</h1>`:
++
+After the first line (<#import ...>), add `<h1>HELLO WORLD!</h1>` as shown here:
 +
 [source,html]
 ----
@@ -363,7 +352,7 @@ After the first line (<#import ...>) add `<h1>HELLO WORLD!</h1>`:
 
 [role="_additional-resources"]
 .Additional resources
-* See https://freemarker.apache.org/docs/index.html[FreeMarker Manual] for details on how to edit templates.
+* See the https://freemarker.apache.org/docs/index.html[FreeMarker Manual] for details on how to edit templates.
 
 ==== Emails
 
@@ -380,7 +369,7 @@ passwordResetBody=Reset password link: {0}
 passwordResetBodyHtml=<a href="{0}">Reset password</a>
 ----
 
-=== Deploying Themes
+=== Deploying themes
 
 Themes can be deployed to {project_name} by copying the theme directory to `themes` or it can be deployed as an archive. During development you can copy the
 theme to the `themes` directory, but in production you may want to consider using an `archive`. An `archive` makes it simpler to have a versioned copy of
@@ -388,20 +377,20 @@ the theme, especially when you have multiple instances of {project_name} for exa
 
 .Procedure
 
-. To deploy a theme as an archive, JAR archive with the theme resources.
+. To deploy a theme as an archive, create a JAR archive with the theme resources.
 . Add a file `META-INF/keycloak-themes.json` to the
 archive that lists the available themes in the archive as well as what types each theme provides.
 +
 For example for the `mytheme` theme create `mytheme.jar` with the contents:
 +
 * META-INF/keycloak-themes.json
-* themes/mytheme/login/theme.properties
-* themes/mytheme/login/login.ftl
-* themes/mytheme/login/resources/css/styles.css
-* themes/mytheme/login/resources/img/image.png
-* themes/mytheme/login/messages/messages_en.properties
-* themes/mytheme/email/messages/messages_en.properties
-
+* theme/mytheme/login/theme.properties
+* theme/mytheme/login/login.ftl
+* theme/mytheme/login/resources/css/styles.css
+* theme/mytheme/login/resources/img/image.png
+* theme/mytheme/login/messages/messages_en.properties
+* theme/mytheme/email/messages/messages_en.properties
++
 The contents of `META-INF/keycloak-themes.json` in this case would be:
 +
 [source,json]
@@ -416,5 +405,5 @@ The contents of `META-INF/keycloak-themes.json` in this case would be:
 +
 A single archive can contain multiple themes and each theme can support one or more types.
 
-. To deploy the archive to {project_name}, add it to the `standalone/deployments/` directory of
-{project_name} and it will be automatically loaded.
+To deploy the archive to {project_name}, add it to the `providers/` directory of
+{project_name} and restart the server if it is already running.

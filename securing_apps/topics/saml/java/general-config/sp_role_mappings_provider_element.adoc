@@ -4,7 +4,7 @@
 The `RoleMappingsProvider` is an optional element that allows for the specification of the id and configuration of the
 `org.keycloak.adapters.saml.RoleMappingsProvider` SPI implementation that is to be used by the SAML adapter.
 
-When {project_name} is used as the IDP, it is possible to use the built in role mappers to map any roles before adding them to the
+When {project_name} is used as the IDP, it is possible to use the built-in role mappers to map any roles before adding them to the
 SAML assertion. However, the SAML adapters can be used to send SAML requests to third party IDPs and in this case it might be
 necessary to map the roles extracted from the assertion into a different set of roles as required by the SP. The
 `RoleMappingsProvider` SPI allows for the configuration of pluggable role mappers that can be used to perform the necessary
@@ -63,7 +63,7 @@ using the `properties.resource.location` to load the `roles.properties` file fro
 
 The `properties` file can contain both roles and principals as keys, and a list of zero or more roles separated by comma
 as values. When invoked, the implementation iterates through the set of roles that were extracted from the assertion and checks,
-for each role, if a mapping exists. If the role maps to an empty role, it is discarded. If it maps to a set of one ore more
+for each role, if a mapping exists. If the role maps to an empty role, it is discarded. If it maps to a set of one or more
 different roles, then these roles are set in the result set. If no mapping is found for the role then it is included as is
 in the result set.
 

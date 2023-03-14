@@ -8,7 +8,7 @@
 User attributes provide a customized experience for each user. You can create a personalized identity for each user in the console by configuring user attributes.
 
 .Users
-image:{project_images}/user-attributes.png[]
+image:images/user-attributes.png[]
 
 .Prerequisite
 * You are in the realm where the user exists.
@@ -19,7 +19,6 @@ image:{project_images}/user-attributes.png[]
 . Click the *Attributes* tab.
 . Enter the attribute name in the *Key* field.
 . Enter the attribute value in the *Value* field.
-. Click *Add*.
 . Click *Save*.
 
 

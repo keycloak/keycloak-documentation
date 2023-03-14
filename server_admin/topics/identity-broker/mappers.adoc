@@ -12,12 +12,12 @@ Each user logging into your realm using an external identity provider has an ent
 . Click the *Mappers* tab.
 +
 .Identity provider mappers
-image:{project_images}/identity-provider-mappers.png[identity provider mappers]
+image:images/identity-provider-mappers.png[identity provider mappers]
 +
-. Click *Create*.
+. Click *Add mapper*.
 +
 .Identity provider mapper
-image:{project_images}/identity-provider-mapper.png[identity provider mapper]
+image:images/identity-provider-mapper.png[identity provider mapper]
 +
 . Select a value for *Sync Mode Override*. The mapper updates user information when users log in repeatedly according to this setting.
 .. Select *legacy* to use the behavior of the previous {project_name} version.
@@ -29,4 +29,4 @@ image:{project_images}/identity-provider-mapper.png[identity provider mapper]
 
 For JSON-based claims, you can use dot notation for nesting and square brackets to access array fields by index. For example, `contact.address[0].country`.
 
-To investigate the structure of user profile JSON data provided by social providers, you can enable the `DEBUG` level logger `org.keycloak.social.user_profile_dump` in the server's app-server configuration file (domain.xml or standalone.xml).
+To investigate the structure of user profile JSON data provided by social providers, you can enable the `DEBUG` level logger `org.keycloak.social.user_profile_dump` when starting the server.

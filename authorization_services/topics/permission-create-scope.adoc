@@ -1,12 +1,12 @@
 [[_permission_create_scope]]
-= Creating Scope-Based Permissions
+= Creating scope-based permissions
 
 A scope-based permission defines a set of one or more scopes to protect using a set of one or more authorization policies. Unlike resource-based permissions, you can use this permission type to create permissions not only for a resource, but also for the scopes associated with it, providing more granularity when defining the permissions that govern your resources and the actions that can be performed on them.
 
-To create a new scope-based permission, select *Scope-based* in the dropdown list in the upper right corner of the permission listing.
+To create a new scope-based permission, select *Create scope-based permission* from the *Create permission* dropdown.
 
-.Add Scope-Based Permission
-image:{project_images}/permission/create-scope.png[alt="Add Scope-Based Permission"]
+.Add Scope Permission
+image:images/permission/create-scope.png[alt="Add Scope Permission"]
 
 == Configuration
 
@@ -27,7 +27,7 @@ Restricts the scopes to those associated with the selected resource. If none is 
 +
 Defines a set of one or more scopes to protect.
 
-* *Apply Policy*
+* *Policy*
 +
 Defines a set of one or more policies to associate with a permission. To associate a policy you can either select an existing policy
 or create a new one by selecting the type of the policy you want to create.

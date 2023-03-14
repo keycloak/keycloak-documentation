@@ -86,9 +86,9 @@ The `createAdapter()` method uses the helper class `org.keycloak.storage.adapter
 "f:" + component id + ":" + username
 ----
 
-Every get method of `AbstractUserAdapter` either returns null or empty collections. However, methods that return role and group mappings will return the default roles and groups configured for the realm for every user.  Every set method of `AbstractUserAdapter` will throw a `org.keycloak.storage.ReadOnlyException`. So if you attempt to modify the user in the admininstration console, you will get an error.
+Every get method of `AbstractUserAdapter` either returns null or empty collections. However, methods that return role and group mappings will return the default roles and groups configured for the realm for every user.  Every set method of `AbstractUserAdapter` will throw a `org.keycloak.storage.ReadOnlyException`. So if you attempt to modify the user in the Admin Console, you will get an error.
 
-The `getUserById()` method parses the `id` parameter using the `org.keycloak.storage.StorageId` helper class. The `StorageId.getExternalId()` method is invoked to obtain the username embeded in the `id` parameter. The method then delegates to `getUserByUsername()`.
+The `getUserById()` method parses the `id` parameter using the `org.keycloak.storage.StorageId` helper class. The `StorageId.getExternalId()` method is invoked to obtain the username embedded in the `id` parameter. The method then delegates to `getUserByUsername()`.
 
 Emails are not stored, so the `getUserByEmail()` method returns null.
 
@@ -207,19 +207,13 @@ The `UserStorageProviderFactory` interface has an optional `init()` method you c
 
 In our `init()` method implementation, we find the property file containing our user declarations from the classpath. We then load the `properties` field with the username and password combinations stored there.
 
-The `Config.Scope` parameter is factory configuration that can be set up within `standalone.xml`, `standalone-ha.xml`, or `domain.xml`.
+The `Config.Scope` parameter is factory configuration that configured through server configuration.
 
-For example, by adding the following to `standalone.xml`:
+For example, by running the server with the following argument:
 
-[source,xml]
+[source,bash]
 ----
-<spi name="storage">
-    <provider name="readonly-property-file" enabled="true">
-        <properties>
-            <property name="path" value="/other-users.properties"/>
-        </properties>
-    </provider>
-</spi>
+kc.[sh|bat] start --spi-storage-readonly-property-file-path=/other-users.properties
 ----
 
 We can specify the classpath of the user property file instead of hardcoding it. Then you can retrieve the configuration in the `PropertyFileUserStorageProviderFactory.init()`:
@@ -256,16 +250,14 @@ The class files for our provider implementation should be placed in a jar.  You 
 org.keycloak.examples.federation.properties.FilePropertiesStorageFactory
 ----
 
-Once you create the jar you can deploy it using regular {appserver_name} means: copy the jar into the `standalone/deployments/` directory or using the JBoss CLI.
+To deploy this jar, copy it to the `providers/` directory, then run `bin/kc.[sh|bat] build`.
 
 ==== Enabling the provider in the Admin Console
 
 You enable user storage providers per realm within the *User Federation* page in the Admin Console.
 
-ifeval::[{project_community}==true]
 .User Federation
-image:{project_images}/empty-user-federation-page.png[]
-endif::[]
+image:images/empty-user-federation-page.png[]
 
 .Procedure
 
@@ -274,20 +266,15 @@ endif::[]
 The configuration page for our provider displays.
 
 . Click *Save* because we have nothing to configure.
-ifeval::[{project_community}==true]
 +
 .Configured Provider
-image:{project_images}/storage-provider-created.png[]
-endif::[]
+image:images/storage-provider-created.png[]
 
 . Return to the main *User Federation* page
 +
 You now see your provider listed.
-
-ifeval::[{project_community}==true]
 +
 .User Federation
-image:{project_images}/user-federation-page.png[]
-endif::[]
+image:images/user-federation-page.png[]
 
 You will now be able to log in with a user declared in the `users.properties` file. This user will only be able to view the account page after logging in.
