@@ -9,7 +9,7 @@ include::../templates/techpreview.adoc[]
 
 [NOTE]
 
-In order to use more than the link:#internal-token-to-internal-token-exchange[Internal Token to Internal Token Exchange] flow, you should also enable the `admin_fine_grained_authz` feature. Please, take a look at link:{installguide_profile_link}[{installguide_profile_name}]. 
+To use more than the link:#internal-token-to-internal-token-exchange[Internal Token to Internal Token Exchange] flow, you should also enable the `admin_fine_grained_authz` feature. For details, see  link:{installguide_profile_link}[{installguide_profile_name}]. 
 
 ====
 
