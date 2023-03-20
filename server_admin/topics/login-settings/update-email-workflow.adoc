@@ -1,4 +1,5 @@
 [[_update-email-workflow]]
+
 == Update Email Workflow (UpdateEmail)
 
 With this workflow, users will have to use an UPDATE_EMAIL action to change their own email address.
