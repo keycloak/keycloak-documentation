@@ -1,8 +1,0 @@
-include::topics/templates/document-attributes.adoc[]
-
-:api_documentation:
-:linkattrs:
-
-= {apidocs_name}
-
-include::topics.adoc[]
